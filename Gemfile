@@ -15,6 +15,8 @@ gem 'therubyracer',  platforms: :ruby
 gem 'jquery-rails'
 gem 'quiet_assets'
 gem 'foundation-rails'
+gem 'underscore-rails'
+gem 'vuejs-rails'
 
 group :development do
   gem 'spring'

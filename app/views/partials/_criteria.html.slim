@@ -1,11 +1,14 @@
 .row
 
   .large-3.columns
-    ul role="criteria"
+    ul@criteria
       - @criteria.each do |criterion|
-        li: a href="javascript:;" = criterion.label
-        ul role="subcriteria"
-          - criterion.subcriteria.each do |subcriterion|
-            li: a href="javascript:;" = subcriterion.label
+        li
+          a href="javascript:;" v-on="click: display('#{criterion.name}')" = criterion.label
+          ul role="subcriteria" v-show="current=='#{criterion.name}'"
+            - criterion.subcriteria.each do |subcriterion|
+              li: a href="javascript:;" v-on="click: pick('#{subcriterion.name}')" = subcriterion.label
 
   .large-9.columns
+    div@cart
+      p v-repeat="criteria" {{ name }}
