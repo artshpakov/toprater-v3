@@ -6,3 +6,6 @@
 
 
 $ -> $(document).foundation()
+
+
+window.Toprater ?= {}

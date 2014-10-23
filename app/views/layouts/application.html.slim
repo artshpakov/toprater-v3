@@ -3,8 +3,15 @@ html
   head
     title Toprater
     = stylesheet_link_tag :application, media: :all
-    = javascript_include_tag :application
     = csrf_meta_tags
 
   body
-    = yield
+    @wrapper
+      = render partial: 'partials/header'
+      .row
+        .large-3.columns
+          = render partial: 'partials/criteria'
+        .large-9.columns
+          = yield
+
+      = javascript_include_tag :application

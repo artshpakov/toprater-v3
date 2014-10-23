@@ -1,0 +1,11 @@
+.row
+
+  .large-3.columns
+    ul role="criteria"
+      - @criteria.each do |criterion|
+        li: a href="javascript:;" = criterion.label
+        ul role="subcriteria"
+          - criterion.subcriteria.each do |subcriterion|
+            li: a href="javascript:;" = subcriterion.label
+
+  .large-9.columns
