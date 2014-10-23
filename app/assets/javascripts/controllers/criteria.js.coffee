@@ -10,6 +10,6 @@ Toprater.CriteriaCtrl = new Vue
       criterion = Toprater.Criterion.find name
       Toprater.State.pickCriterion criterion
 
-
-  Toprater.Criterion.items = toprater.criteria.map (attrs) ->
-    new Toprater.Criterion attrs
+  created: ->
+    Toprater.Criterion.items = toprater.criteria.map (attrs) ->
+      new Toprater.Criterion attrs

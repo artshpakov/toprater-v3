@@ -3,3 +3,7 @@ Toprater.CartCtrl = new Vue
 
   data:
     criteria: Toprater.State.criteria
+
+  ready: ->
+    @$watch 'criteria.length', ->
+      Toprater.Alternative.rate()

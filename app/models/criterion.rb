@@ -12,7 +12,11 @@ class Criterion < Sentimeta::Model
   end
 
   def self.leafs # TODO move to a decorator
-    all.flat_map &:subcriteria
+    @leafs ||= all.flat_map &:subcriteria
+  end
+
+  def self.find name
+    leafs.find { |c| c.name == name }
   end
 
 end

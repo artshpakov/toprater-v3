@@ -4,8 +4,9 @@ class Toprater.Model
     _.extend @, attrs
     @initialize() if @initialize?
 
-  query: (params, callback=null) =>
+  @query: (params, callback=null) ->
     if _.isFunction params
       callback  = params
       params    = {}
-    $.get @url(), params, callback
+    url = if _.isFunction @url then @url() else @url
+    $.get url, params, callback

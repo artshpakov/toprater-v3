@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
 
   def setup
     @criteria     = Criterion.all
+    gon.criteria  = Criterion.leafs
   end
 
 end
