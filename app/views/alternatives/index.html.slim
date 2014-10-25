@@ -1,19 +1,22 @@
-@list
-  - @alternatives.each_with_index do |alternative, index|
-    .card
-      h4 = "#{ index+1 }. #{ alternative['name'] }"
-      p@address = alternative['address']['full_address']
+#rating
+  @list
+    - @alternatives.each_with_index do |alternative, index|
+      .card
+        .headline
+          .index = index+1
+          .name = alternative['name']
+          p.address = alternative['address']['full_address']
 
-      .row
-        .large-3.columns
-          - alternative['reviews'].each do |pack|
-            p: a href="javascript:;" v-on="click: alert('#{ pack['name'] }')" = Criterion.find(pack["name"]).try :label
+        .row
+          .large-3.columns
+            - alternative['reviews'].each do |pack|
+              p: a href="javascript:;" v-on="click: alert('#{ pack['name'] }')" = Criterion.find(pack["name"]).try :label
 
-        .large-9.columns
-          - alternative['reviews'].each_with_index do |pack, index|
-            div style="#{ "display:none" unless index.zero? }"
-              - pack["reviews"][0..2].each do |review|
-                p style="font-size:12px"
-                  =' review['before']
-                  b' = review['text']
-                  = review['after']
+          .large-9.columns
+            - alternative['reviews'].each_with_index do |pack, index|
+              div style="#{ "display:none" unless index.zero? }"
+                - pack["reviews"][0..2].each do |review|
+                  p style="font-size:12px"
+                    =' review['before']
+                    b' = review['text']
+                    = review['after']

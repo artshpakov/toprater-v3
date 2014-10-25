@@ -1,8 +1,8 @@
 class Toprater.Alternative extends Toprater.Model
 
-  @url: "/en/hotels/alternatives"
+  @url: "/en/hotels/objects"
 
   @rate: ->
     $('#rating').html "loading..."
-    @query p: Toprater.State.parameterize(), (alternatives) ->
-      $('#rating').html alternatives
+    @query Toprater.State.parameterize(), (alternatives) ->
+      $('#rating').replaceWith alternatives
