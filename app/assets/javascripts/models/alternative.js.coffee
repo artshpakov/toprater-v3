@@ -1,6 +1,6 @@
 class Toprater.Alternative extends Toprater.Model
 
-  @url: "/alternatives"
+  @url: "/en/hotels/alternatives"
 
   @rate: ->
     $('#rating').html "loading..."

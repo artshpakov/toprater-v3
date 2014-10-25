@@ -17,6 +17,7 @@ gem 'quiet_assets'
 gem 'foundation-rails'
 gem 'underscore-rails'
 gem 'vuejs-rails'
+gem "historyjs-rails"
 
 group :development do
   gem 'spring'

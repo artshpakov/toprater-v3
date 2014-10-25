@@ -58,6 +58,8 @@ GEM
       multi_json
       request_store (>= 1.0.5)
     hike (1.2.3)
+    historyjs-rails (1.0.1)
+      railties (>= 3.0)
     i18n (0.6.11)
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
@@ -149,6 +151,7 @@ DEPENDENCIES
   coffee-rails (~> 4.0.0)
   foundation-rails
   gon
+  historyjs-rails
   jquery-rails
   puma
   quiet_assets

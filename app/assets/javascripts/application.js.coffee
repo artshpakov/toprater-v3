@@ -4,6 +4,7 @@
 #= require vendor/modernizr
 #= require underscore
 #= require vue
+#= require history_jquery_html5
 
 #= require_self
 #= require_tree ./utils

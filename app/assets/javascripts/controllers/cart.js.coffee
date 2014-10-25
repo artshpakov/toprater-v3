@@ -7,3 +7,4 @@ Toprater.CartCtrl = new Vue
   ready: ->
     @$watch 'criteria.length', ->
       Toprater.Alternative.rate()
+      History.pushState null, "List", "/en/hotels/objects?#{ Toprater.State.toUrl() }"

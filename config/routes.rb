@@ -7,9 +7,9 @@ Rails.application.routes.draw do
     scope "/(:sphere)" do
       get '/' => 'index#index'
 
+      resources :alternatives, only: %i(index show)
+
     end
   end
-
-  resources :alternatives, only: %i(index show)
 
 end

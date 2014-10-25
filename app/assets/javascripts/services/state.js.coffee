@@ -7,3 +7,6 @@ class Toprater.State
 
   @parameterize: ->
     criteria: (criterion.name for criterion in @criteria)
+
+  @toUrl: =>
+    ("#{ param }=#{ JSON.stringify value }" for param, value of @parameterize()).join '&'
