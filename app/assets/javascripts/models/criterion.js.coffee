@@ -1,7 +1,7 @@
-class Toprater.Criterion extends Toprater.Model
+# class Toprater.Criterion extends Toprater.Model
 
-  @items: []
+#   @items: []
 
 
-  @find: (name) =>
-    _.findWhere @items, { name }
+#   @find: (name) =>
+#     _.findWhere @items, { name }

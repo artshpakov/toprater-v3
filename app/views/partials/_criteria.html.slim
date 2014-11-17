@@ -1,7 +1,8 @@
-ul@criteria
+ul criteria=true
   - @criteria.each do |criterion|
-    li
-      a href="javascript:;" v-on="click: display('#{criterion.name}')" = criterion.label
-      ul role="subcriteria" v-show="current=='#{criterion.name}'"
+    li criterion-group=true
+      a criterion-group-link=true href="javascript:;" = criterion.label
+      ul
         - criterion.subcriteria.each do |subcriterion|
-          li: a href="javascript:;" v-on="click: pick('#{subcriterion.name}')" = subcriterion.label
+          li criterion=true data-name="#{ subcriterion.name }"
+            a href="javascript:;" = subcriterion.label
