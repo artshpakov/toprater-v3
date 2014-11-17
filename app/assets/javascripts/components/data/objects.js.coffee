@@ -1,24 +1,28 @@
 $ ->
   objectsData =  ->
-    @attributes({
+    @attributes
       selectedCriteria: []
-    })
 
-    @getAlternatives = (criteria, filters) ->
-      address = "objects?criteria=[#{ @attr.selectedCriteria }]"
-      console.log address
+    @getAlternatives = ->
       @get
-        url: address
-        done: ->
-          console.log "yep!"
-      alert 'selected!'
+        url: "hotels/objects?" + ("criteria[]=#{ criterion }" for key, criterion of @attr.selectedCriteria).join "&"
+        success: (data) ->
+          alert "loaded"
+          @trigger "objectsLoaded", list: data
+          return
+        # error: (error) ->
+        #   @trigger "errorLoadingObjects", error: error
+        #   return
+        # done: ->
+        #   alert "done!"
+      return
 
     @after "initialize", ->
-      @on "criterionSelected", (e, data)->
+      @on "criterionSelected", (e, data) ->
         @attr.selectedCriteria.push(data.name)
-        console.log @attr.selectedCriteria
+        @attr.selectedCriteria = _.uniq(@attr.selectedCriteria)
         @getAlternatives()
 
 
-  Toprater.ObjectsData = flight.component(objectsData, withRequest)
+  Toprater.ObjectsData = flight.component(flight.utils.compose(objectsData, withRequest))
   Toprater.ObjectsData.attachTo document

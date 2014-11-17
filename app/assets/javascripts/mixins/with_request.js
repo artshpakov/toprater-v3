@@ -1,6 +1,5 @@
 $(function() {
   withRequest = function() {
-    console.log('withRequest');
     var requests = [];
 
     this.attributes({
@@ -14,7 +13,6 @@ $(function() {
       dataType = settings.dataType || 'JSON',
       tunnelMethod = this.attr.tunnelMethod,
       request;
-
       if (!settings.hasOwnProperty('context')) {
         settings.context = this;
       }
@@ -62,6 +60,7 @@ $(function() {
       return function (data, textStatus, jqXHR) {
         this.__requestComplete__(jqXHR, data, action, context);
       }.bind(this);
+      console.log(this);
     };
 
     this.__requestError__ = function (action, context) {      
@@ -138,7 +137,5 @@ $(function() {
     this.after('initialize', function () {
       this.on(window, 'unload', this.abortAllRequests);
     });
-  };  
-
-  Toprater.withRequest = flight.component(withRequest);
+  };
 });

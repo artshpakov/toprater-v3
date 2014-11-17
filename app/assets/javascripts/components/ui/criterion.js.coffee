@@ -8,7 +8,6 @@ $ ->
       @trigger "criterionSelected", name: @attr.name
 
     @after "initialize", ->
-      console.log "criterion"
       @$node.hide()
       @attr.name = @$node.attr("data-name")
 

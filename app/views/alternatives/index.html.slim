@@ -1,4 +1,4 @@
-#rating data-block="objects-list"
+#rating
   - @alternatives.each_with_index do |alternative, index|
     .card
       .headline
@@ -9,7 +9,8 @@
       .row
         .large-3.columns
           - alternative['reviews'].each do |pack|
-            p: a href="javascript:;" = Criterion.find(pack["name"]).try :label
+            p citerion=true 
+              a href="javascript:;" = Criterion.find(pack["name"]).try :label
 
         .large-9.columns
           - alternative['reviews'].each_with_index do |pack, index|
