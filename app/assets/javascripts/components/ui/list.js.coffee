@@ -3,16 +3,17 @@ $ ->
     @attributes
       el: "[objects-list]"
 
-    @showObjects = (e, data) ->
-      alert "loaded!"
+    @showAlternatives = (data) ->
+      @$node.append($(data))
+      @trigger document, "pageUpdated"
 
     @after "initialize", ->
-      @on "objectsLoaded", ->
-        console.log "loaded"
-        @showObjects
-        
-      @on "errorLoadingObjects", (e, data) ->
-        alert "fail!"
+      @on document, "objectsLoaded", (event, data) ->
+        @showAlternatives data.list
+
+      # @on "errorLoadingObjects", (e, data) ->
+      #   alert "fail!"
+      #   return
 
   Toprater.ObjectsList = flight.component(objectsList)
   Toprater.ObjectsList.attachTo "[objects-list]"

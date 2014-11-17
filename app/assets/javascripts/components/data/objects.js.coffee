@@ -1,28 +1,38 @@
 $ ->
-  objectsData =  ->
+  objectsData = ->
     @attributes
       selectedCriteria: []
 
     @getAlternatives = ->
-      @get
+      @attr.selectedCriteria = _.uniq(@attr.selectedCriteria)
+      self = @
+      $.ajax(
         url: "hotels/objects?" + ("criteria[]=#{ criterion }" for key, criterion of @attr.selectedCriteria).join "&"
-        success: (data) ->
-          alert "loaded"
-          @trigger "objectsLoaded", list: data
-          return
+        method: "get"
+      ).done( (data) ->
+        self.trigger "objectsLoaded", list: data
+        )
+      # @get
+      #   url: "hotels/objects?" + ("criteria[]=#{ criterion }" for key, criterion of @attr.selectedCriteria).join "&"
+      #   context: @
+      #   success: (data) ->
+      #     alert "loaded"
+      #     @trigger "objectsLoaded", list: data
+      #     return
         # error: (error) ->
         #   @trigger "errorLoadingObjects", error: error
         #   return
-        # done: ->
-        #   alert "done!"
-      return
 
     @after "initialize", ->
-      @on "criterionSelected", (e, data) ->
+
+      @on "criterionSelected", (event, data) ->
         @attr.selectedCriteria.push(data.name)
-        @attr.selectedCriteria = _.uniq(@attr.selectedCriteria)
         @getAlternatives()
 
+      @on "criterionUnselected", (event, data) ->
+        @attr.selectedCriteria = _.reject(@attr.selectedCriteria, [data.name])
+        @getAlternatives()
 
-  Toprater.ObjectsData = flight.component(flight.utils.compose(objectsData, withRequest))
+  # objectsData = flight.compose.mixin(objectsData, withRequest)
+  Toprater.ObjectsData = flight.component(objectsData, withRequest)
   Toprater.ObjectsData.attachTo document

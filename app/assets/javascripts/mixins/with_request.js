@@ -60,7 +60,6 @@ $(function() {
       return function (data, textStatus, jqXHR) {
         this.__requestComplete__(jqXHR, data, action, context);
       }.bind(this);
-      console.log(this);
     };
 
     this.__requestError__ = function (action, context) {      
@@ -138,4 +137,5 @@ $(function() {
       this.on(window, 'unload', this.abortAllRequests);
     });
   };
+  // Toprater.WithRequest = flight.component(withRequest);
 });
