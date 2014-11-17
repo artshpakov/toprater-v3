@@ -2,10 +2,12 @@ $ ->
   criterion = ->
     @attributes
       name: ''
+      selected: false
 
     @selectCriterion = (e) ->
       # alert(@attr.name)
       e.stopPropagation()
+      @attr.selected = true
       @trigger "criterionSelected", name: @attr.name
 
     @after "initialize", ->

@@ -137,5 +137,4 @@ $(function() {
       this.on(window, 'unload', this.abortAllRequests);
     });
   };
-  // Toprater.WithRequest = flight.component(withRequest);
 });

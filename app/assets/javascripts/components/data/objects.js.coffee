@@ -1,5 +1,6 @@
 $ ->
   objectsData = ->
+
     @attributes
       selectedCriteria: []
 
@@ -9,6 +10,8 @@ $ ->
       $.ajax(
         url: "hotels/objects?" + ("criteria[]=#{ criterion }" for key, criterion of @attr.selectedCriteria).join "&"
         method: "get"
+      ).fail( (data) ->
+        self.trigger "errorLoadingObjects", data
       ).done( (data) ->
         self.trigger "objectsLoaded", list: data
         )
@@ -23,6 +26,7 @@ $ ->
         #   @trigger "errorLoadingObjects", error: error
         #   return
 
+
     @after "initialize", ->
 
       @on "criterionSelected", (event, data) ->
@@ -33,6 +37,7 @@ $ ->
         @attr.selectedCriteria = _.reject(@attr.selectedCriteria, [data.name])
         @getAlternatives()
 
-  # objectsData = flight.compose.mixin(objectsData, withRequest)
+
+
   Toprater.ObjectsData = flight.component(objectsData, withRequest)
   Toprater.ObjectsData.attachTo document
