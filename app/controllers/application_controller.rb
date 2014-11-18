@@ -25,7 +25,22 @@ class ApplicationController < ActionController::Base
 
   def setup
     @criteria     = Criterion.all
-    gon.criteria  = Criterion.leafs
+    # gon.criteria  = Criterion.leafs
+  end
+
+
+
+  before_action do
+    ParamsService.decode! params
+  end
+
+
+  COMPLEX_URLS = %w(list)
+
+  COMPLEX_URLS.each do |name|
+    method_name = "#{ name }_path"
+    define_method(method_name) { |params={}| super ParamsService.encode! params }
+    helper_method method_name
   end
 
 end
