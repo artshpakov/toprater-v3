@@ -7,6 +7,7 @@ gem 'sentimeta'
 
 gem 'slim'
 gem 'gon'
+gem 'cells'
 
 gem 'sass-rails', '~> 4.0.3'
 # gem 'sass-rails'
