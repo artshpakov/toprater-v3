@@ -24,8 +24,12 @@ class ApplicationController < ActionController::Base
 
 
   def setup
-    @criteria     = Criterion.all
-    # gon.criteria  = Criterion.leafs
+    unless request.xhr?
+      @criteria     = Criterion.all
+      # gon.criteria  = Criterion.leafs
+      gon.criteria  = params[:criteria]
+      gon.filters   = params[:filters]
+    end
   end
 
 
