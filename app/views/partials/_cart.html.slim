@@ -1,4 +1,5 @@
-div data-block="cart"
-  p.criterion
-    ' {{ label }}
-    a.drop href="javascript:;"&times;
+div#cart cart=true
+  script type="text/template"
+    | {{#criteria}} 
+    a.button.tiny criterion=true href="javascript:;" {{label}}
+    | {{/criteria}}

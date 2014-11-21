@@ -6,8 +6,10 @@
 #= require history_jquery_html5
 #= require es5-shim/es5-shim-min
 #= require flight-for-rails
+#= require hogan.js
 
 #= require_self
+#= require_tree ./templates
 #= require_tree ./utils
 #= require_tree ./mixins
 #= require_tree ./components

@@ -1,0 +1,18 @@
+<!-- div
+  script#card cart=true type="text/template"
+    | {{ #criteria }}
+    p.criterion
+      | {{ label }}
+      a.drop href="javascript:;"&times;
+    | {{ /criteria }} -->
+
+<div>
+  <script id="cart" cart type="text/template">
+  {{ #criteria }}
+    <p class="criterion">
+      {{ label }}
+      <a href="javascript:;" class="drop">&times;</a>
+    </p>
+  {{ /criteria }}
+  </script>
+</div>
