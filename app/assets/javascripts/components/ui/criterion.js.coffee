@@ -1,22 +1,22 @@
-$ ->
-  criterion = ->
-    @attributes
-      name: ''
-      selected: false
+criterion = ->
+  @attributes
+    name: ''
+    label: ''
+    selected: false
 
-    @selectCriterion = (e) ->
-      # alert(@attr.name)
-      e.stopPropagation()
-      @attr.selected = true
-      @trigger "criterionSelected", name: @attr.name
+  @toggleCriterion = (event) ->
+    event.stopPropagation()
+    @attr.selected = !@attr.selected
+    @trigger "criterionToggled", { name: @attr.name, label: @attr.label }
 
-    @after "initialize", ->
-      @attr.name = @$node.attr("data-name")
+  @after "initialize", ->
+    @attr.name = @$node.attr("data-name")
+    @attr.label = @$node.attr("data-label")
 
-      @on "click", @selectCriterion
+    @on "click", @toggleCriterion
 
-      @on document, "pageUpdated", ->
-        Toprater.Criterion.attachTo "[criterion]"
+    @on document, "pageUpdated", ->
+      Toprater.Criterion.attachTo "[criterion]"
 
-  Toprater.Criterion = flight.component(criterion)
-  Toprater.Criterion.attachTo "[criterion]"
+Toprater.Criterion = flight.component(criterion)
+Toprater.Criterion.attachTo "[criterion]"

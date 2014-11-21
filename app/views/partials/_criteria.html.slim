@@ -4,5 +4,5 @@ ul criteria=true
       a criterion-group-link=true href="javascript:;" = criterion.label
       ul
         - criterion.subcriteria.each do |subcriterion|
-          li criterion=true data-name="#{ subcriterion.name }"
+          li criterion=true data-name="#{ subcriterion.name }" data-label="#{ subcriterion.label }"
             a href="javascript:;" = subcriterion.label
