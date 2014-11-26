@@ -8,7 +8,7 @@
     .row
       .large-3.columns
         - alternative['reviews'].each do |pack|
-          p criterion=true data-name="#{ Criterion.find(pack["name"]).name }"
+          p@criterion data-name="#{ Criterion.find(pack["name"]).name }"
             a href="javascript:;" = Criterion.find(pack["name"]).try :label
 
       .large-9.columns

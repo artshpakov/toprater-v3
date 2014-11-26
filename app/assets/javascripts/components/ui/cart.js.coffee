@@ -11,6 +11,3 @@ cart = ->
 
 Toprater.Cart = flight.component cart, withHogan
 Toprater.Cart.attachTo "[cart]"
-
-
-

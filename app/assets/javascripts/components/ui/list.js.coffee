@@ -14,4 +14,4 @@ objectsList = ->
 
 
 Toprater.ObjectsList = flight.component(objectsList)
-Toprater.ObjectsList.attachTo "[objects-list]"
+Toprater.ObjectsList.attachTo "[role=objects-list]"

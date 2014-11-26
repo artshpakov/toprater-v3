@@ -16,7 +16,7 @@ criterion = ->
     @on "click", @toggleCriterion
 
     @on document, "pageUpdated", ->
-      Toprater.Criterion.attachTo "[criterion]"
+      Toprater.Criterion.attachTo "[role=criterion]"
 
 Toprater.Criterion = flight.component(criterion)
-Toprater.Criterion.attachTo "[criterion]"
+Toprater.Criterion.attachTo "[role=criterion]"

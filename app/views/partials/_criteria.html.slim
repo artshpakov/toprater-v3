@@ -1,8 +1,8 @@
-ul criteria=true
+ul@criteria
   - @criteria.each do |criterion|
-    li criterion-group=true
-      a criterion-group-link=true href="javascript:;" = criterion.label
+    li@criterion-group
+      a@criterion-group-link href="javascript:;" = criterion.label
       ul
         - criterion.subcriteria.each do |subcriterion|
-          li criterion=true data-name="#{ subcriterion.name }" data-label="#{ subcriterion.label }"
+          li@criterion data-name="#{ subcriterion.name }" data-label="#{ subcriterion.label }"
             a href="javascript:;" = subcriterion.label
