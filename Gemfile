@@ -28,6 +28,8 @@ gem 'underscore-rails'
 gem 'flight-for-rails', '~> 1.3.0'
 gem "historyjs-rails"
 
+gem 'colored'
+
 group :development do
   gem 'spring'
   gem 'capistrano-rails'

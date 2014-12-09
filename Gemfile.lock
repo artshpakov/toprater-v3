@@ -52,6 +52,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    colored (1.2)
     colorize (0.7.3)
     erubis (2.7.0)
     es5-shim-rails (4.0.1)
@@ -167,6 +168,7 @@ DEPENDENCIES
   cells
   coffee-rails (~> 4.0.0)
   coffee-rails-source-maps
+  colored
   es5-shim-rails
   flight-for-rails (~> 1.3.0)
   foundation-rails
