@@ -8,7 +8,7 @@ withParamsCtr = ->
       params.criteria = urlPartials[_.indexOf(urlPartials, "criteria") + 1].split(",")
 
     if _.contains urlPartials, "filters"
-      filtersList = urlPartials[(_.indexOf(urlPartials, "filters") + 1)..]
+      filtersList = _.compact(urlPartials[(_.indexOf(urlPartials, "filters") + 1)..])
 
       params.filters = []
 
@@ -27,8 +27,9 @@ withParamsCtr = ->
     if criteria?
       paramsPath += "/criteria" + "/" + criteria.join(",")
 
-    if filters?
-      paramsPath += "/filters" + "/" + _.flatten(_.pairs(filter)).join("/") for filter in filters
+    if filters? and filters.length
+      paramsPath += "/filters"
+      paramsPath += "/" + _.flatten(_.pairs(filter)).join("/") for filter in filters
 
     paramsPath
 

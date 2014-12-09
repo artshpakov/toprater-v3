@@ -28,7 +28,6 @@ appState = ->
     if not _.isArray pickedCriteria
       pickedCriteria = [pickedCriteria]
 
-    console.log pickedCriteria
     self = @
     _.each pickedCriteria, (criterion) ->
       ca = _.where self.attr.criteria, name: criterion
@@ -50,16 +49,13 @@ appState = ->
       @attr.criteria = toprater.criteria
 
     if toprater.filters?
-      @attr.filters = toprater.filters
+      @attr.filters = @decode(window.location.pathname).filters
+
 
     if toprater.pickedCriteria?
       @setPicked(toprater.pickedCriteria.split(","))
 
     @trigger "criteriaUpdated", criteria: @getPicked()
-
-    # decoded = @decode window.location.pathname
-    # console.log decoded
-    # console.log(@encode decoded.criteria, decoded.filters)
 
     routes = {
       "/en/hotels": {
