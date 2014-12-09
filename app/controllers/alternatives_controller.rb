@@ -4,21 +4,10 @@ class AlternativesController < ApplicationController
 
 
   def index
-    @alternatives = Sentimeta::Client.objects criteria: params[:criteria]
+    @alternatives = Sentimeta::Client.objects criteria: params[:criteria], filters: params[:filters]
     if request.xhr?
       return render "alternatives/index", layout: false
     end
   end
-
-
-  # protected
-
-  # def api_params
-  #   criteria = if params[:criteria].kind_of?(Array)
-  #     params[:criteria]
-  #   else
-  #     JSON.parse params[:criteria]
-  #   end
-  # end
 
 end
