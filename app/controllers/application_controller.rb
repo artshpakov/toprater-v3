@@ -31,8 +31,8 @@ class ApplicationController < ActionController::Base
   def setup
     unless request.xhr?
       @criteria     = Criterion.all
-      # gon.criteria  = Criterion.leafs
-      gon.criteria  = params[:criteria]
+      gon.criteria  = Criterion.leafs
+      gon.pickedCriteria  = params[:criteria]
       gon.filters   = params[:filters]
     end
   end

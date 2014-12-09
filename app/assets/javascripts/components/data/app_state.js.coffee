@@ -1,14 +1,15 @@
 appState = ->
   @attributes
-    selectedCriteria: []
-    realm = ""
+    criteria: []
+    filters: []
+    sphere = ""
     lang = ""
 
   @buildPath = ->
-    "/objects?criteria=[" + (("#{ criterion.name }" for key, criterion of @attr.selectedCriteria).join ",") + "]"
+    "/objects" + @encode _.pluck(@getPicked(), "name"), @attr.filters
 
   @buildUrl = ->
-    "/#{ @attr.lang }/#{ @attr.realm }" + @buildPath()
+    "/#{ @attr.lang }/#{ @attr.sphere }" + @buildPath()
 
   @getAlternatives = ->
     self = @
@@ -23,17 +24,46 @@ appState = ->
       self.trigger "objectsLoaded", objects: data
       )
 
+  @setPicked = (pickedCriteria) ->
+    if not _.isArray pickedCriteria
+      pickedCriteria = [pickedCriteria]
+
+    console.log pickedCriteria
+    self = @
+    _.each pickedCriteria, (criterion) ->
+      ca = _.where self.attr.criteria, name: criterion
+      _.each ca, (cr) ->
+        cr.picked = true
+
+  @getPicked = ->
+    _.where @attr.criteria, picked: true
+
   @alternativesList = ->
     @getAlternatives()
 
+
   @after "initialize", ->
-    @attr.realm = document.location.pathname.split("/")[2]
+    @attr.sphere = document.location.pathname.split("/")[2]
     @attr.lang = document.location.pathname.split("/")[1]
 
+    if toprater.criteria?
+      @attr.criteria = toprater.criteria
+
+    if toprater.filters?
+      @attr.filters = toprater.filters
+
+    if toprater.pickedCriteria?
+      @setPicked(toprater.pickedCriteria.split(","))
+
+    @trigger "criteriaUpdated", criteria: @getPicked()
+
+    # decoded = @decode window.location.pathname
+    # console.log decoded
+    # console.log(@encode decoded.criteria, decoded.filters)
 
     routes = {
       "/en/hotels": {
-        "/objects?:param=[:value*]*": _.bind(@alternativesList, @)
+        "/objects/.*": _.bind(@alternativesList, @)
       }
     }
 
@@ -45,16 +75,13 @@ appState = ->
     router.init()
 
     @on "criterionToggled", (event, data) ->
-      if _.contains _.pluck(@attr.selectedCriteria, "name"), data.name
-        @attr.selectedCriteria = _.reject @attr.selectedCriteria, (criterion) -> criterion.name == data.name
-      else
-        @attr.selectedCriteria.push data
+      @setPicked data.name
 
-      @trigger "criteriaUpdated", criteria: @attr.selectedCriteria
+      @trigger "criteriaUpdated", criteria: @getPicked()
       
       History.pushState @buildUrl()
       History.setHash @buildUrl()
 
 
-Toprater.AppState = flight.component appState
+Toprater.AppState = flight.component appState, withParams
 Toprater.AppState.attachTo document

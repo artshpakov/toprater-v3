@@ -6,6 +6,7 @@ cart = ->
     @attr.template = @$node.find("[type='text/template']").html()
 
     @on document, "criteriaUpdated", (event, data) ->
+      alert "data"
       @$node.html @renderTemplate @attr.template, criteria: data.criteria
 
 

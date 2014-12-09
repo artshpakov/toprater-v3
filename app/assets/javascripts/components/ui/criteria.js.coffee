@@ -1,5 +1,4 @@
 criteria = ->
-  # console.log "criteria"
   @attributes
     criterionGroup: "[role=criterion-group]"
     criterion     : "[role=criterion]"

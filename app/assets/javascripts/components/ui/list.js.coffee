@@ -2,6 +2,7 @@ objectsList = ->
 
   @showAlternatives = (data) ->
     @$node.html($(data))
+    console.log data
     @trigger document, "pageUpdated"
 
 
@@ -10,7 +11,7 @@ objectsList = ->
       @showAlternatives data.objects
       
     @on "errorLoadingObjects", (event, data) ->
-      alert data
+      console.log data
 
 
 Toprater.ObjectsList = flight.component(objectsList)
