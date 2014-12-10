@@ -4,7 +4,7 @@ class AlternativesController < ApplicationController
 
 
   def index
-    @alternatives = Sentimeta::Client.objects criteria: params[:criteria], filters: params[:filters]
+    @alternatives = Sentimeta::Client.objects state.to_hash.slice(:criteria, :filters)
   end
 
 end

@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
   end
 
 
-  before_filter :set_locale, :set_sphere, :setup
+  before_action :set_locale, :set_sphere, :setup
 
 
   def set_locale
@@ -30,18 +30,12 @@ class ApplicationController < ActionController::Base
 
   def setup
     unless request.xhr?
-      @criteria           = Criterion.all
-      gon.criteria        = Criterion.leafs
-      gon.pickedCriteria  = params[:criteria]
-      gon.filters         = params[:filters]
+      @criteria     = Criterion.all
+      gon.criteria  = Criterion.leafs
+      gon.state     = state.to_hash
     end
   end
 
-
-
-  before_action do
-    ParamsService.decode! params
-  end
 
 
   COMPLEX_URLS = %w(list)
@@ -50,6 +44,15 @@ class ApplicationController < ActionController::Base
     method_name = "#{ name }_path"
     define_method(method_name) { |params={}| super ParamsService.encode! params }
     helper_method method_name
+  end
+
+
+  protected
+
+  def state
+    @state ||= begin
+      Toprater::Application.state = State.init! params
+    end
   end
 
 end

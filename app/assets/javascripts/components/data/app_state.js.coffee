@@ -12,26 +12,20 @@ appState = ->
     "/#{ @attr.lang }/#{ @attr.sphere }" + @buildPath()
 
   @getAlternatives = ->
-    self = @
     $.ajax(
-      url: self.buildUrl()
+      url: @buildUrl()
       method: "GET"
     )
-    .fail( (data) ->
-      self.trigger "errorLoadingObjects", data
+    .fail( (data) =>
+      @trigger "errorLoadingObjects", data
     )
-    .done( (data) ->
-      self.trigger "objectsLoaded", objects: data
-      )
+    .done( (data) =>
+      @trigger "objectsLoaded", objects: data
+    )
 
   @setPicked = (pickedCriteria) ->
-    if not _.isArray pickedCriteria
-      pickedCriteria = [pickedCriteria]
-
-    _.each pickedCriteria, (criterion) =>
-      ca = _.where @attr.criteria, name: criterion
-      _.each ca, (cr) ->
-        cr.picked = true
+    pickedCriteria = [pickedCriteria] unless _.isArray pickedCriteria
+    _.find(@attr.criteria, name: criterion)?.picked = true for criterion in pickedCriteria
 
   @getPicked = ->
     _.where @attr.criteria, picked: true
@@ -41,24 +35,16 @@ appState = ->
 
 
   @after "initialize", ->
-    @attr.sphere = document.location.pathname.split("/")[2]
-    @attr.lang = document.location.pathname.split("/")[1]
+    @attr.criteria  = toprater.criteria
+    @attr.filters   = toprater.state.filters
+    @attr.sphere    = toprater.state.sphere
+    @attr.lang      = toprater.state.locale
+    @setPicked toprater.state.criteria
+    # @trigger "criteriaUpdated", criteria: @getPicked()
 
-    if toprater.criteria?
-      @attr.criteria = toprater.criteria
-
-    if toprater.filters?
-      @attr.filters = @decode(window.location.pathname).filters
-
-    if toprater.pickedCriteria?
-      @setPicked(toprater.pickedCriteria.split(","))
-      # @trigger "criteriaUpdated", criteria: @getPicked()
-
-    routes = {
-      "/en/hotels": {
+    routes =
+      "/en/hotels":
         "/objects/.*": _.bind(@alternativesList, @)
-      }
-    }
 
     router = Router routes
     router.configure
