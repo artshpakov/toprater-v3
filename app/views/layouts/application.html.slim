@@ -11,7 +11,7 @@ html
       = render partial: 'partials/header'
       .row
         .medium-3.columns
-          = render partial: 'partials/criteria'
+          = render_cell :general, :criteria_catalog
         .medium-9.columns
           = render partial: 'partials/cart'
           #rating@objects-list

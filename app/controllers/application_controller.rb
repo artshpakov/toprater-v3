@@ -30,7 +30,6 @@ class ApplicationController < ActionController::Base
 
   def setup
     unless request.xhr?
-      @criteria     = Criterion.all
       gon.criteria  = Criterion.leafs
       gon.state     = state.to_hash
     end
