@@ -7,9 +7,7 @@
 
     .row
       .large-3.columns
-        - alternative['reviews'].each do |pack|
-          p@criterion data-name="#{ Criterion.find(pack["name"]).name }"
-            a href="javascript:;" = Criterion.find(pack["name"]).try :label
+        = render_cell :alternative, :reviews, reviews: alternative['reviews']
 
       .large-9.columns
         - alternative['reviews'].each_with_index do |pack, index|

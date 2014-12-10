@@ -5,4 +5,9 @@ class AlternativeCell < Cell::Rails
     render
   end
 
+  def reviews params
+    @reviews = params[:reviews]
+    render
+  end
+
 end
