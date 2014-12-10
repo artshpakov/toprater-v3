@@ -6,13 +6,13 @@ class Criterion < Sentimeta::Model
 
 
   def self.all
-    @criteria ||= fetch(subcriteria: true).each do |root|
+    fetch(subcriteria: true).each do |root|
       root.subcriteria.map! { |criterion| new criterion }
     end
   end
 
   def self.leafs # TODO move to a decorator
-    @leafs ||= all.flat_map &:subcriteria
+    all.flat_map &:subcriteria
   end
 
   def self.find name
