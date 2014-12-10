@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
 
   def setup
     unless request.xhr?
-      @criteria           = Rails.cache.fetch("criteria:#{ Sentimeta.sphere }") { Criterion.all }
+      @criteria           = Criterion.all
       gon.criteria        = Criterion.leafs
       gon.pickedCriteria  = params[:criteria]
       gon.filters         = params[:filters]
