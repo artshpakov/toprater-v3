@@ -9,7 +9,6 @@
 #= require hogan.js
 
 #= require_self
-#= require_tree ./templates
 #= require_tree ./utils
 #= require_tree ./mixins
 #= require_tree ./components

@@ -28,9 +28,8 @@ appState = ->
     if not _.isArray pickedCriteria
       pickedCriteria = [pickedCriteria]
 
-    self = @
-    _.each pickedCriteria, (criterion) ->
-      ca = _.where self.attr.criteria, name: criterion
+    _.each pickedCriteria, (criterion) =>
+      ca = _.where @attr.criteria, name: criterion
       _.each ca, (cr) ->
         cr.picked = true
 
@@ -51,11 +50,9 @@ appState = ->
     if toprater.filters?
       @attr.filters = @decode(window.location.pathname).filters
 
-
     if toprater.pickedCriteria?
       @setPicked(toprater.pickedCriteria.split(","))
-
-    @trigger "criteriaUpdated", criteria: @getPicked()
+      # @trigger "criteriaUpdated", criteria: @getPicked()
 
     routes = {
       "/en/hotels": {
@@ -69,6 +66,9 @@ appState = ->
       run_handler_in_init: false
 
     router.init()
+
+    @on "cartReady", ->
+      @trigger "criteriaUpdated", criteria: @getPicked()
 
     @on "criterionToggled", (event, data) ->
       @setPicked data.name
