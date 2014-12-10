@@ -1,6 +1,28 @@
 [role=criteria]
-  a
-    font-size: 12px
+  opacity: 0
 
-  [role=subcriteria]
-    display: none
+  -webkit-transition: opacity 500ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 
+  -moz-transition: opacity 500ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 
+  -o-transition: opacity 500ms cubic-bezier(0.250, 0.100, 0.250, 1.000) 
+  transition: opacity 500ms cubic-bezier(0.250, 0.100, 0.250, 1.000)
+
+  a
+    font-size: 14px
+
+[role=cart]
+  margin-bottom: 20px
+  overflow: hidden
+  
+  .criterion
+    float: left
+    font-size: 12px
+    background-color: #999
+    color: #fff
+    border-radius: 12px
+    margin: 0 8px 3px 0
+    padding: 1px 8px
+
+    .drop
+      font-size: 18px
+      line-height: 18px
+      color: #fff

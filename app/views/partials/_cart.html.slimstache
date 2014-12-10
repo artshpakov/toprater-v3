@@ -1,0 +1,7 @@
+div
+  script#card cart=true type="text/template"
+    | {{ #criteria }}
+    p.criterion
+      | {{ label }}
+      a.drop href="javascript:;"&times;
+    | {{ /criteria }}

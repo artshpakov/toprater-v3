@@ -45,18 +45,31 @@ GEM
     capistrano-rails (1.1.2)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
+    cells (3.11.2)
+      actionpack (>= 3.0)
+      railties (>= 3.0)
+      uber (~> 0.0.8)
     coderay (1.1.0)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.0)
+    coffee-rails-source-maps (1.4.0)
+      coffee-script-source (>= 1.6.1)
     coffee-script (2.3.0)
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
+    colored (1.2)
     colorize (0.7.3)
     debug_inspector (0.0.2)
     erubis (2.7.0)
+    es5-shim-rails (4.0.1)
+      actionpack (>= 3.1)
+      railties (>= 3.1)
     execjs (2.2.1)
+    flight-for-rails (1.3.0)
+      jquery-rails (>= 2.1.4)
+      rails (>= 3.1.0)
     foundation-rails (5.3.3.0)
       railties (>= 3.1.0)
       sass (>= 3.2.0)
@@ -66,6 +79,12 @@ GEM
       multi_json
       request_store (>= 1.0.5)
     hike (1.2.3)
+    historyjs-rails (1.0.1)
+      railties (>= 3.0)
+    hogan_assets (1.6.0)
+      execjs (>= 1.2.9)
+      sprockets (>= 2.0.3)
+      tilt (>= 1.3.3)
     i18n (0.6.11)
     jquery-rails (3.1.2)
       railties (>= 3.0, < 5.0)
@@ -126,11 +145,6 @@ GEM
     slim (2.0.3)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
-    slim-rails (2.1.5)
-      actionpack (>= 3.0, < 4.2)
-      activesupport (>= 3.0, < 4.2)
-      railties (>= 3.0, < 4.2)
-      slim (~> 2.0)
     slop (3.6.0)
     spring (1.1.3)
     sprockets (2.11.0)
@@ -158,9 +172,11 @@ GEM
       polyglot (>= 0.3.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    uber (0.0.11)
     uglifier (2.5.3)
       execjs (>= 0.3.0)
       json (>= 1.8.0)
+    underscore-rails (1.7.0)
 
 PLATFORMS
   ruby
@@ -169,9 +185,16 @@ DEPENDENCIES
   better_errors
   binding_of_caller
   capistrano-rails
+  cells
   coffee-rails (~> 4.0.0)
+  coffee-rails-source-maps
+  colored
+  es5-shim-rails
+  flight-for-rails (~> 1.3.0)
   foundation-rails
   gon
+  historyjs-rails
+  hogan_assets
   jquery-rails
   pry-rails
   puma
@@ -180,7 +203,8 @@ DEPENDENCIES
   rails (= 4.1.5)
   sass-rails (~> 4.0.3)
   sentimeta
-  slim-rails
+  slim
   spring
   therubyracer
   uglifier (>= 1.3.0)
+  underscore-rails

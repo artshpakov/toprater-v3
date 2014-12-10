@@ -4,14 +4,17 @@ html
     title Toprater
     = stylesheet_link_tag :application, media: :all
     = csrf_meta_tags
+    = include_gon namespace: 'toprater', camel_case: true
 
   body
     @wrapper
       = render partial: 'partials/header'
       .row
-        .large-3.columns
+        .medium-3.columns
           = render partial: 'partials/criteria'
-        .large-9.columns
-          = yield
+        .medium-9.columns
+          = render partial: 'partials/cart'
+          #rating@objects-list
+            = yield
 
       = javascript_include_tag :application
