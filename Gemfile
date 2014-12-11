@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.5'
 gem 'puma'
 
-gem 'sentimeta'
+gem 'sentimeta', '~> 0.0.4'
 
 gem 'pry-rails'
 gem 'slim'
