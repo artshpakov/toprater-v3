@@ -23,6 +23,12 @@ appState = ->
       @trigger "objectsLoaded", objects: data
     )
 
+  @togglePicked = (criteria) ->
+    criteria = [criteria] unless _.isArray criteria
+    for criterion in criteria
+      mapped = _.find(@attr.criteria, name: criterion)
+      mapped?.picked = !mapped.picked
+
   @setPicked = (pickedCriteria) ->
     pickedCriteria = [pickedCriteria] unless _.isArray pickedCriteria
     _.find(@attr.criteria, name: criterion)?.picked = true for criterion in pickedCriteria
@@ -40,7 +46,6 @@ appState = ->
     @attr.sphere    = toprater.state.sphere
     @attr.lang      = toprater.state.locale
     @setPicked toprater.state.criteria
-    # @trigger "criteriaUpdated", criteria: @getPicked()
 
     routes =
       "/en/hotels":
@@ -57,7 +62,7 @@ appState = ->
       @trigger "criteriaUpdated", criteria: @getPicked()
 
     @on "criterionToggled", (event, data) ->
-      @setPicked data.name
+      @togglePicked data.name
 
       @trigger "criteriaUpdated", criteria: @getPicked()
       
