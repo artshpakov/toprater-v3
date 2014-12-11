@@ -10,25 +10,18 @@ gem 'slim'
 gem 'gon'
 gem 'cells'
 
-gem 'sass-rails', '~> 4.0.3'
-# gem 'sass-rails'
-# gem 'sass-rails-source-maps'
-# gem 'sass-rails-source-maps', git: 'https://github.com/vhyza/sass-rails-source-maps.git', branch: 'sass-rails-5.0.0.beta1'
-gem 'uglifier', '>= 1.3.0'
 gem 'coffee-rails', '~> 4.0.0'
-gem 'coffee-rails-source-maps'
-gem 'therubyracer',  platforms: :ruby
 gem 'jquery-rails'
-gem 'quiet_assets'
-gem 'hogan_assets'
-# gem "mustache"
-# gem "stache"
-gem 'es5-shim-rails'
-gem 'foundation-rails'
 gem 'underscore-rails'
 gem 'flight-for-rails', '~> 1.3.0'
-gem "historyjs-rails"
+gem 'historyjs-rails'
+gem 'sass-rails', '~> 4.0.3'
+gem 'foundation-rails'
+gem 'uglifier', '>= 1.3.0'
+gem 'es5-shim-rails'
+gem 'hogan_assets'
 
+gem 'quiet_assets'
 gem 'colored'
 
 group :development do
@@ -37,4 +30,5 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rack-mini-profiler'
+  gem 'coffee-rails-source-maps'
 end
