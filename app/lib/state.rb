@@ -1,12 +1,13 @@
 class State
 
-  attr_accessor :locale, :sphere, :criteria, :filters, :options
+  attr_accessor :locale, :sphere, :criteria, :filters, :options, :debug
 
 
-  def self.init! params
-    ParamsService.decode! params
+  def self.init! options
+    ParamsService.decode! options[:params]
     new.tap do |state|
-      dup = params.dup
+      dup = options[:params].dup
+      state.debug     = dup.delete(:debug).to_i == 1 || options[:cookies]['debug'].to_i == 1
       state.locale    = dup.delete :locale
       state.sphere    = dup.delete :sphere
       state.criteria  = dup.delete :criteria
@@ -18,5 +19,7 @@ class State
   def to_hash
     { locale: locale, sphere: sphere, criteria: criteria, filters: filters, options: options }
   end
+
+  def debug?() debug end
 
 end

@@ -7,7 +7,7 @@ class GeneralCell < Cell::Rails
 
 
   def debug options
-    if params[:debug].to_i == 1
+    if Toprater::Application.state.debug?
       @state = Toprater::Application.state.to_hash
       @api_calls = options[:observer].api_calls
       render
