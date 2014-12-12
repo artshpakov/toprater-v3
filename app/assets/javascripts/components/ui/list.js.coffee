@@ -2,7 +2,6 @@ objectsList = ->
 
   @showAlternatives = (data) ->
     @$node.html($(data))
-    @trigger document, "pageUpdated"
 
 
   @after "initialize", ->

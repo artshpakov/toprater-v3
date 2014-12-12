@@ -24,7 +24,7 @@ withParamsCtr = ->
   @encode = (criteria, filters) ->
     paramsPath = ""
 
-    if criteria?
+    if criteria? and criteria.length
       paramsPath += "/criteria" + "/" + criteria.join(",")
 
     if filters? and filters.length

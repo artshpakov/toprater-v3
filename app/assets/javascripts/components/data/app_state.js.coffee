@@ -6,22 +6,30 @@ appState = ->
     lang = ""
 
   @buildPath = ->
-    "/objects" + @encode _.pluck(@getPicked(), "name"), @attr.filters
+    "/objects#{ @encode _.pluck(@getPicked(), "name"), @attr.filters}"
 
   @buildUrl = ->
     "/#{ @attr.lang }/#{ @attr.sphere }" + @buildPath()
 
+  timeout = 0
   @getAlternatives = ->
-    $.ajax(
-      url: @buildUrl()
-      method: "GET"
-    )
-    .fail( (data) =>
-      @trigger "errorLoadingObjects", data
-    )
-    .done( (data) =>
-      @trigger "objectsLoaded", objects: data
-    )
+    clearTimeout timeout
+    timeout = setTimeout(
+      =>
+        clearTimeout timeout
+        $.ajax(
+          url: @buildUrl()
+          method: "GET"
+        )
+        .fail( (data) =>
+          @trigger "errorLoadingObjects", data
+        )
+        .done( (data) =>
+          @trigger "objectsLoaded", objects: data
+          @trigger "pageUpdated"
+        )
+      , 1000)
+
 
   @togglePicked = (criteria) ->
     criteria = [criteria] unless _.isArray criteria
@@ -49,7 +57,7 @@ appState = ->
 
     routes =
       "/en/hotels":
-        "/objects/.*": _.bind(@alternativesList, @)
+        "/objects.*": _.bind(@alternativesList, @)
 
     router = Router routes
     router.configure
@@ -63,11 +71,9 @@ appState = ->
 
     @on "criterionToggled", (event, data) ->
       @togglePicked data.name
-
       @trigger "criteriaUpdated", criteria: @getPicked()
       
-      History.pushState @buildUrl()
-      History.setHash @buildUrl()
+      router.setRoute @buildUrl()
 
 
 Toprater.AppState = flight.component appState, withParams
