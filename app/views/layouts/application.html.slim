@@ -17,4 +17,6 @@ html
           #rating@objects-list
             = yield
 
-      = javascript_include_tag :application
+    = render_cell :general, :debug, observer: @debug_observer
+
+    = javascript_include_tag :application

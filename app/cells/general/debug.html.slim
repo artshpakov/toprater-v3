@@ -1,0 +1,14 @@
+@debug
+  b Initial state
+  .data
+    - @state.each do |key, value|
+      div
+        =' "#{ key }:"
+        = value || 'null'
+
+  br
+
+  b API calls
+  .data
+    - @api_calls.each do |call|
+      div = call

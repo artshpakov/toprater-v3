@@ -29,6 +29,8 @@ class ApplicationController < ActionController::Base
 
 
   def setup
+    @debug_observer = Observers::Debug.new
+    Sentimeta::Observers.add @debug_observer
     unless request.xhr?
       gon.criteria  = Criterion.leafs
       gon.state     = state.to_hash
