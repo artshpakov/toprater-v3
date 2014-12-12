@@ -26,7 +26,11 @@ gem 'colored'
 
 group :development do
   gem 'spring'
+  gem 'capistrano', '~> 3.1'
   gem 'capistrano-rails'
+  gem 'capistrano-puma'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rvm'
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'rack-mini-profiler'

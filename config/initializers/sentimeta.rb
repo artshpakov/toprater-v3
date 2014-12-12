@@ -1,1 +1,1 @@
-Sentimeta.env = :staging if Rails.env.development?
+Sentimeta.env = :staging unless Rails.env.production?
