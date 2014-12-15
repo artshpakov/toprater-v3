@@ -7,7 +7,7 @@ class Criterion < Sentimeta::Model
 
   def self.all
     Rails.cache.fetch "criteria:#{ Sentimeta.sphere }" do
-      fetch(subcriteria: true).each do |root|
+      Array.wrap(fetch(subcriteria: true)).each do |root|
         root.subcriteria.map! { |criterion| new criterion }
       end
     end
