@@ -1,0 +1,6 @@
+.headline
+  h3
+    =' "##{ index }"
+    = alternative['name']
+
+= render_partial "alternatives/cards/partials/reviews", locals: { alternative: alternative }

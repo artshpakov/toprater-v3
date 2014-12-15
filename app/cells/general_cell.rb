@@ -1,4 +1,4 @@
-class GeneralCell < Cell::Rails
+class GeneralCell < TopraterCell
 
   def criteria_catalog
     @criteria = Criterion.all

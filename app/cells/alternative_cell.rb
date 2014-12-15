@@ -1,4 +1,4 @@
-class AlternativeCell < Cell::Rails
+class AlternativeCell < TopraterCell
 
   def index params
     @alternatives = params[:alternatives] || []

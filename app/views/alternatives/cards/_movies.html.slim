@@ -1,0 +1,40 @@
+sass:
+  .movie-card
+    border: none
+    .overall
+      p
+        font-size: 12px
+        margin-bottom: 1em
+      .movie-cover
+        width: 150px
+        height: 180px
+        background-size: cover
+        margin-bottom: 20px
+
+
+= solid do
+  table.movie-card
+    tr valign="top"
+      td        
+        h3.headline
+          =' "#{ index }."
+          = alternative['name']
+
+        = render_partial "alternatives/cards/partials/reviews", locals: { alternative: alternative }
+
+      td.overall width="120"
+        = solid do
+          .movie-cover style="background-image: url(#{ alternative['photos'].first['url'] })"
+
+        - extra = alternative['extra']
+        = solid do
+          p
+            b' Release:
+            = extra['year']
+        = solid do
+          p
+            b' Actors:
+            br
+            - extra['actors'][0..9].each do |actor|
+              =' actor['label']
+              br
