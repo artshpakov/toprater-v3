@@ -1,5 +1,11 @@
 class GeneralCell < TopraterCell
 
+  def spheres
+    @spheres = Sentimeta::Client.spheres
+    render
+  end
+
+
   def criteria_catalog
     @criteria = Criterion.all
     render

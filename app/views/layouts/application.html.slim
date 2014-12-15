@@ -9,13 +9,14 @@ html
   body
     @wrapper
       = render partial: 'partials/header'
-      .row
-        .medium-3.columns
-          = render_cell :general, :criteria_catalog
-        .medium-9.columns
-          = render partial: 'partials/cart'
-          #rating@objects-list
-            = yield
+      section@content
+        .row
+          .medium-3.columns
+            = render_cell :general, :criteria_catalog
+          .medium-9.columns
+            = render partial: 'partials/cart'
+            #rating@objects-list
+              = yield
 
     = render_cell :general, :debug, observer: @debug_observer
 
