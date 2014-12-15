@@ -50,13 +50,13 @@ appState = ->
 
   @after "initialize", ->
     @attr.criteria  = toprater.criteria
-    @attr.filters   = toprater.state.filters
+    @attr.filters   = toprater.state.filters if toprater.state.filters?
     @attr.sphere    = toprater.state.sphere
     @attr.lang      = toprater.state.locale
     @setPicked toprater.state.criteria
 
     routes =
-      "/en/hotels":
+      "/en/:sphere":
         "/objects.*": _.bind(@alternativesList, @)
 
     router = Router routes
