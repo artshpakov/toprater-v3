@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+source 'https://rails-assets.org'
 
 gem 'rails', '4.1.5'
 gem 'puma'
@@ -18,6 +19,7 @@ gem 'historyjs-rails'
 gem 'sass-rails', '~> 4.0.3'
 gem 'foundation-rails'
 gem 'uglifier', '>= 1.3.0'
+gem 'rails-assets-director'
 gem 'es5-shim-rails'
 gem 'hogan_assets'
 
