@@ -1,7 +1,9 @@
 class GeneralCell < TopraterCell
 
   def spheres
-    @spheres = Sentimeta::Client.spheres
+    @spheres = Rails.cache.fetch "spheres" do
+      Sentimeta::Client.spheres
+    end
     render
   end
 
