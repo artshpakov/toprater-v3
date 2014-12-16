@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
 
   COMPLEX_URLS.each do |name|
     method_name = "#{ name }_path"
-    define_method(method_name) { |params={}| super ParamsService.encode! params }
+    define_method(method_name) { |options={}| super ParamsService.encode!(params).merge(options) }
     helper_method method_name
   end
 

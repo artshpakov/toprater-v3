@@ -17,7 +17,7 @@ class ParamsService
 
 
   def self.encode! params
-    params[:criteria] = params[:criteria].join(',') if params[:criteria].present?
+    params[:criteria] = Array.wrap(params[:criteria]).join(',') if params[:criteria].present?
     params[:filters]  = params[:filters].map do |key, value|
       key = key.to_sym
       [ key, "Filters::#{ key.capitalize }".constantize.encode(value) ] rescue [key, value]
