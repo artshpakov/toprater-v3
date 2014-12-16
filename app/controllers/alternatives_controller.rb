@@ -10,7 +10,7 @@ class AlternativesController < ApplicationController
 
   def show
     unless @alternative = Sentimeta::Client.fetch(:objects, id: params[:id])['object']
-      raise ActionController::RoutingError.new('Record not found')
+      raise Sentimeta::Error::RecordNotFound
     end
   end
 
