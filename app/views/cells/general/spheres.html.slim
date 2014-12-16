@@ -5,7 +5,7 @@
       | &nbsp;&#x25BE;
     ul.subspheres.f-dropdown id="drop-#{ sphere['name'] }" data-dropdown-content=true aria-hidden="true" tabindex="-1"
       - sphere['categories'].each do |subsphere|
-        li: a href="#{ root_path sphere: subsphere['name'] }" = subsphere['label']
+        li: a href="#{ sphere_path sphere: subsphere['name'] }" = subsphere['label']
 
   - else
-    a href="#{ root_path sphere: sphere['name'] }" = sphere['label']
+    a href="#{ sphere_path sphere: sphere['name'] }" = sphere['label']
