@@ -20,6 +20,10 @@ class State
     { locale: locale, sphere: sphere, criteria: criteria, filters: filters, options: options }
   end
 
+  def criteria_and_filters
+    { criteria: criteria, filters: filters }
+  end
+
   def debug?() debug end
 
 end

@@ -1,7 +1,7 @@
 = solid do
   .headline
     .index = index
-    a.name href="#{ object_path id: alternative['id'] }" = alternative['name']
-    p.address = alternative['address']['full_address']
+    a.name href="#{ object_path id: alternative.id }" = alternative.name
+    p.address = alternative.full_address
 
-= render_partial "alternatives/cards/partials/reviews", locals: { review_packs: alternative['reviews'] }
+= render_partial "alternatives/cards/partials/reviews", locals: { review_packs: alternative.reviews }

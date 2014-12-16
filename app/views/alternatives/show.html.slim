@@ -1,7 +1,7 @@
 a href=list_path &larr; Back to results
 
-h2 = @alternative['name']
+h2 = @alternative.name
 = solid do
-  p = @alternative['address']['full_address']
+  p = @alternative.full_address
 
-img src="#{ @alternative['photos'].first['url'] }"
+img src=@alternative.cover

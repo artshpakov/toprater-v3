@@ -2,14 +2,16 @@ class AlternativesController < ApplicationController
 
   respond_to :json
 
+  LIMIT_OBJECTS = 3
+
 
   def index
-    @alternatives = Sentimeta::Client.objects state.to_hash.slice(:criteria, :filters).merge fields: { limit_objects: 3 }
+    @alternatives = Alternative.rate limit_objects: LIMIT_OBJECTS
   end
 
 
   def show
-    unless @alternative = Sentimeta::Client.fetch(:objects, id: params[:id])['object']
+    unless @alternative = Alternative.find(params[:id])
       raise Sentimeta::Error::RecordNotFound
     end
   end
