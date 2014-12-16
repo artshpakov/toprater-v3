@@ -34,14 +34,14 @@ class ApplicationController < ActionController::Base
       Sentimeta::Observers.add @debug_observer
       cookies[:debug] = params[:debug].to_i if params[:debug].present?
 
-      gon.criteria  = Criterion.leafs
-      gon.state     = state.to_hash
+      gon.criteria    = Criterion.leafs
+      gon.state       = state.to_hash
     end
   end
 
 
 
-  COMPLEX_URLS = %w(list)
+  COMPLEX_URLS = %w(list object)
 
   COMPLEX_URLS.each do |name|
     method_name = "#{ name }_path"
