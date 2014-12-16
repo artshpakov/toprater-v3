@@ -20,7 +20,7 @@ sass:
           =' "#{ index }."
           = alternative['name']
 
-        = render_partial "alternatives/cards/partials/reviews", locals: { alternative: alternative }
+        = render_partial "alternatives/cards/partials/reviews", locals: { review_packs: alternative['reviews'] }
 
       td.overall width="120"
         = solid do

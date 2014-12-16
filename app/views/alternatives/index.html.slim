@@ -1,1 +1,3 @@
-= render_cell :alternative, :index, alternatives: @alternatives
+- @alternatives.each_with_index do |alternative, index|
+  .card
+    = render_partial "alternatives/cards/#{ sphere }", locals: { index: index+1, alternative: alternative }
