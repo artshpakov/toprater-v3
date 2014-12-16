@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
     I18n.locale = params[:locale]
   end
 
-  def set_sphere
+  def set_sphere # TODO temporary -- remove later
     unless params[:sphere].present?
       params[:sphere] = :hotels
       return redirect_to params
@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
   def setup
     unless request.xhr?
       @debug_observer = Observers::Debug.new
-      Sentimeta::Observers.add @debug_observer
+      Sentimeta::Observers.add @debug_observer # TODO move to initializer
       cookies[:debug] = params[:debug].to_i if params[:debug].present?
 
       gon.criteria    = Criterion.leafs
@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
 
   COMPLEX_URLS.each do |name|
     method_name = "#{ name }_path"
-    define_method(method_name) { |options={}| super ParamsService.encode!(params).merge(options) }
+    define_method(method_name) { |options={}| super(ParamsService.encode!(params).merge(options)).split('?').first }
     helper_method method_name
   end
 
