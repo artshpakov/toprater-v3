@@ -2,7 +2,7 @@ class Alternative < Sentimeta::Model
 
   endpoint :objects
 
-  attr_accessor :id, :name, :address, :photos, :reviews
+  attr_accessor :id, :name, :address, :photos, :reviews, :extra
 
 
   def self.rate options

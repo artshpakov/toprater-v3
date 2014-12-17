@@ -18,23 +18,21 @@ sass:
       td        
         h3.headline
           =' "#{ index }."
-          a.name href="#{ object_path id: alternative['id'] }" = alternative['name']
+          a.name href="#{ object_path id: alternative.id }" = alternative.name
 
-        = render_partial "alternatives/cards/partials/reviews", locals: { review_packs: alternative['reviews'] }
+        = render_partial "alternatives/cards/partials/reviews", locals: { review_packs: alternative.reviews }
 
       td.overall width="120"
         = solid do
-          .movie-cover style="background-image: url(#{ alternative['photos'].first['url'] })"
-
-        - extra = alternative['extra']
+          .movie-cover style="background-image: url(#{ alternative.cover })"
         = solid do
           p
             b' Release:
-            = extra['year']
+            = alternative.extra['year']
         = solid do
           p
             b' Actors:
             br
-            - extra['actors'][0..9].each do |actor|
+            - alternative.extra['actors'][0..9].each do |actor|
               =' actor['label']
               br
