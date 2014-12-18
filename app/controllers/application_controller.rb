@@ -29,15 +29,14 @@ class ApplicationController < ActionController::Base
 
 
   def setup
-    state = Toprater::Application.state = State.init! params: params, cookies: cookies, session: session
+    State.init! params: params, cookies: cookies, session: session
 
     unless request.xhr?
       @debug_observer = Observers::Debug.new
       Sentimeta::Observers.add @debug_observer # TODO move to initializer
-      cookies[:debug] = params[:debug].to_i if params[:debug].present?
 
       gon.criteria    = Criterion.leafs
-      gon.state       = state.to_hash
+      gon.state       = State.to_hash
     end
   end
 

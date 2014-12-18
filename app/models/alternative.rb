@@ -6,7 +6,7 @@ class Alternative < Sentimeta::Model
 
 
   def self.rate options
-    fetch Toprater::Application.state.criteria_and_filters.merge(fields: options)
+    fetch State.criteria_and_filters.merge(fields: options)
   end
 
   def self.find id

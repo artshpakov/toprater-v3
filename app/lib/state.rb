@@ -1,29 +1,36 @@
 class State
 
-  attr_accessor :locale, :sphere, :criteria, :filters, :options, :debug
+  class << self
 
+    attr_accessor :locale, :sphere, :criteria, :filters, :options, :debug
 
-  def self.init! options
-    ParamsService.decode! options[:params]
-    new.tap do |state|
+    def init! options
+      options[:cookies]['debug'] = options[:params][:debug].to_i if options[:params][:debug].present?
+
+      ParamsService.decode! options[:params]
+
       dup = options[:params].dup
-      state.debug     = dup.delete(:debug).to_i == 1 || options[:cookies]['debug'].to_i == 1
-      state.locale    = dup.delete :locale
-      state.sphere    = dup.delete :sphere
-      state.criteria  = dup.delete :criteria
-      state.filters   = dup.delete :filters
-      state.options   = dup.reject { |key, value| key.in? %w(controller action) }
+      self.debug     = options[:cookies]['debug'].to_i == 1
+      self.locale    = dup.delete :locale
+      self.sphere    = dup.delete :sphere
+      self.criteria  = dup.delete :criteria
+      self.filters   = dup.delete :filters
+      self.options   = dup.reject { |key, value| key.in? %w(controller action) }
     end
-  end
 
-  def to_hash
-    { locale: locale, sphere: sphere, criteria: criteria, filters: filters, options: options }
-  end
 
-  def criteria_and_filters
-    { criteria: criteria, filters: filters }
-  end
+    def to_hash
+      { locale: locale, sphere: sphere, criteria: criteria, filters: filters, options: options }
+    end
 
-  def debug?() debug end
+
+    def criteria_and_filters
+      { criteria: criteria, filters: filters }
+    end
+
+
+    def debug?() debug end
+
+  end
 
 end
