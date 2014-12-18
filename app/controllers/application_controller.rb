@@ -29,6 +29,8 @@ class ApplicationController < ActionController::Base
 
 
   def setup
+    state = Toprater::Application.state = State.init! params: params, cookies: cookies, session: session
+
     unless request.xhr?
       @debug_observer = Observers::Debug.new
       Sentimeta::Observers.add @debug_observer # TODO move to initializer
@@ -47,15 +49,6 @@ class ApplicationController < ActionController::Base
     method_name = "#{ name }_path"
     define_method(method_name) { |options={}| super(ParamsService.encode!(params).merge(options)).split('?').first }
     helper_method method_name
-  end
-
-
-  protected
-
-  def state
-    @state ||= begin
-      Toprater::Application.state = State.init! params: params, cookies: cookies, session: session
-    end
   end
 
 end
