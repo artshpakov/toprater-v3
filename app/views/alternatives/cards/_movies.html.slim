@@ -29,10 +29,12 @@ sass:
           p
             b' Release:
             = alternative.extra['year']
-        = solid do
-          p
-            b' Actors:
-            br
-            - alternative.extra['actors'][0..9].each do |actor|
-              =' actor['label']
+
+        - if variation(:actors)['show']
+          = solid do
+            p
+              b' Actors:
               br
+              - alternative.extra['actors'][0..9].each do |actor|
+                =' actor['label']
+                br

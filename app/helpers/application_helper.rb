@@ -24,6 +24,11 @@ module ApplicationHelper
   end
 
 
+  def variation name
+    Variation.get(name).variant rescue {}
+  end
+
+
   def sphere
     Sentimeta.sphere
   end

@@ -32,8 +32,15 @@ class ApplicationController < ActionController::Base
     State.init! params: params, cookies: cookies, session: session
 
     unless request.xhr?
+       # TODO move to a initializer
+      config = YAML.load_file("#{Rails.root}/config/variations.yml").symbolize_keys
+      Variation.init! config
+      Variation.create :reviews
+      Variation.create :actors
+
+      # TODO move to a initializer
       @debug_observer = Observers::Debug.new
-      Sentimeta::Observers.add @debug_observer # TODO move to initializer
+      Sentimeta::Observers.add @debug_observer
 
       gon.criteria    = Criterion.leafs
       gon.state       = State.to_hash
