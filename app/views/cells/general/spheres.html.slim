@@ -1,6 +1,6 @@
 - @spheres.each do |sphere|
   - if sphere['issphere'] == false
-    a href="javascript:;" data-dropdown="drop-#{ sphere['name'] }" aria-controls="drop-#{ sphere['name'] }" aria-expanded="false"
+    a.sphere href="javascript:;" data-dropdown="drop-#{ sphere['name'] }" aria-controls="drop-#{ sphere['name'] }" aria-expanded="false"
       = sphere['label']
       | &nbsp;&#x25BE;
     ul.subspheres.f-dropdown id="drop-#{ sphere['name'] }" data-dropdown-content=true aria-hidden="true" tabindex="-1"
@@ -8,4 +8,4 @@
         li: a href="#{ sphere_path sphere: subsphere['name'] }" = subsphere['label']
 
   - else
-    a href="#{ sphere_path sphere: sphere['name'] }" = sphere['label']
+    a.sphere href="#{ sphere_path sphere: sphere['name'] }" = sphere['label']
