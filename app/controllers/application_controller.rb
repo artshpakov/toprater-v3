@@ -32,11 +32,7 @@ class ApplicationController < ActionController::Base
     State.init! params: params, cookies: cookies, session: session
 
     unless request.xhr?
-       # TODO move to a initializer
-      config = YAML.load_file("#{Rails.root}/config/variations.yml").symbolize_keys
-      Variation.init! config
-      Variation.create :reviews
-      Variation.create :actors
+      Variation.init!
 
       # TODO move to a initializer
       @debug_observer = Observers::Debug.new

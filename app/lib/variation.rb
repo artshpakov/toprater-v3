@@ -2,11 +2,10 @@ class Variation
 
   class << self
 
-    attr_accessor :registry
+    attr_accessor :config, :registry
 
-    def init! config
-      @config = config
-      @registry = {}
+    def init!
+      self.registry = {}
     end
 
     def create name, &block
@@ -38,7 +37,7 @@ class Variation
 
   def variant
     Variation.registry[name] ||= begin
-      p "LOGIC FOR #{ name }"
+      Rails.logger.debug "CALLING LOGIC FOR #{ name } VARIATION"
       variants = self.class.config_for(name)
       if variants.kind_of?(Array) && variants.count > 1
         logic.call variants
