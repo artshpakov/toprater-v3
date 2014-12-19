@@ -27,5 +27,14 @@ module Toprater
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :de
+
+    redis_config = YAML.load_file("#{Rails.root}/config/redis.yml")[Rails.env]
+    config.cache_store = :redis_store, redis_config
+    config.session_store :redis_store,
+      servers:    [ host: redis_config[:host], port: redis_config[:port] ],
+      key:        '_toprater_session',
+      expire_in:  2.weeks,
+      domain:     ('.toprater.com' if Rails.env.production?)
+
   end
 end
