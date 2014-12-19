@@ -7,9 +7,7 @@ class ApplicationController < ActionController::Base
     request.xhr? ? false : 'application'
   end
 
-
   before_action :set_locale, :set_sphere, :setup
-
 
   def set_locale
     unless params[:locale].present?
@@ -38,8 +36,10 @@ class ApplicationController < ActionController::Base
       @debug_observer = Observers::Debug.new
       Sentimeta::Observers.add @debug_observer
 
-      gon.criteria    = Criterion.leafs
-      gon.state       = State.to_hash
+      gon.criteria  = Criterion.leafs
+      gon.state     = State.to_hash(true)
+
+      @available_filters = F_PRESETS[State.sphere]
     end
   end
 

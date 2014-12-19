@@ -1,5 +1,5 @@
 appState = ->
-  @attributes
+  @defaultAttrs
     criteria: []
     filters: []
     sphere = ""
@@ -44,9 +44,15 @@ appState = ->
   @getPicked = ->
     _.where @attr.criteria, picked: true
 
+  @setFilters = (filters) ->
+    keys = Object.keys(filters)
+    mappedFilters = []
+    for key in keys
+      mappedFilters.push { name: key, value: filters[key] }
+    @attr.filters = mappedFilters
+
   @alternativesList = ->
     @getAlternatives()
-
 
   @after "initialize", ->
     @attr.criteria  = toprater.criteria
@@ -54,6 +60,7 @@ appState = ->
     @attr.sphere    = toprater.state.sphere
     @attr.lang      = toprater.state.locale
     @setPicked toprater.state.criteria
+    @setFilters toprater.state.filters if toprater.state.filters?
 
     routes =
       "/en/:sphere":
@@ -68,6 +75,14 @@ appState = ->
 
     @on "cartReady", ->
       @trigger "criteriaUpdated", criteria: @getPicked()
+
+    @on "filtersChanged", (event, data) ->
+      filter = _.find(@attr.filters, name: data.name)
+      if filter?
+        filter.value = data.value
+      else
+        @attr.filters.push data
+      router.setRoute @buildUrl()
 
     @on "criterionToggled", (event, data) ->
       @togglePicked data.name

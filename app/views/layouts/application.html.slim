@@ -13,10 +13,12 @@ html
         .row
           .medium-3.columns
             = render_cell :general, :criteria_catalog
-          .medium-9.columns
+          .medium-6.columns
             = render partial: 'partials/cart'
             #rating@objects-list
               = yield
+          .medium-3.columns
+            = render partial: 'partials/filters'
 
     = render_cell :general, :debug, observer: @debug_observer
 

@@ -1,0 +1,6 @@
+@stars-filter.large-12.columns data-name=name
+  label Stars
+  - (1..5).each do |cnt|
+    = radio_button_tag name, cnt, (cnt.to_s == value ? true : false), id: "stars-#{cnt}", role: 'stars-radio'
+    label for="stars-#{cnt}" = cnt
+    

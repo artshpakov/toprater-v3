@@ -14,24 +14,25 @@ withParamsCtr = ->
 
       for f, i in filtersList
         if i % 2 == 0
-          filter = {}
-          filter["#{f}"] = filtersList[i+1]
+          filter =
+            name: f
+            value: filtersList[i+1]
           params.filters.push filter
 
     params
-
 
   @encode = (criteria, filters) ->
     paramsPath = ""
 
     if criteria? and criteria.length
-      paramsPath += "/criteria" + "/" + criteria.join(",")
+      paramsPath += "/criteria/" + criteria.join(",")
 
     if filters? and filters.length
       paramsPath += "/filters"
-      paramsPath += "/" + _.flatten(_.pairs(filter)).join("/") for filter in filters
+      paramsPath += "/#{filter.name}/#{filter.value}" for filter in filters
 
     paramsPath
+
 
 
 window.withParams = withParamsCtr

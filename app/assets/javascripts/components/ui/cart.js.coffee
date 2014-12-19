@@ -10,6 +10,5 @@ cart = ->
 
     @trigger "cartReady"
 
-
 Toprater.Cart = flight.component cart, withHogan
 Toprater.Cart.attachTo "[role='cart']"

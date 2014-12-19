@@ -9,7 +9,8 @@ class ParamsService
       while filters.present?
         key   = filters.shift.to_sym
         value = filters.shift
-        hash[key] = "Filters::#{ key.capitalize }".constantize.decode(value)
+        type = F_PRESETS[params[:sphere]][key.to_s]['kind']
+        hash[key] = "Filters::#{ type.capitalize }".constantize.decode(value)
       end
       params[:filters] = hash
     end
