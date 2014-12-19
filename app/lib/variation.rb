@@ -4,8 +4,9 @@ class Variation
 
     attr_accessor :config, :registry
 
-    def init!
-      self.registry = {}
+    def init! token
+      cache = KeyValue.hgetall("variations:#{ token }")
+      self.registry = cache.update(cache) { |key, value| JSON.parse value }.symbolize_keys
     end
 
     def create name, &block
@@ -35,12 +36,17 @@ class Variation
     self.logic  = block_given? ? block : Proc.new { |variants| variants.sample }
   end
 
-  def variant
-    Variation.registry[name] ||= begin
+  def variant &block
+    if Variation.registry[name].present?
+      Rails.logger.debug "CACHED #{ name } VARIATION: #{ Variation.registry[name] }"
+      Variation.registry[name]
+    else
       Rails.logger.debug "CALLING LOGIC FOR #{ name } VARIATION"
       variants = self.class.config_for(name)
       if variants.kind_of?(Array) && variants.count > 1
-        logic.call variants
+        variant = logic.call variants
+        block.call variant if block_given?
+        variant
       else
         variants
       end

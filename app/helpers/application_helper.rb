@@ -25,7 +25,11 @@ module ApplicationHelper
 
 
   def variation name
-    Variation.get(name).variant rescue {}
+    Variation.get(name).variant do |variant|
+      if token = cookies[:token]
+        KeyValue.hset("variations:#{ token }", name, variant.to_json)
+      end
+    end
   end
 
 
