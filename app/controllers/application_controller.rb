@@ -49,7 +49,7 @@ class ApplicationController < ActionController::Base
 
   COMPLEX_URLS.each do |name|
     method_name = "#{ name }_path"
-    define_method(method_name) { |options={}| super(ParamsService.encode!(params).merge(options)).split('?').first }
+    define_method(method_name) { |options={}| super(ParamsService.encode(params).merge(options)).split('?').first }
     helper_method method_name
   end
 

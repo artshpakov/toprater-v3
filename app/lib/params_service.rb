@@ -17,13 +17,13 @@ class ParamsService
   end
 
 
-  def self.encode! params
-    params[:criteria] = Array.wrap(params[:criteria]).join(',') if params[:criteria].present?
-    params[:filters]  = params[:filters].map do |key, value|
+  def self.encode params
+    criteria = Array.wrap(params[:criteria]).join(',') if params[:criteria].present?
+    filters  = params[:filters].map do |key, value|
       key = key.to_sym
       [ key, "Filters::#{ key.capitalize }".constantize.encode(value) ] rescue [key, value]
     end.flatten.join('/') if params[:filters].present?
-    params
+    { criteria: criteria, filters: filters }
   end
 
 end
