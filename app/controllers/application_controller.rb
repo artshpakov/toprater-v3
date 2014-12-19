@@ -32,7 +32,7 @@ class ApplicationController < ActionController::Base
     State.init! params: params, cookies: cookies, session: session
 
     unless request.xhr?
-      Variation.init!
+      Variation.init!(cookies[:token] ||= SecureRandom.uuid)
 
       # TODO move to a initializer
       @debug_observer = Observers::Debug.new

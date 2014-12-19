@@ -10,6 +10,8 @@ gem 'pry-rails'
 gem 'slim'
 gem 'gon'
 gem 'cells'
+gem 'redis'
+# gem 'redis-rails'
 
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
