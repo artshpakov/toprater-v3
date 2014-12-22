@@ -2,6 +2,6 @@
   label Years
   - ranges = %w(2010-2019 2000-2010 1990-2000 1980-1990)
   - ranges.each do |rng|
-    = radio_button_tag name, rng, (rng == value ? true : false), id: "years-#{rng}", role: 'years-radio'
+    = radio_button_tag name, rng, (rng == "#{value[:from]}-#{value[:to]}" ? true : false), id: "years-#{rng}", role: 'years-radio'
     label for="years-#{rng}" = rng
     br

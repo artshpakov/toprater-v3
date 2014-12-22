@@ -3,4 +3,4 @@ section@filters
     - if @available_filters.present?
       - @available_filters.each do |filter|
         - st_value = State.filters.present? ? State.filters[filter[0]] : {}    # TODO: move this calculation to controller
-        = render partial: "filters/specific/#{filter[1]['template']}", locals: { name: filter[0], value: st_value[:from] }
+        = render partial: "filters/specific/#{filter[1]['template']}", locals: { name: filter[0], value: st_value }
