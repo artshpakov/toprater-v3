@@ -9,5 +9,9 @@ starsFilter = ->
       @attr.value = $(event.currentTarget).val()
       @trigger 'filtersChanged', @attr
 
+    @on document, 'filtersReset', ->
+      @$node.find("[role=stars-radio]").attr('checked', false)
+      @attr.value = {}
+
 Toprater.StarsFilter = flight.component(starsFilter)
 Toprater.StarsFilter.attachTo "[role=stars-filter]"

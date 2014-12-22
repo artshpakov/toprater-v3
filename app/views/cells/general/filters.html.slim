@@ -5,3 +5,5 @@ section@filters
     - if @available_filters.present?
       - @available_filters.each do |name, params|
         = render partial: "partials/filters/specific/#{params['template']}", locals: { name: name, value: (State.filters[name] rescue {}) }
+  .row
+    a.button.round.small@reset-filters href='#' Reset Filters

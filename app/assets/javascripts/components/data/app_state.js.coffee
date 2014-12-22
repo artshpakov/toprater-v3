@@ -84,6 +84,10 @@ appState = ->
         @attr.filters.push data
       router.setRoute @buildUrl()
 
+    @on "filtersReset", ->
+      @attr.filters = []
+      router.setRoute @buildUrl()
+
     @on "criterionToggled", (event, data) ->
       @togglePicked data.name
       @trigger "criteriaUpdated", criteria: @getPicked()
