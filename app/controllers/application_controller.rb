@@ -39,8 +39,6 @@ class ApplicationController < ActionController::Base
 
       gon.criteria  = Criterion.leafs
       gon.state     = State.to_hash(true)
-
-      @available_filters = F_PRESETS[State.sphere]
     end
   end
 

@@ -14,6 +14,12 @@ class GeneralCell < TopraterCell
   end
 
 
+  def filters
+    @available_filters = F_PRESETS[State.sphere]
+    render
+  end
+
+
   def debug options
     if State.debug?
       @state      = State.to_hash
