@@ -2,7 +2,7 @@ class Alternative < Sentimeta::Model
 
   endpoint :objects
 
-  attr_accessor :id, :name, :address, :photos, :reviews, :extra
+  attr_accessor :id, :name, :address, :photos, :reviews, :extra, :catalog
 
 
   def self.rate options
@@ -14,12 +14,20 @@ class Alternative < Sentimeta::Model
     new data if data.present?
   end
 
+  def stars
+    extra['stars'].floor
+  end
+
   def full_address
     address['full_address']
   end
 
   def cover
     photos.first['url'] if photos.present?
+  end
+
+  def price
+    extra['price']
   end
 
 end

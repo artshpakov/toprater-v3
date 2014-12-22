@@ -1,7 +1,29 @@
-= solid do
+sass:
+  .hotel-card
+    .cover
+      width: 280px
+      height: 150px
+      background-size: cover
+      background-position: center
+
+
+.hotel-card
   .headline
     .index = index
-    a.name href="#{ object_path id: alternative.id }" = alternative.name
+    a.name href="#{ object_path id: alternative.id }"
+      =' alternative.name
+      = solid do
+        = "#{ alternative.stars }*"
     p.address = alternative.full_address
 
-= render_partial "alternatives/cards/partials/reviews", locals: { review_packs: alternative.reviews }
+  .row.details
+    - if alternative.cover.present?
+      .large-5.columns
+        .cover style="background-image: url(#{ alternative.cover })"
+    .large-7.columns
+      = solid do
+        div = catalog alternative.catalog
+      = solid do
+        p == price_level alternative.price
+
+  = render_partial "alternatives/cards/partials/reviews", locals: { review_packs: alternative.reviews }
