@@ -15,7 +15,7 @@ class Alternative < Sentimeta::Model
   end
 
   def stars
-    extra['stars'].floor
+    extra['stars'].to_i.floor
   end
 
   def full_address
