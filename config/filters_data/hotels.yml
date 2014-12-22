@@ -1,4 +1,15 @@
 stars:
+  name: stars
+  label: star
+  label_plural: stars
+  kind: numeric
+  template: stars
+  data:
+    min: 0
+    max: 5
+
+stars2:
+  name: stars
   label: star
   label_plural: stars
   kind: numeric
