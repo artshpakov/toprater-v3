@@ -20,10 +20,10 @@ class GeneralCell < TopraterCell
   end
 
 
-  def debug options
+  def debug
     if State.debug?
       @state      = State.to_hash
-      @api_calls  = options[:observer].api_calls
+      @api_calls  = Sentimeta::Observers.debug.try :api_calls
       render
     end
   end

@@ -1,7 +1,7 @@
 class Observers::Debug
 
   def initialize 
-    @api_calls = []
+    reset!
   end
 
   def notify event, url
@@ -12,6 +12,10 @@ class Observers::Debug
 
   def api_calls
     @api_calls
+  end
+
+  def reset!
+    @api_calls = []
   end
 
 end

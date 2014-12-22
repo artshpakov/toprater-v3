@@ -33,9 +33,7 @@ class ApplicationController < ActionController::Base
       Variation.create(:reviews)
       Variation.create(:actors)
 
-      # TODO move to a initializer
-      @debug_observer = Observers::Debug.new
-      Sentimeta::Observers.add @debug_observer
+      Sentimeta::Observers.debug.try :reset!
 
       gon.criteria  = Criterion.leafs
       gon.state     = State.to_hash(true)
