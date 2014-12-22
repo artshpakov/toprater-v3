@@ -25,7 +25,6 @@ class ApplicationController < ActionController::Base
     Sentimeta.sphere = params[:sphere]
   end
 
-
   def setup
     State.init! params: params, cookies: cookies, session: session
 

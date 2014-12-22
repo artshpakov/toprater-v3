@@ -14,13 +14,12 @@ class Alternative < Sentimeta::Model
     new data if data.present?
   end
 
-
   def full_address
     address['full_address']
   end
 
   def cover
-    photos.first['url']
+    photos.first['url'] if photos.present?
   end
 
 end

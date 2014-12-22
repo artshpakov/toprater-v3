@@ -31,7 +31,6 @@ class State
       { locale: locale, sphere: sphere, criteria: criteria, filters: (for_front ? encoded_filters : filters), options: options }
     end
 
-
     def criteria_and_filters
       { criteria: criteria, filters: filters }
     end

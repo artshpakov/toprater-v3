@@ -16,12 +16,12 @@ class ParamsService
     end
   end
 
-
   def self.encode params
     criteria = Array.wrap(params[:criteria]).join(',') if params[:criteria].present?
     filters  = params[:filters].map do |key, value|
       key = key.to_sym
-      [ key, "Filters::#{ key.capitalize }".constantize.encode(value) ] rescue [key, value]
+      type = F_PRESETS[params[:sphere]][key.to_s]['kind']
+      [ key, "Filters::#{ type.capitalize }".constantize.encode(value) ] rescue [key, value]
     end.flatten.join('/') if params[:filters].present?
     { criteria: criteria, filters: filters }
   end
