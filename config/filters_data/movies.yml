@@ -1,0 +1,8 @@
+years:
+  label: year
+  label_plural: years
+  kind: numeric
+  template: years
+  data:
+    min: 1880
+    max: 2019
