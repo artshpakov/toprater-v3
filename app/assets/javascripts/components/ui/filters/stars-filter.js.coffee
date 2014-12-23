@@ -7,7 +7,6 @@ starsFilter = ->
     @attr.name = @$node.attr('data-name')
 
     @on document, "#{@attr.name}Updated", (event, data) ->
-      console.log data
       @$node.find("#stars-#{data.value}").attr('checked', true)
       @attr.value = data.value
 
