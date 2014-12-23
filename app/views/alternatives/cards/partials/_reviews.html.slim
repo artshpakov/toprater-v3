@@ -1,4 +1,4 @@
-.row
+.row@reviews
   .large-4.columns
     - review_packs.each do |pack|
       p.criterion.radius.secondary.label data-name="#{ Criterion.find(pack["name"]).name }"
@@ -6,7 +6,7 @@
 
   .large-8.columns
     - review_packs.each_with_index do |pack, index|
-      div
+      div data-criterion="#{ pack["name"] }"
         - pack["reviews"][0..2].each do |review|
           p style="font-size:12px"
             =' review['before']
