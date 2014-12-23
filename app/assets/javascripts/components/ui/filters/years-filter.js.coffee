@@ -11,7 +11,7 @@ yearsFilter = ->
       @trigger 'filtersChanged', @attr
 
     @on document, "#{@attr.name}Updated", (event, data) ->
-      @$node.find("#years-#{data.value}").attr('checked', true)
+      @$node.find("input").val([data.value])
       @attr.value = data.value
 
     @on document, 'filtersReset', ->
