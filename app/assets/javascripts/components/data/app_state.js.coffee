@@ -80,10 +80,11 @@ appState = ->
       filter = _.find(@attr.filters, name: data.name)
       if filter?
         filter.value = data.value
-        @trigger "#{data.name}Updated", filter
+        val = filter
       else
         @attr.filters.push data
-        @trigger "#{data.name}Updated", data
+        val = data
+      @trigger "#{data.name}Updated", val
       router.setRoute @buildUrl()
 
     @on "filtersReset", ->
