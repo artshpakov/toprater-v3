@@ -10,7 +10,7 @@ starsFilter = ->
       @$node.find("#stars-#{data.value}").attr('checked', true)
       @attr.value = data.value
 
-    @on "[role=stars-radio]", 'click', (event) ->
+    @on @$node.find("[role=stars-radio]"), 'click', (event) ->
       @attr.value = $(event.currentTarget).val()
       @trigger 'filtersChanged', @attr
 
