@@ -10,7 +10,6 @@ yearsFilter = ->
       @trigger 'filtersChanged', @attr
 
     @on document, "#{@attr.name}Updated", (event, data) ->
-      console.log "#years-#{data.value}"
       @$node.find("#years-#{data.value}").attr('checked', true)
       @attr.value = data.value
 
