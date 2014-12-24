@@ -12,3 +12,12 @@
   .data
     - @api_calls.each do |call|
       div = call
+
+  br
+
+  b Variations
+  .data
+    - @variations.each do |key, value|
+      div
+        =' "#{ key }:"
+        = value.to_json || 'null'

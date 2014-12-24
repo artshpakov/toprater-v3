@@ -24,6 +24,7 @@ class GeneralCell < TopraterCell
     if State.debug?
       @state      = State.to_hash
       @api_calls  = Sentimeta::Observers.debug.try :api_calls
+      @variations = Variation::Registry.registry
       render
     end
   end
