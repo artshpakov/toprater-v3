@@ -1,19 +1,16 @@
 years:
   name: years
-  label: year
-  label_plural: years
+  label: Year
+  label_plural: Years
   kind: numeric
   template: years
   data:
     min: 1880
     max: 2019
 
-years2:
-  name: years
-  label: year
-  label_plural: years
-  kind: numeric
-  template: years
-  data:
-    min: 1880
-    max: 2019
+genres:
+  name: genres
+  label: Genre
+  label_plural: Genres
+  kind: string
+  template: enum

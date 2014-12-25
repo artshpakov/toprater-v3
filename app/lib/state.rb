@@ -22,7 +22,7 @@ class State
       new_filters = {}
       filters.each do |filter|
         f_type = F_PRESETS[sphere][filter[0]]['kind']
-        new_filters[filter[0]] = "Filters::#{ f_type.capitalize }".constantize.encode(filter[1])
+        new_filters[filter[0]] = ("Filters::#{ f_type.capitalize }".constantize.encode(filter[1]) rescue filter[1])
       end if filters.present?
       new_filters
     end
