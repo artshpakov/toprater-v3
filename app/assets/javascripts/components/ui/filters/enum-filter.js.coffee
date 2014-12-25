@@ -15,7 +15,6 @@ enumFilter = ->
       @attr.value = {}
 
     @on @$node.find('select'), 'change', (event) ->
-      console.log 'changed'
       @attr.value = $(event.currentTarget).val()
       @trigger 'filtersChanged', @attr
 
