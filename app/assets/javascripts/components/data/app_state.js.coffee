@@ -73,8 +73,7 @@ appState = ->
 
     router.init()
 
-    @on "cartReady", ->
-      @trigger "criteriaUpdated", criteria: @getPicked()
+    @trigger "criteriaUpdated", criteria: @getPicked()
 
     @on "filtersChanged", (event, data) ->
       filter = _.find(@attr.filters, name: data.name)

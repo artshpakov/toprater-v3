@@ -12,7 +12,8 @@
 #= require_self
 #= require_tree ./utils
 #= require_tree ./mixins
-#= require_tree ./components
+#= require_tree ./components/ui
+#= require_tree ./components/data
 #= require_tree .
 
 # Uncomment to debug FlightJS
