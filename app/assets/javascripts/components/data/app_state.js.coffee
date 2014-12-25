@@ -26,7 +26,6 @@ appState = ->
         )
         .done( (data) =>
           @trigger "objectsLoaded", objects: data
-          @trigger "pageUpdated"
         )
       , 1000)
 

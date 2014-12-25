@@ -1,0 +1,3 @@
+| {{#criteria}} 
+a.button.tiny@criterion data-name="{{ name }}"  href="javascript:;" {{label}}
+| {{/criteria}}

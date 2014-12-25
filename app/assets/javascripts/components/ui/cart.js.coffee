@@ -1,14 +1,10 @@
 cart = ->
-  @attributes
-    template: ""
+  @render = (event, data) ->
+    @$node.html JST['cart'].render({criteria: data.criteria})
 
   @after "initialize", ->
-    @attr.template = @$node.find("[type='text/template']").html()
-
-    @on document, "criteriaUpdated", (event, data) ->
-      @$node.html @renderTemplate @attr.template, criteria: data.criteria
-
+    @on document, "criteriaUpdated", @render
     @trigger "cartReady"
 
-Toprater.Cart = flight.component cart, withHogan
+Toprater.Cart = flight.component cart
 Toprater.Cart.attachTo "[role='cart']"

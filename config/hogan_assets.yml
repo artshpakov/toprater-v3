@@ -1,0 +1,14 @@
+defaults: &defaults
+  path_prefix: 'templates'
+  template_extensions:
+    - 'slimstache'
+  template_namespace: 'JST'
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
