@@ -5,31 +5,6 @@ appState = ->
     sphere = ""
     lang = ""
 
-  @buildPath = ->
-    "/objects#{ @encode _.pluck(@getPicked(), "name"), @attr.filters}"
-
-  @buildUrl = ->
-    "/#{ @attr.lang }/#{ @attr.sphere }" + @buildPath()
-
-  timeout = 0
-  @getAlternatives = ->
-    clearTimeout timeout
-    timeout = setTimeout(
-      =>
-        clearTimeout timeout
-        $.ajax(
-          url: @buildUrl()
-          method: "GET"
-        )
-        .fail( (data) =>
-          @trigger "errorLoadingObjects", data
-        )
-        .done( (data) =>
-          @trigger "objectsLoaded", objects: data
-          @trigger "pageUpdated"
-        )
-      , 1000)
-
 
   @togglePicked = (criteria) ->
     criteria = [criteria] unless _.isArray criteria
@@ -44,15 +19,13 @@ appState = ->
   @getPicked = ->
     _.where @attr.criteria, picked: true
 
-  @setFilters = (filters) ->
-    keys = Object.keys(filters)
-    mappedFilters = []
-    for key in keys
-      mappedFilters.push { name: key, value: filters[key] }
-    @attr.filters = mappedFilters
 
-  @alternativesList = ->
-    @getAlternatives()
+  # @setFilters = (filters) ->
+  #   keys = Object.keys(filters)
+  #   mappedFilters = []
+  #   for key in keys
+  #     mappedFilters.push { name: key, value: filters[key] }
+  #   @attr.filters = mappedFilters
 
   @after "initialize", ->
     @attr.criteria  = toprater.criteria
@@ -60,42 +33,35 @@ appState = ->
     @attr.sphere    = toprater.state.sphere
     @attr.lang      = toprater.state.locale
     @setPicked toprater.state.criteria
-    @setFilters toprater.state.filters if toprater.state.filters?
+    # @setFilters toprater.state.filters if toprater.state.filters?
 
-    routes =
-      "/en/:sphere":
-        "/objects.*": _.bind(@alternativesList, @)
+    to_params = =>
+      criteria: @getPicked()
+      filters: @attr.filters
+      sphere: @attr.sphere
+      lang: @attr.lang
 
-    router = Router routes
-    router.configure
-      html5history: true
-      run_handler_in_init: false
+    @trigger "stateUpdated", to_params()
 
-    router.init()
+    # @on "filtersChanged", (event, data) ->
+    #   filter = _.find(@attr.filters, name: data.name)
+    #   if filter?
+    #     filter.value = data.value
+    #     val = filter
+    #   else
+    #     @attr.filters.push data
+    #     val = data
+    #   @trigger "#{data.name}Updated", val
+    #   router.setRoute @buildUrl()
 
-    @trigger "criteriaUpdated", criteria: @getPicked()
+    # @on "filtersReset", ->
+    #   @attr.filters = []
+    #   router.setRoute @buildUrl()
 
-    @on "filtersChanged", (event, data) ->
-      filter = _.find(@attr.filters, name: data.name)
-      if filter?
-        filter.value = data.value
-        val = filter
-      else
-        @attr.filters.push data
-        val = data
-      @trigger "#{data.name}Updated", val
-      router.setRoute @buildUrl()
-
-    @on "filtersReset", ->
-      @attr.filters = []
-      router.setRoute @buildUrl()
-
-    @on "criterionToggled", (event, data) ->
-      @togglePicked data.name
-      @trigger "criteriaUpdated", criteria: @getPicked()
-      
-      router.setRoute @buildUrl()
+    @on "criterionToggled", (event, criterion) ->
+      @togglePicked criterion.name
+      @trigger "stateUpdated", to_params()
 
 
-Toprater.AppState = flight.component appState, withParams
+Toprater.AppState = flight.component appState
 Toprater.AppState.attachTo document
