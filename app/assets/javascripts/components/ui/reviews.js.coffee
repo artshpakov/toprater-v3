@@ -1,7 +1,6 @@
 reviews = ->
 
   @pickReviewsPack = (event) ->
-    console.log 'pickPack'
     name = $(event.target).data('name')
     @$node.find(".criterion").removeClass('current')
     @$node.find("[data-name=#{ name }]").addClass('current')
@@ -9,7 +8,6 @@ reviews = ->
     @$node.find("[data-criterion=#{ name }]").show()
 
   @reload = ->
-    console.log 'reload'
     Toprater.Reviews.attachTo "[role=reviews]"
 
   @after "initialize", ->
