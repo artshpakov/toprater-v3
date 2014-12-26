@@ -5,10 +5,11 @@ objectsList = ->
 
 
   @after "initialize", ->
-    @on document, "objectsLoaded", (event, data) ->
+    @on "objectsLoaded", (event, data) ->
       @showAlternatives data.objects
       
     @on "errorLoadingObjects", (event, data) ->
+      #TODO: Error handling
       console.log data
 
 

@@ -1,48 +1,12 @@
 router = ->
+  @attributes
+    route: ""
+
+  @alternativesList = ->
+    @trigger document, "toAlternatives", url: @attr.route
 
 
-  
-
-  # timeout = 0
-  @getAlternatives = ->
-    $.ajax(
-      url: @route
-      method: "GET"
-    )
-    .fail( (data) =>
-      @trigger "errorLoadingObjects", data
-    )
-    .done( (data) =>
-      console.log @
-      @trigger "objectsLoaded", objects: data
-      @trigger "pageUpdated"
-    )
-
-    # clearTimeout timeout
-    # timeout = setTimeout(
-    #   =>
-    #     clearTimeout timeout
-    #     $.ajax(
-    #       url: @route
-    #       method: "GET"
-    #     )
-    #     .fail( (data) =>
-    #       @trigger "errorLoadingObjects", data
-    #     )
-    #     .done( (data) =>
-    #       console.log @
-    #       @trigger "objectsLoaded", objects: data
-    #       @trigger "pageUpdated"
-    #     )
-    #   , 1000)
-
-
-  routes =
-    "/en/:sphere":
-      "/objects.*": _.bind(@getAlternatives, @)
-
-
-  encode = (criteria, filters) ->
+  @encode = (criteria, filters) ->
     paramsPath = ""
 
     if criteria?.length
@@ -58,24 +22,28 @@ router = ->
   @buildPath = (params={}) ->
     params.criteria = _.pluck(params.criteria, 'name')
     # "/objects#{ encode _.pluck(@getPicked(), "name"), @attr.filters}"
-    "/objects#{ encode params.criteria, params.filters }"
+    "/objects#{ @encode params.criteria, params.filters }"
 
-  @buildUrl = (params) =>
+  @buildUrl = (params) ->
     "/#{ params.lang }/#{ params.sphere }" + @buildPath(params)
 
 
   @after 'initialize', ->
 
+    routes =
+      "/en/:sphere":
+        "/objects.*": _.bind @alternativesList, @
+
     router = Router routes
+
     router.configure
       html5history: true
       run_handler_in_init: false
     router.init()
 
-    @on "stateUpdated", (event, params) =>
-      @route = @buildUrl params
-      router.setRoute @route
-
+    @on "stateUpdated", (event, params) ->
+      @attr.route = @buildUrl params
+      router.setRoute @attr.route
 
 
 Toprater.Router = flight.component router
