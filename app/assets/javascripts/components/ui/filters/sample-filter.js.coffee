@@ -2,22 +2,17 @@
 # put filter template to app/views/partials/filters/specific
 
 # sampleFilter = ->
-#   @defaultAttrs
-#     name: ''              # filter's API-name
-#     value: {}
+#   @updateValues = (event, data) ->
+#     @$node.find('select').val(data.value) # UI reaction on data update
+
+#   @setValue = (event) ->
+#     @attr.value = $(event.currentTarget).val() # set data from UI
+
+#   @resetFilter = ->
+#     @$node.find('select').val(null) # reset UI
 
 #   @after 'initialize', ->
-#     @attr.name = @$node.attr('data-name')
+#     @on @$node.find('select'), 'change', @setValue # input change event
 
-#     @on document, "#{@attr.name}Updated", (event, data) ->
-#       # [ ... UI update logic here ... ]
-#       @attr.value = data.value
-
-#     @on document, 'filtersReset', ->
-#       # [ ... UI reset logic here ... ]
-#       @attr.value = {}
-
-#     # [ ... some other component logic ... ]
-
-# Toprater.SampleFilter = flight.component(sampleFilter)
+# Toprater.SampleFilter = flight.component(sampleFilter, Toprater.withFilterMixin)
 # Toprater.SampleFilter.attachTo "[role=sample-filter]"
