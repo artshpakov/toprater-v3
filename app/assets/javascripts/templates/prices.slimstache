@@ -1,0 +1,16 @@
+table width="100%"
+  | {{#prices}}
+  tr valign="bottom"
+    td
+      h4 style="margin: 0" {{ source_label }}
+    td
+      small Room type
+      br
+      | {{ room_type }}
+    td
+      small Price
+      br
+      | {{ price }} {{ currency }}
+    td align="right"
+      a href="{{ booking_url }}" target="_blank" book >>
+  | {{/prices}}
