@@ -16,4 +16,4 @@ reviews = ->
     @trigger @$node.find('.criterion').eq(0), 'click'
 
 Toprater.Reviews = flight.component reviews
-
+Toprater.Reviews.attachTo "[role=reviews]"
