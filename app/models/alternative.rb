@@ -34,4 +34,8 @@ class Alternative < Sentimeta::Model
     extra['price']
   end
 
+  def partners_data
+    extra['partners_data'].map { |e| e['data'] }
+  end
+
 end

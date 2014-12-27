@@ -12,7 +12,7 @@ class PricesController < ApplicationController
     prices = Sentimeta::Client.prices prices_params.merge \
       provider: :hotellook,
       # id: params[:id],
-      data: alternative.extra['partners_data'].first['data']
+      data: alternative.partners_data.first
     respond_with prices
   end
 

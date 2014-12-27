@@ -1,23 +1,6 @@
 p: a href=list_path &larr; Back to results
 
 #details
-  section@overall
-    h2 = @alternative.name
+  - %i(main prices).each do |section|
     = solid do
-      p = @alternative.full_address
-
-    img src=@alternative.cover
-
-
-  section
-    h4 Buy tour
-    .row@prices-calendar
-      .large-3.columns
-        input type="text" placeholder="Arrival YYYY-MM-DD" name="prices[arrival]"
-      .large-3.columns
-        input type="text" placeholder="Departure YYYY-MM-DD" name="prices[departure]"
-      .large-3.columns
-        input type="text" placeholder="Adults" name="prices[adults]"
-      .large-3.columns
-        button.small@get-prices Get prices
-    @prices-table
+      = render_partial "alternatives/sections/#{ section }/#{ State.sphere }"
