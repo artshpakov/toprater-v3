@@ -1,7 +1,6 @@
-a href=list_path &larr; Back to results
+p: a href=list_path &larr; Back to results
 
-h2 = @alternative.name
-= solid do
-  p = @alternative.full_address
-
-img src=@alternative.cover
+#details
+  - %i(main prices).each do |section|
+    = solid do
+      = render_partial "alternatives/sections/#{ section }/#{ State.sphere }"

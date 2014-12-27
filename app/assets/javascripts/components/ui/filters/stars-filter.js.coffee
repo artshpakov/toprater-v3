@@ -1,22 +1,15 @@
 starsFilter = ->
-  @defaultAttrs
-    name: ''
-    value: {}
+  @updateValues = (event, data) ->
+    @$node.find("input").val([data.value])
+
+  @setValue = (event) ->
+    @attr.value = $(event.currentTarget).val()
+
+  @resetFilter = ->
+    @$node.find("[role=stars-radio]").attr('checked', false)
 
   @after 'initialize', ->
-    @attr.name = @$node.attr('data-name')
+    @on @$node.find("[role=stars-radio]"), 'click', @setValue
 
-    @on document, "#{@attr.name}Updated", (event, data) ->
-      @$node.find("input").val([data.value])
-      @attr.value = data.value
-
-    @on @$node.find("[role=stars-radio]"), 'click', (event) ->
-      @attr.value = $(event.currentTarget).val()
-      @trigger 'filtersChanged', @attr
-
-    @on document, 'filtersReset', ->
-      @$node.find("[role=stars-radio]").attr('checked', false)
-      @attr.value = {}
-
-Toprater.StarsFilter = flight.component(starsFilter)
+Toprater.StarsFilter = flight.component(starsFilter, Toprater.withFilterMixin)
 Toprater.StarsFilter.attachTo "[role=stars-filter]"

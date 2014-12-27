@@ -2,8 +2,12 @@ class Alternative < Sentimeta::Model
 
   endpoint :objects
 
-  attr_accessor :id, :name, :address, :photos, :reviews, :extra, :catalog
+  attr_accessor :id, :full_id, :name, :address, :photos, :reviews, :extra, :catalog
 
+
+  def id
+    full_id || id
+  end
 
   def self.rate options
     fetch State.criteria_and_filters.merge(fields: options)
@@ -28,6 +32,10 @@ class Alternative < Sentimeta::Model
 
   def price
     extra['price']
+  end
+
+  def partners_data
+    extra['partners_data'].map { |e| e['data'] }
   end
 
 end

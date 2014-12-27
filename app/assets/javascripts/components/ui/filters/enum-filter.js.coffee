@@ -1,22 +1,15 @@
 enumFilter = ->
-  @defaultAttrs
-    name: ''
-    value: {}
+  @updateValues = (event, data) ->
+    @$node.find('select').val(data.value)
+
+  @setValue = (event) ->
+    @attr.value = $(event.currentTarget).val()
+
+  @resetFilter = ->
+    @$node.find('select').val(null)
 
   @after 'initialize', ->
-    @attr.name = @$node.attr('data-name')
+    @on @$node.find('select'), 'change', @setValue
 
-    @on document, "#{@attr.name}Updated", (event, data) ->
-      @$node.find('select').val(data.value)
-      @attr.value = data.value
-
-    @on document, 'filtersReset', ->
-      @$node.find('select').val(null)
-      @attr.value = {}
-
-    @on @$node.find('select'), 'change', (event) ->
-      @attr.value = $(event.currentTarget).val()
-      @trigger 'filtersChanged', @attr
-
-Toprater.EnumFilter = flight.component(enumFilter)
+Toprater.EnumFilter = flight.component(enumFilter, Toprater.withFilterMixin)
 Toprater.EnumFilter.attachTo "[role=enum-filter]"
