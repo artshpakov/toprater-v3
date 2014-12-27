@@ -10,7 +10,7 @@ criterion = ->
   @toggleCriterion = (event) ->
     event.stopPropagation()
     @attr.picked = !@attr.picked
-    @trigger "criterionToggled", name: @attr.name
+    @trigger "criterionToggled", @attr
     @$node.toggleClass "picked"
 
   @after "initialize", ->
