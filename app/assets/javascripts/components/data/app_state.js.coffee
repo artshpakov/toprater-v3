@@ -62,6 +62,7 @@ appState = ->
     @on "criterionToggled", (event, criterion) ->
       @togglePicked criterion.name
       @trigger "stateUpdated", to_params()
+      @trigger document, "criteriaUpdated", criteria: @getPicked()
 
 
 
