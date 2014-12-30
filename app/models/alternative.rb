@@ -27,7 +27,7 @@ class Alternative < Sentimeta::Model
   end
 
   def cover
-    photos.first['url'] if photos.present?
+    photos.find { |p| p['type']=='primary_image' }.try(:[], 'url') if photos.present?
   end
 
   def price

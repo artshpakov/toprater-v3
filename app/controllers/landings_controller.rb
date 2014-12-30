@@ -1,12 +1,16 @@
 class LandingsController < ApplicationController
 
   layout false
-  skip_before_action :set_locale, :set_sphere, :setup
+  skip_before_action :set_sphere, :setup
 
   respond_to :json
 
 
-  def similar_movies
+  def similar
+    Sentimeta.sphere = :movies
+    if params['id'].present?
+      @alternative = Alternative.find params[:id]
+    end
   end
 
   def search
