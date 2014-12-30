@@ -1,0 +1,113 @@
+html
+  head
+    title Toprater.com
+    link href="/css/similar.css" rel="stylesheet"
+    = include_gon namespace: 'toprater', camel_case: true
+    = javascript_include_tag :application
+    script src="/js/search.js"
+    
+  body
+    .w700.header
+      .logo
+        a href="/" 
+          img src="/img/logo.png"
+      .slogan What movies do you like?
+      .subslogan There are more than 300 reasons for people to like movies, what are yours?
+      .search_box@search
+        label for="search"  Enter your favorite movie
+        input#search name="search" type="text" value="" placaeholder="Movie name"
+        .result
+
+    - if @alternative
+      .bg_gray
+        .w700.info
+          img src="#{ @alternative.cover }"
+          h1
+            a href="https://toprater.com/en/movies/objects/#{ @alternative.id }-#{ @alternative.name }-#{ @alternative.extra['year'] }" = @alternative.name
+            |' (
+            = @alternative.extra['year']
+            | )
+          .subslogan If you like this movie, check the reasons why you might like it
+          - if @alternative.reviews.present?
+            table
+              tr
+                th Criteria
+                th Rate&nbsp;*
+              - if @alternative.top_criteria.present?
+                - @alternative.top_criteria.each_with_index do |criterion, index|
+                  - if index < 3
+                    tr
+                      td
+                        a.criteria href="" = criterion[1]['label']
+                      td
+                        .star_box
+                          .no_star
+                          .yes_star style="width: #{ (1 + criterion[1]['rating']) * 50 }%"
+                          .star
+                        span.rating 
+                          = rating criterion[1]['rating']
+                          | / 5
+
+            .note * — based on user reviews analysis
+          .cl
+      -if @alternative.top_criteria.present?
+        .bg_img
+          .w700
+            .caption_criteria
+              | FIND THE PERFECT MOVIE
+              br
+              | BY THE REASONS THAT MATTER TO YOU
+
+            - @alternative.top_criteria.each_with_index do |criterion, index|
+              - if index < 7
+                a.criteria href="https://toprater.com/en/movies/objects/criteria/#{ criterion[1]['name'] }"  = criterion[1]['label']
+
+
+      .w940
+        .more_films MOVIES YOU MIGHT LIKE
+        .card
+          a href="" 
+            img src="/img/s_movie.jpg" /
+          .caption
+            a href=""  Iron Man 3(2013)
+        .cl
+        .all_films
+          a href=""  142 movies
+          | &nbsp;were found. Check them out on
+          a href=""  toprater.com
+      .bg_gray
+        .w940
+          .social TELL FRIENDS YOUR REASONS TO LIKE MOVIES.
+          a.facebook href="" 
+            span.icon d
+            span.send Send list to friends on Facebook
+            span.count 334 shares
+          a.twitter href="" 
+            span.icon b
+            span.send Send list to friends on Twitter
+            span.count 334 shares
+          a.google href="" 
+            span.icon y
+            span.send Send list to friends on Google+
+            span.count 334 shares
+
+      .w940.footer
+        .text
+          a href="/"  Toprater
+          | is the social choice platform. We've analyzed millions of reviews from all over the world and now are giving you the best.
+          span.copy 2025&copy; Toprater
+        - if @alternative
+          div
+            #fb-root
+            javascript:
+              | (function(d, s, id) {
+                          | var js, fjs = d.getElementsByTagName(s)[0];
+                          | if (d.getElementById(id)) return;
+                          | js = d.createElement(s); js.id = id;
+                          | js.src = "//connect.facebook.net/ru_RU/sdk.js#xfbml=1&version=v2.0";
+                          | fjs.parentNode.insertBefore(js, fjs);
+                        | }(document, 'script', 'facebook-jssdk'));
+            .fb-like data-action="like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-share="false" data-show-faces="true" 
+            a.twitter-share-button href="https://twitter.com/share"  Tweet
+            javascript:
+              !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');

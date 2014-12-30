@@ -2,7 +2,7 @@ class Alternative < Sentimeta::Model
 
   endpoint :objects
 
-  attr_accessor :id, :full_id, :name, :address, :photos, :reviews, :extra, :catalog
+  attr_accessor :id, :full_id, :name, :address, :photos, :reviews, :extra, :catalog, :top_criteria
 
 
   def id
@@ -27,7 +27,7 @@ class Alternative < Sentimeta::Model
   end
 
   def cover
-    photos.first['url'] if photos.present?
+    photos.find { |p| p['type']=='primary_image' }.try(:[], 'url') if photos.present?
   end
 
   def price

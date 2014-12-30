@@ -14,10 +14,12 @@ Rails.application.routes.draw do
 
         get '/:id/prices' => 'prices#index', as: :prices
       end
+
+      get '/search' => 'landings#search', as: :search
     end
 
     namespace :landings do
-      get '/similar/:id' => :similar
+      get '/similar(/:id)' => :similar
     end
   end
 
