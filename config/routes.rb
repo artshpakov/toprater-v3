@@ -15,6 +15,10 @@ Rails.application.routes.draw do
         get '/:id/prices' => 'prices#index', as: :prices
       end
     end
+
+    namespace :landings do
+      get '/similar/:id' => :similar
+    end
   end
 
 end
