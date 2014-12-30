@@ -10,6 +10,7 @@ class LandingsController < ApplicationController
     Sentimeta.sphere = :movies
     if params['id'].present?
       @alternative = Alternative.find params[:id]
+      @similar = Sentimeta::Client.objects criteria: @alternative.top_criteria.keys
     end
   end
 

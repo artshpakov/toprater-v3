@@ -9,8 +9,8 @@ html
   body
     .w700.header
       .logo
-        a href="/" 
-          img src="/img/logo.png"
+        a href="https://toprater.com" 
+          img src="/i/logo.png"
       .slogan What movies do you like?
       .subslogan There are more than 300 reasons for people to like movies, what are yours?
       .search_box@search
@@ -38,7 +38,7 @@ html
                   - if index < 3
                     tr
                       td
-                        a.criteria href="" = criterion[1]['label']
+                        a.criteria href="https://toprater.com/en/movies/objects/criteria/#{ criterion[1]['name'] }" = criterion[1]['label']
                       td
                         .star_box
                           .no_star
@@ -65,14 +65,17 @@ html
 
       .w940
         .more_films MOVIES YOU MIGHT LIKE
-        .card
-          a href="" 
-            img src="/img/s_movie.jpg" /
-          .caption
-            a href=""  Iron Man 3(2013)
+        - @similar.each do |movie|
+          / = movie
+          .card
+            a href="https://toprater.com/en/movies/objects/#{ movie['id'] }-#{ movie['name'] }-#{ movie['extra']['year'] }" 
+              img src="#{ movie['photos'][0]['url'] }" width="160" height="240"
+            .caption
+              a href="" = movie['name']
         .cl
         .all_films
-          a href=""  142 movies
+          a href="" =' @similar.length
+          | movies
           | &nbsp;were found. Check them out on
           a href=""  toprater.com
       .bg_gray
