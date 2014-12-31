@@ -1,6 +1,28 @@
 html
   head
     title Toprater.com
+    meta charset="UTF-8"
+    -if @alternative
+      - if @alternative.top_criteria.present?
+        - cr = []
+        - cr_names = []
+        - @alternative.top_criteria.each_with_index do |criterion, index|
+          - (cr[index] = criterion[1]['label'])
+          - (cr_names[index] = criterion[1]['name'])
+      - mv = [] # TODO refactor
+      = solid do
+        - @similar.each_with_index do |movie, index|
+          - mv[index] = movie.name
+
+
+      meta content="My TOP reasons to like movies" property="og:title"
+      meta content="http://toprater.com/en/landings/similar/#{ @alternative.clean_id }" property="og:url"
+      meta content="/i/landings/sn_sharing_photo_02.jpg" property="og:image"
+      - if @alternative.top_criteria.present?
+        meta content="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }. I am going to check next films - #{ mv[0] }, #{ mv[1] }, #{ mv[2] }" property="og:description"
+      - else 
+        meta content="My top reasons to like movies" property="og:description"
+
     link href="/css/similar.css" rel="stylesheet"
     = include_gon namespace: 'toprater', camel_case: true
     script src="/js/jquery.min.js"
@@ -36,11 +58,7 @@ html
                 th Criteria
                 th Rate&nbsp;*
               - if @alternative.top_criteria.present?
-                - cr = []
-                - cr_names = []
                 - @alternative.top_criteria.each_with_index do |criterion, index|
-                  - (cr[index] = criterion[1]['label'])
-                  - (cr_names[index] = criterion[1]['name'])
                   - if index < 3
                     tr
                       td
@@ -68,7 +86,6 @@ html
               - if index < 7
                 a.criteria href="https://toprater.com/en/movies/objects/criteria/#{ criterion[1]['name'] }"  = criterion[1]['label']
 
-      - mv = [] # TODO refactor
       = solid do
         .w940
           .more_films MOVIES YOU MIGHT LIKE
@@ -91,7 +108,7 @@ html
           .w940
             .social TELL FRIENDS YOUR REASONS TO LIKE MOVIES.
             .links
-              a.prettySocial.fa.fa-facebook.facebook href="#" data-type="facebook" data-url="https://toprater.com/en/landings/similar/#{ @alternative.clean_id }" data-title="My TOP reasons to like movies" data-description="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }. I am going to check next films - #{ mv[0] }, #{ mv[1] }, #{ mv[2] }" data-media="/i/landings/sn_sharing_photo_01.jpg"
+              a.prettySocial.fa.fa-facebook.facebook href="#" data-type="facebook" data-url="http://toprater.com/en/landings/similar/#{ @alternative.clean_id }" data-title="My TOP reasons to like movies" data-description="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }. I am going to check next films - #{ mv[0] }, #{ mv[1] }, #{ mv[2] }" data-media="/i/landings/sn_sharing_photo_01.jpg"
                 span.icon d
                 span.send Send list to friends on Facebook
                 / span.count 334 shares
