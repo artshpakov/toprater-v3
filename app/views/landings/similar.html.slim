@@ -3,8 +3,10 @@ html
     title Toprater.com
     link href="/css/similar.css" rel="stylesheet"
     = include_gon namespace: 'toprater', camel_case: true
-    = javascript_include_tag :application
+    script src="/js/jquery.min.js"
+    script src="/js/underscore-min.js"
     script src="/js/jquery.prettySocial.min.js"
+    script src="/js/movies-typeahead.js"
     
   body
     .w700.header
@@ -109,4 +111,3 @@ html
         span.copy
           =' Date.today.year
           | &copy; Toprater
-        script src="/js/search.js"
