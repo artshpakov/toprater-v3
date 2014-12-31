@@ -21,7 +21,6 @@ search = ->
 
 
   @after "initialize", ->
-    debugger
     @on @$node.find("input#search"), "keyup", @getObjects
 
 Toprater.Search = flight.component(search)
