@@ -35,9 +35,11 @@ html
                 th Rate&nbsp;*
               - if @alternative.top_criteria.present?
                 - cr = []
+                - cr_names = []
                 - @alternative.top_criteria.each_with_index do |criterion, index|
+                  - (cr[index] = criterion[1]['label'])
+                  - (cr_names[index] = criterion[1]['name'])
                   - if index < 3
-                    - (cr[index] = criterion[1]['label'])
                     tr
                       td
                         a.criteria href="https://toprater.com/en/movies/objects/criteria/#{ criterion[1]['name'] }" = criterion[1]['label']
@@ -77,10 +79,10 @@ html
               a href="" = movie['name']
         .cl
         .all_films
-          a href="" =' @similar.length
+          a href="https://toprater.com/en/movies/objects/criteria/#{cr_names[0]},#{cr_names[1]},#{cr_names[2]},#{cr_names[3]},#{cr_names[4]},#{cr_names[5]},#{cr_names[6]},#{cr_names[7]},#{cr_names[8]},#{cr_names[9]}" =' @similar.length
           | movies
           | &nbsp;were found. Check them out on
-          a href=""  toprater.com
+          a href="http://toprater.com" toprater.com
       .bg_gray
         .w940
           .social TELL FRIENDS YOUR REASONS TO LIKE MOVIES.
