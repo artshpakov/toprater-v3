@@ -92,10 +92,10 @@ html
           - @similar.each_with_index do |movie, index|
             - mv[index] = movie.name
             .card
-              a href="https://toprater.com/en/movies/objects/#{ movie.id }" 
+              a href="https://toprater.com/en/movies/objects/#{ movie.id }"
                 img src="#{ movie.cover }" width="160" height="240"
               .caption
-                a href="" = movie.name
+                a href="https://toprater.com/en/movies/objects/#{ movie.id }" = movie.name
           .cl
           .all_films
             a href="https://toprater.com/en/movies/objects/criteria/#{cr_names[0]},#{cr_names[1]},#{cr_names[2]},#{cr_names[3]},#{cr_names[4]},#{cr_names[5]},#{cr_names[6]},#{cr_names[7]},#{cr_names[8]},#{cr_names[9]}" =' @similar.length
