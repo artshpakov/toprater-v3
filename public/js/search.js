@@ -20,6 +20,7 @@ $(function() {
 
   });
 
+  $(".prettySocial").prettySocial();
   
 
 });

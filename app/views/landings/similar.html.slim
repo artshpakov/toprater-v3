@@ -4,6 +4,7 @@ html
     link href="/css/similar.css" rel="stylesheet"
     = include_gon namespace: 'toprater', camel_case: true
     = javascript_include_tag :application
+    script src="/js/jquery.prettySocial.min.js"
     script src="/js/search.js"
     
   body
@@ -23,7 +24,7 @@ html
         .w700.info
           img src="#{ @alternative.cover }"
           h1
-            a href="https://toprater.com/en/movies/objects/#{ @alternative.id }-#{ @alternative.name }-#{ @alternative.extra['year'] }" = @alternative.name
+            a href="https://toprater.com/en/movies/objects/#{ @alternative.full_id }" = @alternative.name
             |' (
             = @alternative.extra['year']
             | )
@@ -34,8 +35,10 @@ html
                 th Criteria
                 th Rate&nbsp;*
               - if @alternative.top_criteria.present?
+                - cr = []
                 - @alternative.top_criteria.each_with_index do |criterion, index|
                   - if index < 3
+                    - (cr[index] = criterion[1]['label'])
                     tr
                       td
                         a.criteria href="https://toprater.com/en/movies/objects/criteria/#{ criterion[1]['name'] }" = criterion[1]['label']
@@ -65,10 +68,11 @@ html
 
       .w940
         .more_films MOVIES YOU MIGHT LIKE
-        - @similar.each do |movie|
-          / = movie
+        - mv = []
+        - @similar.each_with_index do |movie, index|
+          - mv[index] = movie['name']
           .card
-            a href="https://toprater.com/en/movies/objects/#{ movie['id'] }-#{ movie['name'] }-#{ movie['extra']['year'] }" 
+            a href="https://toprater.com/en/movies/objects/#{ movie['full_id'] }" 
               img src="#{ movie['photos'][0]['url'] }" width="160" height="240"
             .caption
               a href="" = movie['name']
@@ -81,18 +85,18 @@ html
       .bg_gray
         .w940
           .social TELL FRIENDS YOUR REASONS TO LIKE MOVIES.
-          a.facebook href="" 
+          a.facebook.prettySocial.fa.fa-facebook data-type="facebook" data-title="My TOP reasons to like movies" data-url="https://toprater.com/en/landings/similar/#{ @alternative.clean_id }" href="javascript:;" data-description="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }. I am going to check next films - #{ mv[0] }, #{ mv[1] }, #{ mv[2] }" data-media="/i/landings/sn_sharing_photo_01.jpg"
             span.icon d
             span.send Send list to friends on Facebook
-            span.count 334 shares
-          a.twitter href="" 
+            / span.count 334 shares
+          a.twitter.prettySocial.fa-twitter data-type="twitter" data-title="My TOP reasons to like movies" data-url="https://toprater.com/en/landings/similar/#{ @alternative.clean_id }" href="javascript:;" data-description="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }." data-media="/i/landings/sn_sharing_photo_02.jpg"
             span.icon b
             span.send Send list to friends on Twitter
-            span.count 334 shares
-          a.google href="" 
+            / span.count 334 shares
+          a.google.prettySocial.fa.fa-google-plus data-type="googleplus" data-title="My TOP reasons to like movies" data-url="https://toprater.com/en/landings/similar/#{ @alternative.clean_id }" href="javascript:;" data-description="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }. I am going to check next films - #{ mv[0] }, #{ mv[1] }, #{ mv[2] }" data-media="/i/landings/sn_sharing_photo_03.jpg"
             span.icon y
             span.send Send list to friends on Google+
-            span.count 334 shares
+            / span.count 334 shares
 
       .w940.footer
         .text

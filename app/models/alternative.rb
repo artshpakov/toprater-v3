@@ -5,6 +5,10 @@ class Alternative < Sentimeta::Model
   attr_accessor :id, :full_id, :name, :address, :photos, :reviews, :extra, :catalog, :top_criteria
 
 
+  def clean_id
+    @id
+  end
+
   def id
     full_id || id
   end
