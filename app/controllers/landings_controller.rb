@@ -7,10 +7,13 @@ class LandingsController < ApplicationController
 
 
   def similar
+    # TODO warm up criteria cache!
     Sentimeta.sphere = :movies
     if params['id'].present?
       @alternative = Alternative.find params[:id]
-      @similar = Sentimeta::Client.objects criteria: @alternative.top_criteria.keys
+      @similar = if @alternative.top_criteria.present?
+        Sentimeta::Client.objects(criteria: @alternative.top_criteria.keys).map { |attrs| Alternative.new attrs }
+      end
     end
   end
 

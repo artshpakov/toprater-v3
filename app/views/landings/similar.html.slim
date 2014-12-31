@@ -14,8 +14,8 @@ html
       .slogan What movies do you like?
       .subslogan There are more than 300 reasons for people to like movies, what are yours?
       .search_box@search
-        label for="search"  Enter your favorite movie
-        input#search name="search" type="text" value="" placaeholder="Movie name"
+        label for="search" Enter your favorite movie
+        input#search name="search" type="text" value="" placeholder="Movie title"
         .result
 
     - if @alternative
@@ -23,8 +23,8 @@ html
         .w700.info
           img src="#{ @alternative.cover }"
           h1
-            a href="https://toprater.com/en/movies/objects/#{ @alternative.full_id }" = @alternative.name
-            |' (
+            a> href="https://toprater.com/en/movies/objects/#{ @alternative.id }" = @alternative.name
+            | (
             = @alternative.extra['year']
             | )
           .subslogan If you like this movie, check the reasons why you might like it
@@ -49,7 +49,7 @@ html
                           .yes_star style="width: #{ (1 + criterion[1]['rating']) * 50 }%"
                           .star
                         span.rating 
-                          = rating criterion[1]['rating']
+                          =' rating criterion[1]['rating']
                           | / 5
 
             .note * — based on user reviews analysis
@@ -66,43 +66,47 @@ html
               - if index < 7
                 a.criteria href="https://toprater.com/en/movies/objects/criteria/#{ criterion[1]['name'] }"  = criterion[1]['label']
 
-
-      .w940
-        .more_films MOVIES YOU MIGHT LIKE
-        - mv = []
-        - @similar.each_with_index do |movie, index|
-          - mv[index] = movie['name']
-          .card
-            a href="https://toprater.com/en/movies/objects/#{ movie['full_id'] }" 
-              img src="#{ movie['photos'][0]['url'] }" width="160" height="240"
-            .caption
-              a href="" = movie['name']
-        .cl
-        .all_films
-          a href="https://toprater.com/en/movies/objects/criteria/#{cr_names[0]},#{cr_names[1]},#{cr_names[2]},#{cr_names[3]},#{cr_names[4]},#{cr_names[5]},#{cr_names[6]},#{cr_names[7]},#{cr_names[8]},#{cr_names[9]}" =' @similar.length
-          | movies
-          | &nbsp;were found. Check them out on
-          a href="http://toprater.com" toprater.com
-      .bg_gray
+      - mv = [] # TODO refactor
+      = solid do
         .w940
-          .social TELL FRIENDS YOUR REASONS TO LIKE MOVIES.
-          .links
-            a.prettySocial.fa.fa-facebook.facebook href="#" data-type="facebook" data-url="https://toprater.com/en/landings/similar/#{ @alternative.clean_id }" data-title="My TOP reasons to like movies" data-description="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }. I am going to check next films - #{ mv[0] }, #{ mv[1] }, #{ mv[2] }" data-media="/i/landings/sn_sharing_photo_01.jpg"
-              span.icon d
-              span.send Send list to friends on Facebook
-              / span.count 334 shares
-            a.prettySocial.fa.fa-twitter.twitter data-type="twitter" data-title="My TOP reasons to like movies" data-url="https://toprater.com/en/landings/similar/#{ @alternative.clean_id }" href="javascript:;" data-description="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }." data-media="/i/landings/sn_sharing_photo_02.jpg"
-              span.icon b
-              span.send Send list to friends on Twitter
-              / span.count 334 shares
-            a.google.prettySocial.fa.fa-google-plus data-type="googleplus" data-title="My TOP reasons to like movies" data-url="https://toprater.com/en/landings/similar/#{ @alternative.clean_id }" href="javascript:;" data-description="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }. I am going to check next films - #{ mv[0] }, #{ mv[1] }, #{ mv[2] }" data-media="/i/landings/sn_sharing_photo_03.jpg"
-              span.icon y
-              span.send Send list to friends on Google+
-            / span.count 334 shares
+          .more_films MOVIES YOU MIGHT LIKE
+          - @similar.each_with_index do |movie, index|
+            - mv[index] = movie.name
+            .card
+              a href="https://toprater.com/en/movies/objects/#{ movie.id }" 
+                img src="#{ movie.cover }" width="160" height="240"
+              .caption
+                a href="" = movie.name
+          .cl
+          .all_films
+            a href="https://toprater.com/en/movies/objects/criteria/#{cr_names[0]},#{cr_names[1]},#{cr_names[2]},#{cr_names[3]},#{cr_names[4]},#{cr_names[5]},#{cr_names[6]},#{cr_names[7]},#{cr_names[8]},#{cr_names[9]}" =' @similar.length
+            | movies
+            ' &nbsp;were found. Check them out on
+            a href="http://toprater.com" toprater.com
 
-      .w940.footer
-        .text
-          a href="/"  Toprater
-          | is the social choice platform. We've analyzed millions of reviews from all over the world and now are giving you the best.
-          span.copy 2025&copy; Toprater
-          script src="/js/search.js"
+      = solid do
+        .bg_gray
+          .w940
+            .social TELL FRIENDS YOUR REASONS TO LIKE MOVIES.
+            .links
+              a.prettySocial.fa.fa-facebook.facebook href="#" data-type="facebook" data-url="https://toprater.com/en/landings/similar/#{ @alternative.clean_id }" data-title="My TOP reasons to like movies" data-description="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }. I am going to check next films - #{ mv[0] }, #{ mv[1] }, #{ mv[2] }" data-media="/i/landings/sn_sharing_photo_01.jpg"
+                span.icon d
+                span.send Send list to friends on Facebook
+                / span.count 334 shares
+              a.prettySocial.fa.fa-twitter.twitter data-type="twitter" data-title="My TOP reasons to like movies" data-url="https://toprater.com/en/landings/similar/#{ @alternative.clean_id }" href="javascript:;" data-description="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }." data-media="/i/landings/sn_sharing_photo_02.jpg"
+                span.icon b
+                span.send Send list to friends on Twitter
+                / span.count 334 shares
+              a.google.prettySocial.fa.fa-google-plus data-type="googleplus" data-title="My TOP reasons to like movies" data-url="https://toprater.com/en/landings/similar/#{ @alternative.clean_id }" href="javascript:;" data-description="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }. I am going to check next films - #{ mv[0] }, #{ mv[1] }, #{ mv[2] }" data-media="/i/landings/sn_sharing_photo_03.jpg"
+                span.icon y
+                span.send Send list to friends on Google+
+                / span.count 334 shares
+
+    .w940.footer
+      .text
+        a> href="https://toprater.com" Toprater
+        | is the social choice platform. We've analyzed millions of reviews from all over the world and now are giving you the best.
+        span.copy
+          =' Date.today.year
+          | &copy; Toprater
+        script src="/js/search.js"

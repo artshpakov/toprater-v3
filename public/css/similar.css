@@ -251,6 +251,7 @@ table {
 	background: #FFF;	
 	margin: 0 13px 0 112px;
 	width: 575px;
+	z-index: 1000;
 }
 .result a {
 	display: block;
