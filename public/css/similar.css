@@ -100,9 +100,12 @@ body{
 .cl{
 	clear: both;
 }
-.info img{
+.info img {
 	float: left;
 	margin: 0 35px;
+}
+.info img:hover {
+	opacity: .8;
 }
 .info h1{
 	font-size: 29px;
@@ -292,4 +295,11 @@ tr>td:last-child{
 .rating{
 	font-size: 13px;
 	line-height: 26px;
+}
+.more_films {
+	display: block;
+}
+.more_films:hover {
+	color: #1eabe0;
+	text-decoration: underline;
 }
