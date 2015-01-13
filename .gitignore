@@ -10,6 +10,7 @@ tmp
 *.rbc
 .bundle
 .rvmrc*
+.capistrano
 *.swp
 *.swo
 *.rdb

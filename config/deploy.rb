@@ -1,5 +1,3 @@
-lock '3.2.1'
-
 set :application, 'toprater'
 set :repo_url, 'git@github.com:Solver-Club/toprater.git'
 set :scm, :git
