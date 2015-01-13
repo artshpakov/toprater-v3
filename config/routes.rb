@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     end
 
     namespace :landings do
-      get '/similar(/:id)' => :similar
+      get '/similar-movies(/:id)' => :similar_movies
     end
   end
 

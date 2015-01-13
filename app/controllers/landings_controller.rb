@@ -6,21 +6,20 @@ class LandingsController < ApplicationController
   respond_to :json
 
 
-  def similar
+  def similar_movies
     # TODO warm up criteria cache!
     Sentimeta.sphere = :movies
     setup
-    if params['id'].present?
+    if params[:id].present?
       @alternative = Alternative.find params[:id]
       @similar = if @alternative.top_criteria.present?
-        Sentimeta::Client.objects(criteria: @alternative.top_criteria.keys).map { |attrs| Alternative.new attrs }
+        Alternative.rate criteria: @alternative.top_criteria.keys
       end
     end
   end
 
   def search
-    I18n.locale       = params[:locale]
-    Sentimeta.sphere  = params[:sphere]
+    Sentimeta.sphere = params[:sphere]
     respond_with Sentimeta::Client.fetch :search, text: params[:term]
   end
 

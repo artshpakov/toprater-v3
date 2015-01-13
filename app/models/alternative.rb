@@ -5,16 +5,13 @@ class Alternative < Sentimeta::Model
   attr_accessor :id, :full_id, :name, :address, :photos, :reviews, :extra, :catalog, :top_criteria
 
 
-  def clean_id
-    @id
-  end
-
-  def id
-    full_id || id
-  end
+  def full_id() @full_id || id end
 
   def self.rate options
-    fetch State.criteria_and_filters.merge(fields: options)
+    fetch \
+      criteria: (options.delete(:criteria) || State.criteria),
+      filters: (options.delete(:filters) || State.filters),
+      fields: options
   end
 
   def self.find id

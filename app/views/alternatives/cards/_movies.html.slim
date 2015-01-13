@@ -18,7 +18,7 @@ sass:
       td width="100%"
         h3.headline
           =' "#{ index }."
-          a.name href="#{ object_path id: alternative.id }" = alternative.name
+          a.name href="#{ object_path id: alternative.full_id }" = alternative.name
 
         = render_partial "alternatives/cards/partials/reviews", locals: { review_packs: alternative.reviews }
 

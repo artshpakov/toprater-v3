@@ -18,7 +18,7 @@ html
       meta property="og:type" content="website"
       meta property="og:image" content="https://toprater.com/i/landings/sn_sharing_photo_01.jpg"
       meta property="og:title" content="My TOP reasons to like movies"
-      meta property="og:url" content="https://toprater.com/en/landings/similar/#{ @alternative.clean_id }"
+      meta property="og:url" content="https://toprater.com/en/landings/similar-movies/#{ @alternative.id }"
       - if @alternative.top_criteria.present?
         meta property="og:description" content="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }. I am going to check next films - #{ mv[1] }, #{ mv[2] }, #{ mv[3] }"
       - else 
@@ -116,15 +116,15 @@ html
               .w940
                 .social TELL FRIENDS YOUR REASONS TO LIKE MOVIES.
                 .links
-                  a.prettySocial.fa.fa-facebook.facebook href="javascript:;" data-type="facebook" data-url="https://toprater.com/en/landings/similar/#{ @alternative.clean_id }" data-title="My TOP reasons to like movies" data-description="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }. I am going to check next films - #{ mv[1] }, #{ mv[2] }, #{ mv[3] }" data-media="https://toprater.com/i/landings/sn_sharing_photo_01.jpg"
+                  a.prettySocial.fa.fa-facebook.facebook href="javascript:;" data-type="facebook" data-url="https://toprater.com/en/landings/similar-movies/#{ @alternative.id }" data-title="My TOP reasons to like movies" data-description="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }. I am going to check next films - #{ mv[1] }, #{ mv[2] }, #{ mv[3] }" data-media="https://toprater.com/i/landings/sn_sharing_photo_01.jpg"
                     span.icon d
                     span.send Send list to friends on Facebook
                     / span.count 334 shares
-                  a.prettySocial.fa.fa-twitter.twitter data-type="twitter" data-title="My TOP reasons to like movies" data-url="https://toprater.com/en/landings/similar/#{ @alternative.clean_id }" href="javascript:;" data-description="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }." data-media="https://toprater.com/i/landings/sn_sharing_photo_01.jpg" data-via="toprater"
+                  a.prettySocial.fa.fa-twitter.twitter data-type="twitter" data-title="My TOP reasons to like movies" data-url="https://toprater.com/en/landings/similar-movies/#{ @alternative.id }" href="javascript:;" data-description="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }." data-media="https://toprater.com/i/landings/sn_sharing_photo_01.jpg" data-via="toprater"
                     span.icon b
                     span.send Send list to friends on Twitter
                     / span.count 334 shares
-                  a.google.prettySocial.fa.fa-google-plus data-type="googleplus" data-title="My TOP reasons to like movies" data-url="https://toprater.com/en/landings/similar/#{ @alternative.clean_id }" href="javascript:;" data-description="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }. I am going to check next films - #{ mv[1] }, #{ mv[2] }, #{ mv[3] }" data-media="https://toprater.com/i/landings/sn_sharing_photo_01.jpg"
+                  a.google.prettySocial.fa.fa-google-plus data-type="googleplus" data-title="My TOP reasons to like movies" data-url="https://toprater.com/en/landings/similar-movies/#{ @alternative.id }" href="javascript:;" data-description="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }. I am going to check next films - #{ mv[1] }, #{ mv[2] }, #{ mv[3] }" data-media="https://toprater.com/i/landings/sn_sharing_photo_01.jpg"
                     span.icon y
                     span.send Send list to friends on Google+
                   / span.count 334 shares
