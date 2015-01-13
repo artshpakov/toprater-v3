@@ -1,7 +1,7 @@
 class LandingsController < ApplicationController
 
   layout false
-  skip_before_action :set_sphere
+  skip_before_action :set_sphere, :setup
 
   respond_to :json
 
@@ -9,6 +9,7 @@ class LandingsController < ApplicationController
   def similar
     # TODO warm up criteria cache!
     Sentimeta.sphere = :movies
+    setup
     if params['id'].present?
       @alternative = Alternative.find params[:id]
       @similar = if @alternative.top_criteria.present?
