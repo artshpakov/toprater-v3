@@ -15,9 +15,7 @@ html
         - @similar.each_with_index do |movie, index|
           - mv[index] = movie.name
 
-      / meta name="og:type" content="website"
       meta property="og:type" content="website"
-      / meta name="og:image" content="https://toprater.com/i/landings/sn_sharing_photo_01.jpg"
       meta property="og:image" content="https://toprater.com/i/landings/sn_sharing_photo_01.jpg"
       meta property="og:title" content="My TOP reasons to like movies"
       meta property="og:url" content="https://toprater.com/en/landings/similar/#{ @alternative.clean_id }"
