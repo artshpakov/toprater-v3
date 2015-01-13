@@ -303,3 +303,6 @@ tr>td:last-child{
 	color: #1eabe0;
 	text-decoration: underline;
 }
+.all_films a:hover {
+	text-decoration: none;
+}

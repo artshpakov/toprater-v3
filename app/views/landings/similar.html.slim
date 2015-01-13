@@ -40,16 +40,16 @@ html
       .subslogan There are more than 300 reasons for people to like movies, what are yours?
       .search_box@search
         label for="search" Enter your favorite movie
-        input#search name="search" type="text" value="" placeholder="Movie title"
+        input#search name="search" type="text" value="#{ @alternative.name if @alternative }" placeholder="Movie title"
         .result
 
     - if @alternative
       .bg_gray
         .w700.info
-          a href="https://toprater.com/en/movies/objects/#{ @alternative.id }" 
+          a target="_blank" href="https://toprater.com/en/movies/objects/#{ @alternative.id }" 
             img src="#{ @alternative.cover }"
           h1
-            a href="https://toprater.com/en/movies/objects/#{ @alternative.id }" 
+            a target="_blank" href="https://toprater.com/en/movies/objects/#{ @alternative.id }" 
               =' @alternative.name
               | (
               = @alternative.extra['year']
@@ -87,24 +87,25 @@ html
 
             - @alternative.top_criteria.each_with_index do |criterion, index|
               - if index < 7
-                a.criteria href="https://toprater.com/en/movies/objects/criteria/#{ criterion[1]['name'] }"  = criterion[1]['label']
+                a.criteria target="_blank" href="https://toprater.com/en/movies/objects/criteria/#{ criterion[1]['name'] }"  = criterion[1]['label']
 
       = solid do
         .w940
-          a.more_films href="https://toprater.com/en/movies/objects/criteria/#{cr_names[0]},#{cr_names[1]},#{cr_names[2]},#{cr_names[3]},#{cr_names[4]},#{cr_names[5]},#{cr_names[6]},#{cr_names[7]},#{cr_names[8]},#{cr_names[9]}" MOVIES YOU MIGHT LIKE
+          a.more_films target="_blank" href="https://toprater.com/en/movies/objects/criteria/#{cr_names[0]},#{cr_names[1]},#{cr_names[2]},#{cr_names[3]},#{cr_names[4]},#{cr_names[5]},#{cr_names[6]},#{cr_names[7]},#{cr_names[8]},#{cr_names[9]}" MOVIES YOU MIGHT LIKE
           - @similar.each_with_index do |movie, index|
             - mv[index] = movie.name
             .card
-              a href="https://toprater.com/en/movies/objects/#{ movie.id }"
+              a target="_blank" href="https://toprater.com/en/movies/objects/#{ movie.id }"
                 img src="#{ movie.cover }" width="160" height="240"
               .caption
                 a href="https://toprater.com/en/movies/objects/#{ movie.id }" = movie.name
           .cl
           .all_films
-            a href="https://toprater.com/en/movies/objects/criteria/#{cr_names[0]},#{cr_names[1]},#{cr_names[2]},#{cr_names[3]},#{cr_names[4]},#{cr_names[5]},#{cr_names[6]},#{cr_names[7]},#{cr_names[8]},#{cr_names[9]}" =' @similar.length
-            | movies
-            ' &nbsp;were found. Check them out on
-            a href="http://toprater.com" toprater.com
+            a target="_blank" href="https://toprater.com/en/movies/objects/criteria/#{cr_names[0]},#{cr_names[1]},#{cr_names[2]},#{cr_names[3]},#{cr_names[4]},#{cr_names[5]},#{cr_names[6]},#{cr_names[7]},#{cr_names[8]},#{cr_names[9]}" 
+              =' @similar.length
+              | movies
+              | &nbsp;were found. Check them out on toprater.com
+            / a href="http://toprater.com" toprater.com
 
       = solid do
         .bg_gray
@@ -126,7 +127,7 @@ html
     - if @alternative
       .w940.footer
         .text
-          a> href="https://toprater.com" Toprater
+          a target="_blank" href="https://toprater.com" Toprater &nbsp;
           | is the social choice platform. We've analyzed millions of reviews from all over the world and now are giving you the best.
           span.copy
             =' Date.today.year
