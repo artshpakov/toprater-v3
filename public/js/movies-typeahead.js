@@ -11,7 +11,7 @@ $(function() {
     })
     .done(function(data) {
       _.each(data.objects, function(object) {
-        $(".result").append($("<a href='/en/landings/similar/" + object.id + "'>" + object.label + " " + object.name + "</a>"));
+        $(".result").append($("<a href='/en/landings/similar/" + object.id + "'>" + object.label + "</a>"));
       });
     });
   }

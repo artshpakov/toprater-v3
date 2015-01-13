@@ -24,9 +24,16 @@
     font-family:"sentimeta-moreicons";  
 	src:url("../fonts/sentimeta-icons.eot");  src:url("../fonts/sentimeta-icons.eot?#iefix") format("embedded-opentype"),url("../fonts/sentimeta-icons.woff") format("woff"),url("../fonts/sentimeta-icons.ttf") format("truetype"),url("fonts/sentimeta-icons.svg#sentimeta-icons") format("svg");  
 }
-body{
+html, body {
 	margin: 0;
 	font-family: "proxima_nova";
+	height: 100%;
+}
+#wrapper {
+	min-height: 100%;
+}
+.main {
+	padding-bottom: 160px;
 }
 .w700{
 	width: 700px;
@@ -305,4 +312,12 @@ tr>td:last-child{
 }
 .all_films a:hover {
 	text-decoration: none;
+}
+.footer {
+	margin-top: -160px;
+	height: 70px;
+	/*padding: 0;*/
+}
+.footer .text {
+	padding: 0 20px;
 }
