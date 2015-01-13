@@ -67,4 +67,3 @@ appState = ->
 
 
 Toprater.AppState = flight.component appState
-Toprater.AppState.attachTo document

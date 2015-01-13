@@ -12,4 +12,3 @@ enumFilter = ->
     @on @$node.find('select'), 'change', @setValue
 
 Toprater.EnumFilter = flight.component(enumFilter, Toprater.withFilterMixin)
-Toprater.EnumFilter.attachTo "[role=enum-filter]"

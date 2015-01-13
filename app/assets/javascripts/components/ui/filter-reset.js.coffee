@@ -9,4 +9,3 @@ filterReset = ->
     @on 'click', @triggerReset
 
 Toprater.FilterReset = flight.component(filterReset)
-Toprater.FilterReset.attachTo "[role=reset-filters]"

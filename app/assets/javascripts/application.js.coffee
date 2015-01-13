@@ -13,14 +13,17 @@
 #= require_tree ./templates
 #= require_tree ./utils
 #= require_tree ./mixins
-#= require_tree ./components/ui
-#= require_tree ./components/data
+#= require_tree ./components
+#= require loaders
 #= require_tree .
 
 # Uncomment to debug FlightJS
 # flight.debug.enable true
 # DEBUG.events.logAll()
 
-$ -> $(document).foundation()
+$ ->
+  $(document).foundation()
+  Toprater.attachUIComponents()
+  Toprater.attachDataComponents()
 
 window.Toprater ?= {}

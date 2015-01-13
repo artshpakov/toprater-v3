@@ -47,4 +47,3 @@ router = ->
 
 
 Toprater.Router = flight.component router
-Toprater.Router.attachTo document

@@ -16,4 +16,3 @@ pricesCalendar = ->
 
 
 Toprater.PricesCalendar = flight.component pricesCalendar
-Toprater.PricesCalendar.attachTo "[role=prices-calendar]"

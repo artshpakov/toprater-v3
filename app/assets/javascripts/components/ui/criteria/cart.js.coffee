@@ -4,7 +4,6 @@ cart = ->
 
   @after "initialize", ->
     @on document, "criteriaUpdated", @render
-    @trigger "cartReady"
+    @on document, "stateUpdated", @render
 
 Toprater.Cart = flight.component cart
-Toprater.Cart.attachTo "[role='cart']"

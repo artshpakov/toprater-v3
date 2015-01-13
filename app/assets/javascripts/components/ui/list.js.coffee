@@ -13,4 +13,3 @@ objectsList = ->
     @on document, "errorLoadingObjects", @handleError
 
 Toprater.ObjectsList = flight.component(objectsList)
-Toprater.ObjectsList.attachTo "[role=objects-list]"

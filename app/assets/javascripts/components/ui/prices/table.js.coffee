@@ -9,4 +9,3 @@ pricesTable = ->
       
 
 Toprater.PricesTable = flight.component pricesTable
-Toprater.PricesTable.attachTo "[role=prices-table]"

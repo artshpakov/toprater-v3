@@ -12,4 +12,4 @@ starsFilter = ->
     @on @$node.find("[role=stars-radio]"), 'click', @setValue
 
 Toprater.StarsFilter = flight.component(starsFilter, Toprater.withFilterMixin)
-Toprater.StarsFilter.attachTo "[role=stars-filter]"
+

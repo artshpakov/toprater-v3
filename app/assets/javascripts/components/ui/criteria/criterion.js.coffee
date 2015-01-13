@@ -24,4 +24,3 @@ criterion = ->
 
 
 Toprater.Criterion = flight.component(criterion)
-Toprater.Criterion.attachTo "[role=criterion]"

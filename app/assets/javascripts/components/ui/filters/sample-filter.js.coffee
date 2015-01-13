@@ -15,4 +15,3 @@
 #     @on @$node.find('select'), 'change', @setValue # input change event
 
 # Toprater.SampleFilter = flight.component(sampleFilter, Toprater.withFilterMixin)
-# Toprater.SampleFilter.attachTo "[role=sample-filter]"

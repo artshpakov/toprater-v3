@@ -36,4 +36,3 @@ results = ->
 
 
 Toprater.Results = flight.component(results)
-Toprater.Results.attachTo "[role=objects-list]"

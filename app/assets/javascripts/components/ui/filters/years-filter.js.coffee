@@ -12,4 +12,4 @@ yearsFilter = ->
     @on @$node.find("[role=years-radio]"), 'click', @setValue
 
 Toprater.YearsFilter = flight.component(yearsFilter, Toprater.withFilterMixin)
-Toprater.YearsFilter.attachTo "[role=years-filter]"
+
