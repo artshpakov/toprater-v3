@@ -1,6 +1,13 @@
 html
   head
     title Toprater.com
+    link href="/css/similar.css" rel="stylesheet"
+    = include_gon namespace: 'toprater', camel_case: true
+    script src="/js/jquery.min.js"
+    script src="/js/underscore-min.js"
+    script src="/js/jquery.prettySocial.min.js"
+    script src="/js/movies-typeahead.js"
+
     meta charset="UTF-8"
     -if @alternative
       - if @alternative.top_criteria.present?
@@ -15,20 +22,14 @@ html
           - mv[index] = movie.name
 
 
-      meta content="My TOP reasons to like movies" property="og:title"
-      meta content="https://toprater.com/en/landings/similar/#{ @alternative.clean_id }" property="og:url"
-      meta content="/i/landings/sn_sharing_photo_02.jpg" property="og:image"
+      meta property="og:title" content="My TOP reasons to like movies"
+      meta property="og:url" content="https://toprater.com/en/landings/similar/#{ @alternative.clean_id }"
+      meta property="og:image" content="/i/landings/sn_sharing_photo_02.jpg"
       - if @alternative.top_criteria.present?
-        meta content="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }. I am going to check next films - #{ mv[0] }, #{ mv[1] }, #{ mv[2] }" property="og:description"
+        meta property="og:description" content="Here are my TOP reasons to like movies: #{ cr[0] }, #{ cr[1] }, #{ cr[2] }. I am going to check next films - #{ mv[0] }, #{ mv[1] }, #{ mv[2] }"
       - else 
-        meta content="My top reasons to like movies" property="og:description"
+        meta property="og:description" content="My top reasons to like movies"
 
-    link href="/css/similar.css" rel="stylesheet"
-    = include_gon namespace: 'toprater', camel_case: true
-    script src="/js/jquery.min.js"
-    script src="/js/underscore-min.js"
-    script src="/js/jquery.prettySocial.min.js"
-    script src="/js/movies-typeahead.js"
     
   body
     .w700.header
