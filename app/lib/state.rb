@@ -18,17 +18,8 @@ class State
       self.options   = dup.reject { |key, value| key.in? %w(controller action) }
     end
 
-    def encoded_filters
-      new_filters = {}
-      filters.each do |filter|
-        f_type = F_PRESETS[sphere][filter[0]]['kind']
-        new_filters[filter[0]] = ("Filters::#{ f_type.capitalize }".constantize.encode(filter[1]) rescue filter[1])
-      end if filters.present?
-      new_filters
-    end
-
-    def to_hash(for_front=false)
-      { locale: locale, sphere: sphere, criteria: criteria, filters: (for_front ? encoded_filters : filters), options: options }
+    def to_hash
+      { locale: locale, sphere: sphere, criteria: criteria, filters: filters, options: options }
     end
 
 

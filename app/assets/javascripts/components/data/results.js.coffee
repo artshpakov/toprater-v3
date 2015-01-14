@@ -31,8 +31,7 @@ results = ->
     #   , 1000)
 
   @after "initialize", ->
-    @on document, "toAlternatives", (event, route) ->
-      @getAlternatives(event, route)
+    @on document, "toAlternatives", @getAlternatives
 
 
 Toprater.Results = flight.component(results)

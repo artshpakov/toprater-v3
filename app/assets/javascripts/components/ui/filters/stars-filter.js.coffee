@@ -1,9 +1,11 @@
 starsFilter = ->
   @updateValues = (event, data) ->
-    @$node.find("input").val([data.value])
+    @$node.find("input").val([data.value.from])
 
   @setValue = (event) ->
-    @attr.value = $(event.currentTarget).val()
+    @attr.value = 
+      from: $(event.currentTarget).val()
+      to: $(event.currentTarget).val()
 
   @resetFilter = ->
     @$node.find("[role=stars-radio]").attr('checked', false)

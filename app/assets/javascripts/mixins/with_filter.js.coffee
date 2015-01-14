@@ -1,6 +1,7 @@
 withFilterCtr = ->
   @attributes
     name: ''
+    filterName: ''
     value: {}
 
   @after 'setValue', ->
@@ -14,7 +15,8 @@ withFilterCtr = ->
 
   @after 'initialize', ->
     @attr.name = @$node.attr('data-name')
-    @on document, "#{@attr.name}Updated", @updateValues
+    @attr.filterName = toprater.filters[@attr.name].name
+    @on document, "#{@attr.filterName}Updated", @updateValues
     @on document, 'filtersReset', @resetFilter
 
 window.Toprater.withFilterMixin = withFilterCtr

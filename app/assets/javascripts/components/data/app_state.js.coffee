@@ -45,14 +45,14 @@ appState = ->
     @trigger "stateUpdated", to_params()
 
     @on "filtersChanged", (event, data) ->
-      filter = _.find(@attr.filters, name: data.name)
+      filter = _.find(@attr.filters, name: data.filterName)
       if filter?
         filter.value = data.value
         val = filter
       else
         @attr.filters.push data
         val = data
-      @trigger "#{data.name}Updated", val
+      @trigger "#{data.filterName}Updated", val
       @trigger "stateUpdated", to_params()
 
     @on "filtersReset", ->

@@ -1,4 +1,4 @@
-@range-filter.filter.large-12.columns data-name=params['name']
+@range-filter.filter.large-12.columns data-name=name
   label for=name = params['label']
   =' select_tag "#{name}-from", options_for_select((1900..2019), (value[:from] rescue nil)), prompt: 'Select From...', id: "range-from", role: 'range-select'
   =' select_tag "#{name}-to", options_for_select((1900..2019), (value[:to] rescue nil)), prompt: 'Select To...', id: "range-to", role: 'range-select'

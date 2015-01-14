@@ -1,4 +1,4 @@
-@stars-filter.filter.large-12.columns data-name=params['name']
+@stars-filter.filter.large-12.columns data-name=name
   h6 = params['label']
   - (1..5).each do |cnt|
     = radio_button_tag name, cnt, (cnt.to_s == value[:from] ? true : false), id: "stars-#{cnt}", role: 'stars-radio'

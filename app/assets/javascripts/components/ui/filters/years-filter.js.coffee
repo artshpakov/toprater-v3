@@ -1,9 +1,12 @@
 yearsFilter = ->
   @updateValues = (event, data) ->
-    @$node.find("input").val([data.value])
+    @$node.find("input").val(["#{data.value.from}-#{data.value.to}"])
 
   @setValue = (event) ->
-    @attr.value = $(event.currentTarget).val()
+    range = $(event.currentTarget).val().split('-')
+    @attr.value =
+      from: range[0]
+      to: range[1]
 
   @resetFilter = ->
     @$node.find("[role=years-radio]").attr('checked', false)

@@ -1,11 +1,12 @@
 rangeFilter = ->
   @updateValues = (event, data) ->
-    console.log data
-    @$node.find("#range-from").val(data.value.split('-')[0])
-    @$node.find("#range-to").val(data.value.split('-')[1])
+    @$node.find("#range-from").val(data.value.from)
+    @$node.find("#range-to").val(data.value.to)
 
   @setValue = (event) ->
-    @attr.value = @$node.find("#range-from").val() + "-" + @$node.find("#range-to").val()
+    @attr.value = 
+      from: @$node.find("#range-from").val()
+      to: @$node.find("#range-to").val()
 
   @resetFilter = ->
     @$node.find('select').val(null)

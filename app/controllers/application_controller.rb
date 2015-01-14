@@ -35,8 +35,9 @@ class ApplicationController < ActionController::Base
 
       Sentimeta::Observers.debug.try :reset!
 
+      gon.filters   = F_PRESETS[State.sphere]
       gon.criteria  = Criterion.leafs
-      gon.state     = State.to_hash(true)
+      gon.state     = State.to_hash
     end
   end
 

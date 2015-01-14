@@ -14,14 +14,13 @@ router = ->
 
     if filters?.length
       paramsPath += "/filters"
-      paramsPath += "/#{ filter.name }/#{ filter.value }" for filter in filters
+      paramsPath += filterToUrl(filter.name, filter.value) for filter in filters
 
     paramsPath
 
 
   @buildPath = (params={}) ->
     params.criteria = _.pluck(params.criteria, 'name')
-    # "/objects#{ encode _.pluck(@getPicked(), "name"), @attr.filters}"
     "/objects#{ @encode params.criteria, params.filters }"
 
   @buildUrl = (params) ->
