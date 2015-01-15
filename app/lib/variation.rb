@@ -22,7 +22,7 @@ class Variation
 
   def variant &block
     Variation::Registry.registry[name] || begin
-      variants = Variation::Registry.config[name]
+      variants = Variation::Registry.config[name] rescue {}
       if variants.kind_of?(Array) && variants.count > 1
         variant = strategy.call variants
         block.call variant if block_given?

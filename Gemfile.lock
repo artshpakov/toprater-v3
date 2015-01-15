@@ -1,10 +1,3 @@
-PATH
-  remote: ../sentimeta
-  specs:
-    sentimeta (0.0.8)
-      colorize (~> 0.7)
-      rest-client (~> 1.7)
-
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -173,6 +166,9 @@ GEM
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
+    sentimeta (0.1.0)
+      colorize (~> 0.7)
+      rest-client (~> 1.7)
     slim (2.0.3)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
@@ -236,7 +232,7 @@ DEPENDENCIES
   redis
   redis-rails
   sass-rails (~> 4.0.3)
-  sentimeta!
+  sentimeta (= 0.1.0)
   slim
   spring
   uglifier (>= 1.3.0)
