@@ -6,7 +6,6 @@ set :pty, true
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 set :keep_releases, 5
 set :deploy_via, :remote_cache
-set :puma_config_file, "config/puma.rb"
 
 # set :linked_files, %w{config/database.yml}
 set :linked_dirs, %w{bin log tmp vendor/bundle public/system}
@@ -19,10 +18,19 @@ namespace :deploy do
   after :publishing, :restart
   after :restart, :cleanup
 
+  desc "Start puma"
+  task :start do
+    on roles :web do
+      within current_path do
+        execute "bundle", " exec puma -C config/puma/#{ fetch :rails_env }.rb"
+      end
+    end
+  end
+
   desc "Restart puma"
   task :restart do
     on roles :web do
-      execute "kill",  "-USR2 `cat #{ File.join shared_path, 'tmp', 'pids', 'puma.pid' }`"
+      execute "kill",  "-USR1 `cat #{ File.join shared_path, 'tmp', 'pids', 'puma.pid' }`"
     end
   end
 end
