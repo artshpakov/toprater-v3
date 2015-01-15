@@ -9,11 +9,11 @@ class PricesController < ApplicationController
     prices_params = params[:prices].dup
     prices_params['nights'] = (Date.parse(prices_params.delete('until_date')) - Date.parse(prices_params['from_date'])).to_i
 
-    prices = Sentimeta::Client.prices prices_params.merge \
+    prices = Sentimeta::Client::Prices.load prices_params.merge \
       provider: :hotellook,
-      # id: params[:id],
+      object_id: params[:id],
       data: alternative.partners_data.first
-    respond_with prices
+    respond_with prices.body
   end
 
 end
