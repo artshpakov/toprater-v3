@@ -4,7 +4,7 @@ source 'https://rails-assets.org'
 gem 'rails', '4.1.5'
 gem 'puma'
 
-gem 'sentimeta', '~> 0.0.8'
+gem 'sentimeta', path: '../sentimeta'
 
 gem 'pry-rails'
 gem 'slim'
@@ -26,7 +26,7 @@ gem 'es5-shim-rails'
 gem 'hogan_assets'
 
 gem 'quiet_assets'
-gem 'colored'
+gem 'colorize'
 
 group :development do
   gem 'spring'

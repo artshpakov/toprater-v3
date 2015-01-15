@@ -18,7 +18,7 @@ module ApplicationHelper
     begin
       with_output_buffer { yield }
     rescue Exception => e
-      Rails.logger.error "  #{ 'RENDER ERROR:'.red } #{ e } -- #{ e.backtrace.first }"
+      Rails.logger.error "  #{ 'RENDER ERROR:'.colorize :red } #{ e } -- #{ e.backtrace.first }"
       return
     end
   end

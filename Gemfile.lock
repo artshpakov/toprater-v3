@@ -1,3 +1,10 @@
+PATH
+  remote: ../sentimeta
+  specs:
+    sentimeta (0.0.8)
+      colorize (~> 0.7)
+      rest-client (~> 1.7)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -65,7 +72,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.8.0)
-    colored (1.2)
     colorize (0.7.5)
     debug_inspector (0.0.2)
     erubis (2.7.0)
@@ -106,6 +112,7 @@ GEM
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (2.9.2)
+    netrc (0.10.2)
     polyglot (0.3.5)
     pry (0.10.1)
       coderay (~> 1.1.0)
@@ -157,13 +164,15 @@ GEM
     redis-store (1.1.4)
       redis (>= 2.2)
     request_store (1.1.0)
+    rest-client (1.7.2)
+      mime-types (>= 1.16, < 3.0)
+      netrc (~> 0.7)
     sass (3.2.19)
     sass-rails (4.0.3)
       railties (>= 4.0.0, < 5.0)
       sass (~> 3.2.0)
       sprockets (~> 2.8, <= 2.11.0)
       sprockets-rails (~> 2.0)
-    sentimeta (0.0.8)
     slim (2.0.3)
       temple (~> 0.6.6)
       tilt (>= 1.3.3, < 2.1)
@@ -210,7 +219,7 @@ DEPENDENCIES
   cells
   coffee-rails (~> 4.0.0)
   coffee-rails-source-maps
-  colored
+  colorize
   es5-shim-rails
   flight-for-rails (~> 1.3.0)
   foundation-rails
@@ -227,7 +236,7 @@ DEPENDENCIES
   redis
   redis-rails
   sass-rails (~> 4.0.3)
-  sentimeta (~> 0.0.8)
+  sentimeta!
   slim
   spring
   uglifier (>= 1.3.0)
