@@ -28,7 +28,14 @@ gem 'hogan_assets'
 gem 'quiet_assets'
 gem 'colorize'
 
+group :test do
+  gem 'capybara'
+  gem 'capybara-webkit'
+end
+
 group :development do
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
   gem 'spring'
   gem 'capistrano', '~> 3.1'
   gem 'capistrano-rails'
