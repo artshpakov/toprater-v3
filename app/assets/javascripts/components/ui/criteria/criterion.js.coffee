@@ -20,6 +20,7 @@ criterion = ->
 
     @on "click", @toggleCriterion
     @on document, "pageUpdated", @reload
+    @on document, "stateUpdated", @reload
     @on document, "criteriaUpdated", @reload
 
 
