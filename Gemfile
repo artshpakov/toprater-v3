@@ -28,6 +28,10 @@ gem 'hogan_assets'
 gem 'quiet_assets'
 gem 'colorize'
 
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
+
 group :test do
   gem 'capybara'
   gem 'capybara-webkit'

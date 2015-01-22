@@ -1,0 +1,35 @@
+- if signed_in?
+  => current_user.name
+  == "[ #{ link_to "Sign out", auth_signout_path, method: :post} ]"
+
+- else
+  = link_to "Sign up / Sign in", "#", 'data-reveal-id'=>'auth-modal'
+
+  #auth-modal.reveal-modal data-reveal=true
+    .row
+      .large-3.columns
+        h3 Sign up
+        = form_tag auth_signup_path do
+          input name="user[login]" type="email" placeholder="Email"
+          input name="user[password]" type="password" placeholder="Password"
+          input name="user[password_confirmation]" type="password" placeholder="Password confirmation"
+          button.tiny type="submit" Sign up
+      .large-3.columns
+        h3 Sign in
+        = form_tag auth_signin_path do
+          input name="user[login]" type="email" placeholder="Email"
+          input name="user[password]" type="password" placeholder="Password"
+          button.tiny type="submit" Sign in
+      .large-3.columns
+        h3 Oauth
+        ul
+          li = link_to 'Facebook', oauth_path(:facebook), class: 'button expand small'
+          li = link_to 'Twitter', oauth_path(:twitter), class: 'button expand secondary small'
+          li = link_to 'Google+', oauth_path(:google), class: 'button expand alert small'
+      .large-3.columns
+        h3 Reset password
+        p coming soon...
+        / = form_tag auth_signin_path do
+        /   input name="user[login]" type="email" placeholder="Email"
+        /   button.tiny type="submit" Reset
+    a.close-reveal-modal &#215;

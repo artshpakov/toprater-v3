@@ -43,6 +43,20 @@ class ApplicationController < ActionController::Base
 
 
 
+  helper_method :current_user, :signed_in?
+
+  def current_user
+    @current_user ||= if session[:auth].present?
+      User.find(session[:auth]['token']) || session.clear
+    end
+  end
+
+  def signed_in?
+    current_user.present?
+  end
+
+
+
   COMPLEX_URLS = %w(list object)
 
   COMPLEX_URLS.each do |name|

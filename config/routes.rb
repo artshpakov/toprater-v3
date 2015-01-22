@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
 
   root 'index#index'
+
   scope "/(:locale)", locale: /en|ru/ do
     get '/' => 'index#index'
     
@@ -22,6 +23,11 @@ Rails.application.routes.draw do
     namespace :landings do
       get '/similar-movies(/:id)' => :similar_movies
     end
+  end
+
+  namespace :auth do
+    post :signin, :signup, :signout
+    get "/:provider/callback" => :callback
   end
 
 end
