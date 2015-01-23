@@ -27,6 +27,9 @@ Rails.application.routes.draw do
 
   namespace :auth do
     post :signin, :signup, :signout
+    post :forgot_password
+    get  :edit_password
+    post '/change_password/:token' => :change_password, as: :change_password
     get "/:provider/callback" => :callback
   end
 

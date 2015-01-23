@@ -7,14 +7,18 @@ html
     = include_gon namespace: 'toprater', camel_case: true
 
   body
+    - flash.each do |key, value|
+      p.alert-box class=key = value
+
     @wrapper
       = render partial: 'partials/header'
       section@content
         .row
           .medium-3.columns
-            = render_cell :general, :criteria_catalog
-            hr
-            = render_cell :general, :filters
+            - if State.sphere.present?
+              = render_cell :general, :criteria_catalog
+              hr
+              = render_cell :general, :filters
           .medium-9.columns
             = render partial: 'partials/cart'
             #rating@objects-list

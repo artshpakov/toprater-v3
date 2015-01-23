@@ -26,6 +26,26 @@ class AuthController < ApplicationController
     redirect_to URI(request.referer).path
   end
 
+  def forgot_password
+    response = Sentimeta::Client::Auth.reset_password_token params[:user][:login]
+    if response.ok?
+      AuthMailer.change_password(params[:user][:email], response.body['reset_password_token']).deliver
+      redirect_to root_path, flash: { info: "Message sent to #{ params[:user][:login] }" }
+    else
+      redirect_to root_path, flash: { alert: "Unknown email address #{ params[:user][:login] }" }
+    end
+  end
+
+  def change_password
+    response = Sentimeta::Client::Auth.reset_password token: params[:token], password: params[:user][:password]
+    if response.ok?
+      session[:auth] = response.body
+      redirect_to root_path, flash: { info: "Password changed successfully" }
+    else
+      redirect_to root_path, flash: { alert: "Something went wrong, try again later" }
+    end
+  end
+
 
   private
 

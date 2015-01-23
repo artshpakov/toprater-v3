@@ -28,8 +28,7 @@
           li = link_to 'Google+', oauth_path(:google), class: 'button expand alert small'
       .large-3.columns
         h3 Reset password
-        p coming soon...
-        / = form_tag auth_signin_path do
-        /   input name="user[login]" type="email" placeholder="Email"
-        /   button.tiny type="submit" Reset
+        = form_tag auth_forgot_password_path do
+          input name="user[login]" type="email" placeholder="Email"
+          button.tiny type="submit" Reset
     a.close-reveal-modal &#215;
