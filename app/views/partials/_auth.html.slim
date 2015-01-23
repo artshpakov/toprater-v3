@@ -5,18 +5,18 @@
 - else
   = link_to "Sign up / Sign in", "#", 'data-reveal-id'=>'auth-modal'
 
-  #auth-modal.reveal-modal data-reveal=true
+  #auth-modal.reveal-modal@auth data-reveal=true
     .row
       .large-3.columns
         h3 Sign up
-        = form_tag auth_signup_path do
+        = form_tag auth_signup_path, remote: true do
           input name="user[login]" type="email" placeholder="Email"
           input name="user[password]" type="password" placeholder="Password"
           input name="user[password_confirmation]" type="password" placeholder="Password confirmation"
           button.tiny type="submit" Sign up
       .large-3.columns
         h3 Sign in
-        = form_tag auth_signin_path do
+        = form_tag auth_signin_path, remote: true do
           input name="user[login]" type="email" placeholder="Email"
           input name="user[password]" type="password" placeholder="Password"
           button.tiny type="submit" Sign in
@@ -31,4 +31,5 @@
         = form_tag auth_forgot_password_path do
           input name="user[login]" type="email" placeholder="Email"
           button.tiny type="submit" Reset
+    .row : .large-12.columns : @errors.alert-box.alert style="display: none"
     a.close-reveal-modal &#215;

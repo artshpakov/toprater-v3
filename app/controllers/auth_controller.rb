@@ -5,13 +5,13 @@ class AuthController < ApplicationController
   def signin
     response = Sentimeta::Client::Auth.signin params[:user]
     sign_user_in(response.body) if response.ok?
-    redirect_to URI(request.referer).path
+    render json: response.body, status: response.status
   end
 
   def signup
     response = Sentimeta::Client::Auth.signup params[:user]
     sign_user_in(response.body) if response.ok?
-    redirect_to URI(request.referer).path
+    render json: response.body, status: response.status
   end
 
   def signout
@@ -39,7 +39,7 @@ class AuthController < ApplicationController
   def change_password
     response = Sentimeta::Client::Auth.reset_password token: params[:token], password: params[:user][:password]
     if response.ok?
-      session[:auth] = response.body
+      sign_user_in(response.body)
       redirect_to root_path, flash: { info: "Password changed successfully" }
     else
       redirect_to root_path, flash: { alert: "Something went wrong, try again later" }
