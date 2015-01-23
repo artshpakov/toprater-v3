@@ -23,9 +23,9 @@
       .large-3.columns
         h3 Oauth
         ul
-          li = link_to 'Facebook', oauth_path(:facebook), class: 'button expand small'
-          li = link_to 'Twitter', oauth_path(:twitter), class: 'button expand secondary small'
-          li = link_to 'Google+', oauth_path(:google), class: 'button expand alert small'
+          li = link_to 'Facebook', oauth_path(:facebook), class: 'button expand success small'
+          li = link_to 'Twitter', oauth_path(:twitter), class: 'button expand success small'
+          li = link_to 'Google+', oauth_path(:google), class: 'button expand success small'
       .large-3.columns
         h3 Reset password
         = form_tag auth_forgot_password_path do
