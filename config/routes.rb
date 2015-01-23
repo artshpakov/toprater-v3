@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     scope "/(:sphere)" do
       get '/' => 'index#index', as: :sphere
       get '/suggest/:scope' => 'suggest#suggest'
+      get '/suggest' => 'suggest#global'
 
       scope '/objects' do
         get '(/criteria/:criteria)(/filters/*filters)' => 'alternatives#index', as: :list

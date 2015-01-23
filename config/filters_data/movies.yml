@@ -24,3 +24,10 @@ genres:
   label_plural: Genres
   kind: string
   template: enum
+
+actors:
+  name: actors
+  label: Actor
+  label_plural: Actors
+  kind: string
+  template: none

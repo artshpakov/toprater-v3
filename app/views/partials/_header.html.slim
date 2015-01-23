@@ -1,10 +1,15 @@
 section@header
   .row
-    .large-4.columns
+    .large-3.columns
       h2: a href="/" target="_self" TopRater
-    .large-8.columns
+    @completer.large-7.columns style="padding-top: 10px"
+      .row.collapse.prefix-round
+        .small-2.columns
+          span.prefix = State.sphere
+        .small-10.columns
+          = text_field_tag :completer, ''
+    .large-2.columns
       = render partial: 'partials/auth'
-
 
 section@spheres
   .row

@@ -21,4 +21,5 @@ Toprater.attachUIComponents = ->
   Toprater.ObjectsList.attachTo "[role=objects-list]"
   Toprater.Reviews.attachTo "[role=reviews]"
   Toprater.Auth.attachTo "[role=auth]"
+  Toprater.Completer.attachTo "[role=completer]"
   Toprater.attachFilters()

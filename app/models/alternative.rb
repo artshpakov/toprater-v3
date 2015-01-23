@@ -2,7 +2,7 @@ class Alternative < Sentimeta::Model
 
   endpoint :objects
 
-  attr_accessor :id, :full_id, :name, :address, :photos, :reviews, :extra, :catalog, :top_criteria
+  attr_accessor :id, :full_id, :name, :address, :photos, :reviews, :extra, :catalog, :top_criteria, :overall_rating
 
 
   def full_id() @full_id || id end
@@ -17,6 +17,10 @@ class Alternative < Sentimeta::Model
   def self.find id
     data = Sentimeta::Client.fetch(:objects, id: id)['object']
     new data if data.present?
+  end
+
+  def rating
+    ((overall_rating + 1) * 2.5).round(2)
   end
 
   def stars

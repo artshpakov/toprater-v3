@@ -4,6 +4,7 @@ section@filters
   .row
     - if @available_filters.present?
       - @available_filters.each do |name, params|
-        = render partial: "partials/filters/specific/#{params['template']}", locals: { name: name, params: params, value: (State.filters[params['name']] rescue {}) }
+        - unless params['template'] == 'none'
+          = render partial: "partials/filters/specific/#{params['template']}", locals: { name: name, params: params, value: (State.filters[params['name']] rescue {}) }
   .row
     a.button.round.small@reset-filters href='#' Reset Filters

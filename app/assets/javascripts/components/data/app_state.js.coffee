@@ -55,6 +55,12 @@ appState = ->
       @trigger "#{data.filterName}Updated", val
       @trigger "stateUpdated", to_params()
 
+    @on "filterReset", (event, data) ->
+      @attr.filters = _.reject(@attr.filters, (f) =>
+        f.name == data.filter
+      )
+      @trigger "stateUpdated", to_params()
+
     @on "filtersReset", ->
       @attr.filters = []
       @trigger "stateUpdated", to_params()
