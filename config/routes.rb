@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     
     scope "/(:sphere)" do
       get '/' => 'index#index', as: :sphere
+      get '/suggest/objects' => 'suggest#objects'
       get '/suggest/:scope' => 'suggest#suggest'
       get '/suggest' => 'suggest#global'
 

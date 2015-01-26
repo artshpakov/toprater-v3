@@ -1,4 +1,6 @@
 class SuggestController < ApplicationController
+  MOVIES_FILTERS = %w(actors genres)
+
   def suggest
     result = Sentimeta::Client.search where: params[:scope], text: params[:q]
     render json: result
@@ -13,11 +15,15 @@ class SuggestController < ApplicationController
     render json: result
   end
 
+  def objects
+    render json: Sentimeta::Client.search(text: params[:q])['objects']
+  end
+
   private
 
   def complete_movies(query)
     result = []
-    %w(actors genres).each do |filter|
+    MOVIES_FILTERS.each do |filter|
       result += Sentimeta::Client.search(where: filter, text: query).map{ |a| a.merge({type: filter}) }
     end
     result += Sentimeta::Client.search(text: query)['criteria'].map{ |a| a.merge({type: :criteria}) }

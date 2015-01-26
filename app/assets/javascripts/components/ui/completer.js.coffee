@@ -13,14 +13,32 @@ completer = ->
       queryTokenizer: Bloodhound.tokenizers.whitespace
       limit: 15
 
+    objectsEngine = new Bloodhound
+      remote: 
+        url: "/objects/suggest?q=%QUERY"
+        # filter: (list) ->
+        #   $.map list, (item) -> { label: item.label, value: item.name, type: item.type }
+      datumTokenizer: (d) ->
+        Bloodhound.tokenizers.whitespace(d.id)
+      queryTokenizer: Bloodhound.tokenizers.whitespace
+      limit: 15
+
     engine.initialize()
 
     @$node.find('#completer').tokenfield
-      typeahead: [null,
-        displayKey: 'label'
-        source: engine.ttAdapter()
-        templates:
-          suggestion: (data) -> JST['suggestion'].render(data)
+      typeahead: [
+        highlight: true
+        , {
+          name: 'search'
+          displayKey: 'label'
+          source: engine.ttAdapter()
+          templates:
+            suggestion: (data) -> JST['suggestion'].render(data)
+        }, {
+          name: 'objects'
+          displayKey: 'label'
+          source: objectsEngine.ttAdapter()
+        }
       ]
 
     @$node.find('#completer').on 'tokenfield:createdtoken', (event) =>
