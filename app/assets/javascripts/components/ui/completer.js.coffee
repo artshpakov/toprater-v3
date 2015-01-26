@@ -45,8 +45,9 @@ completer = ->
       ]
 
     @$node.find('#completer').on 'tokenfield:createtoken', (event) =>
-      window.location.href = "/en/#{toprater.state.sphere}/objects/#{event.attrs.value}"
-      return false
+      if typeof event.attrs.type == 'undefined'
+        window.location.href = "/en/#{toprater.state.sphere}/objects/#{event.attrs.value}"
+        return false
 
     @$node.find('#completer').on 'tokenfield:createdtoken', (event) =>
       token = event.attrs
