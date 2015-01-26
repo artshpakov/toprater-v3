@@ -22,11 +22,10 @@ class SuggestController < ApplicationController
   private
 
   def complete_movies(query)
-    result = []
+    result = Sentimeta::Client.search(text: query)['criteria'].map{ |a| a.merge({type: :criteria}) }
     MOVIES_FILTERS.each do |filter|
       result += Sentimeta::Client.search(where: filter, text: query).map{ |a| a.merge({type: filter}) }
     end
-    result += Sentimeta::Client.search(text: query)['criteria'].map{ |a| a.merge({type: :criteria}) }
     result
   end
 end

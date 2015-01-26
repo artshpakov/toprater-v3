@@ -1,4 +1,4 @@
 p
-  strong
-    | {{ label }}
-  | &nbsp-&nbsp{{ type }}
+  | {{ label }}
+  span.suggestion-type
+    | &nbsp-&nbsp{{ type }}

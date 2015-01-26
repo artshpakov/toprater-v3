@@ -11,35 +11,42 @@ completer = ->
       datumTokenizer: (d) ->
         Bloodhound.tokenizers.whitespace(d.value)
       queryTokenizer: Bloodhound.tokenizers.whitespace
-      limit: 15
+      limit: 10
 
     objectsEngine = new Bloodhound
       remote: 
-        url: "/objects/suggest?q=%QUERY"
-        # filter: (list) ->
-        #   $.map list, (item) -> { label: item.label, value: item.name, type: item.type }
+        url: "/#{toprater.state.sphere}/suggest/objects?q=%QUERY"
+        filter: (list) ->
+          $.map list, (item) -> { label: item.label, value: item.id }
       datumTokenizer: (d) ->
-        Bloodhound.tokenizers.whitespace(d.id)
+        Bloodhound.tokenizers.whitespace(d.value)
       queryTokenizer: Bloodhound.tokenizers.whitespace
-      limit: 15
+      limit: 10
 
     engine.initialize()
+    objectsEngine.initialize()
 
     @$node.find('#completer').tokenfield
       typeahead: [
         highlight: true
+        , {
+          name: 'objects'
+          displayKey: 'label'
+          source: objectsEngine.ttAdapter()
+        }
         , {
           name: 'search'
           displayKey: 'label'
           source: engine.ttAdapter()
           templates:
             suggestion: (data) -> JST['suggestion'].render(data)
-        }, {
-          name: 'objects'
-          displayKey: 'label'
-          source: objectsEngine.ttAdapter()
+            header: "<hr/>"
         }
       ]
+
+    @$node.find('#completer').on 'tokenfield:createtoken', (event) =>
+      window.location.href = "/en/#{toprater.state.sphere}/objects/#{event.attrs.value}"
+      return false
 
     @$node.find('#completer').on 'tokenfield:createdtoken', (event) =>
       token = event.attrs
