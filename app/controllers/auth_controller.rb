@@ -20,10 +20,10 @@ class AuthController < ApplicationController
   end
 
   def callback
-    params = env["omniauth.auth"].slice(:provider, :uid)
-    response = Sentimeta::Client::Auth.oauth params
+    raw_data = env["omniauth.auth"]["info"].merge(env["omniauth.auth"]["extra"]["raw_info"]).slice(:email, :first_name, :last_name, :image, :gender, :locale, :lang, :timezone, :location)
+    response = Sentimeta::Client::Auth.oauth env["omniauth.auth"].slice(:provider, :uid).merge(raw_data: raw_data)
     sign_user_in(response.body) if response.ok?
-    redirect_to URI(request.referer).path
+    redirect_to root_path
   end
 
   def forgot_password
