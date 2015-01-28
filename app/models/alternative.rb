@@ -31,6 +31,10 @@ class Alternative < Sentimeta::Model
     address['full_address']
   end
 
+  def top_cast
+    extra['actors'].first(20)
+  end
+
   def cover
     photos.find { |p| p['type']=='primary_image' }.try(:[], 'url') if photos.present?
   end

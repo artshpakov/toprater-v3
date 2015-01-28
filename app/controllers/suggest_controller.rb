@@ -1,5 +1,5 @@
 class SuggestController < ApplicationController
-  MOVIES_FILTERS = %w(actors genres)
+  MOVIES_FILTERS = %w(genres actors)
 
   def suggest
     result = Sentimeta::Client.search where: params[:scope], text: params[:q]

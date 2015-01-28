@@ -1,0 +1,39 @@
+section
+  h2
+    = @alternative.name
+    span.label.right =' @alternative.rating
+  h6 = @alternative.full_address
+  .row
+    .small-8.columns
+      = solid do
+        h4 Summary
+        p = @alternative.extra['summary']
+    .small-4.columns
+      .th
+        img src=@alternative.cover
+
+section
+  h4 Amenities
+  .row
+    .small-6.columns
+      ul
+        - @alternative.extra['amenities'][0..(@alternative.extra['amenities'].size/2).ceil].each do |amenity|
+          li = amenity
+    .small-6.columns
+      ul
+        - @alternative.extra['amenities'][(@alternative.extra['amenities'].size/2).ceil+1..@alternative.extra['amenities'].size].each do |amenity|
+          li = amenity
+= solid do
+  - if @alternative.partners_data.present?
+    section
+      h4 Buy tour
+      .row@prices-calendar
+        .large-3.columns
+          input type="text" placeholder="Arrival YYYY-MM-DD" name="prices[arrival]"
+        .large-3.columns
+          input type="text" placeholder="Departure YYYY-MM-DD" name="prices[departure]"
+        .large-3.columns
+          input type="text" placeholder="Adults" name="prices[adults]"
+        .large-3.columns
+          button.small@get-prices Get prices
+      @prices-table

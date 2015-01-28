@@ -14,7 +14,7 @@ completer = ->
       limit: 10
 
     objectsEngine = new Bloodhound
-      remote: 
+      remote:
         url: "/#{toprater.state.sphere}/suggest/objects?q=%QUERY"
         filter: (list) ->
           $.map list, (item) -> { label: item.label, value: item.id }

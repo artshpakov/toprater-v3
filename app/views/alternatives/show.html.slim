@@ -1,6 +1,4 @@
 p: a href=list_path &larr; Back to results
 
 #details
-  - %i(main prices).each do |section|
-    = solid do
-      = render_partial "alternatives/sections/#{ section }/#{ State.sphere }"
+  = render_partial "alternatives/sections/specific/#{ State.sphere }"
