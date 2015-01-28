@@ -1,10 +1,12 @@
 @user-area
   - if signed_in?
-    => current_user.name
-    == "[ #{ link_to "Sign out", auth_signout_path, method: :post} ]"
+    = avatar current_user.image
+    div
+      b = current_user.name
+      div == "[ #{ link_to "sign out", auth_signout_path, method: :post } ]"
 
   - else
-    = link_to "Sign up / Sign in", "#", 'data-reveal-id'=>'auth-modal'
+    .anonymous = link_to "Sign up / Sign in", "#", 'data-reveal-id'=>'auth-modal'
 
   #auth-modal.reveal-modal@auth data-reveal=true
     .row
