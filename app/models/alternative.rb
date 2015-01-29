@@ -20,7 +20,7 @@ class Alternative < Sentimeta::Model
   end
 
   def rating
-    ((overall_rating + 1) * 2.5).round(2)
+    ((overall_rating + 1) * 2.5).round(2) rescue nil
   end
 
   def stars
@@ -32,7 +32,7 @@ class Alternative < Sentimeta::Model
   end
 
   def top_cast
-    extra['actors'].first(20)
+    extra['actors'].first(20) rescue []
   end
 
   def cover

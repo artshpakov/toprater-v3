@@ -2,10 +2,12 @@ section
   h2
     | #{@alternative.name} (#{@alternative.extra['year']})
     span.label.right =' @alternative.rating
-  h6.subheader = @alternative.extra['genres'].map{|dir| dir['label']}.join(', ')
-  p
-    strong Directors:&nbsp;
-    = @alternative.extra['directors'].map{|dir| dir['label']}.to_sentence
+  = solid
+    h6.subheader = @alternative.extra['genres'].map{|dir| dir['label']}.join(', ')
+  = solid
+    p
+      strong Directors:&nbsp;
+      = @alternative.extra['directors'].map{|dir| dir['label']}.to_sentence
   .row
     .small-8.columns
       = solid do
