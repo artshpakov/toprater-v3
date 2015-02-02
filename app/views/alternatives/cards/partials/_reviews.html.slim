@@ -10,5 +10,5 @@
         - pack["reviews"][0..2].each do |review|
           p style="font-size:12px"
             =' review['before']
-            b' style="color: #{ variation(:reviews)['color'] }" = review['text']
+            b' style="color: #{ ab_test('reviews') }" = review['text']
             = review['after']
