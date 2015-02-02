@@ -8,9 +8,10 @@ Toprater.attachDataComponents = ->
   Toprater.AppState.attachTo document
   Toprater.Results.attachTo "[role=objects-list]"
   Toprater.Router.attachTo document
+  Toprater.DataCard.attachTo "[role=card]"
 
 Toprater.attachUIComponents = ->
-  Toprater.Cart.attachTo "[role='cart']"
+  Toprater.Cart.attachTo "[role=cart]"
   Toprater.Criteria.attachTo "[role=criteria]"
   Toprater.Criterion.attachTo "[role=criterion]"
   Toprater.Search.attachTo "[role=search]"
