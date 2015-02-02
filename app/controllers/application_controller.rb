@@ -18,11 +18,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_sphere # TODO temporary -- remove later
-    unless params[:sphere].present? || controller_name == 'index'
+    unless params[:sphere].present?
       params[:sphere] = :hotels
       return redirect_to params
     end
-    Sentimeta.sphere = params[:sphere] if params[:sphere].present?
+    Sentimeta.sphere = params[:sphere]
   end
 
   def setup

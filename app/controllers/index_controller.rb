@@ -1,5 +1,8 @@
 class IndexController < ApplicationController
+
   layout false
+
+  skip_before_filter :set_sphere
 
   def index
     @presets = {}
@@ -12,4 +15,5 @@ class IndexController < ApplicationController
     Sentimeta.sphere = :movies
     @popular = @main['movies']['popular'].map { |item| Alternative.find(item) }
   end
+
 end
