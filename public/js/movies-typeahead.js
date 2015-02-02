@@ -1,7 +1,6 @@
 $(function() {
   function updateList() {
     $(".result").html("");
-    console.log($("input#search").val());
     var url = "/en/movies/search.json?term=" + $("input#search").val();
     $.ajax({
       url: url,
