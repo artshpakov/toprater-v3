@@ -19,8 +19,12 @@ class LandingsController < ApplicationController
   end
 
   def search
-    Sentimeta.sphere = params[:sphere]
-    respond_with Sentimeta::Client.fetch :search, text: params[:term]
+    response = Sentimeta::Client.fetch(:search, text: params[:term], sphere: params[:sphere])
+    if response.ok?
+      respond_with response.body
+    else
+      render nothing: true, status: :bad_request
+    end
   end
 
 end
