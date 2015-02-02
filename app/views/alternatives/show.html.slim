@@ -1,4 +1,4 @@
-p: a href=list_path &larr; Back to results
+p = link_to "&larr; Back to results".html_safe, :back
 
 #details
   = render_partial "alternatives/sections/specific/#{ State.sphere }"

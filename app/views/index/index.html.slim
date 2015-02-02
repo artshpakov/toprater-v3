@@ -1,1 +1,35 @@
-h3 A placeholder for any kind of info
+doctype 5
+html
+  head
+    title Toprater - no more reviews, just ratings
+    = stylesheet_link_tag :application, media: :all
+    = csrf_meta_tags
+    = include_gon namespace: 'toprater', camel_case: true
+
+  body
+    - flash.each do |key, value|
+      p.alert-box class=key = value
+
+    @wrapper
+      section.title-header
+        .row.text-center
+          h1 = image_tag 'logo.png', title: 'toprater beta'
+          h3.subheader SOCIAL CHOICE PLATFORM
+      section
+        .row
+          - @spheres.each_with_index do |sphere, index|
+            = render 'important', { info: @main[sphere]['important'], index: index, sphere: sphere }
+        .row
+          = render 'compilations', { items: (@main['movies']['compilations2'] + @main['hotels']['compilations']).shuffle.first(6) }
+        .row
+          h2 Recommend
+        - @spheres.each do |sphere|
+          = render 'recommendations', { info: @main[sphere]['recommend'] }
+        .row
+          h2 Popular this month
+          = render 'popular', { items: @popular, sphere: :movies }
+
+
+
+    = render_cell :general, :debug
+    = javascript_include_tag :application

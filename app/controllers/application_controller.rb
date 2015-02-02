@@ -18,11 +18,11 @@ class ApplicationController < ActionController::Base
   end
 
   def set_sphere # TODO temporary -- remove later
-    unless params[:sphere].present?
+    unless params[:sphere].present? || controller_name == 'index'
       params[:sphere] = :hotels
       return redirect_to params
     end
-    Sentimeta.sphere = params[:sphere]
+    Sentimeta.sphere = params[:sphere] if params[:sphere].present?
   end
 
   def setup
@@ -40,7 +40,6 @@ class ApplicationController < ActionController::Base
       gon.state     = State.to_hash
     end
   end
-
 
 
   helper_method :current_user, :signed_in?

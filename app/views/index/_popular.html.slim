@@ -1,0 +1,8 @@
+.row
+  - items.each do |item|
+    .large-3.columns
+      a.th href="#{object_path(id: item.id, sphere: sphere)}"
+        = image_tag item.cover
+      h5 = item.name
+      = solid
+        h6.subheader = item.extra['genres'].first['label']
