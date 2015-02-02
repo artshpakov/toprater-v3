@@ -1,4 +1,4 @@
-results = ->
+dataResults = ->
 
   @getAlternatives = (event, route) ->
     $.ajax(
@@ -34,4 +34,4 @@ results = ->
     @on document, "toAlternatives", @getAlternatives
 
 
-Toprater.Results = flight.component(results)
+Toprater.DataResults = flight.component(dataResults)

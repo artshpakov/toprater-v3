@@ -1,4 +1,5 @@
-p = link_to "&larr; Back to results".html_safe, :back
+.card@card
+  p@back-link = link_to "&larr; Back to results".html_safe, :back
 
-#details
-  = render_partial "alternatives/sections/specific/#{ State.sphere }"
+  #details
+    = render_partial "alternatives/sections/specific/#{ State.sphere }"

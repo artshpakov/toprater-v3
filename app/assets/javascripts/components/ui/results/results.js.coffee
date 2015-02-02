@@ -1,8 +1,10 @@
-objectsList = ->
+result = ->
 
   @showAlternatives = (event, data) ->
     @$node.html($(data.objects))
+    Toprater.Card.attachTo "[role=card]"
     Toprater.Reviews.attachTo "[role=reviews]"
+    Toprater.PricesCalendar.attachTo "[role=prices-calendar]"
     @trigger "pageUpdated"
 
   @handleError = (event, data) ->
@@ -12,4 +14,4 @@ objectsList = ->
     @on document, "objectsLoaded", @showAlternatives
     @on document, "errorLoadingObjects", @handleError
 
-Toprater.ObjectsList = flight.component(objectsList)
+Toprater.Result = flight.component(result)
