@@ -35,7 +35,7 @@ router = ->
     routes =
       "/en/:sphere":
         "/objects/(criteria|filters).*": _.bind @alternativesList, @
-        "/objects/:object.*": _.bind @card, @
+        "/objects/:object/?.*": _.bind @card, @
         # "/objects.*": _.bind @alternativesList, @
 
     router = Router routes
