@@ -30,8 +30,8 @@ sass:
             b' Release:
             = alternative.extra['year']
 
-        - if ab_test('show_actors') == 'true'
-          = solid do
+        - if ab_test('show_actors') == 'shown'
+          = solid
             p
               b' Actors:
               br
