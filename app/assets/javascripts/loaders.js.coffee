@@ -6,9 +6,9 @@ Toprater.attachFilters = ->
 
 Toprater.attachDataComponents = ->
   Toprater.AppState.attachTo document
-  Toprater.Results.attachTo "[role=objects-list]"
+  Toprater.DataResults.attachTo "[role=result]"
   Toprater.Router.attachTo document
-  Toprater.DataCard.attachTo "[role=card]"
+  Toprater.DataCard.attachTo "[role=result]"
 
 Toprater.attachUIComponents = ->
   Toprater.Cart.attachTo "[role=cart]"
@@ -17,10 +17,10 @@ Toprater.attachUIComponents = ->
   Toprater.Search.attachTo "[role=search]"
   Toprater.PricesCalendar.attachTo "[role=prices-calendar]"
   Toprater.PricesTable.attachTo "[role=prices-table]"
-  Toprater.Card.attachTo "[role=card]"
   Toprater.FilterReset.attachTo "[role=reset-filters]"
-  Toprater.ObjectsList.attachTo "[role=objects-list]"
+  Toprater.Result.attachTo "[role=result]"
   Toprater.Reviews.attachTo "[role=reviews]"
   Toprater.Auth.attachTo "[role=auth]"
   Toprater.Completer.attachTo "[role=completer]"
+  Toprater.Card.attachTo "[role=card]"
   Toprater.attachFilters()

@@ -5,6 +5,9 @@ router = ->
   @alternativesList = ->
     @trigger document, "toAlternatives", url: @attr.route
 
+  @card = ->
+    @trigger document, "toCard", url: @attr.route
+
 
   @encode = (criteria, filters) ->
     paramsPath = ""
@@ -31,7 +34,9 @@ router = ->
 
     routes =
       "/en/:sphere":
-        "/objects.*": _.bind @alternativesList, @
+        "/objects/(criteria|filters).*": _.bind @alternativesList, @
+        "/objects/:object/?.*": _.bind @card, @
+        # "/objects.*": _.bind @alternativesList, @
 
     router = Router routes
 
@@ -43,6 +48,14 @@ router = ->
     @on "stateUpdated", (event, params) ->
       @attr.route = @buildUrl params
       router.setRoute @attr.route
+
+    @on "cardClicked", (event, params) ->
+      @attr.route = params.url
+      router.setRoute params.url
+
+    @on "backClicked", (event, params) ->
+      @attr.route = params.url
+      router.setRoute params.url    
 
 
 Toprater.Router = flight.component router

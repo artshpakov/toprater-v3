@@ -21,8 +21,9 @@ html
               = render_cell :general, :filters
           .medium-9.columns
             = render partial: 'partials/cart'
-            #rating@objects-list
-              = yield
+            #result@result
+              #rating@objects-list
+                = yield
 
     = render_cell :general, :debug
 
