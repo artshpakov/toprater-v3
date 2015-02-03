@@ -20,7 +20,7 @@ html
           - @spheres.each_with_index do |sphere, index|
             = render 'important', { info: @main[sphere]['important'], index: index, sphere: sphere }
         .row
-          = render 'compilations', { items: (@main['movies']['compilations2'] + @main['hotels']['compilations']).shuffle.first(6) }
+          = render 'compilations', { items: (@main['movies']['compilations'] + @main['hotels']['compilations']).shuffle.first(6) }
         .row
           h2 Recommend
         - @spheres.each do |sphere|
