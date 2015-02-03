@@ -22,14 +22,14 @@ staging:
     secret: "1TAAokPw3nRfefs2HE-nACbw"
     name: "google"
 
-production: # TODO replace with actual values
+production:
   facebook:
-    id: "1529910983936462"
-    secret: "235f765b931ed1268497eb89654332fc"
+    id: "1576246925945571"
+    secret: "e1e151a74fca65cc68d4b71c9e1d3e80"
   twitter:
-    id: "kxa2M6tVJNKsP74H31dlPqUNe"
-    secret: "lDlvfUmnSbRJqdKO8AHv1pUbUortjcAzLgG9ZQRInHKZvuu5JJ"
+    id: "lYBYOWLPFONzKanWGh5NIME9u"
+    secret: "V0mlQPfxhk1gcDPskrmOcxvA0H6Oi8UpGZ7vyvMiC5AbAtnriY"
   google_oauth2:
-    id: "29511162814-pg73rr3d9mt54t5dccrbb17rjv63i1k8.apps.googleusercontent.com"
-    secret: "1TAAokPw3nRfefs2HE-nACbw"
+    id: "757427059785-raltb4i5he5lkjij7f84vno923f6gdi6.apps.googleusercontent.com"
+    secret: "ke4dKP9PZJBPSuYgcWBkqOxc"
     name: "google"
