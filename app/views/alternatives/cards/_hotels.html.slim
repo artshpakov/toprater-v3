@@ -15,7 +15,8 @@ sass:
       = solid do
         = "#{ alternative.stars }*"
       span.label.right =' alternative.rating
-    p.address = alternative.full_address
+    = solid do
+      p.address = alternative.full_address
 
   .row.details
     - if alternative.cover.present?

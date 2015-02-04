@@ -6,7 +6,7 @@ class AlternativesController < ApplicationController
 
 
   def index
-    @alternatives = Alternative.rate limit_objects: LIMIT_OBJECTS
+    @alternatives = decorate Alternative.rate(limit_objects: LIMIT_OBJECTS)
   end
 
 
@@ -14,6 +14,16 @@ class AlternativesController < ApplicationController
     unless @alternative = Alternative.find(params[:id])
       raise Sentimeta::Error::RecordNotFound
     end
+    @alternative = decorate @alternative
+  end
+
+
+  protected
+
+  def decorate object
+    decorator = "#{ State.sphere.capitalize }Decorator".constantize rescue nil
+    return object unless decorator && defined?(decorator)
+    object.kind_of?(Array) ? decorator.decorate_collection(object) : decorator.decorate(object)
   end
 
 end
