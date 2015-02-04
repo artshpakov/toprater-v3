@@ -30,7 +30,7 @@ sass:
             b' Release:
             = alternative.extra['year']
 
-        - ab_test('show_actors') do |variant, meta|
+        - ab_test('actors') do |variant, meta|
           - if meta['visible']
             = solid
               p
