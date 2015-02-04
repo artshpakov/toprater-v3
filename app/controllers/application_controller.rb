@@ -29,10 +29,8 @@ class ApplicationController < ActionController::Base
     State.init! params: params, cookies: cookies, session: session
 
     unless request.xhr?
-      Variation::Registry.init!(cookies[:token] ||= SecureRandom.uuid)
-      Variation.create(:reviews)
-      Variation.create(:actors)
-
+      cookies[:ab_token] ||= SecureRandom.uuid
+      
       Sentimeta::Observers.debug.try :reset!
 
       gon.filters   = F_PRESETS[State.sphere]

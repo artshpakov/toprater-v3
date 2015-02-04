@@ -12,6 +12,7 @@ gem 'gon'
 gem 'cells'
 gem 'redis'
 gem 'redis-rails'
+gem 'split', github: 'andrew/split', require: 'split/dashboard'
 
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'

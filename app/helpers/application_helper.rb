@@ -24,13 +24,6 @@ module ApplicationHelper
   end
 
 
-  def variation name
-    Variation.get(name).variant do |variant|
-      Variation::Registry.cache(name, variant) if cookies[:token].present?
-    end
-  end
-
-
   def sphere
     Sentimeta.sphere
   end

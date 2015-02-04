@@ -1,6 +1,8 @@
 reviews:
-  - color: 'black'
-  - color: 'crimson'
-actors:
-  - show: true
-  - show: false
+  alternatives:
+    - black
+    - crimson
+show_actors:
+  alternatives:
+    - 'shown'
+    - 'hidden'
