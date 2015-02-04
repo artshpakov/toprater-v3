@@ -13,7 +13,7 @@ class Criterion < Sentimeta::Model
     end
   end
 
-  def self.leafs # TODO move to a decorator
+  def self.leafs
     all.flat_map &:subcriteria
   end
 

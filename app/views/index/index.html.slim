@@ -15,20 +15,23 @@ html
         .row.text-center
           h1 = image_tag 'logo.png', title: 'toprater beta'
           h3.subheader SOCIAL CHOICE PLATFORM
+          
       section
         .row
-          - @spheres.each_with_index do |sphere, index|
-            = render 'important', { info: @main[sphere]['important'], index: index, sphere: sphere }
+          - %w(movies hotels).each_with_index do |sphere, index|
+            = render_cell :index, :important, sphere: sphere, index: index
+
         .row
-          = render 'compilations', { items: (@main['movies']['compilations'] + @main['hotels']['compilations']).shuffle.first(6) }
+          = render_cell :index, :compilations
+
         .row
           h2 Recommend
-        - @spheres.each do |sphere|
-          = render 'recommendations', { info: @main[sphere]['recommend'] }
+          - %w(movies hotels).each do |sphere|
+            = render_cell :index, :recommendations, sphere: sphere
+
         .row
           h2 Popular this month
-          = render 'popular', { items: @popular, sphere: :movies }
-
+          = render_cell :index, :popular
 
 
     = render_cell :general, :debug

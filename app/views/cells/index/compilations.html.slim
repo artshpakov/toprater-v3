@@ -1,8 +1,8 @@
 h2 Compilations
-- items.each do |item|
+- @items.each do |item|
   .preset
     a href=item['url']
-      = image_tag "http://toprater.com#{item['picture']}"
+      img src="http://toprater.com#{ item['picture'] }"
       .preset_info
         .bottom
           p = item['text1']

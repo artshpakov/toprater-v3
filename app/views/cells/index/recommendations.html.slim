@@ -1,6 +1,8 @@
 .row
-  h4.subheader = info['label']
-  - info['subblocks'].each do |subblock|
+  .large-12.columns
+    h4.subheader = @info['label']
+
+  - @info['subblocks'].each do |subblock|
     .large-4.columns
       .panel.callout
         h5 = subblock['name']
