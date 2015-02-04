@@ -2,7 +2,12 @@ reviews:
   alternatives:
     - black
     - crimson
-show_actors:
+actors:
   alternatives:
-    - 'shown'
-    - 'hidden'
+    - displayed
+    - hidden
+  metadata:
+    displayed:
+      visible: true
+    hidden:
+      visible: false

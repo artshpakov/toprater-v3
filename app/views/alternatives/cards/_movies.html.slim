@@ -30,11 +30,12 @@ sass:
             b' Release:
             = alternative.extra['year']
 
-        - if ab_test('show_actors') == 'shown'
-          = solid
-            p
-              b' Actors:
-              br
-              - alternative.extra['actors'][0..9].each do |actor|
-                =' actor['label']
+        - ab_test('show_actors') do |variant, meta|
+          - if meta['visible']
+            = solid
+              p
+                b' Actors:
                 br
+                - alternative.extra['actors'][0..9].each do |actor|
+                  =' actor['label']
+                  br
