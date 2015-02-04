@@ -1,6 +1,6 @@
 class AuthController < ApplicationController
 
-  skip_before_action :set_locale, :setup
+  skip_before_action :set_locale, :set_sphere, :setup
 
   def signin
     response = Sentimeta::Client::Auth.signin params[:user]

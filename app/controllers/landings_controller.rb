@@ -1,7 +1,7 @@
 class LandingsController < ApplicationController
 
   layout false
-  skip_before_action :setup
+  skip_before_action :set_sphere, :setup
 
   respond_to :json
 

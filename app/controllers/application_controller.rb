@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     request.xhr? ? false : 'application'
   end
 
-  before_action :set_locale, :setup
+  before_action :set_locale, :set_sphere, :setup
 
   def set_locale
     unless params[:locale].present?
@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
       return redirect_to params
     end
     I18n.locale = params[:locale]
+  end
+
+  def set_sphere
+    Sentimeta.sphere = params[:sphere] if params[:sphere].present?
   end
 
   def setup
