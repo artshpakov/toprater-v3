@@ -9,9 +9,13 @@ Rails.application.routes.draw do
     
     scope "/(:sphere)" do
       get '/' => 'alternatives#index', as: :sphere
-      get '/suggest/objects' => 'suggest#objects'
-      get '/suggest/:scope' => 'suggest#suggest'
-      get '/suggest' => 'suggest#global'
+
+      scope :suggest, controller: :search do
+        get :objects
+        get '/:scope' => :suggest
+        get '/' => :global
+      end
+      get '/search' => 'search#search', as: :search
 
       scope '/objects' do
         get '(/criteria/:criteria)(/filters/*filters)' => 'alternatives#index', as: :list
@@ -20,8 +24,6 @@ Rails.application.routes.draw do
 
         get '/:id/prices' => 'prices#index', as: :prices
       end
-
-      get '/search' => 'landings#search', as: :search
     end
 
     namespace :landings do

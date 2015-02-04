@@ -1,4 +1,7 @@
-class SuggestController < ApplicationController
+class SearchController < ApplicationController
+
+  respond_to :json
+
   MOVIES_FILTERS = %w(genres actors)
 
   def suggest
@@ -7,7 +10,7 @@ class SuggestController < ApplicationController
   end
 
   def global
-    if State.sphere = 'movies'
+    if State.sphere == 'movies'
       result = complete_movies params[:q]
     else
       result = []
@@ -18,6 +21,16 @@ class SuggestController < ApplicationController
   def objects
     render json: Sentimeta::Client.search(text: params[:q])['objects']
   end
+
+  def search
+    response = Sentimeta::Client.fetch(:search, text: params[:term], sphere: params[:sphere])
+    if response.ok?
+      respond_with response.body
+    else
+      render nothing: true, status: :bad_request
+    end
+  end
+
 
   private
 
