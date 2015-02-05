@@ -7,7 +7,7 @@
       /     a.sphere-link href=link['ref'] = link['label']
     h5.subheader = @info['text']
     .criteria
-      - @info['criteria'].each do |criterion|
+      - @info['criteria_old'].each do |criterion|
         a.label.secondary href="#{list_path(sphere: sphere, criteria: [criterion])}" =' Criterion.find(criterion).try(:label)
     div style='margin-top: 15px'
       a.button.tiny.radius href="#{list_path(sphere: sphere)}"
