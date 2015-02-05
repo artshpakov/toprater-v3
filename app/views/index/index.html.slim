@@ -20,10 +20,8 @@ html
         .row
           - %w(movies hotels).each_with_index do |sphere, index|
             = render_cell :index, :important, sphere: sphere, index: index
-
         .row
           = render_cell :index, :compilations
-
         .row
           h2 Recommend
           - %w(movies hotels).each do |sphere|

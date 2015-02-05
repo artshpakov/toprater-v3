@@ -11,3 +11,8 @@ actors:
       visible: true
     hidden:
       visible: false
+new_year:
+  alternatives:
+    - 'HAPPY NY'
+    - 'TopRater'
+  algorithm: "Split::Algorithms::Weekend"

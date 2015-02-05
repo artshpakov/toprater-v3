@@ -1,6 +1,6 @@
 GIT
-  remote: git://github.com/andrew/split.git
-  revision: dc9be0e04767a3984bea3de4a00abfa99ce4aa82
+  remote: git://github.com/ekorneeff/split.git
+  revision: 2d8182f61c071b7c088e0a60b3a1d367b8bc4e9f
   specs:
     split (1.2.0)
       redis (>= 2.1)

@@ -13,7 +13,7 @@ gem 'cells'
 gem 'draper'
 gem 'redis'
 gem 'redis-rails'
-gem 'split', github: 'andrew/split', require: 'split/dashboard'
+gem 'split', github: 'ekorneeff/split', require: 'split/dashboard'
 
 gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
