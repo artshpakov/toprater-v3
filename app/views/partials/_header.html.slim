@@ -3,11 +3,7 @@ section@header
     .large-2.columns
       h2: a href="/" target="_self" = ab_test('new_year')
     @completer.large-6.columns style="padding-top: 10px"
-      .row.collapse.prefix-round
-        .small-2.columns
-          span.prefix = State.sphere
-        .small-10.columns
-          = text_field_tag :completer, ''
+      = render_cell :general, :completer
     .large-4.columns
       = render partial: 'partials/auth'
 

@@ -1,24 +1,24 @@
 class GeneralCell < TopraterCell
 
   def spheres
-    @spheres = Rails.cache.fetch "spheres" do
-      Sentimeta::Client.spheres
-    end
+    @spheres = Sphere.all
     render
   end
-
 
   def criteria_catalog
     @criteria = Criterion.all
     render
   end
 
+  def completer
+    @sphere = Sphere.leafs.find { |s| s['name'] == State.sphere }
+    render
+  end
 
   def filters
     @available_filters = F_PRESETS[State.sphere]
     render
   end
-
 
   def debug
     if State.debug?
