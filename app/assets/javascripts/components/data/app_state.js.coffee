@@ -43,6 +43,7 @@ appState = ->
       lang: @attr.lang
 
     @trigger "stateUpdated", to_params()
+    @trigger "pageLoaded"
 
     @on "filtersChanged", (event, data) ->
       filter = _.find(@attr.filters, name: data.filterName)

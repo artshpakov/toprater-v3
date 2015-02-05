@@ -24,6 +24,7 @@ Toprater.attachUIComponents = ->
   Toprater.Completer.attachTo "[role=completer]"
   Toprater.Card.attachTo "[role=card]"
   Toprater.attachFilters()
+  Toprater.Hints.attachTo document
 
 Toprater.attachEmployersLandingComponents = ->
   Toprater.DataEmployers.attachTo document

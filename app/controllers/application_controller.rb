@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     request.xhr? ? false : 'application'
   end
 
-  before_action :set_locale, :set_sphere, :setup
+  before_action :set_locale, :set_sphere, :set_hints, :setup
 
   def set_locale
     unless params[:locale].present?
@@ -15,6 +15,13 @@ class ApplicationController < ActionController::Base
       return redirect_to params
     end
     I18n.locale = params[:locale]
+  end
+
+  def set_hints
+    unless cookies[:hints_off]
+      gon.hints = HintsDecorator.decorate_collection((Sentimeta::Client.fetch :infotext, { lang: "en", design: "std", param: "hints" })['hint1']['multiple'])
+      cookies[:hints_off] = true
+    end
   end
 
   def set_sphere

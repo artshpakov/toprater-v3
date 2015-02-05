@@ -1,5 +1,5 @@
 - if @alternatives.present?
   #rating@objects-list
     - @alternatives.each_with_index do |alternative, index|
-      .card@card
+      .card.object@card
         = render_partial "alternatives/cards/#{ sphere }", locals: { index: index+1, alternative: alternative }

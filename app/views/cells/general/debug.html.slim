@@ -15,9 +15,9 @@
 
   br
 
-  b Variations
+  b Session
   .data
-    - @variations.each do |key, value|
+    - session.each do |key, value|
       div
         =' "#{ key }:"
         = value.to_json || 'null'
