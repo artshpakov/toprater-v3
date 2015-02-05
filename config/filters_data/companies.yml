@@ -1,0 +1,13 @@
+industries:
+  name: industries
+  label: industry
+  label_plural: industries
+  kind: string
+  template: enum
+
+segm:
+  name: segm
+  label: segment
+  label_plural: segments
+  kind: string
+  template: enum
