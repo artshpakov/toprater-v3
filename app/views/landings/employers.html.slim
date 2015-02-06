@@ -1,4 +1,42 @@
-h2 megalanding
-- @employers.each do |employer|
-  = employer.name
-  br
+doctype 5
+html
+  head
+    title Toprater
+    = stylesheet_link_tag :application, media: :all
+    = csrf_meta_tags
+    = include_gon namespace: 'toprater', camel_case: true
+
+body
+  .slide-scroller@slide-nav
+
+  #employers-wrapper@slider
+    header@slide
+      .row.topbar
+        a.toprater-logo href="https://toprater.com"
+          | Toprater
+        a.nyt-logo href="http://nytimes.com"
+          | New-York Times
+      .row
+        h1 The world’s best and worst employers
+
+    section#employers-rating
+      - @employers.each_with_index do |employer, index|
+        section.employer@slide class="#{ 'first-place' if index == 0 }"
+          .row
+            h2 = employer.name
+
+    section#employers-find-company@slide
+      .row
+        h2 Which company suits you best?
+        div@employers-find-company
+    section#employers-user-company@slide
+      .row
+        h2 What about your company?
+        @employers-user-company
+
+  footer
+    = javascript_include_tag :application
+
+    coffee:
+      $ ->
+        Toprater.attachEmployersLandingComponents()

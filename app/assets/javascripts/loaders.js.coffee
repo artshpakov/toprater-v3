@@ -24,3 +24,8 @@ Toprater.attachUIComponents = ->
   Toprater.Completer.attachTo "[role=completer]"
   Toprater.Card.attachTo "[role=card]"
   Toprater.attachFilters()
+
+Toprater.attachEmployersLandingComponents = ->
+  Toprater.SlideNav.attachTo "[role=slide-nav]"
+  Toprater.Slide.attachTo "[role=slide]"
+  # Toprater.Slider.attachTo "[role=slider]"
