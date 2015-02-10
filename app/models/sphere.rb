@@ -7,15 +7,9 @@ class Sphere
   end
 
   def self.leafs
-    [].tap do |leafs|
-      all.each do |sphere|
-        if sphere['issphere'] == false
-          leafs << sphere['categories']
-        else
-          leafs << sphere
-        end
-      end
-    end.flatten
+    all.flat_map do |sphere|
+      sphere['issphere'].nil? || sphere['issphere'] ? sphere : sphere['categories']
+    end
   end
 
 end
