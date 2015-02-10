@@ -10,20 +10,20 @@ class LandingsController < ApplicationController
 
     setup
     info_data = Sentimeta::Client.fetch :infotext, { design: "nyt", param: "landing", lang: "en" }
-    # params[:criteria] = info_data.body["best"]["criteria"]
-    # params[:filters] = info_data.body["data"]["filters"]
+
 
 
     if params[:reverse]
       params[:criteria] = info_data.body["data"]["worst"]["criteria"]
+      params[:filters] = info_data.body["data"]["worst"]["filters"]
       @employers = Alternative.rate(params).reverse[0..9]
       @reverse = true
     else
       params[:criteria] = info_data.body["data"]["best"]["criteria"]
+      params[:filters] = info_data.body["data"]["best"]["filters"]
       @employers = Alternative.rate(params)[0..9]
       @reverse = false
     end
-
 
       @limit = OBJECTS_LIMIT
       @title = info_data.body["data"]["title"]
