@@ -51,11 +51,11 @@ router = ->
 
     @on "cardClicked", (event, params) ->
       @attr.route = params.url
-      router.setRoute params.url
+      router.setRoute @attr.route
 
     @on "backClicked", (event, params) ->
       @attr.route = params.url
-      router.setRoute params.url    
+      router.setRoute @attr.route
 
 
 Toprater.Router = flight.component router

@@ -1,5 +1,6 @@
 @import colors
 @import fonts
+@import foundation
 
 //font sizes
 $base-font-size: 16px
@@ -11,9 +12,62 @@ $rating-value-font-size: 24px
 $review-count-font-size: 31px
 
 
+$ipath: "../../../i"
+
+=hover
+  &:hover
+    opacity: .8
+
+=next-slide
+  border-radius: 50rem
+  background-color: #fff
+  font-family: "topratericon" !important
+  font-style: normal !important
+  font-size: 25px
+  font-weight: normal !important
+  font-variant: normal !important
+  text-transform: none !important
+  speak: none
+  line-height: 1
+  -webkit-font-smoothing: antialiased
+  -moz-osx-font-smoothing: grayscale
+  height: rem-calc(51px) 
+  text-align: center
+  width: rem-calc(51px)
+
+  +hover
+
+  &:before
+    content: "A"
+
+
+
+
+.slide-scroller
+  color: #fff
+  position: fixed
+  top: 50px
+  left: 40px
+  z-index: 20
+
+  a
+    color: #fff
+    display: block
+    font-size: 28px
+    line-height: 28px
+    height: 28px
+    opacity: 0.5
+    text-align: center
+    width: 28px
+
+    &:hover
+      opacity: 1
+
 #employers-wrapper
   background-color: $dark
+  color: #fff
   font-family: "proxima_nova_rgregular"
+  
 
   h1
     color: #fff
@@ -23,21 +77,304 @@ $review-count-font-size: 31px
     color: #fff
     font-family: "proxima_nova_rgregular"
 
+  h3
+    color: #fff
+    font-family: "proxima_nova_rgregular"
+    font-size: $rating-value-font-size
+
+  h4 
+    color: #fff
+    font-family: "proxima_nova_rgregular"
+  
+  .row
+    max-width: 72rem
+
+  header, section[role=slide]
+    padding-left: 100px
+    padding-right: 100px
+
   header
     background-color: $blue
     height: 100vh
-  
+    min-height: rem-calc(440px)
+    position: relative
+    
+    h1
+      text-transform: uppercase
+
+      a.bwswitch
+        border-bottom: 1px dashed #82dcff
+        display: inline-block
+        height: 60px
+        color: #82dcff
+        
+        &:hover
+          border: 0
+          color: #fff
+
+        &.selected
+          background-color: rgba(255,255,255,0.5)
+          border-radius: 5px
+          color: $blue
+          padding: 5px
+          padding: 0 5px 5px 5px
+          vertical-align: baseline
+          line-height: 65px
+
+
+    .topbar
+      margin-bottom: 5vh
+      padding: 23px 0 20px
+
+      .toprater-logo
+        background: transparent url(#{$ipath}/logo_white.png) 0 0 no-repeat
+        color: transparent
+        float: left
+        height: 54px
+        width: 140px
+
+        +hover
+
+      .nyt-logo
+        background: transparent url(#{$ipath}/landings/nyt-logo.png) 0 0 no-repeat
+        color: transparent
+        float: right
+        height: 30px
+        margin-top: $larger-font-size
+        width: 218px
+
+        +hover
+
+    .next-slide
+      +next-slide
+      color: #000
+      display: inline-block
+      line-height: rem-calc(51px)
+      margin-left: 7rem
+      vertical-align: middle
+
+
+    .about
+      font-size: $base-font-size
+      line-height: $base-font-size * 1.25
+
+      h4
+        text-transform: uppercase
+        letter-spacing: 2px
+
+      hr
+        border: 0
+        background-color: #fff
+        height: 1px
+        margin: 3vh 0
+        opacity: .6
+        width: 100px
+
+
+
+    .to-mechanics
+      color: #fff
+      position: absolute
+      bottom: 0
+      left: 0
+      right: 0
+      max-width: 100%
+      width: 100%
+      
+      h3
+        letter-spacing: 0.1em
+        margin-bottom: 20px
+        text-transform: uppercase
+
+      .link-to-mechanic
+        background-color: $light-blue
+        height: 32vh
+        min-height: rem-calc(150px)
+
+        .desc
+          line-height: 1.2em
+
+        &:first-of-type
+          background-color: $dark
+
+          .desc
+            color: rgba(255,255,255,0.6)
+
+          >div
+            float: right
+
+        >div
+          float: left
+          max-width: (62.5 / 2) + rem
+          padding: 4vh
+          width: 100%
+
+        a.button
+          background-color: #fff
+          color: #000
+          font-size: $base-font-size
+          margin-top: 20px
+
+          &:hover
+            background-color: $button-green
+
+    @media only screen and (max-height : 620px)
+      .about
+        display: none
+
+    @media only screen and (max-width : 641px)
+      .to-mechanics
+        .link-to-mechanic
+          height: 20vh
+
 
   // Rating
   .employer
+    height: 100vh
+    padding-top: rem-calc(40px)
+    font-size: $larger-font-size
+    line-height: 24px
+
+
+    .employer-info, .employer-chart
+      // margin-top: rem-calc(100px)
+      margin-top: 10vh
+
     h2
       font-size: $title-font-size
+      margin: 0
 
-    background-color: $yellow
-    height: 100vh
+    .place
+      color: rgba(255,255,255,0.7)
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+      font-size: $larger-font-size
+      font-weight: bold
+      margin-bottom: 20px
 
-    &.first-place
+      span
+        color: #fff
+    
+    .desc
+      margin-top: 30px
+
+    .industries
+      color: rgba(255,255,255,0.7)
+      font-size: $larger-font-size
+      line-height: 24px
+    
+    .employer-chart
+      .chart, .info
+        display: inline-block
+        vertical-align: top
+
+      .chart
+        height: 250px
+        width: 250px
+
+      .info
+        font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif
+
+        .switcher
+          color: rgba(255,255,255,0.7)
+          font-size: 18px
+          font-weight: bold
+          letter-spacing: 0.1em
+          margin: -12.7vh 0 10vh 0
+
+          a
+            border-bottom: 1px dashed rgba(255,255,255,0.7)
+            color: rgba(255,255,255,0.7)
+            display: inline-block
+            vertical-align: top
+
+            &:hover
+              color: #fff
+              text-decoration: none
+
+          a.current
+            border: 0
+            color: #fff
+            cursor: default
+            text-decoration: none
+
+
+        .rating-info
+          .current-criterion
+            color: rgba(255,255,255,0.7)
+            font-family: "proxima_nova_rgbold", sans-serif
+            font-size: 14px
+            font-weight: bold
+            line-height: 20px
+            letter-spacing: 0.1em
+            margin-bottom: 20px
+            text-transform: uppercase
+
+          .value
+            color: rgba(255,255,255,0.7)
+            font-weight: bold
+            
+            span, small
+              display: inline-block
+              vertical-align: top
+
+            small
+              font-size: rem-calc(18px)
+              line-height: rem-calc(21px)
+
+            span
+              color: #fff
+              font-size: rem-calc(50px)
+              line-height: 0.8em
+              margin-right: rem-calc(10px)
+
+        hr
+          background-color: #fff
+          border: 0
+          height: 1px
+          margin: 40px 0
+          opacity: 0.5
+          width: rem-calc(150px)
+        
+        .reviews-count
+          >div
+            font-size: 16px
+            line-height: 20px
+
+            &:first-of-type
+              color: rgba(255,255,255,0.5)
+              font-family: "proxima_nova_rgregular"
+
+
+          .count
+            color: #fff
+            font-size: 31px
+            font-weight: bold
+            letter-spacing: 0.1em
+            margin: 12px 0
+
+
+    &.employer-0
       background-color: $green
+
+    &.employer-1
+      background-color: $yellow
+    &.employer-2
+      background-color: $violett
+    &.employer-3
+      background-color: $dark-blue
+    &.employer-4
+      background-color: $orange
+    &.employer-5
+      background-color: $sky-blue
+    &.employer-6
+      background-color: $light-red
+    &.employer-7
+      background-color: $darker-blue
+    &.employer-8
+      background-color: $bright-green
+    &.employer-9
+      background-color: $pink
+
 
   // Game
   #employers-user-company

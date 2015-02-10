@@ -1,6 +1,5 @@
 ul
   | {{#slides}}
   li
-    a data-number="{{.}}" href="javascript:;" &bull;
+    a data-name="{{ name }}" href="javascript:;" &bull;
   | {{/slides}}
-

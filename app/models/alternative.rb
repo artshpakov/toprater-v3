@@ -2,7 +2,7 @@ class Alternative < Sentimeta::Model
 
   endpoint :objects
 
-  attr_accessor :id, :full_id, :name, :address, :photos, :reviews, :extra, :catalog, :top_criteria, :overall_rating
+  attr_accessor :id, :full_id, :name, :address, :photos, :reviews, :extra, :catalog, :top_criteria, :overall_rating, :review_ratings
 
 
   def full_id() @full_id || id end
