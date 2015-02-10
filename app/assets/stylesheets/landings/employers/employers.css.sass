@@ -71,11 +71,13 @@ $ipath: "../../../i"
 
   h1
     color: #fff
-    font-family: "proxima_nova_rgregular"
+    font-family: "museo_sans900"
     font-size: $title-font-size
+    text-transform: uppercase
+    
   h2
     color: #fff
-    font-family: "proxima_nova_rgregular"
+    font-family: "museo_sans700"
 
   h3
     color: #fff
@@ -230,10 +232,11 @@ $ipath: "../../../i"
 
   // Rating
   .employer
-    height: 100vh
-    padding-top: rem-calc(40px)
     font-size: $larger-font-size
+    height: 100vh
     line-height: 24px
+    padding-top: rem-calc(40px)
+    position: relative
 
 
     .employer-info, .employer-chart
@@ -351,6 +354,29 @@ $ipath: "../../../i"
             font-weight: bold
             letter-spacing: 0.1em
             margin: 12px 0
+    
+    .criterion-bar-chart
+      bottom: 0
+      left: 0
+      position: absolute
+      width: 100%
+
+      .criterion-bar
+        background-color: rgba(255,255,255,0.1)
+        display: inline-block
+        font-size: 14px
+        height: 40vh
+        line-height: 22px
+        margin: 0 1px
+        padding: 20px
+        text-transform: uppercase
+        vertical-align: top
+        width: 200px
+
+        .rating
+          font-family: "proxima_nova_ltlight"
+          font-size: 24px
+          margin-top: 22px
 
 
     &.employer-0

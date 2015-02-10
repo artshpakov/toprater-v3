@@ -84,18 +84,19 @@ body@employers-page
                   .count = employer.review_ratings["total"]
                   div reviews
 
-
-          / .row
-          /   .criterion-bar-chart
-          /     - employer.top_criteria.each do |criterion|
-          /       div
-          /         span = criterion.label
+          - if employer.other_criteria.present?
+            .row
+              .criterion-bar-chart@criteria-bar
+                - employer.other_criteria.values.each do |criterion|
+                  .criterion-bar
+                    .name = criterion["label"]
+                    .rating = rating criterion["rating"]
 
 
 
     section#employers-find-company@slide data-name="find-company"
       .row
-        h2 = @find_company_title
+        h1 = @find_company_title
         div@employers-find-company
           h3 What's important for you?
           small Select several criteria which describe best what inspires you in potential employers
@@ -105,7 +106,7 @@ body@employers-page
 
     section#employers-user-company@slide data-name="user-company"
       .row
-        h2 = @check_company_title
+        h1 = @check_company_title
         div@employers-user-company
 
   footer
