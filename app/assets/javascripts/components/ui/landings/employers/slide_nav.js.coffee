@@ -3,7 +3,6 @@ slideNav = ->
     slides: []
 
   @renderNav = ->
-    console.log @attr.slides
     @$node.html JST['slider_nav'].render { slides: @attr.slides }
 
   @registerSlide = (event, data) ->

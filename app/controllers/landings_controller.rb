@@ -10,19 +10,19 @@ class LandingsController < ApplicationController
 
     setup
     info_data = Sentimeta::Client.fetch :infotext, { design: "nyt", param: "landing", lang: "en" }
-    params[:criteria] = info_data.body["data"]["criteria"]
-    params[:filters] = info_data.body["data"]["filters"]
+    # params[:criteria] = info_data.body["best"]["criteria"]
+    # params[:filters] = info_data.body["data"]["filters"]
 
-    if params[:id]
-      render json: Alternative.find(params[:id])
+
+    if params[:reverse]
+      params[:criteria] = info_data.body["data"]["worst"]["criteria"]
+      @employers = Alternative.rate(params).reverse[0..9]
+      @reverse = true
     else
-      if params[:reverse]
-        @employers = Alternative.rate(params).reverse[0..9]
-        @reverse = true
-      else
-        @employers = Alternative.rate(params)[0..9]
-        @reverse = false
-      end
+      params[:criteria] = info_data.body["data"]["best"]["criteria"]
+      @employers = Alternative.rate(params)[0..9]
+      @reverse = false
+    end
 
 
       @limit = OBJECTS_LIMIT
@@ -37,7 +37,6 @@ class LandingsController < ApplicationController
       # if request.xhr?
       #   render json: @employers
       # end
-    end
   end
 
   def similar_movies
