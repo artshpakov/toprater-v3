@@ -101,9 +101,10 @@ body@employers-page
           h3 What's important for you?
           small Select several criteria which describe best what inspires you in potential employers
           .important-criteria
-          - if @important_criteria.present? 
-            - @important_criteria.each do |criterion|
-              .criterion data-name="#{ criterion.name }" = criterion.label
+            - if @important_criteria.present?
+              - @important_criteria.each do |criterion|
+                - if criterion.present?
+                  .criterion data-name="#{ criterion.name }" = criterion.label
 
     section#employers-user-company@slide data-name="user-company"
       .row
