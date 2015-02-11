@@ -10,7 +10,7 @@ $(function() {
       console.log(data);
     })
     .done(function(data) {
-      _.each(data.body.objects, function(object) {
+      _.each(data.objects, function(object) {
         $(".result").append($("<a href='/en/landings/similar-movies/" + object.id + "'>" + object.label + "</a>"));
       });
     });
