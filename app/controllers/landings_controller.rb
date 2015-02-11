@@ -11,6 +11,11 @@ class LandingsController < ApplicationController
     setup
     info_data = Sentimeta::Client.fetch :infotext, { design: "nyt", param: "landing", lang: "en" }
 
+    if info_data.body["data"]["worst"].present?
+      @worst_exist = true
+    else
+      @worst_exist = false
+    end
 
 
     if params[:reverse]

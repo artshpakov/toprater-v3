@@ -19,7 +19,7 @@ body@employers-page
             | New-York Times
       .row
         .columns.small-10
-          h1@title-switcher
+          h1@title-switcher data-worst="#{ @worst_exist }"
             = @title
             a.next-slide@next-slide href="javascript:;"
 
@@ -68,10 +68,11 @@ body@employers-page
             .employer-chart.columns.small-12.medium-6
               .chart
               .info
-                .switcher@switcher
-                  a.best.current href="javascript:;" Best
-                  |&nbsp;&nbsp;/&nbsp;&nbsp;
-                  a.worst href="javascript:;" Worst
+                - if @worst_exist
+                  .switcher@switcher
+                    a.best.current href="javascript:;" Best
+                    |&nbsp;&nbsp;/&nbsp;&nbsp;
+                    a.worst href="javascript:;" Worst
                 .rating-info
                   .current-criterion = Criterion.find(employer.reviews[0]["name"]).label
                   .value
