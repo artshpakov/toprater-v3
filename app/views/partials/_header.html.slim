@@ -1,7 +1,8 @@
 section@header
   .row
     .large-2.columns
-      h2: a href="/" target="_self" = ab_test('new_year')
+      h2@logo class=ab_test('weekend')
+        a href="/" target="_self" TopRater
     @completer.large-6.columns style="padding-top: 10px"
       = render_cell :general, :completer
     .large-4.columns

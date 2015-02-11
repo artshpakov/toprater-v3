@@ -2,6 +2,7 @@ reviews:
   alternatives:
     - black
     - crimson
+
 actors:
   alternatives:
     - displayed
@@ -11,8 +12,9 @@ actors:
       visible: true
     hidden:
       visible: false
-new_year:
+
+weekend:
   alternatives:
-    - 'HAPPY NY'
-    - 'TopRater'
+    - weekend
+    - weekday
   algorithm: "Split::Algorithms::Weekend"
