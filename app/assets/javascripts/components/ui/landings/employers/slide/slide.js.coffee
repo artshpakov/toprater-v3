@@ -3,9 +3,14 @@ slide = ->
     name: ""
 
   @navigate = (speed=500) ->
+    @off window, "scroll"
     $("body, html").animate({ 
       scrollTop: @$node.offset().top 
-      }, speed)
+      }, 
+      speed,
+      =>
+        @trigger document, "slideScrolled"
+      )
     
   @isCurrent = ->
     viewportTop = $(window).scrollTop()
@@ -35,6 +40,7 @@ slide = ->
 
     @on window, "resize", ->
       @$node.height $(window).height()
+      @fixPosition()
 
     @trigger document, "slideInitialized", { name: @attr.name, current: @isCurrent() }
 

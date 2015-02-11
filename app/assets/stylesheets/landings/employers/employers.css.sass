@@ -52,15 +52,23 @@ $ipath: "../../../i"
 
   a
     color: #fff
+    cursor: pointer
     display: block
     font-size: 28px
     line-height: 28px
     height: 28px
     opacity: 0.5
+    position: relative
     text-align: center
     width: 28px
+    z-index: 21s
 
     &:hover
+      opacity: 1
+
+    &.current
+      cursor: default
+      font-size: 52px
       opacity: 1
 
 #employers-wrapper
@@ -191,7 +199,7 @@ $ipath: "../../../i"
       .link-to-mechanic
         background-color: $light-blue
         height: 32vh
-        min-height: rem-calc(150px)
+        min-height: rem-calc(200px)
 
         .desc
           line-height: 1.2em
@@ -231,6 +239,9 @@ $ipath: "../../../i"
 
 
   // Rating
+  .slide
+    overflow: hidden
+
   .employer
     font-size: $larger-font-size
     height: 100vh
@@ -358,8 +369,16 @@ $ipath: "../../../i"
     .criterion-bar-chart
       bottom: 0
       left: 0
+      overflow: hidden
       position: absolute
+      height: 260px
       width: 100%
+
+      .bar-wrap
+        width: 10000px
+        position: absolute
+        top: 0
+        left: 0
 
       .criterion-bar
         background-color: rgba(255,255,255,0.1)
@@ -372,6 +391,9 @@ $ipath: "../../../i"
         text-transform: uppercase
         vertical-align: top
         width: 200px
+
+        .name
+          height: 2em
 
         .rating
           font-family: "proxima_nova_ltlight"

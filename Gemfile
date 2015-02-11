@@ -27,6 +27,10 @@ gem 'rails-assets-director'
 gem 'es5-shim-rails'
 gem 'hogan_assets'
 
+gem 'jquery-mousewheel-rails'
+gem 'mwheelintent-rails'
+gem 'jscrollpane-rails'
+
 gem 'quiet_assets'
 gem 'colorize'
 

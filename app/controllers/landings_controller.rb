@@ -2,11 +2,12 @@ class LandingsController < ApplicationController
 
   layout false
   skip_before_action :set_sphere, :setup, :set_hints
-  OBJECTS_LIMIT = 1000
+  OBJECTS_LIMIT = 10
 
   def employers
     Sentimeta.sphere = params[:sphere] = 'companies'
     params[:limit_objects] = OBJECTS_LIMIT
+    params[:limit_criteria] = 15
 
     setup
     info_data = Sentimeta::Client.fetch :infotext, { design: "nyt", param: "landing", lang: "en" }

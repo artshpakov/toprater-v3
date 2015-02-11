@@ -1,5 +1,10 @@
 ul
   | {{#slides}}
   li
+    | {{#current}}
+    a.current data-name="{{ name }}" href="javascript:;" &bull;
+    | {{/current}}
+    | {{^current}}
     a data-name="{{ name }}" href="javascript:;" &bull;
+    | {{/current}}
   | {{/slides}}

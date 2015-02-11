@@ -16,6 +16,7 @@ slideNav = ->
       @trigger document, "slideScrollReq", name: slideName
       _.find(@attr.slides, (slide) -> slide.current).current = false
       _.find(@attr.slides, (slide) -> slide.name == slideName).current = true
+      @renderNav()
 
 
   @nextSlide = (event) ->
@@ -32,10 +33,11 @@ slideNav = ->
 
     move = =>
       calling = true
-
-      if event.clientY > 200
+      down = event.which == 40 or event.which == 34
+      up = event.which == 38 or event.which == 33
+      if event.clientY > 200 or up or down
         # FIXME: fix in Firefox!
-        if event.originalEvent.deltaY > 0
+        if event.originalEvent.deltaY > 0 or down
           currentSlide = _.find @attr.slides, (slide) -> slide.current
           nextSlide = @attr.slides[_.indexOf(@attr.slides, currentSlide) + 1]
           if nextSlide?
@@ -43,7 +45,7 @@ slideNav = ->
             $("[data-name=#{slideName}]").click()
             
         # FIXME: fix in Firefox!              
-        if event.originalEvent.deltaY < 0
+        if event.originalEvent.deltaY < 0 or up
           currentSlide = _.find @attr.slides, (slide) -> slide.current
           nextSlide = @attr.slides[_.indexOf(@attr.slides, currentSlide) + -1]
           if nextSlide?
@@ -68,5 +70,10 @@ slideNav = ->
 
     @on window, "mousewheel", @scroll
     @on window, "DOMMouseScroll", @scroll
+
+    @on window, "keydown", (event) ->
+      if event.which == 38 or event.which == 40 or event.which == 33 or event.which == 34
+        @scroll(event)
+
 
 Toprater.SlideNav = flight.component slideNav

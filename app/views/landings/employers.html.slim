@@ -5,6 +5,7 @@ html
     = stylesheet_link_tag :application, media: :all
     = csrf_meta_tags
     = include_gon namespace: 'toprater', camel_case: true
+    = javascript_include_tag :application
 
 body@employers-page
   .slide-scroller@slide-nav
@@ -43,7 +44,7 @@ body@employers-page
 
     section#employers-rating@employers-rating
       - @employers.each_with_index do |employer, index|
-        section.employer@slide class="employer-#{ index }" data-name="employer-#{ index }"
+        section.employer.slide@slide class="employer-#{ index }" data-name="employer-#{ index }"
           .row
 
             .employer-info.columns.small-12.medium-6
@@ -88,10 +89,11 @@ body@employers-page
           - if employer.other_criteria.present?
             .row
               .criterion-bar-chart@criteria-bar
-                - employer.other_criteria.values.each do |criterion|
-                  .criterion-bar
-                    .name = criterion["label"]
-                    .rating = rating criterion["rating"]
+                .bar-wrap
+                  - employer.other_criteria.values.each do |criterion|
+                    .criterion-bar
+                      .name = criterion["label"]
+                      .rating = rating criterion["rating"]
 
 
 
@@ -113,7 +115,7 @@ body@employers-page
         div@employers-user-company
 
   footer
-    = javascript_include_tag :application
+    / = javascript_include_tag :application
 
     coffee:
       $ ->
