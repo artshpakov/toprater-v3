@@ -1,5 +1,4 @@
 weekend:
-  render: string
   variants:
     - weekend
     - weekday
