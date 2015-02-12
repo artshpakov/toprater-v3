@@ -95,13 +95,13 @@ body@employers-page
                 a.arrow.toprater-icon-chevron-right@arrow-right href="javascript:;"
                 .bar-wrap
                   - employer.other_criteria.values.each do |criterion|
-                    .criterion-bar
+                    a.criterion-bar href="https://toprater.com/en/companies/objects/criteria/#{ criterion['name'] }" target="_blank"
                       .name = criterion["label"]
                       .rating = rating criterion["rating"]
 
                   .links-bar
                     div
-                      a.chart-link.toprater-link href="https://toprater.com"
+                      a.chart-link.toprater-link href="https://toprater.com/en/companies/objects/criteria/#{employer.reviews[0]["name"]}/filters/top/fortune-1000" target="_blank"
                         | 300 + awesome criteria on our toprater.com 
                         span.toprater-icon-chevron-right
                     div

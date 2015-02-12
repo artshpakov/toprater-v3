@@ -35,9 +35,7 @@ slide = ->
 
     @on document, "slideScrollReq", (event, data) ->
       if data? and data.name == @attr.name then @navigate()
-
-
-
+      
     @on window, "resize", ->
       @$node.height $(window).height()
       @fixPosition()

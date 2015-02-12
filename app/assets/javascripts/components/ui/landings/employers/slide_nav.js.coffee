@@ -71,6 +71,6 @@ slideNav = ->
     @on window, "keydown", (event) ->
       if event.which == 38 or event.which == 40 or event.which == 33 or event.which == 34
         @scroll(event)
-
+        
 
 Toprater.SlideNav = flight.component slideNav

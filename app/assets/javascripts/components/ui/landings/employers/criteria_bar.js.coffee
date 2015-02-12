@@ -17,7 +17,7 @@ criteriaBar = ->
     pos = @$node.find(".bar-wrap").offset().left
     event.preventDefault()
 
-    if event.deltaX > 0 or direction == "right"
+    if event.originalEvent.deltaX > 0 or direction == "right"
       event.stopPropagation(elem)
       for i in [0...18]
         elem.css "left", pos--
@@ -27,7 +27,7 @@ criteriaBar = ->
           break
 
 
-    if event.deltaX < 0 or direction == "left"
+    if event.originalEvent.deltaX < 0 or direction == "left"
       event.stopPropagation(elem)
       
       for i in [0...18]
@@ -51,10 +51,11 @@ criteriaBar = ->
 
 
   @after "initialize", ->
-    @$node.find(".bar-wrap").width _.reduce(_.map(@$node.find(".bar-wrap").children(), (child) -> $(child).outerWidth() + 2), (one, two) -> one + two)
+    @$node.find(".bar-wrap").width _.reduce(_.map(@$node.find(".bar-wrap").children(), (child) -> $(child).outerWidth() + 2), (one, two) -> one + two) - 2
     @arrowsVisibility(@$node.find(".bar-wrap"))
+
     @on @$node, "mousewheel", @scroll
-    @on @$node, "DOMMouseScroll", @scroll
+    # @on @$node, "DOMMouseScroll", @scroll
 
     @on window, "resize", ->
       @arrowsVisibility(@$node.find(".bar-wrap"))
@@ -68,6 +69,13 @@ criteriaBar = ->
       if targetRole == "arrow-right"
         @scrolling(event, "right")
 
+      if $(event.target).hasClass("fc-link")
+        $(document).find("[data-name=find-company]").click()
+
+      if $(event.target).hasClass("cc-link")
+        $(document).find("[data-name=user-company]").click()
+        
+      
       
 
 
