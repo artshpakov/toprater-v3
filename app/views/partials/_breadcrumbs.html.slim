@@ -1,0 +1,14 @@
+= solid do
+  - if path.count>0
+    @breadcrumbs itemscope=true itemtype="http://data-vocabulary.org/Breadcrumb"
+      .crumb
+        a href="#{ catalog_path(path: []) }" Catalog
+        i.separator
+      - if path.count>1
+        .crumb
+          - path[0..path.count-2].each_with_index do |crumb, index|
+            .crumb
+              a href="#{ catalog_path(path: path[0..index].map {|e| e['name']}.join(',')) }" = crumb['label']
+              i.separator
+      .crumb
+        span = path[path.count-1]['label']

@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         get '/' => :global
       end
       get '/search' => 'search#search', as: :search
+      get '/catalog(/:path)' => 'catalog#catalog', as: :catalog
 
       scope '/objects' do
         get '(/criteria/:criteria)(/filters/*filters)' => 'alternatives#index', as: :list

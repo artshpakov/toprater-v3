@@ -1,0 +1,11 @@
+h3 = sphere
+
+= render partial: "partials/breadcrumbs", locals: { path: @path }
+
+ul@catalog
+  - if @catalog.present?
+    - @catalog.each do |entry|
+      li: a href="#{ catalog_path(path: ([params[:path], entry['name']].compact.join(','))) }" = entry['label']
+  - if @objects.present?
+    - @objects.each do |entry|
+      li: a href="#{ object_path(id: entry['full_id']) }" = entry['label']

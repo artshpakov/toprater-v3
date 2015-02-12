@@ -29,7 +29,7 @@ module ApplicationHelper
   end
 
   def sphere
-    Sentimeta.sphere
+    Sphere.leafs.find { |s| s['name'] == State.sphere }.try :[], 'label'
   end
 
 end

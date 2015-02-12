@@ -11,7 +11,6 @@ class GeneralCell < TopraterCell
   end
 
   def completer
-    @sphere = Sphere.leafs.find { |s| s['name'] == State.sphere }
     render
   end
 
