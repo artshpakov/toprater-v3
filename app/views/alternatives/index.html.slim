@@ -2,4 +2,4 @@
   #rating@objects-list
     - @alternatives.each_with_index do |alternative, index|
       .card.object@card
-        = render_partial "alternatives/cards/#{ sphere }", locals: { index: index+1, alternative: alternative }
+        = render_partial "alternatives/cards/#{ Sentimeta.sphere }", locals: { index: index+1, alternative: alternative }
