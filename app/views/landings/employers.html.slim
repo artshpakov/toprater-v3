@@ -5,7 +5,7 @@ html
     = stylesheet_link_tag :application, media: :all
     = csrf_meta_tags
     = include_gon namespace: 'toprater', camel_case: true
-    = javascript_include_tag :application
+    / = javascript_include_tag :application
 
 body@employers-page
   .slide-scroller@slide-nav
@@ -34,12 +34,14 @@ body@employers-page
         .small-12.medium-6.large-6.columns.link-to-mechanic@link-to-mechanic
           div
             h3 = @find_company_title
-            .desc = @find_company_text
+            - if @find_company_text.present?
+              .desc = @find_company_text
             a.button.round.small href="javascript:;" Get started
         .small-12.medium-6.large-6.columns.link-to-mechanic@link-to-mechanic
           div
             h3 = @check_company_title
-            .desc = @check_company_text
+            - if @check_company_text.present?
+              .desc = @check_company_text
 
 
     section#employers-rating@employers-rating
@@ -89,11 +91,25 @@ body@employers-page
           - if employer.other_criteria.present?
             .row
               .criterion-bar-chart@criteria-bar
+                a.arrow.toprater-icon-chevron-left@arrow-left href="javascript:;" 
+                a.arrow.toprater-icon-chevron-right@arrow-right href="javascript:;"
                 .bar-wrap
                   - employer.other_criteria.values.each do |criterion|
                     .criterion-bar
                       .name = criterion["label"]
                       .rating = rating criterion["rating"]
+
+                  .links-bar
+                    div
+                      a.chart-link.toprater-link href="https://toprater.com"
+                        | 300 + awesome criteria on our toprater.com 
+                        span.toprater-icon-chevron-right
+                    div
+                      a.chart-link.fc-link href="javascript:;"
+                        = @find_company_title
+                    div
+                      a.chart-link.cc-link href="javascript:;"
+                        = @check_company_title
 
 
 
@@ -115,7 +131,7 @@ body@employers-page
         div@employers-user-company
 
   footer
-    / = javascript_include_tag :application
+    = javascript_include_tag :application
 
     coffee:
       $ ->

@@ -369,10 +369,30 @@ $ipath: "../../../i"
     .criterion-bar-chart
       bottom: 0
       left: 0
-      overflow: hidden
       position: absolute
-      height: 260px
+      height: 36vh
       width: 100%
+
+      .arrow
+        color: #fff
+        font-size: 36px
+        height: 36vh
+        line-height: 34vh
+        opacity: .5
+        position: absolute
+        text-shadow: 0 0 4px #333
+        top: 0
+        width: 36px
+        z-index: 30
+        
+        &:hover
+          opacity: 1
+
+        &.toprater-icon-chevron-left
+          left: 0
+
+        &.toprater-icon-chevron-right
+          right: 0
 
       .bar-wrap
         width: 10000px
@@ -380,17 +400,97 @@ $ipath: "../../../i"
         top: 0
         left: 0
 
+      .links-bar, .criterion-bar
+        display: inline-block
+        vertical-align: top
+        height: 36vh
+        width: 300px
+
       .criterion-bar
         background-color: rgba(255,255,255,0.1)
-        display: inline-block
         font-size: 14px
-        height: 40vh
+        height: 36vh
         line-height: 22px
         margin: 0 1px
-        padding: 20px
+        padding: 40px 20px 0
+        position: relative
         text-transform: uppercase
-        vertical-align: top
         width: 200px
+        
+        &:before
+          background-color: rgba(255,255,255,0.3)
+          content: "See ratings on this criterion"
+          display: none
+          font-size: 14px
+          height: 54px
+          left: 0
+          line-height: 16px
+          margin-bottom: 1px
+          position: absolute
+          padding: 12px 20px 12px
+          text-transform: none
+          top: -55px
+          width: 200px
+
+
+        &:hover
+          background-color: rgba(255,255,255,0.3)
+
+          &:before
+            display: block
+
+        .name
+          font-size: 14
+          text-transform: uppercase
+
+        .rating
+          font-family: "proxima_nova_ltlight"
+          font-size: 22px
+          height: 22px
+          margin-top: 20px
+          text-transform: uppercase
+
+      .links-bar
+        background-color: $dark
+
+        >div
+          &:hover
+            background-color: #293341
+        
+        a
+          color: #ccc
+          display: table-cell
+          height: 10vh
+          font-size: $base-font-size
+          line-height: 1em
+          padding: 0 20px 0 70px
+          vertical-align: middle
+          width: 300px
+
+          
+          &.toprater-link
+            span
+              display: none
+              height: 10vh
+              font-size: 30px
+              position: absolute
+              right: 0
+              line-height: 12.5vh
+              top: 0
+              width: 28px
+
+            &:hover
+              span
+                display: block
+              
+            background: transparent url(#{$ipath}/landings/white_star.png) 23px 16px no-repeat
+
+          &.fc-link
+            background: transparent url(#{$ipath}/landings/fc_icon_dark.png) 25px 16px no-repeat
+
+          &.cc-link
+            background: transparent url(#{$ipath}/landings/cc_icon_dark.png) 24px 16px no-repeat
+
 
         .name
           height: 2em

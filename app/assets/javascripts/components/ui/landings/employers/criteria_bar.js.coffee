@@ -1,31 +1,74 @@
 criteriaBar = ->
 
-  @scroll = (event) ->
-    # console.log event
-    elem = @$node.find(".bar-wrap") 
+  @arrowsVisibility = (elem) ->
+    if -elem.offset().left >= elem.width() - $(window).width()
+      @$node.find("[role=arrow-right]").hide()
+    else
+      @$node.find("[role=arrow-right]").show()
+
+    if elem.offset().left == 0
+      @$node.find("[role=arrow-left]").hide()
+    else
+      @$node.find("[role=arrow-left]").show()
+
+
+  @scroll = (event, direction=false) ->
+    elem = @$node.find(".bar-wrap")
     pos = @$node.find(".bar-wrap").offset().left
     event.preventDefault()
-    # event.stopPropagation()
 
-    if event.deltaX > 0
-      event.stopPropagation()
-      for i in [0...16]
+    if event.deltaX > 0 or direction == "right"
+      event.stopPropagation(elem)
+      for i in [0...18]
+        elem.css "left", pos--
+        @arrowsVisibility(elem)
+
         if -elem.offset().left >= elem.width() - $(window).width()
           break
-        elem.css "left", pos--
 
-    if event.deltaX < 0
-      event.stopPropagation()
-      for i in [0...16]
+
+    if event.deltaX < 0 or direction == "left"
+      event.stopPropagation(elem)
+      
+      for i in [0...18]
+        elem.css "left", pos++
+        @arrowsVisibility(elem)
+
         if elem.offset().left == 0
           break
-        elem.css "left", pos++
+
+
+  @scrolling = (event, direction) ->
+    times = 0
+    move = =>
+      times++
+      if times == 30
+        clearInterval interval
+
+      @scroll(event, direction)
+
+    interval = setInterval move, 1
+
 
   @after "initialize", ->
     @$node.find(".bar-wrap").width _.reduce(_.map(@$node.find(".bar-wrap").children(), (child) -> $(child).outerWidth() + 2), (one, two) -> one + two)
+    @arrowsVisibility(@$node.find(".bar-wrap"))
     @on @$node, "mousewheel", @scroll
     @on @$node, "DOMMouseScroll", @scroll
 
+    @on window, "resize", ->
+      @arrowsVisibility(@$node.find(".bar-wrap"))
+
+    @on @$node, "click", (event) ->
+      targetRole = event.target.getAttribute("role")
+
+      if targetRole == "arrow-left"
+        @scrolling(event, "left")
+
+      if targetRole == "arrow-right"
+        @scrolling(event, "right")
+
+      
 
 
 Toprater.CriteriaBar = flight.component criteriaBar

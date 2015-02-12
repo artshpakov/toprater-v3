@@ -6,6 +6,8 @@ slideNav = ->
     @$node.html JST['slider_nav'].render { slides: @attr.slides }
 
   @registerSlide = (event, data) ->
+    if data.current
+      _.find(@attr.slides, (slide) -> slide.current)?.current = false
     @attr.slides.push { name: data.name, current: data.current }
     @renderNav()
 
@@ -14,8 +16,8 @@ slideNav = ->
     if event.target.tagName.toLowerCase() == "a"
       slideName = event.target.getAttribute "data-name"
       @trigger document, "slideScrollReq", name: slideName
-      _.find(@attr.slides, (slide) -> slide.current).current = false
-      _.find(@attr.slides, (slide) -> slide.name == slideName).current = true
+      _.find(@attr.slides, (slide) -> slide.current)?.current = false
+      _.find(@attr.slides, (slide) -> slide.name == slideName)?.current = true
       @renderNav()
 
 
@@ -24,40 +26,28 @@ slideNav = ->
     nextSlide = @attr.slides[_.indexOf(@attr.slides, currentSlide) + 1]
     @$node.find("[data-name=#{ nextSlide.name }]").click()
 
-  calling = false
   @scroll = (event) ->
-    event.preventDefault()
-    event.stopPropagation()
+    down = event.which == 40 or event.which == 34
+    up = event.which == 38 or event.which == 33
+    if event.clientY > 200 or up or down
+      # FIXME: fix in Firefox!
+      if event.originalEvent.deltaY > 0 or down
+        currentSlide = _.find @attr.slides, (slide) -> slide.current
+        nextSlide = @attr.slides[_.indexOf(@attr.slides, currentSlide) + 1]
+        if nextSlide?
+          slideName = nextSlide.name
+          $("[data-name=#{slideName}]").click()
+          
+      # FIXME: fix in Firefox!              
+      if event.originalEvent.deltaY < 0 or up
+        currentSlide = _.find @attr.slides, (slide) -> slide.current
+        nextSlide = @attr.slides[_.indexOf(@attr.slides, currentSlide) + -1]
+        if nextSlide?
+          slideName = nextSlide.name
+          $("[data-name=#{slideName}]").click()
 
-    if calling then return
 
-    move = =>
-      calling = true
-      down = event.which == 40 or event.which == 34
-      up = event.which == 38 or event.which == 33
-      if event.clientY > 200 or up or down
-        # FIXME: fix in Firefox!
-        if event.originalEvent.deltaY > 0 or down
-          currentSlide = _.find @attr.slides, (slide) -> slide.current
-          nextSlide = @attr.slides[_.indexOf(@attr.slides, currentSlide) + 1]
-          if nextSlide?
-            slideName = nextSlide.name
-            $("[data-name=#{slideName}]").click()
-            
-        # FIXME: fix in Firefox!              
-        if event.originalEvent.deltaY < 0 or up
-          currentSlide = _.find @attr.slides, (slide) -> slide.current
-          nextSlide = @attr.slides[_.indexOf(@attr.slides, currentSlide) + -1]
-          if nextSlide?
-            slideName = nextSlide.name
-            $("[data-name=#{slideName}]").click()          
-
-      _.delay(
-        -> calling = false
-        1200)
-
-    move()
-
+  @scrolling = _.throttle @scroll, 1200, trailing: false
 
 
   @after "initialize", ->
@@ -68,8 +58,15 @@ slideNav = ->
 
     @on document, "nextSlide", @nextSlide
 
-    @on window, "mousewheel", @scroll
-    @on window, "DOMMouseScroll", @scroll
+    @on window, "mousewheel", (event) ->
+      event.preventDefault()
+      event.stopPropagation()
+      @scrolling(event)
+
+    @on window, "DOMMouseScroll", (event) ->
+      event.preventDefault()
+      event.stopPropagation()
+      @scrolling(event)
 
     @on window, "keydown", (event) ->
       if event.which == 38 or event.which == 40 or event.which == 33 or event.which == 34
