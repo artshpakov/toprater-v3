@@ -23,9 +23,27 @@ module ApplicationHelper
     end
   end
 
+  def render_variant name, params={}
+    opts = RENDER_VARIANTS[name]
+    if opts['render'] == 'template'
+      conditional_render opts['condition'].constantize, opts['variants'][0], opts['variants'][1], params
+    else
+      conditional_string opts['condition'].constantize, opts['variants'][0], opts['variants'][1]
+    end
+  end
 
   def sphere
     Sentimeta.sphere
+  end
+
+  private
+
+  def conditional_render condition, template1, template2, params={}
+    condition.send(:choose_variant) ? render_partial(template1, params) : render_partial(template2, params)
+  end
+
+  def conditional_string condition, string1, string2
+    condition.send(:choose_variant) ? string1 : string2
   end
 
 end

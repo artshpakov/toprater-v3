@@ -12,9 +12,3 @@ actors:
       visible: true
     hidden:
       visible: false
-
-weekend:
-  alternatives:
-    - weekend
-    - weekday
-  algorithm: "Split::Algorithms::Weekend"

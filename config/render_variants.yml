@@ -1,0 +1,6 @@
+weekend:
+  render: string
+  variants:
+    - weekend
+    - weekday
+  condition: "RenderConditions::Weekend"
