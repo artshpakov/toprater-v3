@@ -5,6 +5,7 @@ class IndexCell < TopraterCell
     Sentimeta.sphere = args[:sphere]
     criteria = Criterion.all
     @info = main(args[:sphere])['important']
+    @criteria = presets(args[:sphere])['best_criteria']
     render
   end
 
