@@ -11,9 +11,6 @@
 #= require flight-for-rails
 #= require hogan.js
 #= require intro.js
-#= require jquery.mousewheel
-#= require jquery.mwheelintent
-#= require jquery.jscrollpane
 
 #= require_self
 #= require_tree ./templates
