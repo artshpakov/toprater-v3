@@ -45,6 +45,9 @@ router = ->
       run_handler_in_init: false
     router.init()
 
+    @on "loadMore", (event, params) ->
+      @trigger document, "moreAlternatives", url: @attr.route
+
     @on "stateUpdated", (event, params) ->
       @attr.route = @buildUrl params
       router.setRoute @attr.route

@@ -24,6 +24,8 @@ html
             #result@result
               #rating@objects-list
                 = yield
+              .text-center
+                a.button.round@load-more Load More
 
     = render_cell :general, :debug
 

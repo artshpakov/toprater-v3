@@ -6,7 +6,7 @@ class AlternativesController < ApplicationController
 
 
   def index
-    @alternatives = decorate Alternative.rate(limit_objects: LIMIT_OBJECTS)
+    @alternatives = decorate Alternative.rate(limit_objects: LIMIT_OBJECTS, offset_objects: params[:offset].to_i)
   end
 
 

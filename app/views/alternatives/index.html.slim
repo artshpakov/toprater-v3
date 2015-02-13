@@ -1,5 +1,6 @@
 - if @alternatives.present?
-  #rating@objects-list
-    - @alternatives.each_with_index do |alternative, index|
-      .card.object@card
-        = render_partial "alternatives/cards/#{ Sentimeta.sphere }", locals: { index: index+1, alternative: alternative }
+  - @alternatives.each_with_index do |alternative, index|
+    .card.object@card
+      = render_partial "alternatives/cards/#{ Sentimeta.sphere }", locals: { index: params[:offset].to_i + index + 1, alternative: alternative }
+- else
+  | Nothing found

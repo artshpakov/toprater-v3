@@ -1,37 +1,33 @@
 dataResults = ->
+  @attributes
+    offset: 0
 
-  @getAlternatives = (event, route) ->
+  @load = (url, sendEvent) ->
     $.ajax(
-      url: route.url
+      url: url
+      data:
+        offset: @attr.offset
       method: "GET"
     )
     .fail( (data) =>
       @trigger "errorLoadingObjects", data
     )
     .done( (data) =>
-      @trigger "objectsLoaded", objects: data
+      @trigger sendEvent, objects: data
       @trigger document, "pageUpdated"
     )
-    # clearTimeout timeout
-    # timeout = setTimeout(
-    #   =>
-    #     clearTimeout timeout
-    #     $.ajax(
-    #       url: @route
-    #       method: "GET"
-    #     )
-    #     .fail( (data) =>
-    #       @trigger "errorLoadingObjects", data
-    #     )
-    #     .done( (data) =>
-    #       console.log @
-    #       @trigger "objectsLoaded", objects: data
-    #       @trigger "pageUpdated"
-    #     )
-    #   , 1000)
+
+  @getAlternatives = (event, route) ->
+    @attr.offset = 0
+    @load(route.url, 'objectsLoaded')
+
+  @moreAlternatives = (event, route) ->
+    @attr.offset += 3
+    @load(route.url, 'moreObjectsLoaded')
 
   @after "initialize", ->
     @on document, "toAlternatives", @getAlternatives
+    @on document, "moreAlternatives", @moreAlternatives
 
 
 Toprater.DataResults = flight.component(dataResults)

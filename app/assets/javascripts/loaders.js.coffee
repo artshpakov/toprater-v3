@@ -23,6 +23,7 @@ Toprater.attachUIComponents = ->
   Toprater.Auth.attachTo "[role=auth]"
   Toprater.Completer.attachTo "[role=completer]"
   Toprater.Card.attachTo "[role=card]"
+  Toprater.LoadMore.attachTo "[role=load-more]"
   Toprater.attachFilters()
   Toprater.Hints.attachTo document
 
