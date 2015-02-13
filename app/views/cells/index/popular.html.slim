@@ -1,7 +1,7 @@
 .row
   - @items.each do |item|
     .large-3.columns
-      a.th href="#{object_path(id: item.id, sphere: sphere)}"
+      a.th href="#{object_path(id: item.id, sphere: Sentimeta.sphere)}"
         = image_tag item.cover
       h5 = item.name
       = solid

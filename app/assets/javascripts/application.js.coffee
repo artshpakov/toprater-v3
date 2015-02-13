@@ -1,6 +1,7 @@
 #= require jquery
 #= require jquery_ujs
 #= require foundation
+#= require nprogress
 #= require vendor/modernizr
 #= require underscore
 #= require history_jquery_html5
@@ -25,7 +26,11 @@
 # DEBUG.events.logAll()
 
 $ ->
+  $(document).on 'ajaxStart', -> NProgress.start()
+  $(document).on 'ajaxStop', -> NProgress.done()
+
   $(document).foundation()
+  
   Toprater.attachUIComponents()
   Toprater.attachDataComponents()
 
