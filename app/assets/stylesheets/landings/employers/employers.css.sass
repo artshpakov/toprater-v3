@@ -240,13 +240,13 @@ $ipath: "../../../i"
 
   // Rating
   .slide
+    height: 100vh
     overflow: hidden
 
   .employer
     font-size: $larger-font-size
-    height: 100vh
     line-height: 24px
-    padding-top: rem-calc(40px)
+    // padding-top: rem-calc(40px)
     position: relative
 
 
@@ -400,11 +400,25 @@ $ipath: "../../../i"
         top: 0
         left: 0
 
+        .rating-bar
+          background-color: rgba(255,255,255,0.3)
+          bottom: 0
+          left: 0
+          position: absolute
+          height: 18vh
+          width: 100%
+
       .links-bar, .criterion-bar
         display: inline-block
         vertical-align: top
         height: 36vh
         width: 300px
+
+      .line-chart
+        bottom: -5px
+        left: -5px
+        right: -5px
+        position: absolute
 
       a.criterion-bar
         background-color: rgba(255,255,255,0.1)
@@ -443,6 +457,7 @@ $ipath: "../../../i"
         .name
           font-size: 14
           text-transform: uppercase
+          min-height: 44px
 
         .rating
           font-family: "proxima_nova_ltlight"

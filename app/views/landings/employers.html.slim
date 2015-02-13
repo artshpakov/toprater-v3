@@ -95,7 +95,7 @@ body@employers-page
                 a.arrow.toprater-icon-chevron-right@arrow-right href="javascript:;"
                 .bar-wrap
                   - employer.other_criteria.values.each do |criterion|
-                    a.criterion-bar href="https://toprater.com/en/companies/objects/criteria/#{ criterion['name'] }" target="_blank"
+                    a.criterion-bar data-rating="#{rating criterion['rating']}" data-name="#{ criterion["label"] }" href="https://toprater.com/en/companies/objects/criteria/#{ criterion['name'] }" target="_blank"
                       .name = criterion["label"]
                       .rating = rating criterion["rating"]
 
@@ -110,6 +110,7 @@ body@employers-page
                     div
                       a.chart-link.cc-link href="javascript:;"
                         = @check_company_title
+                  .line-chart
 
 
 

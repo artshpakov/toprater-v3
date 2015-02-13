@@ -12,6 +12,7 @@
 #= require flight-for-rails
 #= require hogan.js
 #= require intro.js
+#= require Chart
 
 #= require_self
 #= require_tree ./templates

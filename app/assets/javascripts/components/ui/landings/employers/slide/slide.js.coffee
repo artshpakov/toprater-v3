@@ -10,6 +10,7 @@ slide = ->
       speed,
       =>
         @trigger document, "slideScrolled"
+        @trigger @$node, "slideScrolled"
       )
     
   @isCurrent = ->
