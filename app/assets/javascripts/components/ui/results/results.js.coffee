@@ -1,7 +1,7 @@
 result = ->
 
   @showAlternatives = (event, data) ->
-    @$node.find('#rating').html($(data.objects))
+    @$node.html($(data.objects))
     Toprater.Card.attachTo "[role=card]"
     Toprater.Reviews.attachTo "[role=reviews]"
     Toprater.PricesCalendar.attachTo "[role=prices-calendar]"

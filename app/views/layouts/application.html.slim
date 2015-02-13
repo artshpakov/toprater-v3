@@ -22,10 +22,7 @@ html
           .medium-9.columns
             = render partial: 'partials/cart'
             #result@result
-              #rating@objects-list
-                = yield
-              .text-center
-                a.button.round@load-more Load More
+              = yield
 
     = render_cell :general, :debug
 

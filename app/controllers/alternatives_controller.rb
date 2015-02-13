@@ -7,6 +7,7 @@ class AlternativesController < ApplicationController
 
   def index
     @alternatives = decorate Alternative.rate(limit_objects: LIMIT_OBJECTS, offset_objects: params[:offset].to_i)
+    render template: 'alternatives/_list', locals: { alternatives: @alternatives } unless params[:offset].to_i == 0
   end
 
 
