@@ -2,6 +2,10 @@ h3 = sphere
 
 = render partial: "partials/breadcrumbs", locals: { path: @path }
 
+= solid do
+  .textmass
+    p = @content['annotation']
+
 ul@catalog
   - if @catalog.present?
     - @catalog.each do |entry|
