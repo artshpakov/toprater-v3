@@ -11,6 +11,9 @@ slide = ->
       =>
         @trigger document, "slideScrolled"
         @trigger @$node, "slideScrolled"
+
+        if @isCurrent()
+          @trigger @$node, "redrawChartReq"
       )
     
   @isCurrent = ->

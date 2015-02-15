@@ -35,12 +35,20 @@ pieChart = ->
       animateRotate:          true
       animateScale:           false
       percentageInnerCutout:  98
+      animationEasing:        "easeOut"
+      animationSteps:         60
 
 
     @attr.chart = new Chart(ctx).Doughnut data, options 
 
 
   @after "initialize", ->
-    @chart()
+
+    @on document, "slideScrollReq", ->
+      if @attr.chart.destroy?
+        @attr.chart.destroy()
+
+    @on @$node.closest("[role=slide]"), "redrawChartReq", ->
+      @chart()
 
 Toprater.PieChart = flight.component pieChart

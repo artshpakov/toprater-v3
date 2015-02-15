@@ -37,4 +37,5 @@ Toprater.attachEmployersLandingComponents = ->
   Toprater.EmployersRating.attachTo "[role=employers-rating]"
   Toprater.CriteriaBar.attachTo "[role=criteria-bar]"
   Toprater.PieChart.attachTo "[role=pie-chart]"
+  Toprater.LineChart.attachTo "[role=criteria-bar]"
   # Toprater.Slider.attachTo "[role=slider]"
