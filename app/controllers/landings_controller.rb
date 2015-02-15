@@ -24,6 +24,7 @@ class LandingsController < ApplicationController
       params[:filters] = info_data.body["data"]["worst"]["filters"]
       @employers = Alternative.rate(params).reverse[0..9]
       @reverse = true
+
     else
       params[:criteria] = info_data.body["data"]["best"]["criteria"]
       params[:filters] = info_data.body["data"]["best"]["filters"]

@@ -251,7 +251,6 @@ $ipath: "../../../i"
 
 
     .employer-info, .employer-chart
-      // margin-top: rem-calc(100px)
       margin-top: 10vh
 
     h2
@@ -282,11 +281,42 @@ $ipath: "../../../i"
         vertical-align: top
 
       .chart
+        font-family: "Helvetica Neue Bold", "Helvetica", Helvetica, Arial, sans-serif
+        font-weight: bold
         height: 250px
+        margin-right: 40px
+        position: relative
+        text-align: center
         width: 250px
+        
+        .chart-text
+          position: absolute
+          position: absolute
+          top: 73px
+          left: 72px
+
+        .percentage
+          font-size: 70px
+          line-height: 64px
+          
+            
+          small
+            display: inline-block
+            font-size: 20px
+            margin-top: -1em
+            vertical-align: top
+
+        span
+          font-family: "proxima_nova_rgregular"
+          font-size: 16px
+          line-height: 20px
+          display: block
+          text-align: center
+
 
       .info
         font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif
+        margin-left: 40px
 
         .switcher
           color: rgba(255,255,255,0.7)
@@ -326,6 +356,15 @@ $ipath: "../../../i"
           .value
             color: rgba(255,255,255,0.7)
             font-weight: bold
+
+            &:before
+              background: transparent url(#{$ipath}/landings/rating_icon.png) 0 0 no-repeat
+              content: " "
+              display: block
+              float: left
+              margin: 27px 10px 0 -26px
+              height: 12px
+              width: 14px
             
             span, small
               display: inline-block
@@ -365,6 +404,15 @@ $ipath: "../../../i"
             font-weight: bold
             letter-spacing: 0.1em
             margin: 12px 0
+
+            &:before
+              background: transparent url(#{$ipath}/landings/review_icon.png) 0 0 no-repeat
+              content: " "
+              display: block
+              float: left
+              height: 13px
+              margin: 8px 0 0 -27px
+              width: 14px
     
     .criterion-bar-chart
       bottom: 0

@@ -69,7 +69,19 @@ body@employers-page
                 .desc = employer.extra["description"]
 
             .employer-chart.columns.small-12.medium-6
-              .chart
+              - if @reverse
+                - percentage = (employer.review_ratings["terrible"] + employer.review_ratings["bad"]) / (employer.review_ratings["total"] / 100)
+              - else
+                - percentage = (employer.review_ratings["good"] + employer.review_ratings["excellent"]) / (employer.review_ratings["total"] / 100)
+              .chart@pie-chart data-value="#{ percentage }"
+                .chart-text
+                  .percentage 
+                    = percentage
+                    small &nbsp;%
+                  - if @reverse
+                    span Negative reviews
+                  - else
+                    span Positive reviews
               .info
                 - if @worst_exist
                   .switcher@switcher

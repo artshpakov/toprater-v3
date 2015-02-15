@@ -21,7 +21,7 @@ criteriaBar = ->
 
     if event.originalEvent.deltaX > 0 or direction == "right"
       event.stopPropagation(elem)
-      for i in [0...18]
+      for i in [0...30]
         elem.css "left", pos--
         @arrowsVisibility(elem)
 
@@ -32,7 +32,7 @@ criteriaBar = ->
     if event.originalEvent.deltaX < 0 or direction == "left"
       event.stopPropagation(elem)
       
-      for i in [0...18]
+      for i in [0...30]
         elem.css "left", pos++
         @arrowsVisibility(elem)
 
