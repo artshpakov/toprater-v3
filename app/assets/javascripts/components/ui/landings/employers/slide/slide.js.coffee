@@ -31,11 +31,22 @@ slide = ->
     if @isCurrent()
       @navigate 400
 
+  @toggleDesc = ->
+
+    if @$node.find(".desc").length
+      if @$node.find(".desc").height() >= $(window).height() / 3
+        @$node.find(".showmore").show()
+        @$node.find(".desc-text").height(100)
+      else
+        @$node.find(".showmore").hide()
+        @$node.find(".desc-text").height("auto")
+
 
   @after "initialize", ->
     @$node.height $(window).height()
     @attr.name = @$node.attr "data-name"
     @fixPosition()
+    @toggleDesc()
 
     @on document, "slideScrollReq", (event, data) ->
       if data? and data.name == @attr.name then @navigate()
@@ -43,6 +54,7 @@ slide = ->
     @on window, "resize", ->
       @$node.height $(window).height()
       @fixPosition()
+      @toggleDesc()
 
     @trigger document, "slideInitialized", { name: @attr.name, current: @isCurrent() }
 

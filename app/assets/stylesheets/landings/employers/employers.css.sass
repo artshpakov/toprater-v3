@@ -40,7 +40,27 @@ $ipath: "../../../i"
   &:before
     content: "A"
 
-
+=steps-indicator($font-size)
+  border: 1px solid $gray-blue
+  border-radius: $font-size*2+px
+  background-color: transparent
+  color: #fff
+  cursor: pointer
+  display: inline-block
+  font-size: $font-size+px
+  height: $font-size*2+px
+  width: $font-size*2+px
+  padding: $font-size/4+px 0
+  margin: 0 ($font-size/1.8)/2+px
+  text-align: center
+  vertical-align: top
+  
+  &.current
+    background-color: #fff
+    border: 1px solid #fff
+    color: $dark
+    cursor: default
+    margin: 0 $font-size/1.8/2-2+px
 
 
 .slide-scroller
@@ -48,20 +68,36 @@ $ipath: "../../../i"
   position: fixed
   top: 50px
   left: 40px
-  z-index: 20
+  z-index: 30
 
   a
     color: #fff
     cursor: pointer
     display: block
-    font-size: 28px
-    line-height: 28px
-    height: 28px
+    font-size: 23px
+    line-height: 23px
+    height: 23px
     opacity: 0.5
     position: relative
     text-align: center
     width: 28px
     z-index: 21s
+
+    &#switch-to-find-company
+      background: transparent url(#{$ipath}/landings/fc_icon_light.png) 0 0 no-repeat
+      color: transparent
+      height: 49px
+      margin: 5px 0 0 -10px
+      opacity: 1
+      width: 48px
+
+    &#switch-to-user-company
+      background: transparent url(#{$ipath}/landings/cc_icon_light.png) 0 0 no-repeat
+      color: transparent
+      margin: 5px 0 0 -7px
+      opacity: 1
+      height: 41px
+      width: 40px
 
     &:hover
       opacity: 1
@@ -104,10 +140,31 @@ $ipath: "../../../i"
   
   .row
     max-width: 72rem
+  
+  hr
+    border: 0
+    background-color: #fff
+    height: 1px
 
   header, section[role=slide]
     padding-left: 100px
     padding-right: 100px
+  
+  .coming-soon
+    position: absolute
+    background-color: rgba(0,0,0, .8)
+    top: 0
+    bottom: 0
+    left: 0
+    right: 0
+    // position: absolute
+    // width: 100%
+    z-index: 20
+
+    h1
+      margin-top: 15% !important
+      text-align: center !important
+
 
   header
     background-color: $blue
@@ -179,8 +236,6 @@ $ipath: "../../../i"
         letter-spacing: 2px
 
       hr
-        border: 0
-        background-color: #fff
         height: 1px
         margin: 3vh 0
         opacity: .6
@@ -258,6 +313,21 @@ $ipath: "../../../i"
 
     .employer-info, .employer-chart
       margin-top: 10vh
+    
+
+    @media only screen and (min-width : 1224px)
+      .employer-info
+        .desc
+          .desc-text
+            overflow: hidden
+
+          a.showmore
+            color: #fff
+            display: none
+            text-decoration: underline
+
+            &:hover
+              text-decoration: none
 
     h2
       font-size: $title-font-size
@@ -387,9 +457,6 @@ $ipath: "../../../i"
               margin-right: rem-calc(10px)
 
         hr
-          background-color: #fff
-          border: 0
-          height: 1px
           margin: 40px 0
           opacity: 0.5
           width: rem-calc(150px)
@@ -595,6 +662,144 @@ $ipath: "../../../i"
 
 
   // Game
+  #employers-find-company
+    position: relative
+    
+    h1
+      letter-spacing: 2px
+      margin-top: 12vh
+
+    h3
+      font-family: "proxima_nova_rgregular"
+      font-size: 32px
+      letter-spacing: 3px
+      margin-top: 10vh
+
+    small
+      color: rgba(255,255,255,0.5)
+      font-size: 16px
+      line-height: 24px
+    
+    hr 
+      opacity: .1
+      margin-bottom: 36px
+    
+    .step
+      display: inline-block
+      vertical-align: top
+
+    .important-criteria
+      margin: 8vh 0
+      
+      .criterion-wrapper
+        .criterion
+          border-radius: 20px 20px 20px 0
+          background-color: $gray-blue
+          display: inline-block
+          color: #fff
+          font-size: 14px
+          letter-spacing: 1px
+          margin: 0 100px 3vh 0
+          padding: 8px 15px 7px 15px
+          text-transform: uppercase
+          text-decoration: none
+
+          &:before
+            color: $blue
+            display: none
+            float: left
+            margin: 4px 0 0 -40px
+            font-size: 18px
+            
+
+          &:hover
+            background-color: $blue
+
+            &:before
+              display: block
+      
+
+          &.selected
+            background-color: $blue
+    
+    .pages-block
+
+      .button
+        background-color: $dark
+        border: 1px solid $gray-blue
+        cursor: default
+        color: $gray-blue
+        float: right
+        padding: 0.7rem 2rem
+
+        &.active
+          background-color: $button-green
+          border: 1px solid $button-green
+          color: #fff
+          cursor: pointer
+
+      .pagination
+        float: left
+        
+        span
+          color: #d5dde1
+          display: inline-block
+          height: 32px
+          line-height: 32px
+          margin-right: 20px
+
+        a
+          +steps-indicator(16)
+          margin-right: 15px
+
+  .industry-chooser
+    h3
+      display: inline-block
+
+    .chooser
+      display: inline-block
+      margin-left: 50px
+      font-size: 16px
+
+      .button
+        background-color: $gray-blue
+        text-align: left
+        padding-right: 25px
+        width: 270px
+
+        &:before
+          float: right
+          color: #fff
+          font-size: 20px
+
+
+      #industries-list
+        background-color: $gray-blue
+        border: 0
+        font-size: 16px
+        max-width: 300px
+        margin: 0
+        line-height: 44px
+        overflow: scroll
+        padding: 0
+        width: 270px !important
+
+        a
+          color: #fff
+          padding: 10px 20px
+
+          &:hover
+            background-color: #6a7b91
+
+      
   #employers-user-company
     background-color: $light-blue
+    position: relative
+
+    h1
+      letter-spacing: 2px
+      margin-top: 12vh
     
+
+  footer
+    background-color: $dark
