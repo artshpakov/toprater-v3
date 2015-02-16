@@ -13,35 +13,29 @@ class LandingsController < ApplicationController
     setup
     info_data = Sentimeta::Client.fetch :infotext, { design: "nyt", param: "landing", lang: "en" }
     segments = Sentimeta::Client.fetch('attributes/segm')['values']
-    p segments
 
-    if info_data.body["data"]["worst"].present?
-      @worst_exist = true
-    else
-      @worst_exist = false
-    end
-
+    @worst_exist = info_data.body["data"]["worst"].present? rescue false
 
     if params[:reverse]
-      params[:criteria] = info_data.body["data"]["worst"]["criteria"]
-      params[:filters] = info_data.body["data"]["worst"]["filters"]
-      @employers = Alternative.rate(params).reverse[0..9]
+      params[:criteria] = info_data.body["data"]["worst"]["criteria"] rescue false
+      params[:filters] = info_data.body["data"]["worst"]["filters"] rescue false
+      @employers = Alternative.rate(params).reverse
       @reverse = true
 
     else
-      params[:criteria] = info_data.body["data"]["best"]["criteria"]
-      params[:filters] = info_data.body["data"]["best"]["filters"]
-      @employers = Alternative.rate(params)[0..9]
+      params[:criteria] = info_data.body["data"]["best"]["criteria"] rescue false
+      params[:filters] = info_data.body["data"]["best"]["filters"] rescue false
+      @employers = Alternative.rate(params)
       @reverse = false
     end
 
-    @title = info_data.body["data"]["title"]
-    @about = info_data.body["data"]["about_rating"]
-    @important_criteria = info_data.body["data"]["important_criteria"].map { |criterion| Criterion.find criterion }
-    @find_company_title = info_data.body["data"]["find_company_title"]
-    @check_company_title = info_data.body["data"]["check_company_title"]
-    @find_company_text = info_data.body["data"]["find_company_text"]
-    @check_company_text = info_data.body["data"]["check_company_text"]
+    @title = info_data.body["data"]["title"] rescue false
+    @about = info_data.body["data"]["about_rating"] rescue false
+    @important_criteria = info_data.body["data"]["important_criteria"].map { |criterion| Criterion.find criterion } rescue false
+    @find_company_title = info_data.body["data"]["find_company_title"] rescue false
+    @check_company_title = info_data.body["data"]["check_company_title"] rescue false
+    @find_company_text = info_data.body["data"]["find_company_text"] rescue false
+    @check_company_text = info_data.body["data"]["check_company_text"] rescue false
     @segments = segments
 
     # if request.xhr?
