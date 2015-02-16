@@ -12,8 +12,8 @@ slideNav = ->
     @renderNav()
 
   @navigate = (event) ->
-    event.stopPropagation()
     if event.target.tagName.toLowerCase() == "a"
+      event.stopPropagation()
       slideName = event.target.getAttribute "data-name"
       @trigger document, "slideScrollReq", name: slideName
       _.find(@attr.slides, (slide) -> slide.current)?.current = false
@@ -30,6 +30,8 @@ slideNav = ->
     down = event.which == 40 or event.which == 34
     up = event.which == 38 or event.which == 33
     if event.clientY > 200 or up or down
+      event.preventDefault()
+      event.stopPropagation()
       # FIXME: fix in Firefox!
       if event.originalEvent.deltaY > 0 or down
         currentSlide = _.find @attr.slides, (slide) -> slide.current
@@ -40,6 +42,8 @@ slideNav = ->
           
       # FIXME: fix in Firefox!              
       if event.originalEvent.deltaY < 0 or up
+        event.preventDefault()
+        event.stopPropagation()
         currentSlide = _.find @attr.slides, (slide) -> slide.current
         nextSlide = @attr.slides[_.indexOf(@attr.slides, currentSlide) + -1]
         if nextSlide?
