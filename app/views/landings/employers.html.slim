@@ -147,7 +147,7 @@ body@employers-page
                     .criterion-wrapper.small-6.medium-4.columns
                       a.criterion.toprater-icon-plus-add-2 href="javascript:;" data-name="#{ criterion.name }" = criterion.label
 
-          .second.step@second-step
+          .second.step@second-step style="display: none"
             h1 = @find_company_title
             -if @segments.present?
               .industry-chooser
