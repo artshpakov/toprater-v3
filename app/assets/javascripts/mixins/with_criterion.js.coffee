@@ -8,9 +8,9 @@ withCriterion = ->
     Toprater.Criterion.attachTo "[role=criterion]"
 
   @toggleCriterion = (event) ->
-    console.log "olololo"
     event.stopPropagation()
     @attr.picked = !@attr.picked
+    @$node.toggleClass "picked"
 
 
   @after "initialize", ->
