@@ -1,0 +1,9 @@
+- if page_count > 1
+  ul.pager
+    li.arrow 
+      a href="" &larr;
+    - (1..page_count).each do |page|
+      li class="#{ 'active' if page==current_page }"
+        a href="#{ link.call(page) }" target="_self" = page
+    li.arrow 
+      a href="" &rarr;

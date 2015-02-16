@@ -32,4 +32,13 @@ module ApplicationHelper
     Sphere.leafs.find { |s| s['name'] == State.sphere }.try :[], 'label'
   end
 
+
+  def pagination total, per_page, link
+    render partial: "partials/pagination", locals: {
+      page_count: (total.to_f / per_page).ceil,
+      current_page: (params[:page].try(:to_i) || 1),
+      link: link
+    }
+  end
+
 end

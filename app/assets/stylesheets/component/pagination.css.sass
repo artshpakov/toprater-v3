@@ -1,0 +1,27 @@
+.pager
+  overflow: hidden
+
+  li
+    float: left
+    line-height: 1
+    text-align: center
+    margin: 0 4px
+    border: 1px solid #ccc
+    border-radius: 20px
+
+    a
+      font-size: rem-calc(12)
+      min-width: 24px
+      height: 24px
+      line-height: 24px
+      float: left
+      text-align: center
+
+    &.active
+      border: 1px solid #1ba7e0
+      background: #1ba7e0
+
+      &:hover
+        background: #1ba7e0
+      a
+        color: white !important
