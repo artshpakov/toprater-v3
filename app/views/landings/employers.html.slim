@@ -49,7 +49,6 @@ body@employers-page
         - @employers.each_with_index do |employer, index|
           section.employer.slide@slide class="employer-#{ index }" data-name="employer-#{ index }"
             .row
-
               .employer-info.columns.small-12.medium-6
                 .place
                   span 
@@ -106,29 +105,29 @@ body@employers-page
                     .count = employer.review_ratings["total"]
                     div reviews
 
-          - if employer.other_criteria.present?
-            .row
-              .criterion-bar-chart@criteria-bar
-                a.arrow.toprater-icon-chevron-left@arrow-left href="javascript:;" 
-                a.arrow.toprater-icon-chevron-right@arrow-right href="javascript:;"
-                .bar-wrap
-                  - employer.other_criteria.values.each do |criterion|
-                    a.criterion-bar data-rating="#{rating criterion['rating']}" data-name="#{ criterion["label"] }" href="https://toprater.com/en/companies/objects/criteria/#{ criterion['name'] }" target="_blank"
-                      .name = criterion["label"]
-                      .rating = rating criterion["rating"]
+            - if employer.other_criteria.present?
+              .row
+                .criterion-bar-chart@criteria-bar
+                  a.arrow.toprater-icon-chevron-left@arrow-left href="javascript:;" 
+                  a.arrow.toprater-icon-chevron-right@arrow-right href="javascript:;"
+                  .bar-wrap
+                    - employer.other_criteria.values.each do |criterion|
+                      a.criterion-bar data-rating="#{rating criterion['rating']}" data-name="#{ criterion["label"] }" href="https://toprater.com/en/companies/objects/criteria/#{ criterion['name'] }" target="_blank"
+                        .name = criterion["label"]
+                        .rating = rating criterion["rating"]
 
-                  .links-bar
-                    div
-                      a.chart-link.toprater-link href="https://toprater.com/en/companies/objects/criteria/#{employer.reviews[0]["name"]}/filters/top/fortune-1000" target="_blank"
-                        | 300 + awesome criteria on our toprater.com 
-                        span.toprater-icon-chevron-right
-                    div
-                      a.chart-link.fc-link href="javascript:;"
-                        = @find_company_title
-                    div
-                      a.chart-link.cc-link href="javascript:;"
-                        = @check_company_title
-                  .line-chart
+                    .links-bar
+                      div
+                        a.chart-link.toprater-link href="https://toprater.com/en/companies/objects/criteria/#{employer.reviews[0]["name"]}/filters/top/fortune-1000" target="_blank"
+                          | 300 + awesome criteria on our toprater.com 
+                          span.toprater-icon-chevron-right
+                      div
+                        a.chart-link.fc-link href="javascript:;"
+                          = @find_company_title
+                      div
+                        a.chart-link.cc-link href="javascript:;"
+                          = @check_company_title
+                    .line-chart
 
 
 
@@ -137,7 +136,7 @@ body@employers-page
         .slide-wrapper
           .first.step@first-step
             h1 = @find_company_title
-            / .coming-soon
+            .coming-soon
               h1 Coming soon
             h3 What's important for you?
             small Select several criteria which describe best what inspires you in potential employers
@@ -172,7 +171,7 @@ body@employers-page
 
     section#employers-user-company@slide data-name="user-company"
       .row@employers-user-company
-        / .coming-soon 
+        .coming-soon 
           h1 Coming soon
         h1 = @check_company_title
 
