@@ -34,12 +34,14 @@ slide = ->
   @toggleDesc = ->
 
     if @$node.find(".desc").length
-      if @$node.find(".desc").height() >= $(window).height() / 3
+      if @$node.find(".desc-text").html().length > 200
+      # if @$node.find(".desc-text").html() >= $(window).height() / 4
         @$node.find(".showmore").show()
-        @$node.find(".desc-text").height(100)
+        @$node.find(".desc-text").html(@$node.find(".desc-text").html().slice(0, 200) + "...")
       else
         @$node.find(".showmore").hide()
-        @$node.find(".desc-text").height("auto")
+        # @$node.find(".desc-text").height("auto")
+      @$node.find(".desc-text").show()
 
 
   @after "initialize", ->
@@ -48,13 +50,16 @@ slide = ->
     @fixPosition()
     @toggleDesc()
 
+    @on @$node.find(".link-to-mechanic .button"), "click", ->
+      $(document).find("[data-name=find-company]").click()
+
     @on document, "slideScrollReq", (event, data) ->
       if data? and data.name == @attr.name then @navigate()
       
     @on window, "resize", ->
       @$node.height $(window).height()
       @fixPosition()
-      @toggleDesc()
+      # @toggleDesc()
 
     @trigger document, "slideInitialized", { name: @attr.name, current: @isCurrent() }
 
