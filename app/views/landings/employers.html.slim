@@ -45,65 +45,66 @@ body@employers-page
 
 
     section#employers-rating@employers-rating
-      - @employers.each_with_index do |employer, index|
-        section.employer.slide@slide class="employer-#{ index }" data-name="employer-#{ index }"
-          .row
+      - if @employers.present?
+        - @employers.each_with_index do |employer, index|
+          section.employer.slide@slide class="employer-#{ index }" data-name="employer-#{ index }"
+            .row
 
-            .employer-info.columns.small-12.medium-6
-              .place
-                span 
-                  - if @reverse
-                    =' 1000 - index
-                  - else
-                    =' index + 1
-                | /&nbsp;
-                | 1000
-              h2 = employer.name
-              .industries
-                - employer.extra["industries"].each_with_index do |industry, index|
-                  span = industry["label"]
-                  - if not index + 1 == employer.extra["industries"].size
-                    |,&nbsp;
-              
-              - if employer.extra["description"].present?
-                .desc 
-                  .desc-text
-                    = employer.extra["description"]
+              .employer-info.columns.small-12.medium-6
+                .place
+                  span 
+                    - if @reverse
+                      =' 1000 - index
+                    - else
+                      =' index + 1
+                  | /&nbsp;
+                  | 1000
+                h2 = employer.name
+                .industries
+                  - employer.extra["industries"].each_with_index do |industry, index|
+                    span = industry["label"]
+                    - if not index + 1 == employer.extra["industries"].size
+                      |,&nbsp;
+                
+                - if employer.extra["description"].present?
+                  .desc 
+                    .desc-text
+                      = employer.extra["description"]
 
-                  a.showmore href="https://toprater.com/en/companies/objects/#{ employer.full_id }" 
-                    | Show full description
+                    a.showmore href="https://toprater.com/en/companies/objects/#{ employer.full_id }" 
+                      | Show full description
 
-            .employer-chart.columns.small-12.medium-6
-              - if @reverse
-                - percentage = (employer.review_ratings["terrible"] + employer.review_ratings["bad"]) / (employer.review_ratings["total"] / 100)
-              - else
-                - percentage = (employer.review_ratings["good"] + employer.review_ratings["excellent"]) / (employer.review_ratings["total"] / 100)
-              .chart@pie-chart data-value="#{ percentage }"
-                .chart-text
-                  .percentage 
-                    = percentage
-                    small &nbsp;%
-                  - if @reverse
-                    span Negative reviews
-                  - else
-                    span Positive reviews
-              .info
-                - if @worst_exist
-                  .switcher@switcher
-                    a.best.current href="javascript:;" Best
-                    |&nbsp;&nbsp;/&nbsp;&nbsp;
-                    a.worst href="javascript:;" Worst
-                .rating-info
-                  .current-criterion = Criterion.find(employer.reviews[0]["name"]).label
-                  .value
-                    span =' employer.rating
-                    small 
-                      | /&nbsp;&nbsp;5
-                hr
-                .reviews-count
-                  div Based on
-                  .count = employer.review_ratings["total"]
-                  div reviews
+              .employer-chart.columns.small-12.medium-6
+                - if @reverse
+                  - percentage = (employer.review_ratings["terrible"] + employer.review_ratings["bad"]) / (employer.review_ratings["total"] / 100)
+                - else
+                  - percentage = (employer.review_ratings["good"] + employer.review_ratings["excellent"]) / (employer.review_ratings["total"] / 100)
+                .chart@pie-chart data-value="#{ percentage }"
+                  .chart-text
+                    .percentage 
+                      = percentage
+                      small &nbsp;%
+                    - if @reverse
+                      span Negative reviews
+                    - else
+                      span Positive reviews
+                .info
+                  - if @worst_exist
+                    .switcher@switcher
+                      a.best.current href="javascript:;" Best
+                      |&nbsp;&nbsp;/&nbsp;&nbsp;
+                      a.worst href="javascript:;" Worst
+                  .rating-info
+                    .current-criterion = Criterion.find(employer.reviews[0]["name"]).label
+                    .value
+                      span =' employer.rating
+                      small 
+                        | /&nbsp;&nbsp;5
+                  hr
+                  .reviews-count
+                    div Based on
+                    .count = employer.review_ratings["total"]
+                    div reviews
 
           - if employer.other_criteria.present?
             .row
@@ -136,7 +137,7 @@ body@employers-page
         .slide-wrapper
           .first.step@first-step
             h1 = @find_company_title
-            .coming-soon
+            / .coming-soon
               h1 Coming soon
             h3 What's important for you?
             small Select several criteria which describe best what inspires you in potential employers
@@ -145,7 +146,7 @@ body@employers-page
                 - @important_criteria.each do |criterion|
                   - if criterion.present?
                     .criterion-wrapper.small-6.medium-4.columns
-                      a.criterion.toprater-icon-plus-add-2 href="javascript:;" data-name="#{ criterion.name }" = criterion.label
+                      a.criterion.toprater-icon-plus-add-2@slide-criterion href="javascript:;" data-label="criterion.label" data-name="#{ criterion.name }" = criterion.label
 
           .second.step@second-step style="display: none"
             h1 = @find_company_title
@@ -166,12 +167,12 @@ body@employers-page
             span Step
             a.current href="javascript:;" 1
             a href="javascript:;" 2
-          a.button.round href="javascript:;" Next
+          a.button.round@slide-results href="javascript:;" Next
 
 
     section#employers-user-company@slide data-name="user-company"
       .row@employers-user-company
-        .coming-soon 
+        / .coming-soon 
           h1 Coming soon
         h1 = @check_company_title
 
