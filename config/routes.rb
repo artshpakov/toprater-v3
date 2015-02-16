@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     scope "/(:sphere)" do
       get '/' => 'alternatives#index', as: :sphere
 
+      get '/index/:path' => 'catalog#index', as: :index
+
       scope :suggest, controller: :search do
         get :objects
         get '/:scope' => :suggest

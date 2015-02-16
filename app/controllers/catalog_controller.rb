@@ -20,4 +20,13 @@ class CatalogController < ApplicationController
     end
   end
 
+  def index
+    response = Sentimeta::Client.fetch "index/#{params[:path]}", limit: ITEMS_PER_PAGE
+    if response.ok?
+      @path   = response['breadcrumbs']
+      @groups = response['next']
+      @ratings = response['ratings']
+    end
+  end
+
 end
