@@ -15,23 +15,23 @@
         span = @path[@path.count-1]['label']
 
 
-  - if @groups.present?
-    - @groups.each do |group|
-      .row
-        h4 = link_to group['label'], group['url']
-        .row
-          - group['links'].each do |link|
-            .large-3.columns.index-item
-              = link_to link['url'] do
-                = image_tag link['photo'], class: 'index-image'
-                h5 = link['name']
-
-  - if @ratings.present?
+- if @groups.present?
+  - @groups.each do |group|
     .row
-      - @ratings.each do |rating|
-        .large-3.columns.index-item
-          = link_to rating['url'] do
-            = image_tag rating['photo'], class: 'index-image'
-            h5 = rating['label']
+      h4 = link_to group['label'], group['url']
+      .row
+        - group['links'].each do |link|
+          .large-3.columns.index-item
+            = link_to link['url'] do
+              = image_tag link['photo'], class: 'index-image'
+              h5 = link['name']
+
+- if @ratings.present?
+  .row
+    - @ratings.each do |rating|
+      .large-3.columns.index-item
+        = link_to rating['url'] do
+          = image_tag rating['photo'], class: 'index-image'
+          h5 = rating['label']
 
 

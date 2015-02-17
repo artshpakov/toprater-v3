@@ -27,6 +27,7 @@ Rails.application.routes.draw do
 
         get '/:id/prices' => 'prices#index', as: :prices
       end
+      get '/rating/(/criteria/:criteria)(/filters/*filters)' => 'alternatives#index', as: :rating
     end
 
     namespace :landings do
