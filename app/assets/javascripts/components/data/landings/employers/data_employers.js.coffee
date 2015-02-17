@@ -1,5 +1,5 @@
 dataEmployers = ->
-  # @attributes
+  @attributes
 
   @encode = (criteria, filters) ->
     paramsPath = ""

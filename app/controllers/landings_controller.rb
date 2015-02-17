@@ -19,6 +19,7 @@ class LandingsController < ApplicationController
     if params[:reverse]
       params[:criteria] = info_data.body["data"]["worst"]["criteria"] rescue false
       params[:filters] = info_data.body["data"]["worst"]["filters"] rescue false
+      params[:inverse] = true
       @employers = Alternative.rate(params).reverse
       @reverse = true
 

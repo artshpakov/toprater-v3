@@ -16,8 +16,8 @@ body@employers-page
         .columns.small-12
           a.toprater-logo href="https://toprater.com"
             | Toprater
-          a.nyt-logo href="http://nytimes.com"
-            | New-York Times
+          / a.nyt-logo href="http://nytimes.com"
+          /   | New-York Times
       .row
         .columns.small-10
           h1@title-switcher data-worst="#{ @worst_exist }"
@@ -70,7 +70,7 @@ body@employers-page
                     .desc-text
                       = employer.extra["description"]
 
-                    a.showmore href="https://toprater.com/en/companies/objects/#{ employer.full_id }" 
+                    a.showmore href="/en/companies/objects/#{ employer.full_id }" 
                       | Show full description
 
               .employer-chart.columns.small-12.medium-6
@@ -112,13 +112,13 @@ body@employers-page
                   a.arrow.toprater-icon-chevron-right@arrow-right href="javascript:;"
                   .bar-wrap
                     - employer.other_criteria.values.each do |criterion|
-                      a.criterion-bar data-rating="#{rating criterion['rating']}" data-name="#{ criterion["label"] }" href="https://toprater.com/en/companies/objects/criteria/#{ criterion['name'] }" target="_blank"
+                      a.criterion-bar data-rating="#{rating criterion['rating']}" data-name="#{ criterion["label"] }" href="/companies/objects/criteria/#{ criterion['name'] }" target="_blank"
                         .name = criterion["label"]
                         .rating = rating criterion["rating"]
 
                     .links-bar
                       div
-                        a.chart-link.toprater-link href="https://toprater.com/en/companies/objects/criteria/#{employer.reviews[0]["name"]}/filters/top/fortune-1000" target="_blank"
+                        a.chart-link.toprater-link href="/en/companies/objects/criteria/#{employer.reviews[0]["name"]}/filters/top/fortune-1000" target="_blank"
                           | 300 + awesome criteria on our toprater.com 
                           span.toprater-icon-chevron-right
                       div
@@ -134,9 +134,9 @@ body@employers-page
     section#employers-find-company@slide data-name="find-company"
       .row@employers-find-company
         .slide-wrapper
-          .first.step@first-step
-            h1 = @find_company_title
-            .coming-soon
+          h1 = @find_company_title
+          .first.step@criteria-chooser
+            / .coming-soon
               h1 Coming soon
             h3 What's important for you?
             small Select several criteria which describe best what inspires you in potential employers
@@ -147,18 +147,19 @@ body@employers-page
                     .criterion-wrapper.small-6.medium-4.columns
                       a.criterion.toprater-icon-plus-add-2@slide-criterion href="javascript:;" data-label="criterion.label" data-name="#{ criterion.name }" = criterion.label
 
-          .second.step@second-step style="display: none"
-            h1 = @find_company_title
+          .second.step@industry-chooser
             -if @segments.present?
               .industry-chooser
                 h3 Choose industry
                 .chooser
-                  a.button.toprater-icon-chevron-down data-dropdown="industries-list" aria-controls="industries-list" aria-expanded="false" Information technology
-                  div#industries-list.f-dropdown aria-hidden="true" aria-autoclose="true" tabindex=-1
+                  a.button.toprater-icon-chevron-down.list-control Information technology
+                  div#industries-list
                     ul
                       - @segments.each do |segment|
                         li
-                          a href="javascript:;" = segment["label"]
+                          a data-name="#{ segment['name'] }" data-label="#{ segment['label'] }" href="javascript:;" = segment["label"]
+
+          .third.step@step
 
         hr
         .pages-block
@@ -171,12 +172,11 @@ body@employers-page
 
     section#employers-user-company@slide data-name="user-company"
       .row@employers-user-company
-        .coming-soon 
+        / .coming-soon 
           h1 Coming soon
         h1 = @check_company_title
 
-    / footer@slide data-name="footer"
-    footer
+    footer@slide data-name="footer"
       = javascript_include_tag :application
 
       coffee:

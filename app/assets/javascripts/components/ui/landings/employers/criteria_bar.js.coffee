@@ -56,7 +56,7 @@ criteriaBar = ->
 
 
     @on @$node, "mousewheel", @scroll
-    # @on @$node, "DOMMouseScroll", @scroll
+    @on @$node, "DOMMouseScroll", @scroll
 
     @on window, "resize", ->
       @arrowsVisibility(@$node.find(".bar-wrap"))

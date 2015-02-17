@@ -113,12 +113,12 @@ $ipath: "../../../i"
   font-family: "proxima_nova_rgregular"
   min-width: 1280px
   
-  canvas
-    -webkit-transform: translatez(0)
-    -moz-transform: translatez(0)
-    -ms-transform: translatez(0)
-    -o-transform: translatez(0)
-    transform: translatez(0)
+  // canvas
+  //   -webkit-transform: translatez(0)
+  //   -moz-transform: translatez(0)
+  //   -ms-transform: translatez(0)
+  //   -o-transform: translatez(0)
+  //   transform: translatez(0)
 
   h1
     color: #fff
@@ -665,16 +665,18 @@ $ipath: "../../../i"
   // Game
   #employers-find-company
     position: relative
+    overflow: hidden
     
+
     h1
       letter-spacing: 2px
-      margin-top: 12vh
+      margin-top: 10vh
 
     h3
       font-family: "proxima_nova_rgregular"
       font-size: 32px
       letter-spacing: 3px
-      margin-top: 10vh
+      margin-top: 8vh
 
     small
       color: rgba(255,255,255,0.5)
@@ -685,12 +687,18 @@ $ipath: "../../../i"
       opacity: .1
       margin-bottom: 36px
     
-    .step
-      display: inline-block
-      vertical-align: top
+    .slide-wrapper
+      position: relative
+      height: 70vh
+
+      .step
+        display: none
+        position: absolute
+        top: 12vh
+        width: 100%
 
     .important-criteria
-      margin: 8vh 0
+      margin: 5vh 0
       
       .criterion-wrapper
         .criterion
@@ -720,7 +728,7 @@ $ipath: "../../../i"
               display: block
       
 
-          &.selected
+          &.picked
             background-color: $blue
     
     .pages-block
@@ -733,7 +741,7 @@ $ipath: "../../../i"
         float: right
         padding: 0.7rem 2rem
 
-        &.active
+        &.next, &.ready
           background-color: $button-green
           border: 1px solid $button-green
           color: #fff
@@ -753,44 +761,65 @@ $ipath: "../../../i"
           +steps-indicator(16)
           margin-right: 15px
 
-  .industry-chooser
-    h3
-      display: inline-block
+    .industry-chooser
+      margin-top: 8vh
 
-    .chooser
-      display: inline-block
-      margin-left: 50px
-      font-size: 16px
+      h3
+        display: inline-block
+        margin-top: 0
+        vertical-align: top
 
-      .button
-        background-color: $gray-blue
-        text-align: left
-        padding-right: 25px
-        width: 270px
-
-        &:before
-          float: right
-          color: #fff
-          font-size: 20px
-
-
-      #industries-list
-        background-color: $gray-blue
-        border: 0
+      .chooser
+        display: inline-block
+        margin-left: 50px
         font-size: 16px
-        max-width: 300px
-        margin: 0
-        line-height: 44px
-        overflow: scroll
-        padding: 0
-        width: 270px !important
+        vertical-align: top
 
-        a
-          color: #fff
-          padding: 10px 20px
+        .button
+          background-color: $gray-blue
+          text-align: left
+          margin: 0
+          padding-right: 25px
+          width: 270px
 
-          &:hover
-            background-color: #6a7b91
+          &:before
+            float: right
+            color: #fff
+            font-size: 20px
+
+
+        #industries-list
+          background-color: $gray-blue
+          border: 0
+          display: none
+          font-size: 16px
+          max-width: 300px
+          margin: 0
+          line-height: 44px
+          overflow: scroll
+          position: relative
+          padding: 0
+          width: 270px !important
+
+          ul
+            position: absolute
+            top: 0
+            left: 0
+          
+
+          a
+            color: #fff
+            display: block
+            padding: 5px 20px
+
+            &:first-of-type
+              padding-top: 10px
+
+            &:last-of-type
+              padding-bottom: 10px
+
+            &:hover
+              background-color: #6a7b91
 
       
   #employers-user-company
