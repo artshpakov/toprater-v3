@@ -9,7 +9,6 @@ class ComponentsCell < TopraterCell
       # TODO temporary
       JSON.parse(RestClient.get("http://maps.googleapis.com/maps/api/geocode/json?address=#{ args[:location].split('/').last }"))['results'].first['geometry']['location'] rescue nil
     end
-    p @title, @zoom, @geo
     render
   end
 

@@ -4,9 +4,9 @@ class Observers::Debug
     reset!
   end
 
-  def notify event, url
+  def notify event, request_details
     if event == 'fetch'
-      @api_calls << url
+      @api_calls << request_details
     end
   end
 

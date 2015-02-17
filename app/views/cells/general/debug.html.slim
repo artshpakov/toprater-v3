@@ -11,7 +11,11 @@
   b API calls
   .data
     - @api_calls.each do |call|
-      div = call
+      div
+        => call[:method].upcase
+        => call[:url]
+        - if call[:params].present? && call[:method] != :get
+          = call[:params].to_json
 
   br
 

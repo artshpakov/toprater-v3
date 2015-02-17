@@ -13,7 +13,7 @@ class CatalogController < ApplicationController
     response = Sentimeta::Client.fetch :catalog, path: params[:path], limit: ITEMS_PER_PAGE, offset: (@page-1)*ITEMS_PER_PAGE
     if response.ok?
       @path         = response.body['path']
-      @content      = Sentimeta::Client.fetch :infotext, { lang: 'en', param: "catalog-annotation", data: { path: params[:path] }}
+      @content      = Sentimeta::Client::Info.catalog(params[:path])
       @catalog      = response.body['catalog']
       @objects      = response.body['objects']
       @items_total  = response.body['total']

@@ -30,13 +30,13 @@ class IndexCell < TopraterCell
 
   def main sphere
     Rails.cache.fetch "info:main:#{ sphere }" do
-      Sentimeta::Client.fetch(:infotext, { sphere: sphere, lang: State.locale, design: 'std', param: 'main' })
+      Sentimeta::Client::Info.main sphere: sphere
     end
   end
 
   def presets sphere
     Rails.cache.fetch "info:presets:#{ sphere }" do
-      Sentimeta::Client.fetch(:infotext, { sphere: sphere, lang: State.locale, design: 'std', param: 'presets' })
+      Sentimeta::Client::Info.presets sphere: sphere
     end    
   end
 

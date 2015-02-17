@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
 
   def set_hints
     unless cookies[:hints_off] || Sentimeta.sphere.nil?
-      gon.hints = HintsDecorator.decorate_collection((Sentimeta::Client.fetch :infotext, { lang: "en", design: "std", param: "hints" })['hint1']['multiple'])
+      gon.hints = HintsDecorator.decorate_collection(Sentimeta::Client::Info.hints)
       cookies[:hints_off] = true
     end
   end
