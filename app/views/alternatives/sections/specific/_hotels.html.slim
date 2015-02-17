@@ -7,7 +7,7 @@ section
     .small-8.columns
       = solid do
         h4 Summary
-        p = @alternative.extra['summary']
+        p.textmass = @alternative.extra['summary']
     .small-4.columns
       .th
         img src=@alternative.cover
@@ -17,15 +17,9 @@ section.wide
 
 section
   h4 Amenities
-  .row
-    .small-6.columns
-      ul
-        - @alternative.extra['amenities'][0..(@alternative.extra['amenities'].size/2).ceil].each do |amenity|
-          li = amenity
-    .small-6.columns
-      ul
-        - @alternative.extra['amenities'][(@alternative.extra['amenities'].size/2).ceil+1..@alternative.extra['amenities'].size].each do |amenity|
-          li = amenity
+  ul.textmass.columns-2
+    - @alternative.extra['amenities'].each do |amenity|
+      li = amenity
 
 = solid do
   - if @alternative.partners_data.present?

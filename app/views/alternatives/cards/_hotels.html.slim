@@ -10,11 +10,11 @@ sass:
 .hotel-card
   .headline
     .index = index
+    span.label.right =' alternative.rating
     a.name@card-link href="#{ object_path id: alternative.full_id }"
       =' alternative.name
       = solid do
         = "#{ alternative.stars }*"
-      span.label.right =' alternative.rating
     = solid do
       p.address = alternative.full_address
 

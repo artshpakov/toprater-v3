@@ -9,6 +9,9 @@
  *= require_self
  */
 
+
+@import '_mixins'
+
 ul
   margin: 0
   list-style: none
@@ -20,16 +23,11 @@ ul
     &:last-of-type
       border: none
 
-@mixin avatar($size)
-  width: $size
-  height: $size
-  border-radius: $size/2
-  background-size: cover
-  background-position: center
-  box-shadow: 0 1px 3px rgba(0,0,0,0.3) inset
-
 .avatar
   +avatar(40px)
+
+.columns-2
+  +columned(2)
 
 .textmass
   font-size: 12px

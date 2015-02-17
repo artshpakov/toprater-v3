@@ -24,7 +24,7 @@ class Alternative < Sentimeta::Model
   end
 
   def cover
-    photos.find { |p| p['type']=='primary_image' }.try(:[], 'url') if photos.present?
+    (photos.find { |p| p['type']=='primary_image' } || photos.find { |p| p['type']=='photo' }).try(:[], 'url')
   end
 
   def partners_data
