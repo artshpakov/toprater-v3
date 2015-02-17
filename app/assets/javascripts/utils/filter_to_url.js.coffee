@@ -10,7 +10,13 @@ window.filterToUrl = (name, value) ->
   encoders['string'] = (value) ->
     value
 
+  encoders['multi_string'] = (value) ->
+    value.join(',')
+
   settings = toprater.filters[name]
   url = "/#{settings.name}/"
   url += encoders[settings.kind](value)
   url
+
+window.isMultiFilter = (name) ->
+  toprater.filters[name].kind.indexOf('multi') > -1

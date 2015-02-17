@@ -10,7 +10,7 @@ class ParamsService
         key   = filters.shift.to_sym
         value = filters.shift
         type = F_PRESETS[params[:sphere]][key.to_s]['kind']
-        hash[key] = ("Filters::#{ type.capitalize }".constantize.decode(value) rescue value)
+        hash[key] = ("Filters::#{ type.camelcase }".constantize.decode(value) rescue value)
       end
       params[:filters] = hash
     end

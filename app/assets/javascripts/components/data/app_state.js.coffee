@@ -48,18 +48,33 @@ appState = ->
     @on "filtersChanged", (event, data) ->
       filter = _.find(@attr.filters, name: data.filterName)
       if filter?
-        filter.value = data.value
+        if isMultiFilter(data.filterName)
+          filter.value.push data.value
+        else
+          filter.value = data.value
         val = filter
       else
+        if isMultiFilter(data.filterName)
+          data.value = [data.value]
         @attr.filters.push data
         val = data
       @trigger "#{data.filterName}Updated", val
       @trigger "stateUpdated", to_params()
 
     @on "filterReset", (event, data) ->
-      @attr.filters = _.reject(@attr.filters, (f) =>
-        f.name == data.filter
-      )
+      removeFilter = (filter) =>
+        @attr.filters = _.reject(@attr.filters, (f) =>
+          f.name == filter
+        )
+
+      unless isMultiFilter(data.filter)
+        removeFilter data.filter
+      else
+        filter = _.find(@attr.filters, name: data.filter)
+        filter.value.splice filter.value.indexOf(data.value), 1
+        if filter.value.length == 0
+          removeFilter data.filter
+
       @trigger "stateUpdated", to_params()
 
     @on "filtersReset", ->

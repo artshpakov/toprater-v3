@@ -29,5 +29,5 @@ actors:
   name: actors
   label: Actor
   label_plural: Actors
-  kind: string
+  kind: multi_string
   template: none

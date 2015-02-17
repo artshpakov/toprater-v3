@@ -61,6 +61,6 @@ completer = ->
       if token.type == 'criteria'
         @changeCriterion token, false
       else
-        @trigger "filterReset", { filter: token.type }
+        @trigger "filterReset", { filter: token.type, value: token.value }
 
 Toprater.Completer = flight.component completer
