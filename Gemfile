@@ -24,7 +24,6 @@ gem 'sass-rails', '~> 4.0.3'
 gem 'foundation-rails'
 gem 'uglifier', '>= 1.3.0'
 gem 'rails-assets-director'
-gem 'es5-shim-rails'
 gem 'hogan_assets'
 gem 'chart-js-rails'
 
