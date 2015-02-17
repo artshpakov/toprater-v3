@@ -12,6 +12,9 @@ section
       .th
         img src=@alternative.cover
 
+section.wide
+  = render_cell :components, :map, title: @alternative.name, geo: @alternative.coordinates
+
 section
   h4 Amenities
   .row
@@ -23,6 +26,7 @@ section
       ul
         - @alternative.extra['amenities'][(@alternative.extra['amenities'].size/2).ceil+1..@alternative.extra['amenities'].size].each do |amenity|
           li = amenity
+
 = solid do
   - if @alternative.partners_data.present?
     section

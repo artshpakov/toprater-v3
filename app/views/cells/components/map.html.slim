@@ -1,1 +1,2 @@
-@map-canvas data-title="#{ @title }" data-zoom="#{ @path.count*4 }" data-geolat="#{ @geo['location']['lat'] }" data-geolng="#{ @geo['location']['lng'] }"
+= solid do
+  @map-canvas data-title="#{ @title }" data-zoom="#{ @zoom }" data-geolat="#{ @geo['lat'] }" data-geolng="#{ @geo['lng'] }"
