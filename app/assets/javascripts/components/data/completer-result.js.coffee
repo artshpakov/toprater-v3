@@ -3,7 +3,6 @@ completerResult = ->
     data: []
 
   @loadResult = (event, data) ->
-    console.log 'ajax'
     $.ajax(
       url: "/#{toprater.state.sphere}/suggest"
       data:

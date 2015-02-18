@@ -23,7 +23,6 @@ completer = ->
       @$node.find('#completer').val('')
 
     @on document, 'dataSuggestionLoaded', (event, data) ->
-      console.log data
       $('.completer-result').html JST['suggestion'].render(data)
 
 
