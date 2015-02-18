@@ -47,8 +47,12 @@ pieChart = ->
     @on document, "slideScrollReq", ->
       if @attr.chart.destroy?
         @attr.chart.destroy()
+        @$node.find("canvas").remove()
 
     @on @$node.closest("[role=slide]"), "redrawChartReq", ->
+      if @attr.chart.destroy?
+        @attr.chart.destroy()
+        @$node.find("canvas").remove()      
       @chart()
 
 Toprater.PieChart = flight.component pieChart

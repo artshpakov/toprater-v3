@@ -400,7 +400,7 @@ $ipath: "../../../i"
           font-size: 18px
           font-weight: bold
           letter-spacing: 0.1em
-          margin: -12.7vh 0 10vh 0
+          margin: -7.7vh 0 4vh 0
 
           a
             border-bottom: 1px dashed rgba(255,255,255,0.7)
@@ -496,10 +496,11 @@ $ipath: "../../../i"
       width: 100%
 
       .arrow
+        background-color: rgba(255,255,255, 0.5)
         color: #fff
         font-size: 36px
         height: 36vh
-        line-height: 34vh
+        line-height: 38vh
         opacity: .5
         position: absolute
         text-shadow: 0 0 4px #333
@@ -686,7 +687,10 @@ $ipath: "../../../i"
     hr 
       opacity: .1
       margin-bottom: 36px
-    
+
+    .full-slide
+      position: relative
+
     .slide-wrapper
       position: relative
       height: 70vh
@@ -771,20 +775,18 @@ $ipath: "../../../i"
 
       .chooser
         display: inline-block
-        margin: -11px 0 0 50px
+        margin: -5px 0 0 50px
         font-size: 16px
         vertical-align: top
 
-        .list-control
-          height: 70px
-          display: table-cell
-          vertical-align: middle
-
         .button
           background-color: $gray-blue
-          text-align: left
+          display: table-cell
+          height: 62px
           margin: 0
-          padding-right: 25px
+          padding: 5px 25px 5px 20px
+          text-align: left
+          vertical-align: middle
           width: 270px
 
           &:before

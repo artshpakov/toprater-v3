@@ -12,14 +12,14 @@ class LandingsController < ApplicationController
 
     setup
     info_data = Sentimeta::Client.fetch :infotext, { design: "nyt", param: "landing", lang: "en" }
-    segments = Sentimeta::Client.fetch('attributes/segm')['values']
+    segments = Sentimeta::Client.fetch('attributes/segm')['values'] rescue false
 
     @worst_exist = info_data.body["data"]["worst"].present? rescue false
 
-    if params[:reverse]
+    if params[:inverse]
+      params[:inverse] = true
       params[:criteria] = info_data.body["data"]["worst"]["criteria"] rescue false
       params[:filters] = info_data.body["data"]["worst"]["filters"] rescue false
-      params[:inverse] = true
       @employers = Alternative.rate(params).reverse
       @reverse = true
 

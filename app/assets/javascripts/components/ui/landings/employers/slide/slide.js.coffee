@@ -35,12 +35,10 @@ slide = ->
 
     if @$node.find(".desc").length
       if @$node.find(".desc-text").html().length > 200
-      # if @$node.find(".desc-text").html() >= $(window).height() / 4
         @$node.find(".showmore").show()
         @$node.find(".desc-text").html(@$node.find(".desc-text").html().slice(0, 200) + "...")
       else
         @$node.find(".showmore").hide()
-        # @$node.find(".desc-text").height("auto")
       @$node.find(".desc-text").show()
 
 

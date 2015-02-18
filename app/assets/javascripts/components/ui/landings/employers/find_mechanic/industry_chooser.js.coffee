@@ -1,11 +1,9 @@
 industryChooser = ->
   @attributes
     choosed: ""
-    # ready: false
     slide: ""
     list: "#industries-list"
     button: ".list-control"
-    control: ".list-control"
 
   @scroll = (event) ->
     console.log event
@@ -39,7 +37,7 @@ industryChooser = ->
   @choose = (event) ->
     event.stopPropagation()
     @attr.choosed = event.target.getAttribute("data-name")
-    @select("control").html(event.target.getAttribute("data-label"))
+    @select("button").html(event.target.getAttribute("data-label"))
     @trigger @$node.closest("[role=employers-find-company]"), "industryToggled", industry: @attr.choosed
 
 
@@ -51,6 +49,7 @@ industryChooser = ->
 
     @on @$node.find(".list-control"), "click", (event) ->
       @select("list").slideToggle(300)
+      @$node.find(".list-control").toggleClass("open")
 
     @on @select("list"), "scroll", @scroll
 

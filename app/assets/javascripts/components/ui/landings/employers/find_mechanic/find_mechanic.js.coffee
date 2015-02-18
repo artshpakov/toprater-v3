@@ -33,6 +33,9 @@ findMechanic = ->
       @$node.find("[role=slide-results]").html("Show results")
     if @attr.buttonState == 2
       @$node.find("[role=slide-results]").removeClass("ready")
+    if @attr.buttonState == 0
+      @$node.find("[role=slide-results]").removeClass("ready")
+
 
 
   @makeStep = (targetStep) ->
@@ -49,6 +52,25 @@ findMechanic = ->
 
 
   @results = ->
+    @trigger @$node, "uiResultsReq"
+
+
+  @showResults = (event, data) ->
+    event.stopPropagation()
+    @$node.find(".full-slide").css({ position: "absolute", top: 0 })
+    @$node.find(".full-slide").animate(
+      left: - $(window).width()
+      ,
+      "normal"
+      ,
+      =>
+        @$node.find(".full-slide").hide()
+        @$node.append(data.result)
+      )
+
+
+  @restart = ->
+
 
 
 
@@ -84,5 +106,6 @@ findMechanic = ->
       $(event.target).addClass("current")
       @makeStep(+event.target.getAttribute("data-step"))
 
+    @on @$node, "gameResultsLoaded", @showResults
 
 Toprater.FindMechanic = flight.component findMechanic

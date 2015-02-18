@@ -54,9 +54,13 @@ lineChart = ->
     @on document, "slideScrollReq", ->
       if @attr.chart.destroy?
         @attr.chart.destroy()
+        @$node.find("canvas").remove()
 
     @on @$node.closest("[role=slide]"), "redrawChartReq", ->
-      _.defer(_.bind @chart, @)
+      if @attr.chart.destroy?
+        @attr.chart.destroy()
+        @$node.find("canvas").remove()
+      @chart()
 
 
 Toprater.LineChart = flight.component lineChart

@@ -2,8 +2,21 @@ dataFindCompany = ->
   @attributes
     criteria: []
     filters:
-      segm: ""
+      name: "segm"
+      value: ""
 
+
+  @encode = (criteria, filters) ->
+    paramsPath = ""
+
+    if criteria?.length
+      paramsPath += "/criteria/" + _.pluck(criteria, "name").join(",")
+
+    if filters?.length
+      paramsPath += "/filters"
+      paramsPath += filterToUrl(filter.name, filter.value) for filter in filters
+
+    paramsPath
 
   @togglePicked = (criteria) ->
     criteria = [criteria] unless _.isArray criteria
@@ -20,6 +33,25 @@ dataFindCompany = ->
       @trigger @$node, "criteriaChanged", set: false
 
 
+  @getResults = ->
+    console.log @attr.criteria
+    url = window.location.origin + "/en/companies/objects" + @encode @attr.criteria, [@attr.filters]
+
+    $.ajax(
+      url: url
+      method: "GET"
+    )
+    .fail( (data) =>
+      @trigger "errorLoadingGameResults", data
+    )
+    .done( (data) =>
+      @trigger "gameResultsLoaded", result: data
+    )
+
+
+
+
+
   @after "initialize", ->
     @on @$node, "criterionToggled", (event, criterion) ->
       event.stopPropagation()
@@ -27,8 +59,10 @@ dataFindCompany = ->
 
     @on @$node, "industryToggled", (event, data) ->
       event.stopPropagation()
-      @attr.filters.segm = data.industry
+      @attr.filters.value = data.industry
 
       @trigger @$node, "filtersChanged", set: true
+
+     @on @$node, "uiResultsReq", @getResults
 
 Toprater.DataFindMechanic = flight.component dataFindCompany

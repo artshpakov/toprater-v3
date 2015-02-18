@@ -90,9 +90,9 @@ body@employers-page
                 .info
                   - if @worst_exist
                     .switcher@switcher
-                      a.best.current href="javascript:;" Best
+                      a.best.current data-dest="best" href="javascript:;" Best
                       |&nbsp;&nbsp;/&nbsp;&nbsp;
-                      a.worst href="javascript:;" Worst
+                      a.worst data-dest="worst" href="javascript:;" Worst
                   .rating-info
                     .current-criterion = Criterion.find(employer.reviews[0]["name"]).label
                     .value
@@ -133,41 +133,42 @@ body@employers-page
 
     section#employers-find-company@slide data-name="find-company"
       .row@employers-find-company
-        .slide-wrapper
-          h1 = @find_company_title
-          .first.step@criteria-chooser
-            / .coming-soon
-              h1 Coming soon
-            h3 What's important for you?
-            small Select several criteria which describe best what inspires you in potential employers
-            .important-criteria.row
-              - if @important_criteria.present?
-                - @important_criteria.each do |criterion|
-                  - if criterion.present?
-                    .criterion-wrapper.small-6.medium-4.columns
-                      a.criterion.toprater-icon-plus-add-2@slide-criterion href="javascript:;" data-label="criterion.label" data-name="#{ criterion.name }" = criterion.label
+        .full-slide
+          .slide-wrapper
+            h1 = @find_company_title
+            .first.step@criteria-chooser
+              / .coming-soon
+                h1 Coming soon
+              h3 What's important for you?
+              small Select several criteria which describe best what inspires you in potential employers
+              .important-criteria.row
+                - if @important_criteria.present?
+                  - @important_criteria.each do |criterion|
+                    - if criterion.present?
+                      .criterion-wrapper.small-6.medium-4.columns
+                        a.criterion.toprater-icon-plus-add-2@slide-criterion href="javascript:;" data-label="criterion.label" data-name="#{ criterion.name }" = criterion.label
 
-          .second.step@industry-chooser
-            -if @segments.present?
-              .industry-chooser
-                h3 Choose industry
-                .chooser
-                  a.button.toprater-icon-chevron-down.list-control Click to choose industry...
-                  div#industries-list
-                    ul
-                      - @segments.each do |segment|
-                        li
-                          a data-name="#{ segment['name'] }" data-label="#{ segment['label'] }" href="javascript:;" = segment["label"]
+            .second.step@industry-chooser
+              -if @segments.present?
+                .industry-chooser
+                  h3 Choose industry
+                  .chooser
+                    a.button.toprater-icon-chevron-down.list-control Click to choose industry...
+                    div#industries-list
+                      ul
+                        - @segments.each do |segment|
+                          li
+                            a data-name="#{ segment['name'] }" data-label="#{ segment['label'] }" href="javascript:;" = segment["label"]
 
-          .third.step@step
+            .third.step@step
 
-        hr
-        .pages-block
-          .pagination
-            span Step
-            a.current data-step="1" href="javascript:;" 1
-            a data-step="2" href="javascript:;" 2
-          a.button.round@slide-results href="javascript:;" Next
+          hr
+          .pages-block
+            .pagination
+              span Step
+              a.current data-step="1" href="javascript:;" 1
+              a data-step="2" href="javascript:;" 2
+            a.button.round@slide-results href="javascript:;" Next
 
 
     section#employers-user-company@slide data-name="user-company"
@@ -178,6 +179,18 @@ body@employers-page
 
     footer@slide data-name="footer"
       = javascript_include_tag :application
+      .row
+        .small-12
+        h1 Submit
+        h3 To receive new awesome Top Rates!
+
+        form
+          .row
+            .small-10.columns
+              input type="email" placeholder="Email address"
+            .small-2.columns
+              button.small.round SUBMIT
+
 
       coffee:
         $ ->

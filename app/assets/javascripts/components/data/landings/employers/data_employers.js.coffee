@@ -1,23 +1,12 @@
 dataEmployers = ->
   @attributes
-
-  @encode = (criteria, filters) ->
-    paramsPath = ""
-
-    if criteria?.length
-      paramsPath += "/criteria/" + criteria.join(",")
-
-    if filters?.length
-      paramsPath += "/filters"
-      paramsPath += filterToUrl(filter.name, filter.value) for filter in filters
-
-    paramsPath
-
+    rating: "best"
 
   @switchRating = (event, data) ->
     url = document.location.href + "/?"
     if data.dest == "worst"
-      url += "reverse= true"
+      url += "inverse=true"
+      @attr.rating = "worst"
 
     $.ajax(
       url: url
@@ -27,12 +16,8 @@ dataEmployers = ->
       @trigger "errorLoadingObjects", data
     )
     .done( (data) =>
-      @trigger "employersRatingLoaded", objects: data
-      # @trigger document, "pageUpdated"
+      @trigger document, "employersRatingLoaded", type: @attr.rating, objects: data
     )
-
-
-
 
 
   @after "initialize", ->
