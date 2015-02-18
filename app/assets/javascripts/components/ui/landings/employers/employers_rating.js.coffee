@@ -13,6 +13,7 @@ employersRating = ->
 
 
   @after 'initialize', ->
+    $("body").css("overflow", "hidden");
     @on document, "employersRatingLoaded", @switchRating
 
 Toprater.EmployersRating = flight.component employersRating

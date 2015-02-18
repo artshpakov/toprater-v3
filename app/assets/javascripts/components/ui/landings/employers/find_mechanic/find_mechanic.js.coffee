@@ -3,62 +3,63 @@ findMechanic = ->
     criteriaReady: false
     filtersReady: false
     currentStep: 1
+    buttonState: 0
+
+
+
+  @stepPos = (first=false) ->
+    _.each @$node.find(".step"), (step, index) ->
+      $(step).css({ "left": $(window).width() * index })
+      if first
+        $(step).show(300)
 
 
   @checkButton = ->
     if @attr.criteriaReady and @attr.filtersReady
-      @$node.find("[role=slide-results]").addClass("ready").html("Show results")
+      @attr.buttonState = 3
     else
+      @attr.buttonState = 0
+      if @attr.criteriaReady and not @attr.filtersReady
+        @attr.buttonState = 1
+      if @attr.filtersReady and not @attr.criteriaReady
+        @attr.buttonState = 2
+
+    if @attr.buttonState == 3
+      @$node.find("[role=slide-results]").addClass("ready")
+    if @attr.buttonState == 1
+      @$node.find("[role=slide-results]").addClass("ready")
+      @$node.find("[role=slide-results]").html("Next")
+    if @attr.buttonState == 2 or @attr.buttonState == 3
+      @$node.find("[role=slide-results]").html("Show results")
+    if @attr.buttonState == 2
       @$node.find("[role=slide-results]").removeClass("ready")
 
-      if @attr.criteriaReady
-        @$node.find("[role=slide-results]").addClass("ready").html("Next")
-        # console.log @$node.find("[role=slide-results]")
-        # @$node.find("[role=slide-results]").addClass("ready").html("Next")
-        # @$node.find("[role=slide-results]").remove()
 
-      if @attr.filtersReady
-        @$node.find("[role=slide-results]").removeClass("ready").html("Show results")
-
-
-  @makeStep = (nextStep) ->
-    if nextStep > @attr.currentStep
-      _.each(@$node.find(".step"), (step, index) =>
-        stepLeft = parseInt($(step).css("left"))
-        $(step).animate(
-          left: stepLeft - $(window).width()
-          ,
-          "normal"
-          ,
-          =>
-            @attr.currentStep = nextStep
-            @checkButton()
-        )
-      )
-
-    if nextStep < @attr.currentStep
-      _.each(@$node.find(".step"), (step, index) =>
-        stepLeft = parseInt($(step).css("left"))
-        $(step).animate(
-          left: stepLeft + $(window).width()
-          ,
-          "normal"
-          ,
-          =>
-            @attr.currentStep = 1
-            @checkButton()
-        )
+  @makeStep = (targetStep) ->
+    _.each @$node.find(".step"), (step, index) =>
+      $(step).animate(
+        left: (index + 1 - targetStep) * $(window).width()
+        ,
+        "normal"
+        ,
+        =>
+          @attr.currentStep = targetStep
+          @checkButton()
       )
 
 
-  # @result = ->
+  @results = ->
+
 
 
   @after "initialize", ->
+    @stepPos(true)
     _.each @$node.find(".step"), (step, index) ->
       $(step).css({ "left": $(window).width() * index })
       $(step).show(300)
 
+    @on window, "resize", ->
+      @stepPos()
 
     @on @$node, "criteriaChanged", (event, data) ->
       event.stopPropagation()
@@ -71,10 +72,17 @@ findMechanic = ->
       @checkButton()
 
     @on @$node.find("[role=slide-results]"), "click", (event) ->
-      if $(event.target).hasClass("ready")
-        @makeStep(@attr.currentStep + 1)
+      if @attr.buttonState == 3
+        @results()
 
-    
+      if @attr.buttonState == 1
+        @makeStep(@attr.currentStep + 1)
+        @$node.find(".pagination a").toggleClass("current")
+
+    @on @$node.find(".pagination a"), "click", (event) ->
+      @$node.find(".pagination a").removeClass("current")
+      $(event.target).addClass("current")
+      @makeStep(+event.target.getAttribute("data-step"))
 
 
 Toprater.FindMechanic = flight.component findMechanic

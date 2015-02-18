@@ -152,7 +152,7 @@ body@employers-page
               .industry-chooser
                 h3 Choose industry
                 .chooser
-                  a.button.toprater-icon-chevron-down.list-control Information technology
+                  a.button.toprater-icon-chevron-down.list-control Click to choose industry...
                   div#industries-list
                     ul
                       - @segments.each do |segment|
@@ -165,8 +165,8 @@ body@employers-page
         .pages-block
           .pagination
             span Step
-            a.current href="javascript:;" 1
-            a href="javascript:;" 2
+            a.current data-step="1" href="javascript:;" 1
+            a data-step="2" href="javascript:;" 2
           a.button.round@slide-results href="javascript:;" Next
 
 
