@@ -1,4 +1,16 @@
-p
-  | {{ label }}
-  span.suggestion-type
-    | &nbsp-&nbsp{{ type }}
+ul.suggestions
+  | {{#payload.objects}}
+  li data-id="{{ id }}" data-type="objects"
+    strong
+      | {{ label }}
+    span.suggestion-type
+      | &nbsp-&nbsp object
+  | {{/payload.objects}}
+  hr
+  | {{#payload.props}}
+  li data-id="{{ name }}" data-type="{{ type }}"
+    strong
+      | {{ label }}
+    span.suggestion-type
+      | &nbsp-&nbsp{{ type }}
+  | {{/payload.props}}

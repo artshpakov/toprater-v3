@@ -5,7 +5,11 @@ class SearchController < ApplicationController
   MOVIES_FILTERS = %w(genres actors)
 
   def suggest
-    result = Sentimeta::Client.search where: params[:scope], text: params[:q]
+    result = {}
+    if State.sphere == 'movies'
+      result[:props] = complete_movies params[:q]
+    end
+    result[:objects] = Sentimeta::Client.search(text: params[:q])['objects']
     render json: result
   end
 

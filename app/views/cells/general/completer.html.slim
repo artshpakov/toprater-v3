@@ -1,5 +1,5 @@
-.row.collapse.prefix-round
-  .small-2.columns
-    span.prefix = sphere
-  .small-10.columns
-    = text_field_tag :completer, ''
+.tokenfield
+  .token-container
+    @cart.tokens-right
+      = text_field_tag :completer, '', class: 'completer', autocomplete: :off, placeholder: 'Search'
+.completer-result

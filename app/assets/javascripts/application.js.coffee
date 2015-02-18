@@ -6,8 +6,7 @@
 #= require underscore
 #= require history_jquery_html5
 #= require director
-#= require typeahead
-#= require bootstrap-tokenfield
+#= require es5-shim/es5-shim-min
 #= require flight-for-rails
 #= require hogan.js
 #= require intro.js

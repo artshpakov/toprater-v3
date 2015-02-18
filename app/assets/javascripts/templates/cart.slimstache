@@ -1,3 +1,6 @@
 | {{#criteria}} 
-a.button.tiny@criterion data-name="{{ name }}"  href="javascript:;" {{label}}
+a.button.tiny.token@criterion data-name="{{ name }}"  href="javascript:;" {{label}}
 | {{/criteria}}
+| {{#filters}}
+a.button.tiny.success.token@filter data-name="{{ name }}" href="javascript:;" {{ name }}: {{ value }}
+| {{/filters}}

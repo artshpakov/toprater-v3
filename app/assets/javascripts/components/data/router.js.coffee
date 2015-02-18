@@ -48,7 +48,7 @@ router = ->
     @on "loadMore", (event, params) ->
       @trigger document, "moreAlternatives", url: @attr.route
 
-    @on "stateUpdated", (event, params) ->
+    @on "dataStateUpdated", (event, params) ->
       @attr.route = @buildUrl params
       router.setRoute @attr.route
 

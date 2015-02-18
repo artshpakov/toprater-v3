@@ -1,5 +1,5 @@
 enumFilter = ->
-  @updateValues = (event, data) ->
+  @renderValues = (event, data) ->
     @$node.find('select').val(data.value)
 
   @setValue = (event) ->

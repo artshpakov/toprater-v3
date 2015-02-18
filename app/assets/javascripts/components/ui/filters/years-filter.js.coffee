@@ -1,5 +1,5 @@
 yearsFilter = ->
-  @updateValues = (event, data) ->
+  @renderValues = (event, data) ->
     @$node.find("input").val(["#{data.value.from}-#{data.value.to}"])
 
   @setValue = (event) ->
