@@ -2,7 +2,7 @@
 # put filter template to app/views/partials/filters/specific
 
 # sampleFilter = ->
-#   @updateValues = (event, data) ->
+#   @renderValues = (event, data) ->
 #     @$node.find('select').val(data.value) # UI reaction on data update
 
 #   @setValue = (event) ->

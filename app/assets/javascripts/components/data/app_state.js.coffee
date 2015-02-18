@@ -42,10 +42,10 @@ appState = ->
       sphere: @attr.sphere
       lang: @attr.lang
 
-    @trigger "stateUpdated", to_params()
-    @trigger "pageLoaded"
+    @trigger "dataStateUpdated", to_params()
+    @trigger "dataPageLoaded", to_params()
 
-    @on "filtersChanged", (event, data) ->
+    @on "uiFiltersChanged", (event, data) ->
       filter = _.find(@attr.filters, name: data.filterName)
       if filter?
         if isMultiFilter(data.filterName)
@@ -59,9 +59,9 @@ appState = ->
         @attr.filters.push data
         val = data
       @trigger "#{data.filterName}Updated", val
-      @trigger "stateUpdated", to_params()
+      @trigger "dataStateUpdated", to_params()
 
-    @on "filterReset", (event, data) ->
+    @on "uiFilterReset", (event, data) ->
       removeFilter = (filter) =>
         @attr.filters = _.reject(@attr.filters, (f) =>
           f.name == filter
@@ -75,16 +75,15 @@ appState = ->
         if filter.value.length == 0
           removeFilter data.filter
 
-      @trigger "stateUpdated", to_params()
+      @trigger "dataStateUpdated", to_params()
 
-    @on "filtersReset", ->
+    @on "uiFiltersReset", ->
       @attr.filters = []
-      @trigger "stateUpdated", to_params()
+      @trigger "dataStateUpdated", to_params()
 
-    @on "criterionToggled", (event, criterion) ->
+    @on "uiCriterionToggled", (event, criterion) ->
       @togglePicked criterion.name
-      @trigger "stateUpdated", to_params()
-      @trigger document, "criteriaUpdated", criteria: @getPicked()
+      @trigger "dataStateUpdated", to_params()
 
 
 

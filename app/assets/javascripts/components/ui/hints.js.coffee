@@ -12,6 +12,6 @@ hints = ->
     intro.goToStep(@attr.step).start()
 
   @after "initialize", ->
-    @on document, 'pageLoaded', @runHints
+    @on document, 'dataPageLoaded', @runHints
 
 Toprater.Hints = flight.component(hints)

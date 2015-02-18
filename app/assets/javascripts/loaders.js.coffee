@@ -9,11 +9,13 @@ Toprater.attachDataComponents = ->
   Toprater.DataResults.attachTo "[role=result]"
   Toprater.Router.attachTo document
   Toprater.DataCard.attachTo "[role=result]"
+  Toprater.CompleterResults.attachTo document
 
 Toprater.attachUIComponents = ->
   Toprater.Cart.attachTo "[role=cart]"
   Toprater.Criteria.attachTo "[role=criteria]"
   Toprater.Criterion.attachTo "[role=criterion]"
+  Toprater.FilterItem.attachTo "[role=filter]"
   Toprater.Search.attachTo "[role=search]"
   Toprater.PricesCalendar.attachTo "[role=prices-calendar]"
   Toprater.PricesTable.attachTo "[role=prices-table]"

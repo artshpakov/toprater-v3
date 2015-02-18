@@ -1,8 +1,7 @@
 filterReset = ->
 
   @triggerReset = ->
-    event.stopPropagation()
-    @trigger 'filtersReset'
+    @trigger 'uiFiltersReset'
     false
 
   @after 'initialize', ->

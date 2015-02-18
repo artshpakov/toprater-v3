@@ -1,5 +1,5 @@
 rangeFilter = ->
-  @updateValues = (event, data) ->
+  @renderValues = (event, data) ->
     @$node.find("#range-from").val(data.value.from)
     @$node.find("#range-to").val(data.value.to)
 

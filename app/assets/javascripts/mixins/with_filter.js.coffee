@@ -5,9 +5,10 @@ withFilterCtr = ->
     value: {}
 
   @after 'setValue', ->
-    @trigger 'filtersChanged', @attr
+    @trigger 'uiFiltersChanged', @attr
+    return false
 
-  @after 'updateValues', (event, data) ->
+  @after 'renderValues', (event, data) ->
     @attr.value = data.value
 
   @after 'resetFilter', ->
@@ -16,7 +17,7 @@ withFilterCtr = ->
   @after 'initialize', ->
     @attr.name = @$node.attr('data-name')
     @attr.filterName = toprater.filters[@attr.name].name
-    @on document, "#{@attr.filterName}Updated", @updateValues
-    @on document, 'filtersReset', @resetFilter
+    @on document, "#{@attr.filterName}Updated", @renderValues
+    @on document, 'uiFiltersReset', @resetFilter
 
 window.Toprater.withFilterMixin = withFilterCtr

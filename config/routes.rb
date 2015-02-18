@@ -14,8 +14,7 @@ Rails.application.routes.draw do
 
       scope :suggest, controller: :search do
         get :objects
-        get '/:scope' => :suggest
-        get '/' => :global
+        get '/' => :suggest
       end
       get '/search' => 'search#search', as: :search
       get '/catalog(/:path(/page:page))' => 'catalog#catalog', as: :catalog
