@@ -1,0 +1,20 @@
+section
+  h2
+    | #{@alternative.name} (#{@alternative.extra['year']})
+    span.label.right =' @alternative.rating
+  .row
+    .small-8.columns
+      = solid
+        h6.subheader = @alternative.extra['genres'].map{|dir| dir['label']}.join(', ')
+      = solid
+        p
+          strong Directors:&nbsp;
+          = @alternative.extra['directors'].map{|dir| dir['label']}.to_sentence
+      = solid do
+        h4 Storyline
+        p.textmass = @alternative.extra['description']
+    .small-4.columns
+      .th
+        img src=@alternative.cover
+      h4
+        | IMDB: #{@alternative.extra['imdb_rating']}/10

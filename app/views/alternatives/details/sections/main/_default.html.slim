@@ -2,11 +2,13 @@ section
   h2
     = @alternative.name
     span.label.right =' @alternative.rating
+  = solid do
+    h6 = @alternative.full_address
   .row
     .small-8.columns
       = solid do
         h4 Description
-        p = @alternative.extra['description'] || @alternative.extra['summary']
+        p.textmass = @alternative.extra['description'] || @alternative.extra['summary']
     .small-4.columns
       .th
         img src=@alternative.cover

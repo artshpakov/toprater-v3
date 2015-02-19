@@ -1,0 +1,14 @@
+= solid do
+  - if @alternative.partners_data.present?
+    section
+      h4 Buy a tour
+      .row@prices-calendar
+        .large-3.columns
+          input type="text" placeholder="Arrival YYYY-MM-DD" name="prices[arrival]"
+        .large-3.columns
+          input type="text" placeholder="Departure YYYY-MM-DD" name="prices[departure]"
+        .large-3.columns
+          input type="text" placeholder="Adults" name="prices[adults]"
+        .large-3.columns
+          button.small@get-prices Get prices
+      @prices-table

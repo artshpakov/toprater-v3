@@ -1,0 +1,9 @@
+section
+  h4 Medals
+  ul@medals
+    - @alternative.medals.each do |medal|
+      li.medal
+        .medal-position = medal.rank
+        .medal-details
+          .medal-criterion: b = medal.criterion.label
+          .medal-filters = medal.filters.map { |k,v| "#{ k }: #{ v }" }.join(', ')
