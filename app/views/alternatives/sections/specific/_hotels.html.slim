@@ -35,3 +35,13 @@ section
         .large-3.columns
           button.small@get-prices Get prices
       @prices-table
+
+section
+  h4 Medals
+  ul@medals
+    - @alternative.medals.each do |medal|
+      li.medal
+        .medal-position class="medal-#{ medal.scope }" = medal.rank
+        .medal-details
+          .medal-criterion = medal.criterion.label
+          .medal-location = medal.location.presence || medal.filters.map { |k,v| "#{ k }: #{ v }" }.join(', ')

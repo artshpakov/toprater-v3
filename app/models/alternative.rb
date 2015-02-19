@@ -31,4 +31,8 @@ class Alternative < Sentimeta::Model
     extra['partners_data'].map { |e| e['data'] }
   end
 
+  def medals= medals
+    @medals = medals.map { |m| Medal.new(m) }
+  end
+
 end
