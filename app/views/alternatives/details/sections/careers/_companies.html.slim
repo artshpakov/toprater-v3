@@ -1,0 +1,7 @@
+section
+  h4 Careers
+  table style="width:100%"
+    - @alternative.careers.each do |career, salary|
+      tr
+        td: b = career
+        td = salary

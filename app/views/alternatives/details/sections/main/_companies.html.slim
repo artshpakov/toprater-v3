@@ -1,0 +1,23 @@
+sass:
+  [role=company-details]
+    p
+      margin-bottom: 6px
+
+section
+  h2
+    = @alternative.name
+    span.label.right =' @alternative.rating
+
+  .row@company-details
+    .small-8.columns
+      = solid do
+        p
+          b> Industry:
+          = @alternative.extra['industries'].first['label']
+      - if @alternative.extra['ceo']
+        p.textmass
+          b> CEO:
+          = @alternative.extra['ceo']
+    .small-4.columns
+      .th
+        img src=@alternative.cover

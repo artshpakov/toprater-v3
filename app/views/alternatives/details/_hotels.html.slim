@@ -1,2 +1,3 @@
 - %w(main map amenities medals prices).each do |partial|
-  = render_partial "alternatives/details/sections/#{ partial }/#{ State.sphere }"
+  = solid do
+    = render_partial "alternatives/details/sections/#{ partial }/#{ State.sphere }"
