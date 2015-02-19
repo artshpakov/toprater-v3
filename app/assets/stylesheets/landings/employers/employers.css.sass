@@ -828,6 +828,51 @@ $ipath: "../../../i"
             &:hover
               background-color: #6a7b91
 
+    #find-company-results
+      table
+        background-color: transparent
+        border-collapse: collapse
+        border: 0
+        color: #fff
+        width: 100%
+    
+        h3
+          margin: 4vh 0
+        
+        tbody
+          tr
+            border-bottom: 1px solid $gray-blue
+
+            td
+              border: 0
+              border-bottom: 1px solid $gray-blue
+              color: #fff
+
+              &.reviews-count
+                color: rgba(255,255,255, 0.5)
+                font-size: 12px
+                line-height: 16px
+                width: 100px
+
+              &.rating
+                color: #72bdff
+                font-family: "museo_sans700", Helvetica, sans-serif
+                font-size: 30px
+                text-align: center
+
+        tfoot
+          background-color: transparent
+
+          a
+            color: #41a6ff
+            font-size: 18px
+            line-height: 40px
+
+            +hover
+
+        tr
+          background-color: transparent
+
       
   #employers-user-company
     background-color: $light-blue
@@ -840,3 +885,37 @@ $ipath: "../../../i"
 
   footer
     background-color: $dark
+    
+    .footer-wrap
+      margin:  10vh 0 0
+
+    h3
+      color: #ccc
+      font-size: 32px
+      line-height: 70px
+      letter-spacing: 1px
+    
+    form
+      border-bottom: 1px solid $gray-blue
+
+      input
+        border: 0
+        background-color: transparent
+        box-shadow: none
+        color: $gray-blue
+        font-family: "proxima_nova_rgbold", Helvetica, sans-serif
+        font-weight: bold
+        font-size: 50px
+        margin: 0
+        height: 64px
+
+
+      input::-webkit-input-placeholder,
+      input:-moz-placeholder,
+      input::-moz-placeholder,
+      input:-ms-input-placeholder
+        color: $gray-blue
+
+      button
+        background-color: #fff
+

@@ -54,7 +54,6 @@ findMechanic = ->
   @results = ->
     @trigger @$node, "uiResultsReq"
 
-
   @showResults = (event, data) ->
     event.stopPropagation()
     @$node.find(".full-slide").css({ position: "absolute", top: 0 })
@@ -65,11 +64,18 @@ findMechanic = ->
       ,
       =>
         @$node.find(".full-slide").hide()
-        @$node.append(data.result)
+        console.log data.result
+        @$node.append(JST["employers_find_results"].render(
+          { employers: _.each(data.result, (elem, index) -> 
+              elem.place = index+1
+              elem.rating = Math.round(((elem.overall_rating + 1) * 2.5) * 100) / 100
+              ) })
+        ) 
       )
 
 
   @restart = ->
+    @trigger "restart"
 
 
 

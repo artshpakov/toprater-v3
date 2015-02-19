@@ -75,19 +75,20 @@ body@employers-page
                       | Show full description
 
               .employer-chart.columns.small-12.medium-6
-                - if @reverse
-                  - percentage = (employer.review_ratings["terrible"] + employer.review_ratings["bad"]) / (employer.review_ratings["total"] / 100)
-                - else
-                  - percentage = (employer.review_ratings["good"] + employer.review_ratings["excellent"]) / (employer.review_ratings["total"] / 100)
-                .chart@pie-chart data-value="#{ percentage }"
-                  .chart-text
-                    .percentage 
-                      = percentage
-                      small &nbsp;%
-                    - if @reverse
-                      span Negative reviews
-                    - else
-                      span Positive reviews
+                - if employer.review_ratings["total"] > 0
+                  - if @reverse
+                    - percentage = (employer.review_ratings["terrible"] + employer.review_ratings["bad"]) / (employer.review_ratings["total"] / 100.0).round
+                  - else
+                    - percentage = (employer.review_ratings["good"] + employer.review_ratings["excellent"]) / (employer.review_ratings["total"] / 100.0).round
+                  .chart@pie-chart data-value="#{ percentage }"
+                    .chart-text
+                      .percentage 
+                        = percentage
+                        small &nbsp;%
+                      - if @reverse
+                        span Negative reviews
+                      - else
+                        span Positive reviews
                 .info
                   - if @worst_exist
                     .switcher@switcher
@@ -181,17 +182,17 @@ body@employers-page
     / footer@slide data-name="footer"
     footer
       = javascript_include_tag :application
-      .row
-        .small-12
-        h1 Submit
-        h3 To receive new awesome Top Rates!
+      / .row
+      /   .small-12.footer-wrap
+      /     h1 Submit
+      /     h3 To receive new awesome Top Rates!
 
-        form
-          .row
-            .small-10.columns
-              input type="email" placeholder="Email address"
-            .small-2.columns
-              button.small.round SUBMIT
+      /     form
+      /       .row
+      /         .small-10.columns
+      /           input type="email" placeholder="Email address"
+      /         .small-2.columns
+      /           button.small.round SUBMIT
 
 
       coffee:

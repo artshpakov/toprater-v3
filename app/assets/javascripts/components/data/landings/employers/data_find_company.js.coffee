@@ -34,8 +34,7 @@ dataFindCompany = ->
 
 
   @getResults = ->
-    console.log @attr.criteria
-    url = window.location.origin + "/en/companies/objects" + @encode @attr.criteria, [@attr.filters]
+    url = window.location.href + @encode(@attr.criteria, [@attr.filters]) + "?find_employer=true"
 
     $.ajax(
       url: url

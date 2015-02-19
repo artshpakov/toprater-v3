@@ -1,0 +1,27 @@
+#find-company-results
+  h1 Suits you best
+  table
+    tbody
+      | {{#employers}}
+      tr
+        td
+          h3 
+            | {{place}}
+            | .&nbsp;
+            | {{name}}
+        td.rating
+          | {{rating}}
+        td.reviews-count
+          | based on
+          br
+          | {{ review_ratings.total }}
+          | &nbsp;reviews
+      | {{/employers}}
+    tfoot
+      tr
+        td 
+          a href="javascript:;" All rating
+        td
+        td
+          a href="javascript:;" Try again
+  
