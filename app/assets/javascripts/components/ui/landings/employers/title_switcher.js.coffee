@@ -3,18 +3,11 @@ titleSwitcher = ->
     best: "best"
     worst: "worst"
 
-  @toggleView = (event) ->
-    if $(event.target).hasClass("bwswitch")
-      event.preventDefault()
-      event.stopPropagation()
-      @$node.find("a.bwswitch").toggleClass "selected"
-
 
   @after 'initialize', ->
     if @$node.attr("data-worst") == "true"
-      @$node.html @$node.html().toLowerCase().replace(@attr.best, "<a href='javascript:;' data-dest='best' class='bwswitch selected' role='switcher'>" + @attr.best + "</a>")
-      @$node.html @$node.html().toLowerCase().replace(@attr.worst, "<a href='javascript:;' data-dest='worst' class='bwswitch' role='switcher'>" + @attr.worst + "</a>")
-      @on "click", @toggleView
+      @$node.find("span").html @$node.find("span").html().toLowerCase().replace(@attr.best, "<a href='javascript:;' data-dest='best' class='#{ @attr.best } bwswitch current'>" + @attr.best + "</a>")
+      @$node.find("span").html @$node.find("span").html().toLowerCase().replace(@attr.worst, "<a href='javascript:;' data-dest='worst' class='#{ @attr.worst } bwswitch'>" + @attr.worst + "</a>")
       Toprater.RatingSwitcher.attachTo "[role=switcher]"
     else
       @$node.html @$node.html().toLowerCase().replace("and worst", "")

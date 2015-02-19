@@ -21,7 +21,8 @@ body@employers-page
       .row
         .columns.small-10
           h1@title-switcher data-worst="#{ @worst_exist }"
-            = @title
+            span@switcher
+              = @title
             a.next-slide@next-slide href="javascript:;"
 
       - if @about.present?
@@ -90,9 +91,9 @@ body@employers-page
                 .info
                   - if @worst_exist
                     .switcher@switcher
-                      a.best.current data-dest="best" href="javascript:;" Best
+                      a.best class="#{ 'current' if not @reverse }" data-dest="best" href="javascript:;" Best
                       |&nbsp;&nbsp;/&nbsp;&nbsp;
-                      a.worst data-dest="worst" href="javascript:;" Worst
+                      a.worst class="#{ 'current' if @reverse }" data-dest="worst" href="javascript:;" Worst
                   .rating-info
                     .current-criterion = Criterion.find(employer.reviews[0]["name"]).label
                     .value
@@ -133,12 +134,12 @@ body@employers-page
 
     section#employers-find-company@slide data-name="find-company"
       .row@employers-find-company
+        .coming-soon
+          h1 Coming soon
         .full-slide
           .slide-wrapper
             h1 = @find_company_title
             .first.step@criteria-chooser
-              / .coming-soon
-                h1 Coming soon
               h3 What's important for you?
               small Select several criteria which describe best what inspires you in potential employers
               .important-criteria.row
@@ -173,11 +174,12 @@ body@employers-page
 
     section#employers-user-company@slide data-name="user-company"
       .row@employers-user-company
-        / .coming-soon 
+        .coming-soon 
           h1 Coming soon
         h1 = @check_company_title
 
-    footer@slide data-name="footer"
+    / footer@slide data-name="footer"
+    footer
       = javascript_include_tag :application
       .row
         .small-12

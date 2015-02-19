@@ -1,19 +1,17 @@
 ratingSwitcher = ->
 
   @switchRating = (event) ->
-    event.stopPropagation()
     if $(event.target).hasClass("current")
       return
     
     @trigger document, "ratingSwitched", dest: event.target.getAttribute "data-dest"
-    @$node.find("a").toggleClass("current")
+    $("[role=switcher]").find("a").removeClass("current")
+    $("[role=switcher]").find("a.#{ event.target.getAttribute "data-dest" }").addClass("current")
+
 
 
   @after 'initialize', ->
     @on @$node, "click", @switchRating
-    @on document, "employersRatingLoaded", (event, data) ->
-      @$node.find("a").removeClass("current")
-      @$node.find("a.#{ data.type }").addClass("current")
 
 
 
