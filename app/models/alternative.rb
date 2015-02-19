@@ -2,7 +2,7 @@ class Alternative < Sentimeta::Model
 
   endpoint :objects
 
-  attr_accessor :id, :full_id, :name, :address, :photos, :reviews, :coordinates, :extra, :catalog, :top_criteria, :overall_rating, :review_ratings, :other_criteria
+  attr_accessor :id, :full_id, :name, :address, :photos, :reviews, :coordinates, :extra, :catalog, :top_criteria, :overall_rating, :review_ratings, :other_criteria, :medals
 
 
   def full_id() @full_id || id end
@@ -14,8 +14,8 @@ class Alternative < Sentimeta::Model
       fields: options
   end
 
-  def self.find id
-    data = Sentimeta::Client.fetch(:objects, id: id)['object']
+  def self.find id, options={}
+    data = Sentimeta::Client.fetch(:objects, options.merge(id: id))['object']
     new data if data.present?
   end
 

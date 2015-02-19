@@ -12,7 +12,7 @@ class AlternativesController < ApplicationController
 
 
   def show
-    unless @alternative = Alternative.find(params[:id])
+    unless @alternative = Alternative.find(params[:id], fields: { limit_medals: 10 })
       raise Sentimeta::Error::RecordNotFound
     end
     @alternative = decorate @alternative
