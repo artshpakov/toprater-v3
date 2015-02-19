@@ -41,7 +41,8 @@ section
   ul@medals
     - @alternative.medals.each do |medal|
       li.medal
-        .medal-position = medal.rank
-        .medal-details
-          .medal-criterion = medal.criterion.label
-          .medal-filters = medal.location.presence || medal.filters.map { |k,v| "#{ k }: #{ v }" }.join(', ')
+        a href="#{ widget_path(id: @alternative.id, criteria: medal.criteria, filters: medal.filters) }" target="_blank"
+          .medal-position = medal.rank
+          .medal-details
+            .medal-criterion: b = medal.criterion.label
+            .medal-filters = medal.location.presence || medal.filters.map { |k,v| "#{ k }: #{ v }" }.join(', ')
