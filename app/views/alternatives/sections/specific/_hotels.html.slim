@@ -41,7 +41,7 @@ section
   ul@medals
     - @alternative.medals.each do |medal|
       li.medal
-        .medal-position class="medal-#{ medal.scope }" = medal.rank
+        .medal-position = medal.rank
         .medal-details
           .medal-criterion = medal.criterion.label
-          .medal-location = medal.location.presence || medal.filters.map { |k,v| "#{ k }: #{ v }" }.join(', ')
+          .medal-filters = medal.location.presence || medal.filters.map { |k,v| "#{ k }: #{ v }" }.join(', ')
