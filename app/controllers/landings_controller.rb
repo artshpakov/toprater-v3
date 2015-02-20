@@ -41,7 +41,8 @@ class LandingsController < ApplicationController
     end
 
 
-    if params[:find_employer] 
+    if params[:find_employer]
+      @employers = Alternative.rate(params)
       render json: @employers[0..2] rescue false
     end
 

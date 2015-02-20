@@ -54,6 +54,7 @@ findMechanic = ->
   @results = ->
     @trigger @$node, "uiResultsReq"
 
+
   @showResults = (event, data) ->
     event.stopPropagation()
     @$node.find(".full-slide").css({ position: "absolute", top: 0 })
@@ -64,19 +65,42 @@ findMechanic = ->
       ,
       =>
         @$node.find(".full-slide").hide()
-        console.log data.result
         @$node.append(JST["employers_find_results"].render(
-          { employers: _.each(data.result, (elem, index) -> 
-              elem.place = index+1
+          { employers: _.each data.result, (elem, index) ->
+              console.log elem.review_ratings
+              elem.place = index + 1
               elem.rating = Math.round(((elem.overall_rating + 1) * 2.5) * 100) / 100
-              ) })
-        ) 
+            path: data.path })
+        )
+        @on @$node.find("[role=restart]"), "click", @restart
       )
 
 
   @restart = ->
-    @trigger "restart"
+    @trigger @$node, "restartFindMechanic"
 
+    @attr.criteriaReady = false
+    @attr.filtersReady =  false
+    @attr.currentStep = 1
+    @attr.buttonState = 0
+
+    @makeStep(1)
+    @$node.find("#find-company-results").css(position: "absolute", width: $(@).parent().width()).animate(
+      left: -$(window).width()
+      ,
+      "normal"
+      ,
+      =>
+        @$node.find("#find-company-results").remove()
+        @$node.find(".full-slide").animate(
+          left: +$("[role=employers-find-company]").offset().left
+          ,
+          "normal"
+          ,
+          =>
+            @$node.find(".full-slide").css({ position: "relative", left: 0 }).show()
+          )
+      )
 
 
 
@@ -113,5 +137,7 @@ findMechanic = ->
       @makeStep(+event.target.getAttribute("data-step"))
 
     @on @$node, "gameResultsLoaded", @showResults
+
+    @on @$node.find("[role=restart]"), "click", @restart
 
 Toprater.FindMechanic = flight.component findMechanic

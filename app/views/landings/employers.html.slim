@@ -71,7 +71,7 @@ body@employers-page
                     .desc-text
                       = employer.extra["description"]
 
-                    a.showmore href="/en/companies/objects/#{ employer.full_id }" 
+                    a.showmore href="/en/companies/objects/#{ employer.full_id }/criteria/#{ employer.reviews[0]['name'] }" 
                       | Show full description
 
               .employer-chart.columns.small-12.medium-6
@@ -135,8 +135,8 @@ body@employers-page
 
     section#employers-find-company@slide data-name="find-company"
       .row@employers-find-company
-        .coming-soon
-          h1 Coming soon
+        / .coming-soon
+        /   h1 Coming soon
         .full-slide
           .slide-wrapper
             h1 = @find_company_title

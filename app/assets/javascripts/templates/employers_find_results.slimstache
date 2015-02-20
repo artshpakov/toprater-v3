@@ -11,17 +11,22 @@
             | {{name}}
         td.rating
           | {{rating}}
+        | {{#review_ratings.total}}
         td.reviews-count
           | based on
           br
-          | {{ review_ratings.total }}
+          | {{ . }}
           | &nbsp;reviews
+        | {{/review_ratings.total}}
+        | {{^review_ratings.total}}
+        td.reviews-count.empty
+        | {{/review_ratings.total}}
+
       | {{/employers}}
     tfoot
       tr
         td 
-          a href="javascript:;" All rating
-        td
-        td
-          a href="javascript:;" Try again
+          a href="/en/companies/objects{{ path }}" target="_blank" All rating
+        td.restart colspan=2
+          a@restart href="javascript:;" Try again
   

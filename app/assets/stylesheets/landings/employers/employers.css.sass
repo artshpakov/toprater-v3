@@ -690,6 +690,7 @@ $ipath: "../../../i"
 
     .full-slide
       position: relative
+      width: 100%
 
     .slide-wrapper
       position: relative
@@ -807,6 +808,16 @@ $ipath: "../../../i"
           position: relative
           padding: 0
           width: 270px !important
+          z-index: 50
+
+          .scrollbar
+            background-color: #333
+            border-radius: 1000px
+            height: 50px
+            position: absolute
+            right: 5px
+            top: 0
+            width: 5px
 
           ul
             position: absolute
@@ -854,6 +865,12 @@ $ipath: "../../../i"
                 line-height: 16px
                 width: 100px
 
+                &.empty
+                  border: 0
+                  margin: 0
+                  padding: 0
+                  width: 0
+
               &.rating
                 color: #72bdff
                 font-family: "museo_sans700", Helvetica, sans-serif
@@ -869,6 +886,9 @@ $ipath: "../../../i"
             line-height: 40px
 
             +hover
+
+          .restart
+            text-align: right
 
         tr
           background-color: transparent

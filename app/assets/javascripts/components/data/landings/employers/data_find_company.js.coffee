@@ -34,7 +34,8 @@ dataFindCompany = ->
 
 
   @getResults = ->
-    url = window.location.href + @encode(@attr.criteria, [@attr.filters]) + "?find_employer=true"
+    path = @encode _.filter(@attr.criteria, (elem) -> elem.picked == true), [@attr.filters]
+    url =  "#{ window.location.href }#{ path }?find_employer=true"
 
     $.ajax(
       url: url
@@ -44,11 +45,8 @@ dataFindCompany = ->
       @trigger "errorLoadingGameResults", data
     )
     .done( (data) =>
-      @trigger "gameResultsLoaded", result: data
+      @trigger "gameResultsLoaded", { result: data, path: path }
     )
-
-
-
 
 
   @after "initialize", ->
@@ -62,6 +60,10 @@ dataFindCompany = ->
 
       @trigger @$node, "filtersChanged", set: true
 
-     @on @$node, "uiResultsReq", @getResults
+    @on @$node, "uiResultsReq", @getResults
+
+    @on @$node, "restartFindMechanic", ->
+      @attr.criteria = []
+      @attr.filters.value = ""
 
 Toprater.DataFindMechanic = flight.component dataFindCompany

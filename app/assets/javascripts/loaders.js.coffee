@@ -43,8 +43,8 @@ Toprater.attachEmployersLandingComponents = ->
   Toprater.LineChart.attachTo "[role=criteria-bar]"
   Toprater.DataFindMechanic.attachTo "[role=employers-find-company]"
   Toprater.FindMechanic.attachTo "[role=employers-find-company]"
-  Toprater.SlideCriterion.attachTo "[role=slide-criterion]"
   Toprater.CriteriaChooser.attachTo "[role=criteria-chooser]"
+  Toprater.SlideCriterion.attachTo "[role=slide-criterion]"
   Toprater.IndustryChooser.attachTo "[role=industry-chooser]"
 
 
