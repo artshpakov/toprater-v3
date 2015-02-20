@@ -6,5 +6,5 @@ section
         h6 = criterion['label']
       .medium-8.columns
         .progress.round
-          span.meter style="width: #{(criterion['rating'].to_f * 100.0).round}%"
+          span.meter style="width: #{((criterion['rating'].to_f + 1) * 50.0).round}%"
             p = rating(criterion['rating'].to_f)
