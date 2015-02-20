@@ -32,7 +32,9 @@ class ApplicationController < ActionController::Base
     State.init! params: params, cookies: cookies, session: session
 
     unless request.xhr?
-      cookies[:ab_token] ||= SecureRandom.uuid
+      Variation::Registry.init!(cookies[:token] ||= SecureRandom.uuid)
+      Variation.create(:reviews)
+      Variation.create(:actors)
       
       Sentimeta::Observers.debug.try :reset!
 

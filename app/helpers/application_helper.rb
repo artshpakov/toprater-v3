@@ -23,6 +23,12 @@ module ApplicationHelper
     end
   end
 
+  def ab_test name
+    Variation.get(name).variant do |variant|
+      Variation::Registry.cache(name, variant) if cookies[:token].present?
+    end
+  end
+
   def variant name, params={}
     opts = RENDER_VARIANTS[name]
     opts['variants'][opts['condition'].constantize.send(:choose_variant)]

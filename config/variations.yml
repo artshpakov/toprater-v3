@@ -1,14 +1,6 @@
 reviews:
-  alternatives:
-    - black
-    - crimson
-
+  - color: 'black'
+  - color: 'crimson'
 actors:
-  alternatives:
-    - displayed
-    - hidden
-  metadata:
-    displayed:
-      visible: true
-    hidden:
-      visible: false
+  - show: true
+  - show: false

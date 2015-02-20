@@ -2,8 +2,6 @@ Rails.application.routes.draw do
 
   root 'index#index'
 
-  mount Split::Dashboard, at: 'split'
-
   scope "/(:locale)", locale: /en|ru/ do
     get '/' => 'index#index'
     
