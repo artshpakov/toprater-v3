@@ -16,6 +16,7 @@ class AlternativesController < ApplicationController
       raise Sentimeta::Error::RecordNotFound
     end
     @alternative = decorate @alternative
+    @similar = @alternative.similar_objects.map { |object| Alternative.find(object['id']) } rescue []
   end
 
 
