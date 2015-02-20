@@ -1,0 +1,10 @@
+section
+  h4 Top Criteria
+  - @alternative.top_criteria.each do |key, criterion|
+    .row
+      .medium-4.columns
+        h6 = criterion['label']
+      .medium-8.columns
+        .progress.round
+          span.meter style="width: #{(criterion['rating'].to_f * 100.0).round}%"
+            p = rating(criterion['rating'].to_f)
