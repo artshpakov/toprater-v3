@@ -8,8 +8,8 @@ findMechanic = ->
 
 
   @stepPos = (first=false) ->
-    _.each @$node.find(".step"), (step, index) ->
-      $(step).css({ "left": $(window).width() * index })
+    _.each @$node.find(".step"), (step, index) =>
+      $(step).css({ "left": $(window).width() * (index + 1 - @attr.currentStep)})
       if first
         $(step).show(300)
 
@@ -67,7 +67,6 @@ findMechanic = ->
         @$node.find(".full-slide").hide()
         @$node.append(JST["employers_find_results"].render(
           { employers: _.each data.result, (elem, index) ->
-              console.log elem.review_ratings
               elem.place = index + 1
               elem.rating = Math.round(((elem.overall_rating + 1) * 2.5) * 100) / 100
             path: data.path })
@@ -98,6 +97,8 @@ findMechanic = ->
           "normal"
           ,
           =>
+            @$node.find(".pagination").find("[data-step=1]").addClass("current")
+            @$node.find(".pagination").find("[data-step=2]").removeClass("current")
             @$node.find(".full-slide").css({ position: "relative", left: 0 }).show()
           )
       )

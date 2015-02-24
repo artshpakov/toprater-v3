@@ -19,7 +19,6 @@ industryChooser = ->
         if (-pos+1) / (elem.height() / $(event.currentTarget).height()) < $(event.currentTarget).height()
           scrollbar.css "top",  (-pos-1) / (elem.height() / $(event.currentTarget).height())
         else
-          console.log "ololo"
           scrollbar.css "top", $(event.currentTarget).height() - scrollbar.height()
 
         if -elem.position().top >= elem.height() - $(elem).parent().height()
@@ -47,7 +46,7 @@ industryChooser = ->
     @select("list").slideToggle(300)
     @select("list").find("ul").css({ top: 0 })
     @select("list").find(".scrollbar").css({ top: 0 })
-    @$node.find(".list-control").toggleClass("open")
+    @$node.find(".list-control").toggleClass("open toprater-icon-chevron-down toprater-icon-chevron-up")
     @trigger @$node.closest("[role=employers-find-company]"), "industryToggled", industry: @attr.choosed
 
 
@@ -59,8 +58,11 @@ industryChooser = ->
 
     @on @$node.find(".list-control"), "click", (event) ->
       @select("list").slideToggle(300)
+      @$node.find(".list-control").toggleClass("toprater-icon-chevron-down")
+      @$node.find(".list-control").toggleClass("toprater-icon-chevron-up")
+
       @$node.find(".list-control").toggleClass("open", => 
-        if not $(@).hasClass("open") 
+        if not $(@).hasClass("open")
           @select("list").find("ul").css({ top: 0 })
           @select("list").find("ul").css({ top: 0 })
         )
