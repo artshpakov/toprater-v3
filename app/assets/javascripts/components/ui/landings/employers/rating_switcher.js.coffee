@@ -7,6 +7,7 @@ ratingSwitcher = ->
     @trigger document, "ratingSwitched", dest: event.target.getAttribute "data-dest"
     $("[role=switcher]").find("a").removeClass("current")
     $("[role=switcher]").find("a.#{ event.target.getAttribute "data-dest" }").addClass("current")
+    $("header").toggleClass("header-best header-worst")
 
 
 

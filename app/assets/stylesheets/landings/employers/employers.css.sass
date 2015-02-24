@@ -158,8 +158,6 @@ $ipath: "../../../i"
     bottom: 0
     left: 0
     right: 0
-    // position: absolute
-    // width: 100%
     z-index: 20
 
     h1
@@ -168,10 +166,17 @@ $ipath: "../../../i"
 
 
   header
-    background-color: $blue
     height: 100vh
     min-height: rem-calc(440px)
     position: relative
+
+    &.header-best
+      background: $blue url(#{$ipath}/landings/best.svg) 80% 40% no-repeat
+      background-size: 15%
+
+    &.header-worst
+      background: $blue url(#{$ipath}/landings/worst.svg) 80% 40% no-repeat
+      background-size: 18%
     
     h1
       text-transform: uppercase
@@ -255,11 +260,17 @@ $ipath: "../../../i"
       
       h3
         letter-spacing: 0.1em
-        margin-bottom: 20px
+        margin: 12% 0 20px
         text-transform: uppercase
+        width: 80%
+        -webkit-transition: margin-top 0.2s ease-out 0
+        -moz-transition: margin-top 0.2s ease-out 0
+        -o-transition: margin-top 0.2s ease-out 0
+        transition: margin-top 0.2s ease-out 0
 
       .link-to-mechanic
-        background-color: $light-blue
+        background: $light-blue
+
         height: 32vh
         min-height: rem-calc(200px)
 
@@ -267,25 +278,57 @@ $ipath: "../../../i"
           line-height: 1.2em
 
         &:first-of-type
-          background-color: $dark
+          background: $dark
+          background-size: 50%
+          
+          &:hover
+            >div
+              background-size: 42%
+
 
           .desc
             color: rgba(255,255,255,0.6)
 
           >div
+            background: url(#{$ipath}/landings/which_company.svg) 100% 73% no-repeat
+            background-size: 35%
             float: right
+            height: 32vh
 
         >div
+          background: url(#{$ipath}/landings/what_about.svg) 90% 71% no-repeat
+          background-size: 25%
           float: left
+          height: 32vh
           max-width: (62.5 / 2) + rem
           padding: 4vh
           width: 100%
+          -webkit-transition: background-size 0.2s ease-out 0
+          -moz-transition: background-size 0.2s ease-out 0
+          -o-transition: background-size 0.2s ease-out 0
+          transition: background-size 0.2s ease-out 0
+        
+        &:hover
+          h3
+            margin-top: 0
+
+          >div
+            background-size: 30%
+
+          a.button
+            display: inline-block
+
 
         a.button
           background-color: #fff
           color: #000
+          display: none
           font-size: $base-font-size
           margin-top: 20px
+          -webkit-transition: display 0.2s ease-out 0
+          -moz-transition: display 0.2s ease-out 0
+          -o-transition: display 0.2s ease-out 0
+          transition: display 0.2s ease-out 0
 
           &:hover
             background-color: $button-green

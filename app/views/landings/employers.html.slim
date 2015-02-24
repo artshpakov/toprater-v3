@@ -10,7 +10,7 @@ body@employers-page
   .slide-scroller@slide-nav
 
   #employers-wrapper@slider
-    header@slide data-name="header"
+    header.header-best@slide data-name="header"
       .row.topbar
         .columns.small-12
           a.toprater-logo href="https://toprater.com"
@@ -42,6 +42,7 @@ body@employers-page
             h3 = @check_company_title
             - if @check_company_text.present?
               .desc = @check_company_text
+            a.button.round.small href="javascript:;" Get started
 
 
     section#employers-rating@employers-rating
