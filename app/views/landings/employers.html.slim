@@ -179,20 +179,24 @@ body@employers-page
           h1 Coming soon
         h1 = @check_company_title
 
-    / footer@slide data-name="footer"
-    footer
+    footer@slide data-name="footer"
       = javascript_include_tag :application
-      / .row
-      /   .small-12.footer-wrap
-      /     h1 Submit
-      /     h3 To receive new awesome Top Rates!
-
-      /     form
-      /       .row
-      /         .small-10.columns
-      /           input type="email" placeholder="Email address"
-      /         .small-2.columns
-      /           button.small.round SUBMIT
+      .row
+        .small-12.footer-wrap
+          h1 Submit
+          h3 To receive new awesome Top Rates!
+          .subscribe@subscriber
+            form
+              .row
+                .small-10.columns
+                  input.email-field type="email" placeholder="Email address"
+                .small-2.columns
+                  button.submit-email.small.round SUBMIT
+      #bottomline
+        .row
+          .small-12.columns
+            | Other ratings on&nbsp;
+            a href="/" toprater.com
 
 
       coffee:

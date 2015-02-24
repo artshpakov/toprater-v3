@@ -47,5 +47,7 @@ Toprater.attachEmployersLandingComponents = ->
   Toprater.SlideCriterion.attachTo "[role=slide-criterion]"
   Toprater.IndustryChooser.attachTo "[role=industry-chooser]"
 
+  Toprater.Subscriber.attachTo "[role=subscriber]"
+
 
   # Toprater.Slider.attachTo "[role=slider]"

@@ -950,9 +950,10 @@ $ipath: "../../../i"
 
   footer
     background-color: $dark
+    position: relative
     
     .footer-wrap
-      margin:  10vh 0 0
+      margin:  20vh 0 0
 
     h3
       color: #ccc
@@ -961,7 +962,14 @@ $ipath: "../../../i"
       letter-spacing: 1px
     
     form
-      border-bottom: 1px solid $gray-blue
+      padding-left: 0.9375rem
+      padding-right: 0.9375rem
+
+      >.row
+        border-bottom: 1px solid $gray-blue
+
+        .columns
+          padding: 0
 
       input
         border: 0
@@ -971,16 +979,33 @@ $ipath: "../../../i"
         font-family: "proxima_nova_rgbold", Helvetica, sans-serif
         font-weight: bold
         font-size: 50px
-        margin: 0
         height: 64px
+        margin: 0
+        padding-left: 0
+      
 
+      input::-webkit-input-placeholder
+        color: $gray-blue
 
-      input::-webkit-input-placeholder,
-      input:-moz-placeholder,
-      input::-moz-placeholder,
+      input:-moz-placeholder
+        color: $gray-blue
+
+      input::-moz-placeholder
+        color: $gray-blue
+
       input:-ms-input-placeholder
         color: $gray-blue
 
       button
-        background-color: #fff
+        background-color: $gray-blue
+        float: right
+        margin: 8px 0 0
+        width: 130px
+    
+    #bottomline
+      bottom: 0
+      color: $gray-blue
+      position: absolute
+      padding-bottom: 40px
+      width: 100%
 
