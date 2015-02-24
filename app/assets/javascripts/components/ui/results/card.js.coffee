@@ -13,7 +13,6 @@ card = ->
 
   @after "initialize", ->
     @on @$node.find("[role=card-link]"), "click", @showAlternative
-
     @on @$node.find("[role=back-link]"), "click", @showAlternatives
 
 
