@@ -48,8 +48,9 @@ slide = ->
     @fixPosition()
     @toggleDesc()
 
-    @on @$node.find(".link-to-mechanic .button"), "click", ->
-      $(document).find("[data-name=find-company]").click()
+    @on @$node.find(".link-to-mechanic .button"), "click", (event) ->
+      targetSlide = event.target.getAttribute "data-dest"
+      $(document).find("[data-name=#{targetSlide}]").click()
 
     @on document, "slideScrollReq", (event, data) ->
       if data? and data.name == @attr.name then @navigate()

@@ -36,13 +36,13 @@ body@employers-page
             h3 = @find_company_title
             - if @find_company_text.present?
               .desc = @find_company_text
-            a.button.round.small href="javascript:;" Get started
+            a.button.round.small data-dest="find-company" href="javascript:;" Get started
         .small-12.medium-6.large-6.columns.link-to-mechanic@link-to-mechanic
           div
             h3 = @check_company_title
             - if @check_company_text.present?
               .desc = @check_company_text
-            a.button.round.small href="javascript:;" Get started
+            a.button.round.small data-dest="user-company" href="javascript:;" Get started
 
 
     section#employers-rating@employers-rating
