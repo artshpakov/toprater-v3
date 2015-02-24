@@ -1,4 +1,4 @@
-window.filterToUrl = (name, value) ->
+Toprater.filterToUrl = (name, value) ->
   encoders = {}
 
   encoders['numeric'] = (value) ->
@@ -18,5 +18,5 @@ window.filterToUrl = (name, value) ->
   url += encoders[settings.kind](value)
   url
 
-window.isMultiFilter = (name) ->
+Toprater.isMultiFilter = (name) ->
   toprater.filters[name].kind.indexOf('multi') > -1

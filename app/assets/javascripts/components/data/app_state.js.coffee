@@ -48,13 +48,13 @@ appState = ->
     @on "uiFiltersChanged", (event, data) ->
       filter = _.find(@attr.filters, name: data.filterName)
       if filter?
-        if isMultiFilter(data.filterName)
+        if Toprater.isMultiFilter(data.filterName)
           filter.value.push data.value
         else
           filter.value = data.value
         val = filter
       else
-        if isMultiFilter(data.filterName)
+        if Toprater.isMultiFilter(data.filterName)
           data.value = [data.value]
         @attr.filters.push data
         val = data
@@ -67,7 +67,7 @@ appState = ->
           f.name == filter
         )
 
-      unless isMultiFilter(data.filter)
+      unless Toprater.isMultiFilter(data.filter)
         removeFilter data.filter
       else
         filter = _.find(@attr.filters, name: data.filter)

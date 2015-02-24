@@ -1,7 +1,7 @@
 cart = ->
   @render = (event, data) ->
     filters = _.map data.filters, (filter) ->
-      str = filterToUrl(filter.name, filter.value).split('/')
+      str = Toprater.filterToUrl(filter.name, filter.value).split('/')
       { name: str[1], value: str[2] }
 
     @$node.find('.token').remove()

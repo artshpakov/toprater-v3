@@ -14,7 +14,7 @@ dataFindCompany = ->
 
     if filters?.length
       paramsPath += "/filters"
-      paramsPath += filterToUrl(filter.name, filter.value) for filter in filters
+      paramsPath += Toprater.filterToUrl(filter.name, filter.value) for filter in filters
 
     paramsPath
 

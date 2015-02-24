@@ -8,13 +8,13 @@ card = ->
   @showAlternatives = (event, data) ->
     event.stopPropagation()
     event.preventDefault()
-    @trigger document, "backClicked", url: @$node.find("[role=back-link]").attr("href")    
+    @trigger document, "backClicked", url: @$node.find("[role=back-link]").attr("href")
 
 
   @after "initialize", ->
     @on @$node.find("[role=card-link]"), "click", @showAlternative
 
-    @on @$node.find("[role=back-link] a"), "click", @showAlternatives
+    @on @$node.find("[role=back-link]"), "click", @showAlternatives
 
 
 Toprater.Card = flight.component card

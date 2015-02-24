@@ -1,4 +1,4 @@
 .card@card
-  p@back-link = link_to "&larr; Back to results".html_safe, list_path(id: nil)
+  p = link_to "&larr; Back to results".html_safe, list_path(id: nil), role: 'back-link'
 
   #details = render_partial "alternatives/details/#{ State.sphere }"
