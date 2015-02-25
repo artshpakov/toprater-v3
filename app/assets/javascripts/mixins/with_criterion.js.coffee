@@ -8,6 +8,7 @@ withCriterion = ->
     event.stopPropagation()
     @attr.picked = !@attr.picked
     @$node.toggleClass "picked"
+    _kmq.push(['record', 'Criterion Clicked', @attr])
 
 
   @after "initialize", ->

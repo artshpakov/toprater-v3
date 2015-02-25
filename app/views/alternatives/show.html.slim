@@ -2,3 +2,5 @@
   p = link_to "&larr; Back to results".html_safe, list_path, role: 'back-link'
 
   #details = render_partial "alternatives/details/#{ State.sphere }"
+  javascript:
+    _kmq.push(['record', 'Alternative Opened', { sphere: "#{State.sphere}", id: "#{@alternative.id}", name: "#{@alternative.name}" }]);

@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     Sentimeta.sphere = params[:sphere] if params[:sphere].present?
   end
 
-  def setup
+  def setup    
     State.init! params: params, cookies: cookies, session: session
 
     unless request.xhr?
@@ -41,6 +41,7 @@ class ApplicationController < ActionController::Base
       gon.filters   = F_PRESETS[State.sphere]
       gon.criteria  = Criterion.leafs
       gon.state     = State.to_hash
+      gon.ab        = Variation::Registry.registry
     end
   end
 

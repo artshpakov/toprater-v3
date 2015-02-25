@@ -7,6 +7,8 @@ html
     = include_gon namespace: 'toprater', camel_case: true
 
   body
+    = render 'partials/kissmetrics'
+
     - flash.each do |key, value|
       p.alert-box class=key = value
 

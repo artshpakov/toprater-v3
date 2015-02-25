@@ -24,6 +24,10 @@
 # DEBUG.events.logAll()
 
 $ ->
+  # TODO: automate this
+  _kmq.push(["set", {"Show Actors": toprater.ab.actors.show}])
+  _kmq.push(["set", {"Reviews color": toprater.ab.reviews.color}])
+
   $(document).on 'ajaxStart', -> NProgress.start()
   $(document).on 'ajaxStop', -> NProgress.done()
 

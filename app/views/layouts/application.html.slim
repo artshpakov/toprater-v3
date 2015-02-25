@@ -7,6 +7,8 @@ html
     = include_gon namespace: 'toprater', camel_case: true
 
   body
+    = render 'partials/kissmetrics'
+
     - flash.each do |key, value|
       p.alert-box class=key = value
 
@@ -27,4 +29,6 @@ html
 
     script src="//maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry" type="text/javascript"
     script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js' type='text/javascript'
+
     = javascript_include_tag :application
+
