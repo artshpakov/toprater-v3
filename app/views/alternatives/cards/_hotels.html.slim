@@ -1,7 +1,7 @@
 sass:
   .hotel-card
     .cover
-      width: 280px
+      width: 220px
       height: 150px
       background-size: cover
       background-position: center
@@ -27,5 +27,8 @@ sass:
         div = catalog alternative.catalog
       = solid do
         p == price_level alternative.price
+
+  = solid do
+    @map-location data-title="#{ alternative.name }" data-geolat="#{ alternative.coordinates['lat'] }" data-geolng="#{ alternative.coordinates['lng'] }"
 
   = render_partial "alternatives/cards/partials/reviews", locals: { review_packs: alternative.reviews }

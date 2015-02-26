@@ -1,2 +1,4 @@
 section.wide
-  = render_cell :components, :map, title: @alternative.name, geo: @alternative.coordinates
+  @map-location data-title="#{ @alternative.name }" data-geolat="#{ @alternative.coordinates['lat'] }" data-geolng="#{ @alternative.coordinates['lng'] }"
+  @map-canvas
+

@@ -1,37 +1,43 @@
-/ TODO: reusable breadcrumb partial
-= solid do
-  - if @path.count>0
-    @breadcrumbs itemscope=true itemtype="http://data-vocabulary.org/Breadcrumb"
-      .crumb
-        a href="#{ index_path(path: 'group') }" = sphere
-        i.separator
-      - if @path.count>1
-        .crumb
-          - @path[1..@path.count-2].each do |crumb|
+.row
+  .medium-3.columns
+    = render_cell :general, :criteria_catalog
+    hr
+    = render_cell :general, :filters
+
+  .medium-9.columns
+    / TODO: reusable breadcrumb partial
+    = solid do
+      - if @path.count>0
+        @breadcrumbs itemscope=true itemtype="http://data-vocabulary.org/Breadcrumb"
+          .crumb
+            a href="#{ index_path(path: 'group') }" = sphere
+            i.separator
+          - if @path.count>1
             .crumb
-              a href="#{ index_path(path: crumb['url']) }" = crumb['label']
-              i.separator
-      .crumb
-        span = @path[@path.count-1]['label']
+              - @path[1..@path.count-2].each do |crumb|
+                .crumb
+                  a href="#{ index_path(path: crumb['url']) }" = crumb['label']
+                  i.separator
+          .crumb
+            span = @path[@path.count-1]['label']
 
 
-- if @groups.present?
-  - @groups.each do |group|
-    .row
-      h4 = link_to group['label'], group['url']
+    - if @groups.present?
+      - @groups.each do |group|
+        h4 = link_to group['label'], group['url']
+        .row
+          - group['links'].each do |link|
+            .large-3.columns.index-item
+              = link_to link['url'] do
+                = image_tag link['photo'], class: 'index-image'
+                h5 = link['name']
+
+    - if @ratings.present?
       .row
-        - group['links'].each do |link|
+        - @ratings.each do |rating|
           .large-3.columns.index-item
-            = link_to link['url'] do
-              = image_tag link['photo'], class: 'index-image'
-              h5 = link['name']
-
-- if @ratings.present?
-  .row
-    - @ratings.each do |rating|
-      .large-3.columns.index-item
-        = link_to rating['url'] do
-          = image_tag rating['photo'], class: 'index-image'
-          h5 = rating['label']
+            = link_to rating['url'] do
+              = image_tag rating['photo'], class: 'index-image'
+              h5 = rating['label']
 
 

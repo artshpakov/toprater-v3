@@ -12,29 +12,30 @@ sass:
         margin-bottom: 20px
 
 
-= solid do
-  table.movie-card
-    tr valign="top"
-      td width="100%"
-        h3.headline
-          =' "#{ index }."
-          a.name@card-link href="#{ object_path id: alternative.full_id }" = alternative.name
+.card.object@card
+  = solid do
+    table.movie-card
+      tr valign="top"
+        td width="100%"
+          h3.headline
+            =' "#{ index }."
+            a.name@card-link href="#{ object_path id: alternative.full_id }" = alternative.name
 
-        = render_partial "alternatives/cards/partials/reviews", locals: { review_packs: alternative.reviews }
+          = render_partial "alternatives/cards/partials/reviews", locals: { review_packs: alternative.reviews }
 
-      td.overall width="120"
-        = solid do
-          .movie-cover style="background-image: url(#{ alternative.cover })"
-        = solid do
-          p
-            b' Release:
-            = alternative.extra['year']
-
-        - if ab_test(:actors)['show']
-          = solid
+        td.overall width="120"
+          = solid do
+            .movie-cover style="background-image: url(#{ alternative.cover })"
+          = solid do
             p
-              b' Actors:
-              br
-              - alternative.extra['actors'][0..9].each do |actor|
-                =' actor['label']
+              b' Release:
+              = alternative.extra['year']
+
+          - if ab_test(:actors)['show']
+            = solid
+              p
+                b' Actors:
                 br
+                - alternative.extra['actors'][0..9].each do |actor|
+                  =' actor['label']
+                  br
