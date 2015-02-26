@@ -1,0 +1,8 @@
+.row
+  .medium-4.columns
+    | MAP HERE
+  .medium-8.columns
+    #rating@objects-list
+      = render partial: 'alternatives/partials/list', locals: { alternatives: @alternatives }
+    .text-center
+      a.button.round@load-more Load More

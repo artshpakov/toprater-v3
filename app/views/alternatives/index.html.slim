@@ -1,4 +1,2 @@
-#rating@objects-list
-  = render partial: 'alternatives/partials/list', locals: { alternatives: @alternatives }
-.text-center
-  a.button.round@load-more Load More
+@result
+  = render_partial "alternatives/lists/#{ Sentimeta.sphere }"
