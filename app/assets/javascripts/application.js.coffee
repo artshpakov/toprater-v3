@@ -25,8 +25,8 @@
 
 $ ->
   # TODO: automate this
-  _kmq.push(["set", {"Show Actors": toprater.ab.actors.show}])
-  _kmq.push(["set", {"Reviews color": toprater.ab.reviews.color}])
+  _kmq.push(["set", {"Show Actors": toprater.ab.actors.show}]) if toprater.ab.actor
+  _kmq.push(["set", {"Reviews color": toprater.ab.reviews.color}]) if toprater.ab.reviews
 
   $(document).on 'ajaxStart', -> NProgress.start()
   $(document).on 'ajaxStop', -> NProgress.done()
