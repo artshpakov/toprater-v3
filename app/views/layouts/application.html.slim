@@ -15,15 +15,7 @@ html
     @wrapper
       = render partial: 'partials/header'
       section@content
-        .row
-          .medium-3.columns
-            - if State.sphere.present?
-              = render_cell :general, :criteria_catalog
-              hr
-              = render_cell :general, :filters
-          .medium-9.columns
-            #result@result
-              = yield
+        = yield
 
     = render_cell :general, :debug
 

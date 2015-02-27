@@ -1,0 +1,6 @@
+.row
+  .medium-12.columns
+    #rating@objects-list
+      = render partial: 'alternatives/partials/list', locals: { alternatives: @alternatives }
+    .text-center
+      a.button.round@load-more Load More

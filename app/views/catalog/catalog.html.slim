@@ -1,19 +1,24 @@
-h3 = sphere
+.row
+  .medium-12.columns
+    h3 = sphere
 
-= render partial: "partials/breadcrumbs", locals: { path: @path }
+    = render partial: "partials/breadcrumbs", locals: { path: @path }
 
-@catalog-description
-  = render_cell :components, :map, path: @path, location: @content['map']
-  .textmass
-    p = @content['annotation']
+    @catalog-description
+      = solid do
+        @map-location data-title="#{ @path.last['label'] }" data-geolat="#{ @geo['lat'] }" data-geolng="#{ @geo['lng'] }" data-zoom="#{ @path.count*4 }"
+        @map-canvas
 
-ul@catalog
-  - if @catalog.present?
-    - @catalog.each do |entry|
-      li: a href="#{ catalog_path(path: ([params[:path], entry['name']].compact.join(','))) }" = entry['label']
-  - if @objects.present?
-    - @objects.each do |entry|
-      li: a href="#{ object_path(id: entry['full_id']) }" = entry['label']
+      .textmass
+        p = @content['annotation']
 
-hr
-= pagination @items_total, items_per_page, ->(page) { catalog_path(path: params[:path], page: page) }
+    ul@catalog.columns-2
+      - if @catalog.present?
+        - @catalog.each do |entry|
+          li: a href="#{ catalog_path(path: ([params[:path], entry['name']].compact.join(','))) }" = entry['label']
+      - if @objects.present?
+        - @objects.each do |entry|
+          li: a href="#{ object_path(id: entry['full_id']) }" = entry['label']
+
+    hr
+    = pagination @items_total, items_per_page, ->(page) { catalog_path(path: params[:path], page: page) }

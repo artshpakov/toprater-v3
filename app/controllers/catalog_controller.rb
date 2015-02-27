@@ -17,6 +17,9 @@ class CatalogController < ApplicationController
       @catalog      = response.body['catalog']
       @objects      = response.body['objects']
       @items_total  = response.body['total']
+
+      # TODO temporary
+      @geo          = JSON.parse(RestClient.get("http://maps.googleapis.com/maps/api/geocode/json?address=#{ @content['map'].split('/').last }"))['results'].first['geometry']['location'] rescue nil
     end
   end
 

@@ -1,0 +1,18 @@
+.row
+  .medium-5.columns
+    @map-canvas
+    hr
+    = render_cell :general, :criteria_catalog
+    hr
+    = render_cell :general, :filters
+
+  .medium-7.columns
+    #rating@objects-list
+      = render partial: 'alternatives/partials/list', locals: { alternatives: @alternatives }
+    .text-center
+      a.button.round@load-more Load More
+
+sass:
+  [role=map-canvas]
+    height: 700px
+    border: 1px solid #dddddd
