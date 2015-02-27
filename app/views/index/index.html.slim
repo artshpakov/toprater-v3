@@ -20,7 +20,7 @@ html
           
       section
         .row
-          - %w(movies hotels).each_with_index do |sphere, index|
+          - %w(hotels movies companies).each_with_index do |sphere, index|
             = render_cell :index, :important, sphere: sphere, index: index
         .row
           = render_cell :index, :compilations

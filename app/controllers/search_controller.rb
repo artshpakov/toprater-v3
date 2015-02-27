@@ -2,13 +2,15 @@ class SearchController < ApplicationController
 
   respond_to :json
 
-  MOVIES_FILTERS = %w(genres actors)
+  FILTERS = { 
+              movies: %w(genres actors),
+              companies: %w(industries segm),
+              hotels: []
+            }
 
   def suggest
     result = {}
-    if State.sphere == 'movies'
-      result[:props] = complete_movies params[:q]
-    end
+    result[:props] = complete_props params[:q], State.sphere
     result[:objects] = Sentimeta::Client.search(text: params[:q])['objects']
     render json: result
   end
@@ -38,11 +40,12 @@ class SearchController < ApplicationController
 
   private
 
-  def complete_movies(query)
+  def complete_props query, sphere
     result = Sentimeta::Client.search(text: query)['criteria'].map{ |a| a.merge({type: :criteria}) }
-    MOVIES_FILTERS.each do |filter|
+    FILTERS[sphere.to_sym].each do |filter|
       result += Sentimeta::Client.search(where: filter, text: query).map{ |a| a.merge({type: filter}) }
     end
     result
   end
+
 end
