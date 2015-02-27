@@ -6,7 +6,7 @@ ul.suggestions
     span.suggestion-type
       | &nbsp-&nbsp object
   | {{/payload.objects}}
-  hr
+
   | {{#payload.props}}
   li data-id="{{ name }}" data-type="{{ type }}"
     strong
