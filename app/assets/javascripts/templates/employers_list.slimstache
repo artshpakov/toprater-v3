@@ -1,0 +1,3 @@
+| {{#employers}}
+a.employer-suggestion.small-4.columns data-id="{{id}}" {{label}}
+| {{/employers}}

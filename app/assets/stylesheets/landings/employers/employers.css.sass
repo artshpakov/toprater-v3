@@ -366,12 +366,11 @@ $ipath: "../../../i"
           overflow: hidden
 
         a.showmore
-          color: #fff !important
+          color: rgba(255,255,255, .6)
           display: none
-          text-decoration: underline
+          text-decoration: none
 
-          &:hover
-            text-decoration: none
+          +hover
 
     h2
       font-size: $title-font-size
@@ -946,6 +945,67 @@ $ipath: "../../../i"
     h1
       letter-spacing: 2px
       margin-top: 12vh
+    
+    input
+      background-color: transparent
+      border: 0
+      box-shadow: none
+      border-bottom: 1px solid #94e0eb
+      color: #fff
+      font-family: "museo_sans700", Helvetica, sans-serif
+      font-size: 50px
+      margin-bottom: 10vh
+      width: 100%
+
+      &:focus
+        outline: 0
+
+    button
+      color: #fff
+      background-color: transparent
+      float: right
+      font-size: 36px
+      margin: 15px 0 0 -40px
+      padding: 0
+      width: 36px
+
+    input::-webkit-input-placeholder
+      color: #72dde8
+
+    input:-moz-placeholder
+      color: #72dde8
+
+    input::-moz-placeholder
+      color: #72dde8
+
+    input:-ms-input-placeholder
+      color: #72dde8
+
+    .new-search
+      color: rgba(255,255,255,0.6)
+      font-size: 14px
+
+      &:before
+        line-height: 15px
+        margin: 0px 5px 0 0
+        vertical-align: middle
+
+      +hover
+    
+    .check-company-wrap
+      overflow: hidden
+      // position: relative
+
+    .employer-suggest
+      a
+        color: #b6fefd
+        display: block
+        font-family: "proxima_nova_ltlight", Helvetica, sans-serif
+        font-size: 24px
+        margin-bottom: 5vh
+
+        &:hover
+          color: #fff
     
 
   footer

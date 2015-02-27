@@ -1,0 +1,74 @@
+.employer-result
+  .row
+    .employer-info.columns.small-12.medium-6
+      a.new-search.toprater-icon-chevron-left@restart href="javascript:;" New search
+      h2 {{employer.name}}
+      .industries
+        | {{#employer.extra.industries}}
+        span {{label}}
+        | {{/employer.extra.industries}}
+
+        / - employer.extra["industries"].each_with_index do |industry, index|
+        /   span = industry["label"]
+        /   - if not index + 1 == employer.extra["industries"].size
+        /     |,&nbsp;
+      
+
+      .desc 
+        .desc-text
+          | {{employer.extra.description}}
+        a.showmore href="/en/companies/objects/{{ employer.full_id }}" 
+          | Show full description
+
+
+    .employer-chart.columns.small-12.medium-6
+      .chart@pie-chart data-value="{{employer.percentage}}"
+        .chart-text
+          .percentage 
+            | {{ employer.percentage }}
+            small &nbsp;%
+            span Positive reviews
+          / - if @reverse
+          /   span Negative reviews
+          / - else
+          /   span Positive reviews
+      .info
+        / - if @worst_exist
+        /   .switcher@switcher
+        /     a.best class="#{ 'current' if not @reverse }" data-dest="best" href="javascript:;" Best
+        /     |&nbsp;&nbsp;/&nbsp;&nbsp;
+        /     a.worst class="#{ 'current' if @reverse }" data-dest="worst" href="javascript:;" Worst
+        .rating-info
+          .current-criterion Overall rating
+          .value
+            span {{ employer.rating }}
+            small 
+              | /&nbsp;&nbsp;5
+        hr
+        .reviews-count
+          div Based on
+          .count {{ employer.review_ratings.total }}
+          div reviews
+  .row
+    .criterion-bar-chart@criteria-bar
+      a.arrow.toprater-icon-chevron-left@arrow-left href="javascript:;" 
+      a.arrow.toprater-icon-chevron-right@arrow-right href="javascript:;"
+      .bar-wrap
+        | {{#employer.other_criteria}}
+        a.criterion-bar data-rating="{{ rating }}" data-name="{{ label }}" href="/en/companies/objects/criteria/{{ name }}" target="_blank"
+          .name {{ label }}
+          .rating {{ rating }}
+        | {{/employer.other_criteria}}
+
+        .links-bar
+          div
+            a.chart-link.toprater-link href="/en/companies/objects/criteria/overall_rating/filters/top/fortune-1000" target="_blank"
+              | 300 + awesome criteria on our toprater.com 
+              span.toprater-icon-chevron-right
+          div
+            a.chart-link.fc-link href="javascript:;"
+              | {{find_company_title}}
+          div
+            a.chart-link.cc-link href="javascript:;"
+              | {{check_company_title}}
+        .line-chart

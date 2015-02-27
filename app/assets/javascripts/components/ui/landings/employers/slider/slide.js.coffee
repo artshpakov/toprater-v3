@@ -60,6 +60,9 @@ slide = ->
       @fixPosition()
       # @toggleDesc()
 
+    @on @$node, "checkEmployerShowed", ->
+      @toggleDesc()
+
     @trigger document, "slideInitialized", { name: @attr.name, current: @isCurrent() }
 
 

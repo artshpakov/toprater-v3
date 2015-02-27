@@ -173,11 +173,21 @@ body@employers-page
             a.button.round@slide-results href="javascript:;" Next
 
 
-    section#employers-user-company@slide data-name="user-company"
-      .row@employers-user-company
-        .coming-soon 
-          h1 Coming soon
-        h1 = @check_company_title
+    section#employers-user-company.employer.slide@slide data-name="user-company"
+      .check-company-wrap@employers-check-company
+        .full-slide
+          h1 = @check_company_title
+          .row
+            .small-12.columns
+              input placeholder="Company name"
+              button.toprater-icon-search
+          .row.employer-suggest
+            .base
+              - @employers_names.each do |emp|
+                .employer-suggestion.small-4.columns 
+                  a data-id="#{ emp['id'] }" =' emp["label"]
+            .finded
+        
 
     footer@slide data-name="footer"
       = javascript_include_tag :application

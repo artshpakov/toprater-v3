@@ -7,7 +7,6 @@ class LandingsController < ApplicationController
   def employers
 
     Sentimeta.sphere = params[:sphere] = 'companies'
-    params[:limit_objects] = OBJECTS_LIMIT
     params[:limit_criteria] = 15
 
     setup
@@ -28,8 +27,9 @@ class LandingsController < ApplicationController
         params[:filters] = info_data.body["data"]["best"]["filters"] rescue false
         @reverse = false
       end
-      
+      params[:limit_objects] = OBJECTS_LIMIT
       @employers = Alternative.rate(params)
+      @employers_names = info_data.body["suggestions"]["employers"] rescue false
       @title = info_data.body["data"]["title"] rescue false
       @about = info_data.body["data"]["about_rating"] rescue false
       @important_criteria = info_data.body["data"]["important_criteria"].map { |criterion| Criterion.find criterion } rescue false
@@ -40,10 +40,20 @@ class LandingsController < ApplicationController
       @segments = segments
     end
 
+    if params[:id].present?
+      employer = Alternative.find params[:id]
+      find_company_title = info_data.body["data"]["find_company_title"] rescue false
+      check_company_title = info_data.body["data"]["check_company_title"] rescue false
+      @data = { :employer => employer, 
+                :find_company_title => find_company_title,
+                :check_company_title => check_company_title
+              }
+      render json: @data rescue false
+    end
 
     if params[:find_employer]
-      @employers = Alternative.rate(params)
-      render json: @employers[0..2] rescue false
+      @employers = Alternative.rate(params)[0..2]
+      render json: @employers rescue false
     end
 
   end
