@@ -54,6 +54,6 @@ pieChart = ->
       @chart()
 
     @on @$node.closest("[role=slide]"), "destroyChartReq", ->
-      @attr.chart.destroy()
+      @teardown()
 
 Toprater.PieChart = flight.component pieChart

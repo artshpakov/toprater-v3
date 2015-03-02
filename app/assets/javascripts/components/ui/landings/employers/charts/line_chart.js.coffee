@@ -62,5 +62,8 @@ lineChart = ->
         @$node.find("canvas").remove()
       @chart()
 
+    @on @$node.closest("[role=slide]"), "destroyChartReq", ->
+      @teardown()
+
 
 Toprater.LineChart = flight.component lineChart

@@ -35,8 +35,7 @@ checkMechanic = ->
     @$node.find("input").val("")
     @$node.find(".finded").html("")
     @$node.find(".base").show()
-    Toprater.PieChart.teardownAll()
-    Toprater.LineChart.teardownAll()
+    @trigger @$node.closest("[role=slide]"), "destroyChartReq"
     @$node.find(".employer-result").css(position: "absolute", width: $(@).parent().width(), height: "100%").animate(
       left: $(window).width()
       ,
