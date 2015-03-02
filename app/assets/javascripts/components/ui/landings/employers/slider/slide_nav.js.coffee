@@ -27,19 +27,31 @@ slideNav = ->
     @$node.find("[data-name=#{ nextSlide.name }]").click()
 
   @scroll = (event) ->
-    down = event.which == 40 or event.which == 34
-    up = event.which == 38 or event.which == 33
-    if event.clientY > 200 or up or down
-      # FIXME: fix in Firefox!
-      if event.originalEvent.deltaY > 0 or down
+    if event.type == "DOMMouseScroll"
+      if event.originalEvent.detail > 0
         currentSlide = _.find @attr.slides, (slide) -> slide.current
         nextSlide = @attr.slides[_.indexOf(@attr.slides, currentSlide) + 1]
         if nextSlide?
           slideName = nextSlide.name
           $("[data-name=#{slideName}]").click()
-          
-      # FIXME: fix in Firefox!              
-      if event.originalEvent.deltaY < 0 or up
+      else
+        currentSlide = _.find @attr.slides, (slide) -> slide.current
+        nextSlide = @attr.slides[_.indexOf(@attr.slides, currentSlide) + -1]
+        if nextSlide?
+          slideName = nextSlide.name
+          $("[data-name=#{slideName}]").click()
+    
+    down = event.which == 40 or event.which == 34
+    up = event.which == 38 or event.which == 33
+    if event.clientY > 200 or up or down
+      if (event.originalEvent.deltaY > 0) or (event.type == "DOMMouseScroll" and event.originalEvent.detail > 0) or down
+        currentSlide = _.find @attr.slides, (slide) -> slide.current
+        nextSlide = @attr.slides[_.indexOf(@attr.slides, currentSlide) + 1]
+        if nextSlide?
+          slideName = nextSlide.name
+          $("[data-name=#{slideName}]").click()
+              
+      if event.originalEvent.deltaY < 0 or (event.type == "DOMMouseScroll" and event.originalEvent.detail < 0) or up
         currentSlide = _.find @attr.slides, (slide) -> slide.current
         nextSlide = @attr.slides[_.indexOf(@attr.slides, currentSlide) + -1]
         if nextSlide?
