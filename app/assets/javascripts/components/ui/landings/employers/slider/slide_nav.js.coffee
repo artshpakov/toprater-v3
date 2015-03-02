@@ -1,6 +1,7 @@
 slideNav = ->
   @attributes
     slides: []
+    lastY: 0
 
   @renderNav = ->
     @$node.html JST['slider_nav'].render { slides: @attr.slides }
@@ -26,7 +27,7 @@ slideNav = ->
     nextSlide = @attr.slides[_.indexOf(@attr.slides, currentSlide) + 1]
     @$node.find("[data-name=#{ nextSlide.name }]").click()
 
-  @scroll = (event) ->
+  @scroll = (event, touch, direction) ->
     if event.type == "DOMMouseScroll"
       if event.originalEvent.detail > 0
         currentSlide = _.find @attr.slides, (slide) -> slide.current
@@ -43,6 +44,13 @@ slideNav = ->
     
     down = event.which == 40 or event.which == 34
     up = event.which == 38 or event.which == 33
+
+    if touch?
+      if direction == "up"
+        up = true
+      else
+        down = true
+
     if event.clientY > 200 or up or down
       if (event.originalEvent.deltaY > 0) or (event.type == "DOMMouseScroll" and event.originalEvent.detail > 0) or down
         currentSlide = _.find @attr.slides, (slide) -> slide.current
@@ -70,15 +78,24 @@ slideNav = ->
 
     @on document, "nextSlide", @nextSlide
 
-    @on window, "mousewheel", (event) ->
+    @on window, "mousewheel, DOMMouseScroll, touchend", (event) ->
+      if event.type == "touchend"
+        delta = event.originalEvent.changedTouches[0].clientY - @attr.lastY
+        if Math.abs(delta) > 100
+          if delta > 0
+            direction = "up"
+          else
+            direction = "down"
+          @scrolling(event, true, direction)
+        return
+
+      
       event.preventDefault()
       event.stopPropagation()
       @scrolling(event)
 
-    @on window, "DOMMouseScroll", (event) ->
-      event.preventDefault()
-      event.stopPropagation()
-      @scrolling(event)
+    @on window, "touchstart", (event) ->
+      @attr.lastY = event.originalEvent.changedTouches[0].clientY
 
     @on window, "keydown", (event) ->
       if event.which == 38 or event.which == 40 or event.which == 33 or event.which == 34
