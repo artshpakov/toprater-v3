@@ -20,8 +20,8 @@
 #= require_tree .
 
 # Uncomment to debug FlightJS
-flight.debug.enable true
-DEBUG.events.logAll()
+# flight.debug.enable true
+# DEBUG.events.logAll()
 
 $ ->
   # TODO: automate this
