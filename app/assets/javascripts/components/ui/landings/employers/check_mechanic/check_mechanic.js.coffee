@@ -2,50 +2,6 @@ checkMechanic = ->
   @attributes
     employers: []
 
-
-
-  # @stepPos = (first=false) ->
-  #   _.each @$node.find(".step"), (step, index) =>
-  #     $(step).css({ "left": $(window).width() * (index + 1 - @attr.currentStep)})
-  #     if first
-  #       $(step).show(300)
-
-
-  # @checkButton = ->
-  #   if @attr.criteriaReady and @attr.filtersReady
-  #     @attr.buttonState = 3
-  #   else
-  #     @attr.buttonState = 0
-  #     if @attr.criteriaReady and not @attr.filtersReady
-  #       @attr.buttonState = 1
-  #     if @attr.filtersReady and not @attr.criteriaReady
-  #       @attr.buttonState = 2
-
-  #   if @attr.buttonState == 3
-  #     @$node.find("[role=slide-results]").addClass("ready")
-  #   if @attr.buttonState == 1
-  #     @$node.find("[role=slide-results]").addClass("ready")
-  #     @$node.find("[role=slide-results]").html("Next")
-  #   if @attr.buttonState == 2 or @attr.buttonState == 3
-  #     @$node.find("[role=slide-results]").html("Show results")
-  #   if @attr.buttonState == 2
-  #     @$node.find("[role=slide-results]").removeClass("ready")
-  #   if @attr.buttonState == 0
-  #     @$node.find("[role=slide-results]").removeClass("ready")
-
-
-
-  # @makeStep = (targetStep) ->
-  #   _.each @$node.find(".step"), (step, index) =>
-  #     $(step).animate(
-  #       left: (index + 1 - targetStep) * $(window).width()
-  #       ,
-  #       "normal"
-  #       ,
-  #       =>
-  #         @attr.currentStep = targetStep
-  #         @checkButton()
-  #     )
   @showSearch = (event, data) ->
     event.stopPropagation()
 
@@ -75,45 +31,28 @@ checkMechanic = ->
 
 
   @restart = ->
-    # @trigger @$node, "restartFindMechanic"
     @attr.employers = []
     @$node.find("input").val("")
     @$node.find(".finded").html("")
     @$node.find(".base").show()
-    @$node.find(".full-slide").css({ left: -$(window).width(), position: "absolute" })
+    Toprater.PieChart.teardownAll()
+    Toprater.LineChart.teardownAll()
     @$node.find(".employer-result").css(position: "absolute", width: $(@).parent().width(), height: "100%").animate(
       left: $(window).width()
       ,
       "normal"
       ,
       =>
-        console.log @$node.find(".full-slide")
         @$node.find(".full-slide").show()
         @$node.find(".full-slide").animate(
           left: 0
           ,
           "normal"
-          ,
-          =>
-            @$node.find(".full-slide").css({position: "static"})
-            @$node.find(".employer-result").remove()
           )
+        @$node.find(".full-slide").css({position: "static"})
+        @$node.find(".employer-result").remove()
 
       )
-    # @$node.find("#find-company-results").css(position: "absolute", width: $(@).parent().width()).animate(
-    #   left: -$(window).width()
-    #   ,
-    #   "normal"
-    #   ,
-    #   =>
-    #     @$node.find(".full-slide").animate(
-    #       left: 0
-    #       ,
-    #       "normal"
-    #       ,
-    #       =>
-    #       )
-    #   )
 
   @search = (event) ->
     if @$node.find("input").val().replace(/\s+/g, "").length < 1
@@ -153,8 +92,6 @@ checkMechanic = ->
         Toprater.LineChart.attachTo @$node.find("[role=criteria-bar]")
         @on @$node.find("[role=restart]"), "click", @restart
         @trigger @$node.closest("[role=slide]"), "redrawChartReq"
-
-        # @on @$node.find("[role=restart]"), "click", @restart
       )
 
 

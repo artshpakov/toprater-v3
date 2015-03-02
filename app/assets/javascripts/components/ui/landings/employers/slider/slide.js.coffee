@@ -58,7 +58,6 @@ slide = ->
     @on window, "resize", ->
       @$node.height $(window).height()
       @fixPosition()
-      # @toggleDesc()
 
     @on @$node, "checkEmployerShowed", ->
       @toggleDesc()

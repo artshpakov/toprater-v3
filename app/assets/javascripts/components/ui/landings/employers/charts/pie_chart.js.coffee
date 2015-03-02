@@ -7,11 +7,9 @@ pieChart = ->
     height = +@$node.height() - 20
 
     value = +@$node.attr "data-value"
-
     chartID = "pie-" + @$node.closest(".employer").attr("data-name")
     chartElem = $("<canvas id='#{ chartID }' width='#{ width }' height='#{ height }'></canvas>")
     @$node.append(chartElem)
-
     ctx = $("#" + chartID).get(0).getContext "2d"
 
     data = [
@@ -54,5 +52,8 @@ pieChart = ->
         @attr.chart.destroy()
         @$node.find("canvas").remove()      
       @chart()
+
+    @on @$node.closest("[role=slide]"), "destroyChartReq", ->
+      @attr.chart.destroy()
 
 Toprater.PieChart = flight.component pieChart
