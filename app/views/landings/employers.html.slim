@@ -7,6 +7,7 @@ html
     = include_gon namespace: 'toprater', camel_case: true
 
 body@employers-page
+  = render 'partials/kissmetrics'
   .slide-scroller@slide-nav
 
   #employers-wrapper@slider
@@ -176,8 +177,9 @@ body@employers-page
     section#employers-user-company.employer.slide@slide data-name="user-company"
       .check-company-wrap@employers-check-company
         .full-slide
-          h1 = @check_company_title
-          .row
+          .row 
+            h1 = @check_company_title
+          .row.search-wrap
             .small-12.columns
               input placeholder="Company name"
               button.toprater-icon-search

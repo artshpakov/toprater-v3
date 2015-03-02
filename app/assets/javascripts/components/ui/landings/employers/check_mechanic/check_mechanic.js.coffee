@@ -126,6 +126,7 @@ checkMechanic = ->
 
 
   @showEmployer = (event, data) ->
+    console.log "ololol"
     event.stopPropagation()
     @$node.find(".full-slide").css({ position: "absolute", top: 0 })
     data.employer.percentage = Math.round (data.employer.review_ratings.good + data.employer.review_ratings.excellent) / (data.employer.review_ratings.total / 100.0)

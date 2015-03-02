@@ -30,7 +30,7 @@ dataCheckCompany = ->
 
 
   @getResult = (event, data) ->
-    url =  window.location.href + data.id
+    url =  window.location.href + "/" + data.id
 
     $.ajax(
       url: url
