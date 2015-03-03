@@ -185,7 +185,7 @@ body@employers-page
               button.toprater-icon-search
           .row.employer-suggest
             .base
-              -if @employers_names.each.present?
+              -if @employers_names.present?
                 - @employers_names.each do |emp|
                   .employer-suggestion.small-4.columns 
                     a data-id="#{ emp['id'] }" =' emp["label"]
