@@ -34,7 +34,7 @@ pieChart = ->
       animateScale:           false
       percentageInnerCutout:  98
       animationEasing:        "easeOut"
-      animationSteps:         60
+      animationSteps:         30
 
 
     @attr.chart = new Chart(ctx).Doughnut data, options 

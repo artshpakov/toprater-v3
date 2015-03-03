@@ -1,4 +1,6 @@
 criteriaBar = ->
+  @attributes
+    lastX: 0
 
   @arrowsVisibility = (elem) ->
     if -elem.offset().left >= elem.width() - $(window).width()
@@ -12,7 +14,15 @@ criteriaBar = ->
       @$node.find("[role=arrow-left]").show()
 
 
-  @scroll = (event, direction=false) ->
+  @scroll = (event, direction=false, touch=false) ->
+    if event.type == "DOMMouseScroll"
+      if event.originalEvent.detail > 0
+        direction = "right"
+      else
+        direction = "left"
+
+    # if touch?
+
     elem = @$node.find(".bar-wrap")
     pos = @$node.find(".bar-wrap").offset().left
     event.preventDefault()
@@ -57,6 +67,21 @@ criteriaBar = ->
 
     @on @$node, "mousewheel", @scroll
     @on @$node, "DOMMouseScroll", @scroll
+
+    @on @$node, "touchstart", (event) ->
+      @attr.lastX = event.originalEvent.changedTouches[0].clientX
+
+    @on window, "touchend", (event) ->
+      # event.preventDefault()
+      event.stopPropagation()
+      delta = event.originalEvent.changedTouches[0].clientX - @attr.lastX
+      if Math.abs(delta) > 150
+        if delta > 0
+          direction = "left"
+        else
+          direction = "right"
+        @scrolling(event, direction, true)
+      return
 
     @on window, "resize", ->
       @arrowsVisibility(@$node.find(".bar-wrap"))
