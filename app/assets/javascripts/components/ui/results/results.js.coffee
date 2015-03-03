@@ -9,7 +9,7 @@ result = ->
     @trigger "pageUpdated"
 
   @addAlternatives = (event, data) ->
-    @$node.find('#rating').append($(data.objects))
+    @$node.append($(data.objects))
     Toprater.Card.attachTo "[role=card]"
 
 

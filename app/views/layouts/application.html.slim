@@ -15,7 +15,10 @@ html
     @wrapper
       = render partial: 'partials/header'
       section@content
-        = yield
+        - if params[:controller] == 'alternatives' # TODO any better ideas?
+          = nested_layout "alternatives/lists/_#{ Sentimeta.sphere }"
+        - else
+          = yield
 
     = render_cell :general, :debug
 
@@ -23,4 +26,3 @@ html
     script src='//google-maps-utility-library-v3.googlecode.com/svn/tags/markerclustererplus/2.0.14/src/markerclusterer_packed.js' type='text/javascript'
 
     = javascript_include_tag :application
-

@@ -8,7 +8,7 @@
 
   .medium-7.columns
     #rating@objects-list
-      = render partial: 'alternatives/partials/list', locals: { alternatives: @alternatives }
+      = yield
     .text-center
       a.button.round@load-more Load More
 
