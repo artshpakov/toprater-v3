@@ -4,23 +4,17 @@ slide = ->
 
   @navigate = (speed=500) ->
     @off window, "scroll"
-    $("#employers-wrapper").scrollTop(@$node.offset().top)
-    # $("body, html").animate({ 
-    #   scrollTop: @$node.offset().top 
-    #   }, 
-    #   speed,
-    #   =>
-    #     @trigger document, "slideScrolled"
-    #     @trigger @$node, "slideScrolled"
+    $("body, html").animate({ 
+      scrollTop: @$node.offset().top 
+      }, 
+      speed,
+      =>
+        @trigger document, "slideScrolled"
+        @trigger @$node, "slideScrolled"
 
-    #     if @isCurrent()
-    #       @trigger @$node, "redrawChartReq"
-    #   )
-    @trigger document, "slideScrolled"
-    @trigger @$node, "slideScrolled"
-
-    if @isCurrent()
-      @trigger @$node, "redrawChartReq"
+        if @isCurrent()
+          @trigger @$node, "redrawChartReq"
+      )
     
   @isCurrent = ->
     viewportTop = $(window).scrollTop()

@@ -9,6 +9,8 @@ slideNav = ->
   @registerSlide = (event, data) ->
     if data.current
       _.find(@attr.slides, (slide) -> slide.current)?.current = false
+    @attr.slides.push { name: data.name, current: data.current }
+
     @renderNav()
 
   @navigate = (event) ->
