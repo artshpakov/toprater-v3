@@ -49,7 +49,7 @@ body@employers-page
     section#employers-rating@employers-rating
       - if @employers.present?
         - @employers.each_with_index do |employer, index|
-          section.employer.slide@slide class="employer-#{ index }" data-name="employer-#{ index }"
+          section.employer.slide@slide class="employer-#{ index }" id="employer-#{ index }" data-name="employer-#{ index }"
             .row
               .employer-info.columns.small-12.medium-6
                 .place
@@ -185,9 +185,10 @@ body@employers-page
               button.toprater-icon-search
           .row.employer-suggest
             .base
-              - @employers_names.each do |emp|
-                .employer-suggestion.small-4.columns 
-                  a data-id="#{ emp['id'] }" =' emp["label"]
+              -if @employers_names.each.present?
+                - @employers_names.each do |emp|
+                  .employer-suggestion.small-4.columns 
+                    a data-id="#{ emp['id'] }" =' emp["label"]
             .finded
         
 
