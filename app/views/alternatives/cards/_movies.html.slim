@@ -19,22 +19,20 @@ sass:
         h3.headline
           =' "#{ index }."
           a.name@card-link href="#{ object_path id: alternative.full_id }" = alternative.name
+        p = alternative.genres.join(', ')
+        p.textmass = alternative.extra['description']
+        div
+          strong> Directors:
+          = alternative.extra['directors'].map{|dir| dir['label']}.to_sentence
 
-        = render_partial "alternatives/cards/partials/reviews", locals: { review_packs: alternative.reviews }
 
       td.overall width="120"
         = solid do
           .movie-cover style="background-image: url(#{ alternative.cover })"
-        = solid do
+        = solid
           p
-            b' Release:
-            = alternative.extra['year']
-
-        - if ab_test(:actors)['show']
-          = solid
-            p
-              b' Actors:
+            b' Actors:
+            br
+            - alternative.extra['actors'][0..4].each do |actor|
+              =' actor['label']
               br
-              - alternative.extra['actors'][0..9].each do |actor|
-                =' actor['label']
-                br

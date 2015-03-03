@@ -1,11 +1,11 @@
 section
   h2
-    | #{@alternative.name} (#{@alternative.extra['year']})
+    | #{@alternative.name}
     span.label.right =' @alternative.rating
   .row
     .small-8.columns
       = solid
-        h6.subheader = @alternative.extra['genres'].map{|dir| dir['label']}.join(', ')
+        h6.subheader = @alternative.genres.join(', ')
       = solid
         p
           strong Directors:&nbsp;

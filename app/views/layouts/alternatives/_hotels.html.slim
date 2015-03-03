@@ -1,19 +1,28 @@
 = render layout: 'layouts/application' do
-  .row
-    .medium-5.columns
-      @map-canvas
-      hr
-      = render_cell :general, :criteria_catalog
-      hr
-      = render_cell :general, :filters
 
-    .medium-7.columns
-      #rating@objects-list
-        = yield
-      .text-center
-        a.button.round@load-more Load More
+  #map-wrapper
+    #map-wrapper-inner
+      .row
+        .medium-5.columns
+          @map-canvas
+          hr
+          = render_cell :general, :criteria_catalog
+          hr
+          = render_cell :general, :filters
+
+        .medium-7.columns
+          #rating@objects-list
+            = yield
+          .text-center
+            a.button.round@load-more Load More
 
   sass:
+    #map-wrapper
+      position: relative
+      overflow: hidden
+      #map-wrapper-inner
+        height: 100%
+
     [role=map-canvas]
       height: 700px
       border: 1px solid #dddddd
