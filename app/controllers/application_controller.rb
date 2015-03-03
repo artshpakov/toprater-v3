@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
 
   layout :set_layout
   def set_layout
-    request.xhr? ? false : 'application'
+    request.xhr? ? false : '_application'
   end
 
   before_action :set_locale, :set_sphere, :set_hints, :setup

@@ -15,10 +15,7 @@ html
     @wrapper
       = render partial: 'partials/header'
       section@content
-        - if params[:controller] == 'alternatives' # TODO any better ideas?
-          = nested_layout "alternatives/lists/_#{ Sentimeta.sphere }"
-        - else
-          = yield
+        = yield
 
     = render_cell :general, :debug
 

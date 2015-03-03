@@ -13,15 +13,6 @@ module ApplicationHelper
     end
   end
 
-  def nested_layout template
-    begin
-      render template: template
-    rescue ActionView::MissingTemplate
-      default_template = template.split('/')[0...-1].push('_default').join('/')
-      render template: default_template
-    end
-  end
-
   def solid &block
     begin
       with_output_buffer { yield }
