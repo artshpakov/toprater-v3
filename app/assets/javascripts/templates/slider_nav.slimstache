@@ -2,9 +2,9 @@ ul
   | {{#slides}}
   li
     | {{#current}}
-    a.current id="switch-to-{{ name }}" data-name="{{ name }}" href="javascript:;" &bull;
+    a.current id="switch-to-{{ name }}" data-name="{{ name }}" href="{{ hashtag }}" &bull;
     | {{/current}}
     | {{^current}}
-    a id="switch-to-{{ name }}" data-name="{{ name }}" href="javascript:;" &bull;
+    a id="switch-to-{{ name }}" data-name="{{ name }}" href="{{ hashtag }}" &bull;
     | {{/current}}
   | {{/slides}}

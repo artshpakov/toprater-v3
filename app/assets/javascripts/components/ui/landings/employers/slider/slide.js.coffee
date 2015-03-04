@@ -2,19 +2,22 @@ slide = ->
   @attributes
     name: ""
 
-  @navigate = (speed=500) ->
+  @navigate = ->
     @off window, "scroll"
-    $("body, html").animate({ 
-      scrollTop: @$node.offset().top 
-      }, 
-      speed,
-      =>
-        @trigger document, "slideScrolled"
-        @trigger @$node, "slideScrolled"
 
-        if @isCurrent()
-          @trigger @$node, "redrawChartReq"
-      )
+    if @$node.position().top > 0
+      offset = -@$node.position().top
+    else
+      offset = @$node.position().top
+
+    $("#employers-wrapper").css({ transform: "translateY(#{ offset }px)" })
+    $("#employers-wrapper").one "transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", =>
+      @trigger document, "slideScrolled"
+      @trigger @$node, "slideScrolled"
+
+      if @isCurrent()
+        @trigger @$node, "redrawChartReq"
+
     
   @isCurrent = ->
     viewportTop = $(window).scrollTop()
@@ -29,7 +32,7 @@ slide = ->
 
   @fixPosition = ->
     if @isCurrent()
-      @navigate 400
+      @navigate
 
   @toggleDesc = ->
 
@@ -61,6 +64,13 @@ slide = ->
 
     @on @$node, "checkEmployerShowed", ->
       @toggleDesc()
+      if @isCurrent()
+        @trigger @$node, "redrawChartReq"
+
+    # @on $("#employers-wrapper"), 'onanimationend', ->
+    #   console.log "ololo"
+    #   @trigger document, "slideScrolled"
+    #   @trigger @$node, "slideScrolled"
 
     @trigger document, "slideInitialized", { name: @attr.name, current: @isCurrent() }
 

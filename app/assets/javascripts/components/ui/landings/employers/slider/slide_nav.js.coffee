@@ -9,9 +9,13 @@ slideNav = ->
   @registerSlide = (event, data) ->
     if data.current
       _.find(@attr.slides, (slide) -> slide.current)?.current = false
-    @attr.slides.push { name: data.name, current: data.current }
-
+    @attr.slides.push { name: data.name, current: data.current, hashtag: "#" + data.name }
     @renderNav()
+
+  # @setAnimations = ->
+  #   @$node.find("a:target")
+
+
 
   @navigate = (event) ->
     if event.target.tagName.toLowerCase() == "a"
