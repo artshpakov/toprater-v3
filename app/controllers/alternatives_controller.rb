@@ -4,12 +4,11 @@ class AlternativesController < ApplicationController
 
   LIMIT_OBJECTS = 3
 
-  layout :set_layout
-
 
   def index
     @alternatives = decorate Alternative.rate(limit_objects: LIMIT_OBJECTS, offset_objects: params[:offset].to_i)
     raise "API Error" unless @alternatives.present? # TODO temporary
+    render :index, layout: results_layout
   end
 
 
@@ -30,7 +29,7 @@ class AlternativesController < ApplicationController
     object.kind_of?(Array) ? decorator.decorate_collection(object) : decorator.decorate(object)
   end
 
-  def set_layout
+  def results_layout
     return false if request.xhr?
     template = "alternatives/_#{ Sentimeta.sphere }"
     template_exists?(template, %w(layouts)) ? template : "alternatives/_default"
