@@ -1,3 +1,1 @@
-- @alternatives.each_with_index do |alternative, index|
-  .card.object@card
-    = render_partial "alternatives/cards/#{ Sentimeta.sphere }", locals: { index: params[:offset].to_i + index + 1, alternative: alternative }
+= render_partial "alternatives/lists/#{ Sentimeta.sphere }"

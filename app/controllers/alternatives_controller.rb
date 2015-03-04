@@ -2,7 +2,7 @@ class AlternativesController < ApplicationController
 
   respond_to :json
 
-  LIMIT_OBJECTS = 3
+  LIMIT_OBJECTS = 5
 
 
   def index

@@ -22,7 +22,7 @@ dataResults = ->
     @load(route.url, 'objectsLoaded')
 
   @moreAlternatives = (event, route) ->
-    @attr.offset += 3
+    @attr.offset += 5
     @load(route.url, 'moreObjectsLoaded')
 
   @after "initialize", ->

@@ -1,0 +1,46 @@
+- @alternatives.each_with_index do |alternative, index|
+  .card.object@card
+    - if index.zero? && params[:offset].to_i.zero?
+      = solid do
+        table.movie-card.best-choice
+          tr valign="top"
+            td
+              = solid do
+                .movie-cover style="background-image: url(#{ alternative.cover })"
+              p = alternative.genres.join(', ')
+
+            td
+              h3.headline
+                ' #{ index+1 }.
+                a.name@card-link href="#{ object_path id: alternative.full_id }" = alternative.name
+              p.textmass = alternative.extra['description']
+              div
+                strong> Directed by
+                = alternative.extra['directors'].map{|dir| dir['label']}.to_sentence
+              br
+              = solid
+                strong Actors:
+                ul.columns-3.textmass
+                  - alternative.extra['actors'][0..29].each do |actor|
+                    li = actor['label']
+
+    - else
+      = render_partial "alternatives/cards/#{ Sentimeta.sphere }", locals: { index: params[:offset].to_i + index + 1, alternative: alternative }
+
+sass:
+  .movie-card
+    border: none
+    .overall
+      p
+        font-size: 12px
+        margin-bottom: 1em
+    .movie-cover
+      width: 150px
+      height: 180px
+      background-size: cover
+      margin-bottom: 20px
+
+    &.best-choice
+      .movie-cover
+        width: 220px
+        height: 325px
