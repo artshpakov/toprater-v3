@@ -58,6 +58,11 @@ class LandingsController < ApplicationController
 
   end
 
+  def apple_watch
+    setup
+    render 'apple_watch'
+  end
+
   def similar_movies
     # TODO warm up criteria cache!
     Sentimeta.sphere = :movies
