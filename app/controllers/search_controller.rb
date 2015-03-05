@@ -24,6 +24,10 @@ class SearchController < ApplicationController
     render json: result
   end
 
+  def attributes
+    render json: Sentimeta::Client.search(where: params[:scope], text: params[:q])
+  end
+
   def objects
     render json: Sentimeta::Client.search(text: params[:q])['objects']
   end

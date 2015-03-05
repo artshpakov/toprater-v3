@@ -1,0 +1,3 @@
+@multi-completer-filter.filter.large-12.columns data-name=params['name']
+  label for=name = params['label']
+  =' select_tag name, options_for_select(FilterValues.by_filter(params['name']), value), id: name, role: 'multi-completer-select', multiple: true

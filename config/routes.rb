@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       scope :suggest, controller: :search do
         get :objects
         get '/' => :suggest
+        get '/attrs/:scope' => :attributes
       end
       get '/search' => 'search#search', as: :search
       get '/catalog(/:path(/page:page))' => 'catalog#catalog', as: :catalog

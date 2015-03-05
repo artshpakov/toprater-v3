@@ -3,6 +3,7 @@ Toprater.attachFilters = ->
   Toprater.RangeFilter.attachTo "[role=range-filter]"
   Toprater.StarsFilter.attachTo "[role=stars-filter]"
   Toprater.YearsFilter.attachTo "[role=years-filter]"
+  Toprater.AutocompleteFilter.attachTo "[role=multi-completer-filter]"
 
 Toprater.attachDataComponents = ->
   Toprater.AppState.attachTo document

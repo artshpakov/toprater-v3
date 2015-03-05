@@ -3,6 +3,7 @@ withFilterCtr = ->
     name: ''
     filterName: ''
     value: {}
+    pushAll: true    # push all data on change or by one item
 
   @after 'setValue', ->
     @trigger 'uiFiltersChanged', @attr
@@ -12,7 +13,7 @@ withFilterCtr = ->
     @attr.value = data.value
 
   @after 'resetFilter', ->
-    @attr.value = {}
+    @attr.value = []
 
   @after 'initialize', ->
     @attr.name = @$node.attr('data-name')

@@ -30,4 +30,4 @@ actors:
   label: Actor
   label_plural: Actors
   kind: multi_string
-  template: none
+  template: multi_completer

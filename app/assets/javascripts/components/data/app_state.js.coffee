@@ -27,6 +27,11 @@ appState = ->
       mappedFilters.push { name: key, value: filters[key] }
     @attr.filters = mappedFilters
 
+  @removeFilter = (filter) ->
+    @attr.filters = _.reject(@attr.filters, (f) =>
+      f.name == filter
+    )
+
 
   @after "initialize", ->
     @attr.criteria  = toprater.criteria
@@ -48,33 +53,27 @@ appState = ->
     @on "uiFiltersChanged", (event, data) ->
       filter = _.find(@attr.filters, name: data.filterName)
       if filter?
-        if Toprater.isMultiFilter(data.filterName)
+        if Toprater.isMultiFilter(data.filterName) && !data.pushAll
           filter.value.push data.value
         else
           filter.value = data.value
         val = filter
       else
         if Toprater.isMultiFilter(data.filterName)
-          data.value = [data.value]
+          data.value = [data.value] unless data.value == null
         @attr.filters.push data
         val = data
       @trigger "#{data.filterName}Updated", val
       @trigger "dataStateUpdated", to_params()
 
     @on "uiFilterReset", (event, data) ->
-      removeFilter = (filter) =>
-        @attr.filters = _.reject(@attr.filters, (f) =>
-          f.name == filter
-        )
-
       unless Toprater.isMultiFilter(data.filter)
-        removeFilter data.filter
+        @removeFilter data.filter
       else
         filter = _.find(@attr.filters, name: data.filter)
         filter.value.splice filter.value.indexOf(data.value), 1
         if filter.value.length == 0
-          removeFilter data.filter
-
+          @removeFilter data.filter
       @trigger "dataStateUpdated", to_params()
 
     @on "uiFiltersReset", ->

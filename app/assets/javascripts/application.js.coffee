@@ -9,6 +9,7 @@
 #= require flight-for-rails
 #= require hogan.js
 #= require intro.js
+#= require select2.full
 #= require Chart
 
 #= require_self

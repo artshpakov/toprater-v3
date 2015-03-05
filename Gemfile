@@ -4,7 +4,7 @@ source 'https://rails-assets.org'
 gem 'rails', '4.1.5'
 gem 'puma'
 
-gem 'sentimeta', '0.1.4'
+gem 'sentimeta', '~> 0.1.7'
 
 gem 'pry-rails'
 gem 'slim'

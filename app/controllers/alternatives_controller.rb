@@ -7,7 +7,6 @@ class AlternativesController < ApplicationController
 
   def index
     @alternatives = decorate Alternative.rate(limit_objects: LIMIT_OBJECTS, offset_objects: params[:offset].to_i)
-    raise "API Error" unless @alternatives.present? # TODO temporary
     render :index, layout: results_layout
   end
 
