@@ -36,7 +36,6 @@ subscriber = ->
 
 
   @done = (event, data) ->
-    console.log data
     @select("localForm").find("input, button, label").hide()
     @select("localForm").html("<div class='subscriber-success'>Thank you! Stay tuned!</div>")
 
