@@ -18,6 +18,7 @@ subscriber = ->
           data:
             'entry.1846300053': email
           type: 'GET'
+          crossDomain: "true"
           dataType: 'jsonp'
       .complete (event, xhr, data) ->
         console.log event

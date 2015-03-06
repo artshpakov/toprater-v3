@@ -58,12 +58,14 @@ class LandingsController < ApplicationController
 
   end
 
-  def apple_watch
+  def gadgets
+    setup
     if request.xhr?
       result = Sentimeta::Client::Subscription.subscribe(params[:email])
       render json: result.body, status: result.status
     else
-      render 'apple_watch'
+      @title = "Toprater gadgets – coming soon"
+      render 'gadgets'
     end
   end
 

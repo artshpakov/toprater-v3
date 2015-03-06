@@ -11,6 +11,7 @@ Toprater.attachDataComponents = ->
   Toprater.Router.attachTo document
   Toprater.DataCard.attachTo "[role=content]"
   Toprater.CompleterResults.attachTo document
+  Toprater.DataSubscriber.attachTo document
 
 Toprater.attachUIComponents = ->
   Toprater.Cart.attachTo "[role=cart]"
@@ -30,6 +31,7 @@ Toprater.attachUIComponents = ->
   Toprater.MapCanvas.attachTo "[role=map-canvas]"
   Toprater.attachFilters()
   Toprater.Hints.attachTo document
+  Toprater.Subscriber.attachTo "[role=subscriber]"
 
 Toprater.attachEmployersLandingComponents = ->
   Toprater.DataEmployers.attachTo document

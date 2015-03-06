@@ -31,7 +31,8 @@ Rails.application.routes.draw do
     namespace :landings do
       get '/similar-movies(/:id)' => :similar_movies
       get '/employers(/:id)(/criteria/:criteria)(/filters/*filters)' => :employers
-      get '/applewatch' => :apple_watch
+      get '/gadgets' => :gadgets
+      post '/gadgets' => :gadgets
     end
   end
 

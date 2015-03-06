@@ -1,0 +1,52 @@
+doctype 5
+html
+  head
+    title = @title
+    = stylesheet_link_tag :application, media: :all
+    = csrf_meta_tags
+    = include_gon namespace: 'toprater', camel_case: true
+
+    meta property="og:type" content="website"
+    / meta property="og:image" content=""
+    meta property="og:title" content="#{ @title }"
+    meta property="og:url" content="https://toprater.com/en/landings/gadgets"
+    meta property="og:description" content="#{ @title }"
+
+  body
+    = render 'partials/kissmetrics'
+    #apple-watch-wrapper
+      .bg
+      .row
+        .small-12
+          a#logo href="/" target="_blank"
+      .row
+        .small-12
+          h1 Gadgets
+          h3 Coming soon
+      .subscribe@subscriber
+        form method="POST"
+          .row
+            .small-12.medium-2.columns
+              label
+                | Be up to date
+            .small-12.medium-7.columns
+              input type="text" placeholder="E-mail"
+            .small-12.medium-3.columns
+              button.small Subscribe
+      .row
+        .small-12
+          .share-block
+            .share-title Share with friends
+            .links
+              a.prettySocial.fa.fa-facebook.toprater-icon-facebook href="javascript:;" data-type="facebook" data-url="/en/landings/gadgets" data-title="Toprater gadgets"
+              a.prettySocial.fa.fa-twitter.toprater-icon-twitter data-type="twitter" data-url="/en/landings/gadgets" data-title="Toprater gadgets"
+              a.prettySocial.fa.fa-google-plus.toprater-icon-google-plus data-type="googleplus" data-url="/en/landings/gadgets" data-title="Toprater gadgets"
+              / a.google.prettySocial.fa.fa-google-plus data-type="googleplus" data-title="Toprater gadgets" data-url="/en/landings/gadgets" href="javascript:;" data-description="" data-media=""
+
+  footer
+    = javascript_include_tag :application
+    script src="/js/jquery.prettySocial.min.js"
+
+    coffee:
+      $(".prettySocial").prettySocial()
+      
