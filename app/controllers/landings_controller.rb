@@ -59,8 +59,12 @@ class LandingsController < ApplicationController
   end
 
   def apple_watch
-    setup
-    render 'apple_watch'
+    if request.xhr?
+      result = Sentimeta::Client::Subscription.subscribe(params[:email])
+      render json: result.body, status: result.status
+    else
+      render 'apple_watch'
+    end
   end
 
   def similar_movies
