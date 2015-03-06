@@ -6,12 +6,36 @@ html
     = csrf_meta_tags
     = include_gon namespace: 'toprater', camel_case: true
 
+    meta property="og:type" content="website"
+    meta property="og:image" content=""
+    meta property="og:title" content="My TOP reasons to like movies"
+    meta property="og:url" content="https://toprater.com/en/landings/applewatch"
+    meta property="og:description" content=""
+
   body
     = render 'partials/kissmetrics'
     #apple-watch-wrapper
       .row
         .small-12
-          | HELLO, WORLD!
+          a#logo href="/" target="_blank"
+      .row
+        .small-12
+          h1 Gadgets
+          h3 Coming soon
+      .subscribe@subscriber
+        form method="POST"
+          .row
+            .small-12.medium-3.columns
+              label
+                | Be up to date
+            .small-12.medium-6.columns
+              input type="text"
+            .small-12.medium-3.columns
+              button.small Subscribe
+      .row
+        .small-12
+          .share-block
+            .share-title Share with friends
 
   footer
     = javascript_include_tag :application
