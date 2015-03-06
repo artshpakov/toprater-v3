@@ -18,14 +18,18 @@ subscriber = ->
       if @validateEmail(email)
         @trigger document, "uiSubscribeReq", email: email
       else
-        @select("input").after("<div class='subsriber-error tooltip tip-top radius'>Email is not valid</div>").show(500)
+        @select("input").after("<div class='subscriber-error tooltip tip-top radius'>Email is not valid</div>").show(500)
+        _.delay(=> @$node.find(".subscriber-error").hide()
+                ,
+                10000
+                )
 
 
 
 
   @error = (event, data) ->
     @select("input").after("<div class='subscriber-error tooltip tip-top radius'>Error while saving your e-mail</div>").show(500)
-    _.delay(=> @$node.find(".subsriber-error").hide()
+    _.delay(=> @$node.find(".subscriber-error").hide()
             ,
             10000
             )
