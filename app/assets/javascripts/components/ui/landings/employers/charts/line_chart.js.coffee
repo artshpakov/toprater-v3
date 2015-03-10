@@ -9,7 +9,7 @@ lineChart = ->
     wrapper.width(width)
     wrapper.height(height)
 
-    chartID = @$node.closest(".employer").attr("data-name")
+    chartID = "line-" + @$node.closest(".employer").attr("data-name")
     chartElem = $("<canvas id='#{ chartID }' width='#{ width }' height='#{ height }'></canvas>")
     wrapper.append(chartElem)
 
@@ -41,7 +41,7 @@ lineChart = ->
       datasetStroke:            false
       responsive:               true
       animation:                true
-      animationSteps:           100
+      animationSteps:           60
       showScale:                false
       showTooltips:             false
 
