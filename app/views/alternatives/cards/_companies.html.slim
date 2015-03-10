@@ -1,8 +1,8 @@
 .row
   .medium-2.columns
-    img.logo.th src=alternative.logo
+    img.logo src=alternative.logo
     = solid
-      span.label = alternative.rating
+      span.label.rating = alternative.rating
 
   .medium-10.columns
     .headline
@@ -18,3 +18,9 @@ sass:
   .logo
     float: left
     margin-right: 12px
+    border: 1px solid #008cba
+    border-width: 1px 1px 0
+
+  span.rating
+    width: 100%
+    font-size: 20px
