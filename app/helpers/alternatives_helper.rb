@@ -12,8 +12,10 @@ module AlternativesHelper
     end
   end
 
-  def rating value
-    format '%.2f', (value+1)*2.5
+  def rating_grade value
+    return 'good' if value > 4
+    return 'mediocre' if value > 2
+    return 'bad'
   end
 
   def widget_path options

@@ -10,7 +10,7 @@ sass:
 .hotel-card
   .headline
     .index = index
-    span.label.right =' alternative.rating
+    span.label.right class="#{ rating_grade alternative.rating }" => alternative.rating
     a.name@card-link href="#{ object_path id: alternative.full_id }"
       =' alternative.name
       = solid do
@@ -28,7 +28,7 @@ sass:
       = solid do
         p == price_level alternative.price
 
-  = solid do
+  = solid
     @map-location data-title="#{ alternative.name }" data-geolat="#{ alternative.coordinates['lat'] }" data-geolng="#{ alternative.coordinates['lng'] }"
 
   = render_partial "alternatives/cards/partials/reviews", locals: { review_packs: alternative.reviews }

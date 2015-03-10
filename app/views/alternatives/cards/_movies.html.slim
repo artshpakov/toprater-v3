@@ -5,6 +5,7 @@
         h3.headline
           =' "#{ index }."
           a.name@card-link href="#{ object_path id: alternative.full_id }" = alternative.name
+          span.label.rating.right class="#{ rating_grade alternative.rating }" class="#{ rating_grade alternative.rating }" = alternative.rating
         p = alternative.genres.join(', ')
         p.textmass = alternative.extra['description']
         div
