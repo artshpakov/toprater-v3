@@ -1,0 +1,20 @@
+.row
+  .medium-2.columns
+    img.logo.th src=alternative.logo
+    = solid
+      span.label = alternative.rating
+
+  .medium-10.columns
+    .headline
+      h3
+        => "##{ index }"
+        a.name href="#{ object_path id: alternative.full_id }" = alternative.name
+    p.textmass = alternative.extra['description']
+    ul.textmass.columns-3
+      - alternative.careers.each do |position, salary|
+        li = position
+
+sass:
+  .logo
+    float: left
+    margin-right: 12px
