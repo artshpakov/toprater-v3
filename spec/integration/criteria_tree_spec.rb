@@ -28,7 +28,7 @@ RSpec.describe "Criteria Tree", type: :feature, js: true do
       click_link 'Some Criterion'
       click_link 'Subcriteria'
       expect(current_path).to eq '/en/hotels/objects/criteria/subcriteria'
-      expect(page).to have_selector '.tiny.button'
+      expect(page).to have_selector '[role=cart] .token'
     end
   end
 
@@ -38,9 +38,9 @@ RSpec.describe "Criteria Tree", type: :feature, js: true do
     end
 
     it 'should remove criterion by click' do
-      find('.tiny.button').click
+      find('[role=cart] .token').click
       expect(current_path).to eq '/en/hotels/objects'
-      expect(page).to_not have_selector '.tiny.button'
+      expect(page).to_not have_selector '[role=cart] .token'
     end
   end
 end

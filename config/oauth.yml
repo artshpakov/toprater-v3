@@ -1,4 +1,4 @@
-development:
+development: &development
   facebook:
     id: "833040550095705"
     secret: "10c86d2f8811fed0e2120352a8146e17"
@@ -33,3 +33,6 @@ production:
     id: "757427059785-raltb4i5he5lkjij7f84vno923f6gdi6.apps.googleusercontent.com"
     secret: "ke4dKP9PZJBPSuYgcWBkqOxc"
     name: "google"
+
+test:
+  <<: *development
