@@ -55,6 +55,4 @@ Toprater.attachEmployersLandingComponents = ->
   Toprater.DataCheckMechanic.attachTo "[role=employers-check-company]"
 
   Toprater.Subscriber.attachTo "[role=subscriber]"
-
-
-  # Toprater.Slider.attachTo "[role=slider]"
+  Toprater.EmployersShareWidget.attachTo "[role=share-widget]"

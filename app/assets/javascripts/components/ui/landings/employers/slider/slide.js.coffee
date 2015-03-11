@@ -12,11 +12,12 @@ slide = ->
 
     $("#employers-wrapper").css({ transform: "translateY(#{ offset }px)" })
     $("#employers-wrapper").one "transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", =>
-      @trigger document, "slideScrolled"
+      @trigger document, "slideScrolled", name: @attr.name
       @trigger @$node, "slideScrolled"
 
       if @isCurrent()
         @trigger @$node, "redrawChartReq"
+        @trigger document, "slideScrolled", name: @attr.name
 
     
   @isCurrent = ->

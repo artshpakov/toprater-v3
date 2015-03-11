@@ -11,6 +11,7 @@
 #= require intro.js
 #= require select2.full
 #= require Chart
+#= require jquery.prettySocial.min.js
 
 #= require_self
 #= require_tree ./templates

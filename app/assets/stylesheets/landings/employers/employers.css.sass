@@ -62,50 +62,140 @@ $ipath: "../../../i"
     cursor: default
     margin: 0 $font-size/1.8/2-2+px
 
-
-.slide-scroller
-  color: #fff
+.fixed-block
   position: fixed
-  top: 50px
   left: 40px
+  height: 95%
   z-index: 30
-
-  a
+  
+  .slide-scroller
     color: #fff
-    cursor: pointer
+    margin-top: 3vh
+
+    a
+      color: #fff
+      cursor: pointer
+      display: block
+      font-size: 23px
+      line-height: 3vh
+      height: 3vh
+      opacity: 0.5
+      position: relative
+      text-align: center
+      width: 28px
+      z-index: 21
+
+      &#switch-to-find-company
+        background: transparent url(#{$ipath}/landings/fc_icon_light.png) 0 0 no-repeat
+        color: transparent
+        height: 49px
+        margin: 5px 0 0 -10px
+        opacity: 1
+        width: 48px
+
+      &#switch-to-user-company
+        background: transparent url(#{$ipath}/landings/cc_icon_light.png) 0 0 no-repeat
+        color: transparent
+        margin: 5px 0 0 -7px
+        opacity: 1
+        height: 41px
+        width: 40px
+
+      &:hover
+        opacity: 1
+
+      &.current
+        cursor: default
+        font-size: 52px
+        opacity: 1
+
+  .share-widget
+    // bottom: 5vh
     display: block
-    font-size: 23px
-    line-height: 23px
-    height: 23px
-    opacity: 0.5
+    // left: 40px
     position: relative
-    text-align: center
-    width: 28px
-    z-index: 21s
+    width: auto
+    z-index: 10
+    
+    .toprater-icon-share
+      color: #fff
+      cursor: pointer
+      display: inline-block
+      font-size: 15px
+      line-height: 5vh
+      opacity: 0.5
+      text-align: center
+      width: 28px
 
-    &#switch-to-find-company
-      background: transparent url(#{$ipath}/landings/fc_icon_light.png) 0 0 no-repeat
-      color: transparent
-      height: 49px
-      margin: 5px 0 0 -10px
-      opacity: 1
-      width: 48px
+      &:hover
+        opacity: 1
 
-    &#switch-to-user-company
-      background: transparent url(#{$ipath}/landings/cc_icon_light.png) 0 0 no-repeat
-      color: transparent
-      margin: 5px 0 0 -7px
-      opacity: 1
-      height: 41px
-      width: 40px
+    .links
+      background-color: rgba(255,255,255,0.2)
+      border-radius: 5px
+      display: inline-block
+      height: 33px
+      margin-left: 10px
+      margin-bottom: 7px
+      overflow: hidden
+      padding: 2px 0 0
+      width: 0
+      -webkit-transform: translateZ(0)
+      transform: translateZ(0)
+      -webkit-transition: width 0.3s ease-in-out
+      transition: width 0.6s ease-in-out
+      vertical-align: middle
+
+    a
+      color: #fff
+      display: inline-block
+      font-size: 15px
+      line-height: 33px
+      opacity: 0.7
+      text-align: center
+      // width: 100%
+      width: 30px
+
+      &:hover
+        opacity: 1
 
     &:hover
-      opacity: 1
+      .links
+        width: 100px
 
-    &.current
-      cursor: default
-      font-size: 52px
-      opacity: 1
+      .toprater-icon-share
+        opacity: 1
+
+    &.vertical
+      bottom: 2vh
+      left: 0
+      position: absolute
+      width: 28px
+
+      .toprater-icon-share
+        display: none
+
+      .links
+        background: none
+        display: block
+        margin-left: 0
+        height: auto
+        width: auto
+
+      a
+        display: block
+        line-height: 5vh
+
+        &:hover
+          &.fa-facebook
+            color: #3a5898
+
+          &.fa-twitter
+            color: #33c4fb
+
+          &.fa-google-plus
+            color: #fe6e4b
+
 
 #employers-wrapper
   background-color: $dark
@@ -478,9 +568,9 @@ $ipath: "../../../i"
             font-family: "proxima_nova_rgbold", sans-serif
             font-size: 14px
             font-weight: bold
-            line-height: 20px
+            line-height: 16px
             letter-spacing: 0.1em
-            margin-bottom: 20px
+            margin-bottom: 38px
             text-transform: uppercase
 
           .value

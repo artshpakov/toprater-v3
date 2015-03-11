@@ -5,10 +5,22 @@ html
     = stylesheet_link_tag :application, media: :all
     = csrf_meta_tags
     = include_gon namespace: 'toprater', camel_case: true
+    meta property="og:type" content="website"
+    / meta property="og:image" content=""
+    meta property="og:title" content="#{ @title }"
+    meta property="og:url" content="https://toprater.com/en/landings/employers"
+    meta property="og:description" content="#{ @title }"
 
 body@employers-page
   = render 'partials/kissmetrics'
-  .slide-scroller@slide-nav
+  .fixed-block
+    .slide-scroller@slide-nav
+    .share-widget.vertical@share-widget
+      .toprater-icon-share@share-switch
+      .links@share-links
+        a.fa.fa-facebook.toprater-icon-facebook@share-button href="javascript:;" data-type="facebook" data-url="/en/landings/employers" data-title="#{ @title }"
+        a.fa.fa-twitter.toprater-icon-twitter@share-button data-type="twitter" data-url="/en/landings/employers" data-title="#{ @title }"
+        a.fa.fa-google-plus.toprater-icon-google-plus@share-button data-type="googleplus" data-url="/en/landings/employers" data-title="#{ @title }"
 
   #employers-wrapper@slider
     header.header-best@slide data-name="header"

@@ -56,6 +56,12 @@ class LandingsController < ApplicationController
       render json: @employers rescue false
     end
 
+    if params[:email].present?
+      result = Sentimeta::Client::Subscription.subscribe(params[:email])
+      render json: result.body, status: result.status
+    end
+
+
   end
 
   def gadgets
