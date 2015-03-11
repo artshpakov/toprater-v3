@@ -127,7 +127,7 @@ body@employers-page
                   a.arrow.toprater-icon-chevron-right@arrow-right href="javascript:;"
                   .bar-wrap
                     - employer.other_criteria.values.each do |criterion|
-                      a.criterion-bar data-rating="#{rating criterion['rating']}" data-name="#{ criterion["label"] }" href="/companies/objects/criteria/#{ criterion['name'] }" target="_blank"
+                      a.criterion-bar data-rating="#{rating criterion['rating']}" data-name="#{ criterion["label"] }" href="/en/companies/objects/criteria/#{ criterion['name'] }" target="_blank"
                         .name = criterion["label"]
                         .rating = rating criterion["rating"]
 

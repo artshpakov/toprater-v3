@@ -68,10 +68,6 @@ slide = ->
       if @isCurrent()
         @trigger @$node, "redrawChartReq"
 
-    # @on $("#employers-wrapper"), 'onanimationend', ->
-    #   console.log "ololo"
-    #   @trigger document, "slideScrolled"
-    #   @trigger @$node, "slideScrolled"
 
     @trigger document, "slideInitialized", { name: @attr.name, current: @isCurrent() }
 
