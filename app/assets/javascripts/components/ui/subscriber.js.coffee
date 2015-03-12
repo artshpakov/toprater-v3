@@ -28,11 +28,18 @@ subscriber = ->
 
 
   @error = (event, data) ->
-    @select("input").after("<div class='subscriber-error tooltip tip-top radius'>Error while saving your e-mail</div>").show(500)
-    _.delay(=> @$node.find(".subscriber-error").hide()
-            ,
-            10000
-            )
+    if data.alreadySubscribed
+      @select("input").after("<div class='subscriber-info tooltip tip-top radius'>You are already subscribed.</div>").show(500)
+      _.delay(=> @$node.find(".subscriber-info").hide()
+              ,
+              10000
+              )
+    else  
+      @select("input").after("<div class='subscriber-error tooltip tip-top radius'>Error while saving your e-mail</div>").show(500)
+      _.delay(=> @$node.find(".subscriber-error").hide()
+              ,
+              10000
+              )
 
 
   @done = (event, data) ->
