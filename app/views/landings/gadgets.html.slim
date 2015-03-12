@@ -10,7 +10,8 @@ html
     / meta property="og:image" content=""
     meta property="og:title" content="#{ @title }"
     meta property="og:url" content="https://toprater.com/en/landings/gadgets"
-    meta property="og:description" content="#{ @title }"
+    meta property="og:description" content="What people need in gadgets? Coming soon!"
+    meta property="og:site_name" content="https://toprater.com"
 
   body
     = render 'partials/kissmetrics'
@@ -38,14 +39,12 @@ html
           .share-block
             .share-title Share with friends
             .links
-              a.prettySocial.fa.fa-facebook.toprater-icon-facebook href="javascript:;" data-type="facebook" data-url="/en/landings/gadgets" data-title="Toprater gadgets"
-              a.prettySocial.fa.fa-twitter.toprater-icon-twitter data-type="twitter" data-url="/en/landings/gadgets" data-title="Toprater gadgets"
-              a.prettySocial.fa.fa-google-plus.toprater-icon-google-plus data-type="googleplus" data-url="/en/landings/gadgets" data-title="Toprater gadgets"
-              / a.google.prettySocial.fa.fa-google-plus data-type="googleplus" data-title="Toprater gadgets" data-url="/en/landings/gadgets" href="javascript:;" data-description="" data-media=""
+              a.prettySocial.fa.fa-facebook.toprater-icon-facebook href="javascript:;" data-type="facebook" data-url="https://toprater.com/en/landings/gadgets" data-title="#{ @title }" data-description="What people need in gadgets? Coming soon!" data-media=""
+              a.prettySocial.fa.fa-twitter.toprater-icon-twitter data-type="twitter" data-url="https://toprater.com/en/landings/gadgets" data-title="#{ @title }" data-description="What people need in gadgets? Coming soon!" data-media=""
+              a.prettySocial.fa.fa-google-plus.toprater-icon-google-plus data-type="googleplus" data-url="https://toprater.com/en/landings/gadgets" data-title="#{ @title }" data-description="What people need in gadgets? Coming soon!" data-media=""
 
   footer
     = javascript_include_tag :application
-    / script src="/js/jquery.prettySocial.min.js"
 
     coffee:
       $(".prettySocial").prettySocial()

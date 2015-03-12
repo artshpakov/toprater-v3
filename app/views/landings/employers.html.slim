@@ -7,9 +7,10 @@ html
     = include_gon namespace: 'toprater', camel_case: true
     meta property="og:type" content="website"
     / meta property="og:image" content=""
-    meta property="og:title" content="#{ @title }"
+    meta property="og:title" content="What's the best and the worst employers in the world."
     meta property="og:url" content="https://toprater.com/en/landings/employers"
-    meta property="og:description" content="#{ @title }"
+    meta property="og:description" content="The rating below was composed of working people's comments and opinions. We analyzed every important aspect like office environment, career advancement, perks and bonuses and etc."
+    meta property="og:site_name" content="https://toprater.com"
 
 body@employers-page
   = render 'partials/kissmetrics'
@@ -18,9 +19,9 @@ body@employers-page
     .share-widget.vertical@share-widget
       .toprater-icon-share@share-switch
       .links@share-links
-        a.fa.fa-facebook.toprater-icon-facebook@share-button href="javascript:;" data-type="facebook" data-url="/en/landings/employers" data-title="#{ @title }"
-        a.fa.fa-twitter.toprater-icon-twitter@share-button data-type="twitter" data-url="/en/landings/employers" data-title="#{ @title }"
-        a.fa.fa-google-plus.toprater-icon-google-plus@share-button data-type="googleplus" data-url="/en/landings/employers" data-title="#{ @title }"
+        a.fa.fa-facebook.toprater-icon-facebook@share-button href="javascript:;" data-type="facebook" data-url="https://toprater.com/en/landings/employers" data-title="What's the best and the worst employers in the world." data-description="The rating below was composed of working people's comments and opinions. We analyzed every important aspect like office environment, career advancement, perks and bonuses and etc." data-media=""
+        a.fa.fa-twitter.toprater-icon-twitter@share-button data-type="twitter" data-url="https://toprater.com/en/landings/employers" data-title="What's the best and the worst employers in the world." data-description="The rating below was composed of working people's comments and opinions. We analyzed every important aspect like office environment, career advancement, perks and bonuses and etc." data-media=""
+        a.fa.fa-google-plus.toprater-icon-google-plus@share-button data-type="googleplus" data-url="https://toprater.com/en/landings/employers" data-title="What's the best and the worst employers in the world." data-description="The rating below was composed of working people's comments and opinions. We analyzed every important aspect like office environment, career advancement, perks and bonuses and etc." data-media=""
 
   #employers-wrapper@slider
     header.header-best@slide data-name="header"

@@ -70,7 +70,7 @@ class LandingsController < ApplicationController
       result = Sentimeta::Client::Subscription.subscribe(params[:email])
       render json: result.body, status: result.status
     else
-      @title = "Toprater gadgets – coming soon"
+      @title = "TopRater Gadgets"
       render 'gadgets'
     end
   end
