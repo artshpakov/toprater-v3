@@ -24,7 +24,8 @@ class Alternative < Sentimeta::Model
   end
 
   def cover
-    (photos.find { |p| p['type']=='primary_image' } || photos.find { |p| p['type']=='photo' }).try(:[], 'url')
+    entry = photos.find { |p| p['type']=='primary_image' } || photos.find { |p| p['type']=='photo' }
+    entry.try(:[], 'hash').present? ? "https://api.toprater.com/api/v1/picture?hash=#{ entry['hash'] }" : entry['url']
   end
 
   def partners_data
