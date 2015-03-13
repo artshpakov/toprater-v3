@@ -15,6 +15,12 @@ Rails.application.routes.draw do
         get '/' => :suggest
         get '/attrs/:scope' => :attributes
       end
+
+      scope :reviews, controller: :reviews do
+        post '/:id' => :create
+        get '/:id' => :show
+      end
+
       get '/search' => 'search#search', as: :search
       get '/catalog(/:path(/page:page))' => 'catalog#catalog', as: :catalog
 

@@ -16,6 +16,10 @@ class AlternativesController < ApplicationController
       raise Sentimeta::Error::RecordNotFound
     end
     @alternative = decorate @alternative
+    @reviews = Sentimeta::Client::UserReviews.find(
+      id: params[:id],
+      token: (session[:auth]['token'] if session[:auth])
+    )
     @similar = @alternative.similar_objects.map { |object| Alternative.find(object['id']) } rescue []
   end
 

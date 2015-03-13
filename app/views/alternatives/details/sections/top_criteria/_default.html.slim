@@ -1,10 +1,22 @@
 section
   h4 Top Criteria
   - @alternative.top_criteria.each do |key, criterion|
-    .row
-      .medium-4.columns
-        h6 = criterion['label']
-      .medium-8.columns
-        .progress.round
-          span.meter style="width: #{((criterion['rating'].to_f + 1) * 50.0).round}%"
-            p = rating(criterion['rating'].to_f)
+    @criteria-rating
+      .row
+        .medium-4.columns
+          h6 = criterion['label']
+        .medium-6.columns
+          .progress.round
+            span.meter style="width: #{((criterion['rating'].to_f + 1) * 50.0).round}%"
+              p = rating(criterion['rating'].to_f)
+        .medium-2.columns
+          a.button.tiny@write-review Write Review
+      .row.user-review
+        .medium-6.columns
+          p Write your review about #{ criterion['label'] }
+        .medium-6.columns
+          .panel@review-form data-object=@alternative.id data-criterion=criterion['name']
+            = select_tag :rating, options_for_select([[':D', 5], [':)', 4], [':|', 3], [':(', 2], ['>:/', 1]], (@reviews['criteria'][key]['ratings'].first['value'] rescue nil)), prompt: 'Choose rating...'
+            textarea#review-text 
+              = @reviews['criteria'][key]['reviews'].first['value'] rescue nil
+            button.btn.tiny Submit
