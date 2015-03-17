@@ -78,5 +78,6 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   config.sentimeta.env = :staging
+  config.sentimeta.server_token = 'bd61327a9b0983ced25c92bb597fea10' # TODO move to config
   config.sentimeta.observers.add :debug, Observers::Debug.new
 end
