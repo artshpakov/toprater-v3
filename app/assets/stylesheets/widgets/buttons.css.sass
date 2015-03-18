@@ -1,0 +1,59 @@
+@import foundation/components/buttons
+
+
+=button-prototype($font-size, $bg:transparent, $text-color:inherit, $border-color:false, $font-family: inherit, $radius:10000)
+  @if $border-color == false
+    $border-color: $bg
+
+  background: $bg
+  border: 1px solid $border-color
+  border-radius: $radius+px
+  color: $text-color
+  display: inline-block
+  font-size: $font-size+px
+  line-height: normal
+  padding: $font-size * 0.8+px $font-size * 1.7+px
+  text-decoration: none
+  text-align: center
+  -webkit-appearance: none
+  -webkit-border-radius: $radius+px
+
+  &:hover
+    text-decoration: none
+    color: $text-color
+
+
+=disabled-button($font-size, $bg, $text-color, $border-color)
+  +button-prototype($font-size, $bg, $text-color, $border-color)
+
+  cursor: default !important
+
+  &:hover
+    background: $bg    
+
+
+=enabled-button($font-size, $bg, $text-color, $border-color, $hover-text-color:false, $hover-bg:false, $hover-color-factor: -20%)
+  +button-prototype($font-size, $bg, $text-color, $border-color)
+  
+  @if $bg == transparent
+    @if $hover-bg == false
+      $hover-bg: $bg
+  @else
+    @if $hover-bg == false
+      $hover-bg: scale-color($bg, $lightness: $hover-color-factor)
+
+  @if $hover-text-color == false
+    $hover-text-color: $text-color
+
+  &:hover
+    background: $hover-bg
+    color: $hover-text-color
+
+  +single-transition(background-color)
+
+
+=show-button($font-size, $disabled: false)
+  @if $disabled == true
+    +disabled-button(13, transparent, #666, #e1e1e1)
+  @else
+    +enabled-button(13, #96bf42, #fff, false)
