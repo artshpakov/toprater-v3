@@ -9,7 +9,7 @@ router = ->
     @trigger document, "toCard", url: @attr.route
 
 
-  encode = (criteria, filters) ->
+  @encode = (criteria, filters) ->
     paramsPath = ""
     if criteria?.length
       paramsPath += "/criteria/" + criteria.join(",")
@@ -21,7 +21,7 @@ router = ->
 
   @buildPath = (params={}) ->
     params.criteria = _.pluck(params.criteria, 'name')
-    "/objects#{ encode params.criteria, params.filters }"
+    "/objects#{ @encode params.criteria, params.filters }"
 
   @buildUrl = (params) ->
     "/#{ params.lang }/#{ params.sphere }" + @buildPath(params)
@@ -57,5 +57,9 @@ router = ->
       @attr.route = params.url
       router.setRoute @attr.route
 
+    # @on "uiCriterionToggled", (event, params) ->
+    #   @attr.route = params.
+    #   routersetRoute @attr.route
 
-Toprater.Router = flight.component router
+
+Toprater.Router = flight.component router, Toprater.WithUrlMixin

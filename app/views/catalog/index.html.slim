@@ -7,7 +7,7 @@
   .medium-9.columns
     / TODO: reusable breadcrumb partial
     = solid do
-      - if @path.count>0
+      - if @path.count > 0
         @breadcrumbs itemscope=true itemtype="http://data-vocabulary.org/Breadcrumb"
           .crumb
             a href="#{ index_path(path: 'group') }" = sphere

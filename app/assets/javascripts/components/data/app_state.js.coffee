@@ -9,7 +9,7 @@ appState = ->
   @togglePicked = (criteria) ->
     criteria = [criteria] unless _.isArray criteria
     for criterion in criteria
-      mapped = _.find(@attr.criteria, name: criterion)
+      mapped = _.find(@attr.criteria, name: criterion.name)
       mapped?.picked = !mapped.picked
 
   @setPicked = (pickedCriteria) ->
@@ -80,8 +80,8 @@ appState = ->
       @attr.filters = []
       @trigger "dataStateUpdated", to_params()
 
-    @on "uiCriterionToggled", (event, criterion) ->
-      @togglePicked criterion.name
+    @on "uiCriterionToggled", (event, data) ->
+      @togglePicked data.criteria
       @trigger "dataStateUpdated", to_params()
 
 

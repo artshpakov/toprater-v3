@@ -35,6 +35,8 @@
 =enabled-button($font-size, $bg, $text-color, $border-color, $hover-text-color:false, $hover-bg:false, $hover-color-factor: -20%)
   +button-prototype($font-size, $bg, $text-color, $border-color)
   
+  cursor: pointer !important
+
   @if $bg == transparent
     @if $hover-bg == false
       $hover-bg: $bg

@@ -12,4 +12,4 @@ criteria = ->
 
     @on "[role=criterion-group-link]", "click", @showSubs
 
-Toprater.Criteria = flight.component(criteria)
+Toprater.Criteria = flight.component criteria

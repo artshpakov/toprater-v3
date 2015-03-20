@@ -3,7 +3,8 @@ criterion = ->
   @after "initialize", ->
 
     @after "toggleCriterion", ->
-      @trigger "uiCriterionToggled", @attr
+      @trigger "uiCriterionToggled", criteria: @attr
+      
 
 
 Toprater.Criterion = flight.component criterion, Toprater.WithCriterionMixin

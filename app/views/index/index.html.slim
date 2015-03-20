@@ -14,13 +14,21 @@ html
 
     @wrapper
       section.title-header.index-epic
+        header
+          .row
+            .columns.small-2
+              a.logo href="/"
+                = image_tag 'logo.png', title: 'Toprater beta'
+            .columns.small-2.pull-right
+              = render partial: 'partials/auth'
+
         .row.text-center
-          h1 = image_tag 'logo.png', title: 'toprater beta'
-          h3.subheader SOCIAL CHOICE PLATFORM
+          h2 SOCIAL CHOICE PLATFORM
+          h3 To find goods or services perfect for you just specify your criteria in our catalog and get the result based on reviews of millions of custmers from all over the world.
           
-      section
-        .row
-          - %w(hotels movies companies).each_with_index do |sphere, index|
+      section.spheres-preview
+        - %w(hotels movies companies).each_with_index do |sphere, index|
+          .row data-equalizer=true
             = render_cell :index, :important, sphere: sphere, index: index
         .row
           = render_cell :index, :compilations
