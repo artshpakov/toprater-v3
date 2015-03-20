@@ -28,7 +28,7 @@ class ApplicationController < ActionController::Base
     Sentimeta.sphere = params[:sphere] if params[:sphere].present?
   end
 
-  def setup    
+  def setup
     State.init! params: params, cookies: cookies, session: session
 
     unless request.xhr?

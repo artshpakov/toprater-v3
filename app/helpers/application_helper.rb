@@ -46,4 +46,9 @@ module ApplicationHelper
     }
   end
 
+
+  def micro property, value=nil
+    MicroformatService.get property, value
+  end
+
 end

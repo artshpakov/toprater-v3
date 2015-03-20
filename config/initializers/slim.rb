@@ -1,5 +1,6 @@
 Rails.application.assets.register_engine '.slim', Slim::Template
 
 Slim::Engine.set_default_options format: :html5
+Slim::Engine.set_default_options pretty: Rails.env.development?
 Slim::Engine.set_default_options attr_delims: { '[' => ']' }
-Slim::Engine.set_default_options shortcut: {'.' => {:attr => 'class'}, '#' => {:attr => 'id'}, '@' => { attr: 'role' }}
+Slim::Engine.set_default_options shortcut: {'.' => {attr: 'class'}, '#' => {attr: 'id'}, '@' => {attr: 'role'}}

@@ -1,20 +1,33 @@
 section
-  h2
-    | #{@alternative.name}
-    span.label.right =' @alternative.rating
+  .label.right *micro(:aggregateRating)
+    span *micro(:ratingValue) = @alternative.rating
+    | /
+    span *micro(:bestRating) 5
+
+  h2 *micro(:name) = @alternative.name
+
   .row
     .small-8.columns
       = solid
-        h6.subheader = @alternative.genres.join(', ')
+        div *micro(:genre) = @alternative.genres.join(', ')
       = solid
-        p
-          strong Directors:&nbsp;
-          = @alternative.extra['directors'].map{|dir| dir['label']}.to_sentence
+        div
+          strong> Directors
+          span *micro(:director)
+            span *micro(:name) = @alternative.extra['directors'].map{|dir| dir['label']}.to_sentence
+      = solid
+        div
+          strong> Release date:
+          span *micro(:date,@alternative.extra['release_date']) = @alternative.extra['release_date']
+      br
+
+
       = solid do
         h4 Storyline
         p.textmass = @alternative.extra['description']
+
     .small-4.columns
       .th
-        img src=@alternative.cover
+        img src=@alternative.cover *micro(:image)
       h4
         | IMDB: #{@alternative.extra['imdb_rating']}/10
