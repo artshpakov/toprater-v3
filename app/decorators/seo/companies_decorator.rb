@@ -4,6 +4,17 @@ class SEO::CompaniesDecorator < SEO::AlternativeDecorator
     object.extra['description']
   end
 
+  def og_hash
+    {
+      title: title,
+      url: canonical_url,
+      image: object.cover,
+      description: description,
+      site_name: 'toprater.com',
+      type: 'toprater_com:company'
+    }
+  end
+
   def canonical_url
     "https://toprater/en/companies/objects/#{object.id}"
   end

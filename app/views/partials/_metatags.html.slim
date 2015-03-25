@@ -2,3 +2,7 @@ title = @metatags.title + " | TopRater.com"
 meta name='description' content=@metatags.description
 meta name='keywords' content=@metatags.keywords
 link rel='canonical' href=@metatags.canonical_url
+
+- if @metatags.og_hash
+  - @metatags.og_hash.each do |key, value|
+    meta property=key.to_s content=value
