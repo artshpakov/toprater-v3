@@ -12,219 +12,221 @@ html
     meta property="og:description" content="The rating below was composed of working people's comments and opinions. We analyzed every important aspect like office environment, career advancement, perks and bonuses and etc."
     meta property="og:site_name" content="https://toprater.com"
 
-body@employers-page
-  = render 'partials/kissmetrics'
-  .fixed-block
-    .slide-scroller@slide-nav
-    .share-widget.vertical@share-widget
-      .toprater-icon-share@share-switch
-      .links@share-links
-        a.fa.fa-facebook.toprater-icon-facebook@share-button href="javascript:;" data-type="facebook" data-url="https://toprater.com/en/landings/employers" data-title="What's the best and the worst employers in the world." data-description="The rating below was composed of working people's comments and opinions. We analyzed every important aspect like office environment, career advancement, perks and bonuses and etc." data-media=""
-        a.fa.fa-twitter.toprater-icon-twitter@share-button data-type="twitter" data-url="https://toprater.com/en/landings/employers" data-title="What's the best and the worst employers in the world." data-description="The rating below was composed of working people's comments and opinions. We analyzed every important aspect like office environment, career advancement, perks and bonuses and etc." data-media=""
-        a.fa.fa-google-plus.toprater-icon-google-plus@share-button data-type="googleplus" data-url="https://toprater.com/en/landings/employers" data-title="What's the best and the worst employers in the world." data-description="The rating below was composed of working people's comments and opinions. We analyzed every important aspect like office environment, career advancement, perks and bonuses and etc." data-media=""
+  body@employers-page
+    = render 'partials/kissmetrics'
+    .fixed-block
+      .slide-scroller@slide-nav
+      .share-widget.vertical@share-widget
+        .toprater-icon-share@share-switch
+        .links@share-links
+          a.fa.fa-facebook.toprater-icon-facebook@share-button href="javascript:;" data-type="facebook" data-url="https://toprater.com/en/landings/employers" data-title="What's the best and the worst employers in the world." data-description="The rating below was composed of working people's comments and opinions. We analyzed every important aspect like office environment, career advancement, perks and bonuses and etc." data-media=""
+          a.fa.fa-twitter.toprater-icon-twitter@share-button data-type="twitter" data-url="https://toprater.com/en/landings/employers" data-title="What's the best and the worst employers in the world." data-description="The rating below was composed of working people's comments and opinions. We analyzed every important aspect like office environment, career advancement, perks and bonuses and etc." data-media=""
+          a.fa.fa-google-plus.toprater-icon-google-plus@share-button data-type="googleplus" data-url="https://toprater.com/en/landings/employers" data-title="What's the best and the worst employers in the world." data-description="The rating below was composed of working people's comments and opinions. We analyzed every important aspect like office environment, career advancement, perks and bonuses and etc." data-media=""
 
-  #employers-wrapper@slider
-    header.header-best@slide data-name="header"
-      .row.topbar
-        .columns.small-12
-          a.toprater-logo href="https://toprater.com"
-            | Toprater
-          / a.nyt-logo href="http://nytimes.com"
-          /   | New-York Times
-      .row
-        .columns.small-10
-          h1@title-switcher data-worst="#{ @worst_exist }"
-            span@switcher
-              = @title
-            a.next-slide@next-slide href="javascript:;"
-
-      - if @about.present?
+    #employers-wrapper@slider
+      header.header-best@slide data-name="header"
+        .row.topbar
+          .columns.small-12
+            a.toprater-logo href="https://toprater.com"
+              | Toprater
+            / a.nyt-logo href="http://nytimes.com"
+            /   | New-York Times
         .row
-          .about.columns.medium-6
-            hr
-            h4 About rating
-            = @about
-      .row.to-mechanics
-        .small-12.medium-6.large-6.columns.link-to-mechanic@link-to-mechanic
-          div
-            h3 = @find_company_title
-            - if @find_company_text.present?
-              .desc = @find_company_text
-            a.button.round.small data-dest="find-company" href="javascript:;" Get started
-        .small-12.medium-6.large-6.columns.link-to-mechanic@link-to-mechanic
-          div
-            h3 = @check_company_title
-            - if @check_company_text.present?
-              .desc = @check_company_text
-            a.button.round.small data-dest="user-company" href="javascript:;" Get started
+          .columns.small-10
+            h1@title-switcher data-worst="#{ @worst_exist }"
+              span@switcher
+                = @title
+              a.next-slide@next-slide href="javascript:;"
+
+        - if @about.present?
+          .row
+            .about.columns.medium-6
+              hr
+              h4 About rating
+              = @about
+        .row.to-mechanics
+          .small-12.medium-6.large-6.columns.link-to-mechanic@link-to-mechanic
+            div
+              h3 = @find_company_title
+              - if @find_company_text.present?
+                .desc = @find_company_text
+              a.button.round.small data-dest="find-company" href="javascript:;" Get started
+          .small-12.medium-6.large-6.columns.link-to-mechanic@link-to-mechanic
+            div
+              h3 = @check_company_title
+              - if @check_company_text.present?
+                .desc = @check_company_text
+              a.button.round.small data-dest="user-company" href="javascript:;" Get started
 
 
-    section#employers-rating@employers-rating
-      - if @employers.present?
-        - @employers.each_with_index do |employer, index|
-          section.employer.slide@slide class="employer-#{ index }" data-name="employer-#{ index }"
-            .row
-              .employer-info.columns.small-12.medium-6
-                .place
-                  span 
-                    - if @reverse
-                      =' 1000 - index
-                    - else
-                      =' index + 1
-                  | /&nbsp;
-                  | 1000
-                h2 = employer.name
-                .industries
-                  - employer.extra["industries"].each_with_index do |industry, index|
-                    span = industry["label"]
-                    - if not index + 1 == employer.extra["industries"].size
-                      |,&nbsp;
-                
-                - if employer.extra["description"].present?
-                  .desc 
-                    .desc-text
-                      = employer.extra["description"]
-
-                    a.showmore href="/en/companies/objects/#{ employer.full_id }/criteria/#{ employer.reviews[0]['name'] }" 
-                      | Show full description
-
-              .employer-chart.columns.small-12.medium-6
-                - if employer.review_ratings["total"] > 0
-                  - if @reverse
-                    - percentage = (employer.review_ratings["terrible"] + employer.review_ratings["bad"]) / (employer.review_ratings["total"] / 100.0).round
-                  - else
-                    - percentage = (employer.review_ratings["good"] + employer.review_ratings["excellent"]) / (employer.review_ratings["total"] / 100.0).round
-                  .chart@pie-chart data-value="#{ percentage }"
-                    .chart-text
-                      .percentage 
-                        = percentage
-                        small &nbsp;%
+      section#employers-rating@employers-rating
+        - if @employers.present?
+          - @employers.each_with_index do |employer, index|
+            section.employer.slide@slide class="employer-#{ index }" data-name="employer-#{ index }"
+              .row
+                .employer-info.columns.small-12.medium-6
+                  .place
+                    span 
                       - if @reverse
-                        span Negative reviews
+                        =' 1000 - index
                       - else
-                        span Positive reviews
-                .info
-                  - if @worst_exist
-                    .switcher@switcher
-                      a.best class="#{ 'current' if not @reverse }" data-dest="best" href="javascript:;" Best
-                      |&nbsp;&nbsp;/&nbsp;&nbsp;
-                      a.worst class="#{ 'current' if @reverse }" data-dest="worst" href="javascript:;" Worst
-                  .rating-info
-                    .current-criterion = Criterion.find(employer.reviews[0]["name"]).label
-                    .value
-                      span =' employer.rating
-                      small 
-                        | /&nbsp;&nbsp;5
-                  hr
-                  .reviews-count
-                    div Based on
-                    .count = employer.review_ratings["total"]
-                    div reviews
+                        =' index + 1
+                    | /&nbsp;
+                    | 1000
+                  h2 = employer.name
+                  .industries
+                    - employer.extra["industries"].each_with_index do |industry, index|
+                      span = industry["label"]
+                      - if not index + 1 == employer.extra["industries"].size
+                        |,&nbsp;
+                  
+                  - if employer.extra["description"].present?
+                    .desc 
+                      .desc-text
+                        = employer.extra["description"]
 
-            - if employer.other_criteria.present?
-              .row
-                .criterion-bar-chart@criteria-bar
-                  a.arrow.toprater-icon-chevron-left@arrow-left href="javascript:;" 
-                  a.arrow.toprater-icon-chevron-right@arrow-right href="javascript:;"
-                  .bar-wrap
-                    - employer.other_criteria.values.each do |criterion|
-                      a.criterion-bar data-rating="#{rating criterion['rating']}" data-name="#{ criterion["label"] }" href="/en/companies/objects/criteria/#{ criterion['name'] }" target="_blank"
-                        .name = criterion["label"]
-                        .rating = rating criterion["rating"]
+                      a.showmore href="/en/companies/objects/#{ employer.full_id }/criteria/#{ employer.reviews[0]['name'] }" 
+                        | Show full description
 
-                    .links-bar
-                      div
-                        a.chart-link.toprater-link href="/en/companies/objects/criteria/#{employer.reviews[0]["name"]}/filters/top/fortune-1000" target="_blank"
-                          | 300 + awesome criteria on our toprater.com 
-                          span.toprater-icon-chevron-right
-                      div
-                        a.chart-link.fc-link href="javascript:;"
-                          = @find_company_title
-                      div
-                        a.chart-link.cc-link href="javascript:;"
-                          = @check_company_title
-                    .line-chart
+                .employer-chart.columns.small-12.medium-6
+                  - if employer.review_ratings["total"] > 0
+                    - if @reverse
+                      - percentage = (employer.review_ratings["terrible"] + employer.review_ratings["bad"]) / (employer.review_ratings["total"] / 100.0).round
+                    - else
+                      - percentage = (employer.review_ratings["good"] + employer.review_ratings["excellent"]) / (employer.review_ratings["total"] / 100.0).round
+                    .chart@pie-chart data-value="#{ percentage }"
+                      .chart-text
+                        .percentage 
+                          = percentage
+                          small &nbsp;%
+                        - if @reverse
+                          span Negative reviews
+                        - else
+                          span Positive reviews
+                  .info
+                    - if @worst_exist
+                      .switcher@switcher
+                        a.best class="#{ 'current' if not @reverse }" data-dest="best" href="javascript:;" Best
+                        |&nbsp;&nbsp;/&nbsp;&nbsp;
+                        a.worst class="#{ 'current' if @reverse }" data-dest="worst" href="javascript:;" Worst
+                    .rating-info
+                      .current-criterion = Criterion.find(employer.reviews[0]["name"]).label
+                      .value
+                        span =' employer.rating
+                        small 
+                          | /&nbsp;&nbsp;5
+                    hr
+                    .reviews-count
+                      div Based on
+                      .count = employer.review_ratings["total"]
+                      div reviews
 
+              - if employer.other_criteria.present?
+                .row
+                  .criterion-bar-chart@criteria-bar
+                    a.arrow.toprater-icon-chevron-left@arrow-left href="javascript:;" 
+                    a.arrow.toprater-icon-chevron-right@arrow-right href="javascript:;"
+                    .bar-wrap
+                      - employer.other_criteria.values.each do |criterion|
+                        a.criterion-bar data-rating="#{rating criterion['rating']}" data-name="#{ criterion["label"] }" href="/en/companies/objects/criteria/#{ criterion['name'] }" target="_blank"
+                          .name = criterion["label"]
+                          .rating = rating criterion["rating"]
 
-
-    section#employers-find-company@slide data-name="find-company"
-      .row@employers-find-company
-        / .coming-soon
-        /   h1 Coming soon
-        .full-slide
-          .slide-wrapper
-            h1 = @find_company_title
-            .first.step@criteria-chooser
-              h3 What's important for you?
-              small Select several criteria which describe best what inspires you in potential employers
-              .important-criteria.row
-                - if @important_criteria.present?
-                  - @important_criteria.each do |criterion|
-                    - if criterion.present?
-                      .criterion-wrapper.small-6.medium-4.columns
-                        a.criterion.toprater-icon-plus-add-2@slide-criterion href="javascript:;" data-label="criterion.label" data-name="#{ criterion.name }" = criterion.label
-
-            .second.step@industry-chooser
-              -if @segments.present?
-                .industry-chooser
-                  h3 Choose industry
-                  .chooser
-                    a.button.toprater-icon-chevron-down.list-control Click to choose industry...
-                    div#industries-list
-                      ul
-                        - @segments.each do |segment|
-                          li
-                            a data-name="#{ segment['name'] }" data-label="#{ segment['label'] }" href="javascript:;" = segment["label"]
-
-            .third.step@step
-
-          hr
-          .pages-block
-            .pagination
-              span Step
-              a.current data-step="1" href="javascript:;" 1
-              a data-step="2" href="javascript:;" 2
-            a.button.round@slide-results href="javascript:;" Next
+                      .links-bar
+                        div
+                          a.chart-link.toprater-link href="/en/companies/objects/criteria/#{employer.reviews[0]["name"]}/filters/top/fortune-1000" target="_blank"
+                            | 300 + awesome criteria on our toprater.com 
+                            span.toprater-icon-chevron-right
+                        div
+                          a.chart-link.fc-link href="javascript:;"
+                            = @find_company_title
+                        div
+                          a.chart-link.cc-link href="javascript:;"
+                            = @check_company_title
+                      .line-chart
 
 
-    section#employers-user-company.employer.slide@slide data-name="user-company"
-      .check-company-wrap@employers-check-company
-        .full-slide
-          .row 
-            h1 = @check_company_title
-          .row.search-wrap
-            .small-12.columns
-              input placeholder="Company name"
-              button.toprater-icon-search
-          .row.employer-suggest
-            .base
-              -if @employers_names.present?
-                - @employers_names.each do |emp|
-                  .employer-suggestion.small-4.columns 
-                    a data-id="#{ emp['id'] }" =' emp["label"]
-            .finded
-        
 
-    footer@slide data-name="footer"
-      = javascript_include_tag :application
-      .row
-        .small-12.footer-wrap
-          h1 Submit
-          h3 To receive new awesome Top Rates!
-          .subscribe@subscriber
-            form
-              .row
-                .small-10.columns
-                  input.email-field type="email" placeholder="Email address"
-                .small-2.columns
-                  button.submit-email.small.round SUBMIT
-      #bottomline
+      section#employers-find-company@slide data-name="find-company"
+        .row@employers-find-company
+          / .coming-soon
+          /   h1 Coming soon
+          .full-slide
+            .slide-wrapper
+              h1 = @find_company_title
+              .first.step@criteria-chooser
+                h3 What's important for you?
+                small Select several criteria which describe best what inspires you in potential employers
+                .important-criteria.row
+                  - if @important_criteria.present?
+                    - @important_criteria.each do |criterion|
+                      - if criterion.present?
+                        .criterion-wrapper.small-6.medium-4.columns
+                          a.criterion.toprater-icon-plus-add-2@slide-criterion href="javascript:;" data-label="criterion.label" data-name="#{ criterion.name }" = criterion.label
+
+              .second.step@industry-chooser
+                -if @segments.present?
+                  .industry-chooser
+                    h3 Choose industry
+                    .chooser
+                      a.button.toprater-icon-chevron-down.list-control Click to choose industry...
+                      div#industries-list
+                        ul
+                          - @segments.each do |segment|
+                            li
+                              a data-name="#{ segment['name'] }" data-label="#{ segment['label'] }" href="javascript:;" = segment["label"]
+
+              .third.step@step
+
+            hr
+            .pages-block
+              .pagination
+                span Step
+                a.current data-step="1" href="javascript:;" 1
+                a data-step="2" href="javascript:;" 2
+              a.button.round@slide-results href="javascript:;" Next
+
+
+      section#employers-user-company.employer.slide@slide data-name="user-company"
+        .check-company-wrap@employers-check-company
+          .full-slide
+            .row 
+              h1 = @check_company_title
+            .row.search-wrap
+              .small-12.columns
+                input placeholder="Company name"
+                button.toprater-icon-search
+            .row.employer-suggest
+              .base
+                -if @employers_names.present?
+                  - @employers_names.each do |emp|
+                    .employer-suggestion.small-4.columns 
+                      a data-id="#{ emp['id'] }" =' emp["label"]
+              .finded
+          
+
+      footer@slide data-name="footer"
+        = javascript_include_tag :application
         .row
-          .small-12.columns
-            | Other ratings on&nbsp;
-            a href="/" toprater.com
+          .small-12.footer-wrap
+            h1 Submit
+            h3 To receive new awesome Top Rates!
+            .subscribe@subscriber
+              form
+                .row
+                  .small-10.columns
+                    input.email-field type="email" placeholder="Email address"
+                  .small-2.columns
+                    button.submit-email.small.round SUBMIT
+        #bottomline
+          .row
+            .small-12.columns
+              | Other ratings on&nbsp;
+              a href="/" toprater.com
 
 
-      coffee:
-        $ ->
-          Toprater.attachEmployersLandingComponents()
+        coffee:
+          $ ->
+            Toprater.attachEmployersLandingComponents()
+
+    = render partial: 'partials/services/userecho' if signed_in?

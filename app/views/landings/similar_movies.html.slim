@@ -134,3 +134,5 @@ html
         span.copy
           =' Date.today.year
           | &copy; Toprater
+
+    = render partial: 'partials/services/userecho' if signed_in?

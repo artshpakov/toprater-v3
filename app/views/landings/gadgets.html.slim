@@ -43,9 +43,10 @@ html
               a.prettySocial.fa.fa-twitter.toprater-icon-twitter data-type="twitter" data-url="https://toprater.com/en/landings/gadgets" data-title="#{ @title }" data-description="What people need in gadgets? Coming soon!" data-media=""
               a.prettySocial.fa.fa-google-plus.toprater-icon-google-plus data-type="googleplus" data-url="https://toprater.com/en/landings/gadgets" data-title="#{ @title }" data-description="What people need in gadgets? Coming soon!" data-media=""
 
-  footer
-    = javascript_include_tag :application
+    footer
+      = javascript_include_tag :application
 
-    coffee:
-      $(".prettySocial").prettySocial()
-      
+      coffee:
+        $(".prettySocial").prettySocial()
+        
+    = render partial: 'partials/services/userecho' if signed_in?

@@ -20,6 +20,8 @@ html
       section@content
         = yield
 
+    = render partial: 'partials/services/userecho' if signed_in?
+
     = render_cell :general, :debug
 
     script src="//maps.google.com/maps/api/js?v=3.13&amp;sensor=false&amp;libraries=geometry" type="text/javascript"
