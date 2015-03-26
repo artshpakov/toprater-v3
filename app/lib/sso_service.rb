@@ -1,3 +1,5 @@
+require 'ezcrypto'
+
 class SsoService
 
   API_KEY     = 'caff283abdf9c4af0a22fdbaf2366ea5'
@@ -8,6 +10,7 @@ class SsoService
       guid: user.id,
       expires_date: (Time.now + 3600*24).strftime("%Y-%m-%d %H:%M:%S"),
       email: user.email,
+      verified_email: true,
       display_name: user.name,
       locale: 'en',
       avatar_url: user.image
