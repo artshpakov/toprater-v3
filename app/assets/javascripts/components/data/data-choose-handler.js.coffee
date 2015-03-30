@@ -1,8 +1,10 @@
-chooseHandler = ->
+dataChooseHandler = ->
   @attributes
     criteria: ->
       new Array()
     sphere: ->
+      new String()
+    lang: ->
       new String()
 
   @togglePicked = (criteria) ->
@@ -21,18 +23,26 @@ chooseHandler = ->
     else
       @$node.find("[role=show-results]").removeClass "active"
 
+
+
   @after "initialize", ->
     @attr.sphere = @$node.attr "data-sphere"
+    @attr.lang = @$node.attr "data-lang"
+
     @on @$node.find("[role=defer-criterion]"), "uiCriterionToggled", (event, criterion) ->
       event.stopPropagation()
       @togglePicked criterion
 
+
     @on @$node.find("[role=show-results]"), "click", (event) ->
       event.stopPropagation()
       event.preventDefault()
-      # console.log @attr.criteria
       if _.filter(@attr.criteria, (criterion) -> criterion.picked).length
-        @trigger document, "uiCriterionToggled", { criteria: @attr.criteria, sphere: @attr.sphere }
+        # TODO: Do something with it
+        window.location.href = @buildUrl { criteria: @attr.criteria, filters: [], sphere: @attr.sphere, lang: @attr.lang }
 
 
-Toprater.CriteriaChooseHandler = flight.component chooseHandler
+
+
+
+Toprater.DataChooseHandler = flight.component dataChooseHandler, Toprater.WithUrlMixin

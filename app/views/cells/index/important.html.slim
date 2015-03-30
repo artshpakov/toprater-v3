@@ -1,5 +1,5 @@
 .medium-6.columns.preview-block.criteria-block class="#{'right' if @index.odd?}" data-equalizer-watch=true
-  .criteria.row@chooser-handler data-sphere="#{ @sphere }"
+  .criteria.row@chooser-handler data-sphere="#{ @sphere }" data-lang="#{ @lang }"
     h3
       = @info['icon_text']
     h5.subheader = @info['text']
@@ -21,4 +21,3 @@
         - @info['icon_refs'].each do |link|
           a.additional-link href=link['ref'] = link['label']
 
-  

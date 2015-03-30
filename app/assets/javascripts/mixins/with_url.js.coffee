@@ -18,4 +18,5 @@ withUrl = ->
     "/#{ params.lang }/#{ params.sphere }" + @buildPath(params)
 
 
-Toprater.WithUrlMixin = flight.component withUrl
+
+Toprater.WithUrlMixin = withUrl
