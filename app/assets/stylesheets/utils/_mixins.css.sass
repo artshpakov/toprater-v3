@@ -1,4 +1,4 @@
-@mixin avatar($size)
+=avatar($size)
   width: $size
   height: $size
   border-radius: $size/2
@@ -7,7 +7,11 @@
   box-shadow: 0 1px 3px rgba(0,0,0,0.3) inset
 
 
-@mixin columned($count)
+=columned($count)
   columns: $count
   -webkit-columns: $count
   -moz-columns: $count
+
+=hover
+  &.hover
+    opacity: .5

@@ -1,0 +1,39 @@
+@import foundation/components/global
+@import layouts/full-width
+
+=block-slider($height, $arrow-color:#3b3b3b, $arrow-bg:#eee, $arrow-size: 22)
+  .block-slider-wrapper
+    height: $height+px
+    position: relative
+    overflow: hidden
+    width: 100%
+
+    .block-slider-container
+      position: absolute
+      height: $height+px
+      min-width: 100%
+
+  .left-arrow, .right-arrow
+    background-color: $arrow-bg
+    color: $arrow-color
+    font-size: $arrow-size+px
+    line-height: 1em
+    display: inline-block
+    margin: 0 5px
+    padding: $arrow-size*0.6+px $arrow-size*0.6+px $arrow-size*0.4+px $arrow-size*0.6+px
+    vertical-align: top
+
+    &:hover
+      background-color: invert($arrow-bg)
+      color: invert($arrow-color)
+
+
+=full-width-slider($height, $arrow-color:#3b3b3b, $arrow-bg:#eee, $arrow-size: 22)
+  +block-slider($height)
+  +full-width-wrapper($height)
+
+  .block-slider-wrapper
+    +full-width($height)
+  
+    .block-slider-container
+      +endless-panel($height)

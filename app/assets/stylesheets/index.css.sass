@@ -4,6 +4,10 @@
 @import widgets/buttons
 @import widgets/thumbnail-cards
 @import widgets/epic
+@import widgets/block-slider
+
+body
+  font-family: "proxima_nova_rgregular", "Helvetica Neue", Helvetica, Arial, sans-serif
 
 .index-epic
   +epic("index_bg.jpg", #fff)
@@ -21,9 +25,9 @@ h3
   font-weight: bold
   font-size: 30px
 
-.subheader
-  color: #666666 !important
-  font-size: 14px
+h5
+  font-family: "proxima_nova_rgregular", "Helvetica Neue", Helvetica, Arial, sans-serif
+  font-weight: normal
 
 .criterion
   +criterion(10, #666, #fff, #009fde, #fff)
@@ -39,8 +43,11 @@ h3
 .popular-thumb
   +object-preview-card
 
-.preset-card
-  +preset-card
+.compilations
+  +full-width-slider(400)
+
+  .preset-card
+    +preset-card
 
 ul.recommend-list
   line-height: 1em
@@ -101,13 +108,13 @@ section.spheres-preview
     background-color: #ebebeb
     border: 0
     height: 1px
-    margin: 15px auto
+    margin: 10px auto 5px
     width: 20px 
 
   .sphere-link
     font-size: 18px
     display: block
-    margin: 0 auto
+    margin: 38px auto 0
 
     img
       display: block
@@ -122,3 +129,53 @@ section.spheres-preview
       display: inline-block
       font-size: 12px
       margin: 5px
+
+.recommend-block
+  +block-slider(390)
+
+  .arrows-block
+    float: right
+
+
+  h5
+    font-size: 22px
+    line-height: 30px
+
+  a
+    color: #009fde
+    font-size: 14px
+    line-height: 20px  
+  
+  .recommend-image
+    background-size: cover
+    border-radius: 5px
+    height: 168px
+    margin: 15px auto
+
+.movies-recommend
+  +block-slider(390, #fff, #6d6d6d, 22)
+  background-color: #2e2e2e
+  color: #ccc
+  
+  a, h5
+    color: #ccc
+
+  h2
+    color: #fff
+
+  .left-arrow, .right-arrow
+    &:hover
+      background-color: #434343
+      color: #fff
+  
+.about
+  background-color: #009fde
+  color: #fff
+
+  h2
+    color: #fff
+
+.about
+  button
+    +enabled-button(16, transparent, #fff, #fff, #009fde, #fff)
+    margin-right: 20px

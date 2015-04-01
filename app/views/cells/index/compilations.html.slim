@@ -1,21 +1,24 @@
 h2 Compilations
-- @items.each do |item|
-  a.preset-card href=item['url']
-    .image style="background-image: url(http://toprater.com#{ URI::escape item['picture'] })"
-    .infobox
-      p = item['text1']
-      .title = item['text2']
+.compilations
+  .block-slider-wrapper
+    .block-slider-container
+      - @items.each do |item|
+        a.preset-card href=item['url']
+          .image style="background-image: url(http://toprater.com#{ URI::escape item['picture'] })"
+          .infobox
+            p = item['text1']
+            .title = item['text2']
 
-    .cover
-      p = item['text1']
-      .title = item['text2']
-      hr
-      .criteria
-        | Best movies by
-        - if item["criteria"].present?
-          - item["criteria"].each do |criterion|
-            .preset-criterion =criterion
-      
-      .link 
-        | Find movies
-        span.link-icon.toprater-icon-arrow-right
+          .cover
+            p = item['text1']
+            .title = item['text2']
+            hr
+            .criteria
+              | Best movies by
+              - if item["criteria"].present?
+                - item["criteria"].each do |criterion|
+                  .preset-criterion =criterion
+            
+            .link 
+              | Find movies
+              span.link-icon.toprater-icon-arrow-right

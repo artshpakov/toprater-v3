@@ -1,12 +1,20 @@
-.row
+.recommend-block
   .large-12.columns
-    h4.subheader = @info['label']
+    h2 
+      = @info['label']
+      .arrows-block
+        a.left-arrow.toprater-icon-chevron-left href="javascript:;"
+        a.right-arrow.toprater-icon-chevron-right href="javascript:;"
 
-  - @info['subblocks'].each do |subblock|
-    .large-4.columns
-      .panel.callout
-        h5 = subblock['name']
-        ul.recommend-list
-          - subblock['links'].each do |link|
-            li : small : a href=link['url'] = link['label']
-hr
+  .block-slider-wrapper
+    .block-slider-container
+      - @info['subblocks'].each do |subblock|
+        .large-4.columns
+          .recommend-image style="background-image: url(#{ subblock['picture'] })"
+          h5 = subblock['name']
+          ul.recommend-list
+            - subblock['links'].each do |link|
+              li
+                a href=link['url'] = link['label']
+          hr
+            a href="#{ subblock['url'] }" All cities

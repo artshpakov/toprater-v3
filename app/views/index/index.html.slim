@@ -30,18 +30,55 @@ html
         - %w(hotels movies companies).each_with_index do |sphere, index|
           .row data-equalizer=true
             = render_cell :index, :important, sphere: sphere, index: index
+
+      section
         .row
           = render_cell :index, :compilations
-        .row
-          h2 Recommend
-          - %w(movies hotels).each do |sphere|
-            = render_cell :index, :recommendations, sphere: sphere
 
+      section.hotels-recommend
+        .row
+          = render_cell :index, :recommendations, sphere: %w(hotels)
+
+      section.movies-recommend
+        .row
+          = render_cell :index, :recommendations, sphere: %w(movies)
+      
+      section
         .row
           h2 Popular this month
           = render_cell :index, :popular
+      
+      section.about
+        .row
+          .small-12.columns
+            h2 About
+          .medium-6.columns
+            .description
+              p 
+                | TopRater is a social choice platform which helps you find the best products and services most fitting to your personal interests instantly and share them with your friends.
+              p 
+                | There is no need in wasting time on reading all comments. TopRater is filter out and extract the most vital information from billions of reviews from around the world in every country using our aspect-based sentiment analysis software, thus creating the world's first social choice platform.
+
+            button More info
+            button Contact us
+          .medium-6.columns
+            .counts
+              div
+                | 2 mln
+                div
+                  | criteria
+              div
+                | 6 bln
+                div
+                  | reviews
+            .spheres
+              span categories
+              .sphere
+
+      = render partial: 'partials/footer'
 
     = render partial: 'partials/services/userecho' if signed_in?
+
 
     = render_cell :general, :debug
     = javascript_include_tag :application
