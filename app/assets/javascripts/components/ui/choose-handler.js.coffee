@@ -1,4 +1,4 @@
-dataChooseHandler = ->
+chooseHandler = ->
   @attributes
     criteria: ->
       new Array()
@@ -27,7 +27,7 @@ dataChooseHandler = ->
 
   @after "initialize", ->
     @attr.sphere = @$node.attr "data-sphere"
-    @attr.lang = @$node.attr "data-lang"
+    @attr.lang = window.toprater.state.locale
 
     @on @$node.find("[role=defer-criterion]"), "uiCriterionToggled", (event, criterion) ->
       event.stopPropagation()
@@ -45,4 +45,4 @@ dataChooseHandler = ->
 
 
 
-Toprater.DataChooseHandler = flight.component dataChooseHandler, Toprater.WithUrlMixin
+Toprater.ChooseHandler = flight.component chooseHandler, Toprater.WithUrlMixin

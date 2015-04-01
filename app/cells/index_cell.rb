@@ -7,7 +7,6 @@ class IndexCell < TopraterCell
     @info = main(args[:sphere])['important']
     @criteria = presets(args[:sphere])['best_criteria']
     @sphere = Sentimeta.sphere
-    @lang = Sentimeta.lang
     render
   end
 
