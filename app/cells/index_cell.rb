@@ -20,9 +20,9 @@ class IndexCell < TopraterCell
     render
   end
 
-  def popular
-    Sentimeta.sphere = :movies
-    @items = main(:movies)['popular'].map { |item| Alternative.find(item) }
+  def popular args
+    Sentimeta.sphere = args[:sphere]
+    @items = main(args[:sphere])['popular'].map { |item| Alternative.find(item) }
     render
   end
 

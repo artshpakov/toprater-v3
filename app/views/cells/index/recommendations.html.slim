@@ -10,7 +10,7 @@
     .block-slider-container
       - @info['subblocks'].each do |subblock|
         .large-4.columns
-          .recommend-image style="background-image: url(#{ subblock['picture'] })"
+          .recommend-image style="background-image: url(https://toprater.com#{ subblock['picture'] })"
           h5 = subblock['name']
           ul.recommend-list
             - subblock['links'].each do |link|
