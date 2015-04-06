@@ -7,8 +7,9 @@
       .small-6.columns
         a.criterion@defer-criterion data-name="#{ Criterion.find(criterion).try(:name) }" data-label="#{ Criterion.find(criterion).try(:label) }" =' Criterion.find(criterion).try(:label)
 
-    a.show-button@show-results
-      = @info['button_text']
+    .small-12.columns
+      a.show-button@show-results
+        = @info['button_text']
 .medium-6.columns.preview-block.sphere-image style="background-image: url(http://toprater.com#{@info['picture']})" data-equalizer-watch=true
   .sphere-links-wrap
     .sphere-links
