@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
   before_filter :set_current_location
   def set_current_location
     # for redirecting back after omniauth callback
-    session[:current_location] = request.url unless signed_in? || request.xhr?
+    session[:current_location] = request.path unless signed_in?
   end
 
   COMPLEX_URLS = %w(list object)
