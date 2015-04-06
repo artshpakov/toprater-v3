@@ -1,6 +1,6 @@
 class AuthController < ApplicationController
 
-  skip_before_action :set_locale, :set_sphere, :setup
+  skip_before_action :set_locale, :set_sphere, :setup, :set_current_location
 
   def signin
     response = Sentimeta::Client::Auth.signin params[:user]
@@ -20,11 +20,12 @@ class AuthController < ApplicationController
   end
 
   def callback
+    p "2. #{ session[:current_location] }"
     raw_data = env["omniauth.auth"]["info"].merge(env["omniauth.auth"]["extra"]["raw_info"]).slice(:email, :first_name, :last_name, :image, :gender, :locale, :lang, :timezone, :location, :name)
     raw_data[:first_name], raw_data[:last_name] = raw_data[:name].split if raw_data[:name] && raw_data[:first_name].empty? && raw_data[:last_name].empty?
     response = Sentimeta::Client::Auth.oauth env["omniauth.auth"].slice(:provider, :uid).merge(raw_data: raw_data)
     sign_user_in(response.body) if response.ok?
-    redirect_to root_path
+    redirect_to session.delete(:current_location) || root_path
   end
 
   def forgot_password
