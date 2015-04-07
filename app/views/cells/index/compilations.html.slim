@@ -1,7 +1,12 @@
-h2 Compilations
 .compilations
+  h2 
+    | Compilations
+    .arrows-block
+      a.left-arrow.toprater-icon-chevron-left href="javascript:;"
+      a.right-arrow.toprater-icon-chevron-right href="javascript:;"
+
   .block-slider-wrapper
-    .block-slider-container
+    .block-slider-container@fw-intro-slider
       - @items.each do |item|
         a.preset-card href=item['url']
           .image style="background-image: url(http://toprater.com#{ URI::escape item['picture'] })"

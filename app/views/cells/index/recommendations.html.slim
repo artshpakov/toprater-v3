@@ -1,5 +1,5 @@
 .recommend-block
-  .large-12.columns
+  .small-12.columns
     h2 
       = @info['label']
       .arrows-block
@@ -7,9 +7,9 @@
         a.right-arrow.toprater-icon-chevron-right href="javascript:;"
 
   .block-slider-wrapper
-    .block-slider-container
+    .block-slider-container@intro-slider
       - @info['subblocks'].each do |subblock|
-        .large-4.columns
+        .slider-elem
           .recommend-image style="background-image: url(https://toprater.com#{ subblock['picture'] })"
           h5 = subblock['name']
           ul.recommend-list

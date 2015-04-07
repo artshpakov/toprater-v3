@@ -12,7 +12,7 @@
 #= require select2.full
 #= require Chart
 #= require jquery.prettySocial.min.js
-
+#= require slick.min.js
 #= require_self
 #= require_tree ./templates
 #= require_tree ./utils
