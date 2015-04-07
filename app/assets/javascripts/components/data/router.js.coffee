@@ -23,6 +23,7 @@ router = ->
     router.configure
       html5history: true
       run_handler_in_init: false
+      convert_hash_in_init: false
     router.init()
 
     @on "loadMore", (event, params) ->
