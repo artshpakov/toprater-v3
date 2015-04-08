@@ -1,18 +1,17 @@
 - @items.each do |item|
-  .large-3.columns.popular
-    a.popular-thumb href="#{object_path(id: item.id, sphere: Sentimeta.sphere)}"
-      .image style="background-image: url(#{ item.cover })"
-      .infobox
-        .title 
-          = item.name
-          = solid
-            small = item.extra['genres'].first['label']
-        .cover
-          span Toprater score
-          @pie-chart
-          .count
-            | Based on
-            br
-            =' item.review_ratings["total"]
-            | reviews
+  a.popular-thumb href="#{object_path(id: item.id, sphere: Sentimeta.sphere)}"
+    .image style="background-image: url(#{ item.cover })"
+    .infobox
+      .title 
+        = item.name
+        = solid
+          small = item.extra['genres'].first['label']
+      .cover
+        span Toprater score
+        @pie-chart
+        .count
+          | Based on
+          br
+          =' item.review_ratings["total"]
+          | reviews
 

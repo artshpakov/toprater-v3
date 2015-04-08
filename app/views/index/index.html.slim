@@ -47,7 +47,7 @@ html
         .row
           h2 Popular this month
           .popular-chooser@popular-chooser
-            a.current-popular.toprater-icon-chevron-down href="javascript:;" data-dropdown="popular-switcher" aria-controls="popular-switcher" aria-expanded="false" data-options="pip: center" Movies
+            a.current-popular href="javascript:;" data-dropdown="popular-switcher" aria-controls="popular-switcher" aria-expanded="false" data-options="pip: center" Movies
             ul.f-dropdown id="popular-switcher" data-dropdown-content=true aria-hidden="true" tabindex="-1"
               - %w(movies hotels).each do |sphere|
                 li

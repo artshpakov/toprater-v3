@@ -41,9 +41,6 @@ h5
   &.active
     +show-button(13)
 
-.popular-thumb
-  +object-preview-card
-
 .compilations
   +full-width-slider(400)
 
@@ -58,6 +55,9 @@ ul.recommend-list
 
 //LAYOUT
 #start-page
+  .row
+    max-width: 943px
+    
   section
     border: 0 !important
 
@@ -69,6 +69,9 @@ ul.recommend-list
     background-color: #f7f7f7
     padding-top: 0 !important
     padding-bottom: 0 !important
+
+    .row
+      max-width: 1555px
 
 
   .sphere-image
@@ -155,7 +158,7 @@ ul.recommend-list
       display: inline-block
       padding: 0 10px
       vertical-align: top
-      width: 410px
+      width: 300px
 
 
     h5
@@ -209,9 +212,45 @@ ul.recommend-list
     button
       +enabled-button(16, transparent, #fff, #fff, #009fde, #fff)
       margin-right: 20px
+  
+  .popular-movies
+    margin-top: 30px
+
+  .popular-thumb
+    +object-preview-card
+    margin-right: 8%
 
   .popular-hotels
     display: none
 
-  .current-popular
-    display: block
+      
+
+  .popular-chooser
+    color: #666
+    a
+      color: #666
+
+    ul
+      &:before, &:after
+        display: none
+    
+    .current-popular
+      display: inline-block
+
+      &:after
+        content: "A"
+        font-family: "topratericon" !important
+        font-style: normal !important
+        font-weight: normal !important
+        font-variant: normal !important
+        text-transform: none !important
+        speak: none
+        line-height: 1
+        -webkit-font-smoothing: antialiased
+        -moz-osx-font-smoothing: grayscale
+        float: right
+        margin: 5px 0 0 2px
+      
+      &.open
+        &:after
+          content: "G"
