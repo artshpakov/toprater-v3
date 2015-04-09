@@ -16,11 +16,11 @@ class AuthController < ApplicationController
 
   def signout
     session.clear
+    cookies.delete(:rememberme)
     redirect_to URI(request.referer).path
   end
 
   def callback
-    p "2. #{ session[:current_location] }"
     raw_data = env["omniauth.auth"]["info"].merge(env["omniauth.auth"]["extra"]["raw_info"]).slice(:email, :first_name, :last_name, :image, :gender, :locale, :lang, :timezone, :location, :name)
     raw_data[:first_name], raw_data[:last_name] = raw_data[:name].split if raw_data[:name] && raw_data[:first_name].empty? && raw_data[:last_name].empty?
     response = Sentimeta::Client::Auth.oauth env["omniauth.auth"].slice(:provider, :uid).merge(raw_data: raw_data)
@@ -53,6 +53,7 @@ class AuthController < ApplicationController
 
   def sign_user_in auth_data
     session[:auth] = auth_data
+    cookies[:rememberme] = auth_data['token'] if params[:rememberme]
   end
 
 end

@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  protect_from_forgery with: :exception
+  # protect_from_forgery with: :exception
 
   layout :set_layout
   def set_layout
@@ -49,8 +49,18 @@ class ApplicationController < ActionController::Base
   helper_method :current_user, :signed_in?
 
   def current_user
-    @current_user ||= if session[:auth].present?
-      User.find(session[:auth]['token']) || session.clear
+    @current_user ||= begin
+      token = case true
+      when session[:auth].present?
+        session[:auth]['token']
+      when cookies[:rememberme].present?
+        session[:auth] = cookies[:rememberme]
+      end
+      if token.present?
+        User.find token
+      else
+        session.clear && nil
+      end
     end
   end
 
