@@ -4,13 +4,13 @@ class AuthController < ApplicationController
 
   def signin
     response = Sentimeta::Client::Auth.signin params[:user]
-    sign_user_in(response.body) if response.ok?
+    sign_user_in(response.body, params[:rememberme].present?) if response.ok?
     render json: response.body, status: response.status
   end
 
   def signup
     response = Sentimeta::Client::Auth.signup params[:user]
-    sign_user_in(response.body) if response.ok?
+    sign_user_in(response.body, params[:rememberme].present?) if response.ok?
     render json: response.body, status: response.status
   end
 
@@ -24,7 +24,7 @@ class AuthController < ApplicationController
     raw_data = env["omniauth.auth"]["info"].merge(env["omniauth.auth"]["extra"]["raw_info"]).slice(:email, :first_name, :last_name, :image, :gender, :locale, :lang, :timezone, :location, :name)
     raw_data[:first_name], raw_data[:last_name] = raw_data[:name].split if raw_data[:name] && raw_data[:first_name].empty? && raw_data[:last_name].empty?
     response = Sentimeta::Client::Auth.oauth env["omniauth.auth"].slice(:provider, :uid).merge(raw_data: raw_data)
-    sign_user_in(response.body) if response.ok?
+    sign_user_in(response.body, true) if response.ok?
     redirect_to session.delete(:current_location) || root_path
   end
 
@@ -51,9 +51,9 @@ class AuthController < ApplicationController
 
   private
 
-  def sign_user_in auth_data
+  def sign_user_in auth_data, remember=false
     session[:auth] = auth_data
-    cookies[:rememberme] = auth_data['token'] if params[:rememberme]
+    cookies[:rememberme] = auth_data['token'] if remember
   end
 
 end
