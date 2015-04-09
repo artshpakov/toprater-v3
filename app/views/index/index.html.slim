@@ -16,14 +16,15 @@ html
       section.title-header.index-epic
         header
           .row
-            .columns.small-2
+            .columns.small-6
               a.logo href="/"
                 = image_tag 'logo.png', title: 'Toprater beta'
-            .columns.small-6.pull-right
-              = render partial: 'partials/auth'
-
+            / .columns.small-6.pull-right
+            /   = render partial: 'partials/auth'
+        
         .row.text-center
-          h2 SOCIAL CHOICE PLATFORM
+          h1 SOCIAL CHOICE PLATFORM
+          hr
           h3 To find goods or services perfect for you just specify your criteria in our catalog and get the result based on reviews of millions of custmers from all over the world.
           
       section.spheres-preview
@@ -43,21 +44,26 @@ html
         .row
           = render_cell :index, :recommendations, sphere: %w(movies)
       
-      section
+      section@popular-chooser
         .row
-          h2 Popular this month
-          .popular-chooser@popular-chooser
-            a.current-popular href="javascript:;" data-dropdown="popular-switcher" aria-controls="popular-switcher" aria-expanded="false" data-options="pip: center" Movies
-            ul.f-dropdown id="popular-switcher" data-dropdown-content=true aria-hidden="true" tabindex="-1"
-              - %w(movies hotels).each do |sphere|
-                li
-                  a href="javascript:;" = sphere
+          .popular-block
+            h2 
+              | Popular this month
+              .arrows-block
+                a.left-arrow.toprater-icon-chevron-left href="javascript:;"
+                a.right-arrow.toprater-icon-chevron-right href="javascript:;"
+            .popular-chooser
+              a.current href="javascript:;" data-dropdown="popular-switcher" aria-controls="popular-switcher" aria-expanded="false" data-options="pip: center" Movies
+              ul@choose-list.f-dropdown id="popular-switcher" data-dropdown-content=true aria-hidden="true" tabindex="-1"
+                - %w(movies hotels).each do |sphere|
+                  li
+                    a href="javascript:;" data-choose="#{ sphere }" = sphere
+            .block-slider-wrapper
+              .popular-movies.block-slider-container@intro-slider data-sphere="movies" data-slick="{'slidesToShow': 4, 'slidesToScroll': 1}"
+                = render_cell :index, :popular, sphere: %w(movies)
 
-          .popular-movies
-            = render_cell :index, :popular, sphere: %w(movies)
-
-          .popular-hotels
-            = render_cell :index, :popular, sphere: %w(hotels)
+              .popular-hotels.block-slider-container@intro-slider data-sphere="hotels" data-slick="{'slidesToShow': 4, 'slidesToScroll': 1}"
+                = render_cell :index, :popular, sphere: %w(hotels)
       
       section.about
         .row

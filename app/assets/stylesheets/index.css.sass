@@ -10,12 +10,36 @@ body
   font-family: "proxima_nova_rgregular", "Helvetica Neue", Helvetica, Arial, sans-serif
 
 .index-epic
-  +epic("index_bg.jpg", #fff)
+  // +epic("index_bg.jpg", #fff)
+  background: #fff url("../i/old_index_bg.jpg") 0 0 no-repeat
+  background-size: cover
+  height: 512px
   color: #fff
+
+  h1
+    font-family: "proxima_nova_rgregular", "Helvetica Neue", Helvetica, Arial, sans-serif
+    font-size: 50px
+    margin-top: 50px
+
+  h3
+    font-family: "proxima_nova_rgregular", "Helvetica Neue", Helvetica, Arial, sans-serif
+    font-size: 28px
+
+  hr
+    border: 1px solid #FFFFFF
+    margin: 0 auto
+    width: 50px
+    margin-top: 20px
+    margin-bottom: 20px
 
   header
     a
       color: #fff
+
+    .logo
+      display: block
+      width: 190px
+
 
   h1, h2, h3, 
     color: #fff
@@ -57,7 +81,7 @@ ul.recommend-list
 #start-page
   .row
     max-width: 943px
-    
+
   section
     border: 0 !important
 
@@ -71,7 +95,7 @@ ul.recommend-list
     padding-bottom: 0 !important
 
     .row
-      max-width: 1555px
+      max-width: 100%
 
 
   .sphere-image
@@ -156,7 +180,7 @@ ul.recommend-list
     
     .slider-elem
       display: inline-block
-      padding: 0 10px
+      margin-right: 20px
       vertical-align: top
       width: 300px
 
@@ -213,12 +237,15 @@ ul.recommend-list
       +enabled-button(16, transparent, #fff, #fff, #009fde, #fff)
       margin-right: 20px
   
-  .popular-movies
+  .popular-block
+    +block-slider(428)
+
+  .popular-movies, .popular-hotels
     margin-top: 30px
 
   .popular-thumb
     +object-preview-card
-    margin-right: 8%
+    margin-right: 40px
 
   .popular-hotels
     display: none
@@ -227,15 +254,34 @@ ul.recommend-list
 
   .popular-chooser
     color: #666
+
     a
       color: #666
 
+
+
     ul
+      border: solid 1px #ebebeb
+
       &:before, &:after
         display: none
+
+      li
+        text-transform: capitalize
+
+        a
+          border-left: solid 3px transparent
+          margin-left: -1px
+          padding: 10px
+
+        &:hover
+          a
+            border-left: solid 3px #777c80
+            margin-left: -1px
     
-    .current-popular
+    .current
       display: inline-block
+      text-transform: capitalize
 
       &:after
         content: "A"

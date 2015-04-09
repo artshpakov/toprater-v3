@@ -39,6 +39,7 @@ Toprater.attachUIComponents = ->
   Toprater.ReviewForm.attachTo "[role=review-form]"
   Toprater.IntroSlider.attachTo "[role=intro-slider]"
   Toprater.FWIntroSlider.attachTo "[role=fw-intro-slider]"
+  Toprater.BlockSwitcher.attachTo "[role=popular-chooser]"
 
 Toprater.attachEmployersLandingComponents = ->
   Toprater.DataEmployers.attachTo document
