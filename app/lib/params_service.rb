@@ -24,7 +24,7 @@ class ParamsService
 
     filters  = params[:filters].map do |key, value|
       key = key.to_sym
-      type = F_PRESETS[params[:sphere]][key.to_s]['kind']
+      type = F_PRESETS[params[:sphere]][key.to_s]['kind'] rescue 'string'
       [ key, "Filters::#{ type.capitalize }".constantize.encode(value) ] rescue [key, value]
     end.flatten.join('/') if params[:filters].present?
 
