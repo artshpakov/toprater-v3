@@ -1,0 +1,4 @@
+.row
+  .medium-12.columns
+    textarea rows=15 = raw render partial: 'medals/partials/code'
+    / iframe#widget width="100%" height="300" src='#{ widget_path(id: params[:id], criteria: State.criteria, filters: State.filters, type: 1, scheme: 'light') }'

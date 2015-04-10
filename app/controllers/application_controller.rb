@@ -75,7 +75,7 @@ class ApplicationController < ActionController::Base
     session[:current_location] = request.path unless signed_in?
   end
 
-  COMPLEX_URLS = %w(list object)
+  COMPLEX_URLS = %w(list object medal)
 
   COMPLEX_URLS.each do |name|
     method_name = "#{ name }_path"

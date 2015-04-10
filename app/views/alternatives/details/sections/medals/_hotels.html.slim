@@ -3,8 +3,8 @@ section
   ul@medals
     - @alternative.medals.each do |medal|
       li.medal
-        a href="#{ widget_path(id: @alternative.id, criteria: medal.criteria, filters: medal.filters) }" target="_blank"
+        a href="#{ medal_path(id: params[:id], criteria: medal.criteria, filters: medal.filters) }" target="_blank"
           .medal-position = medal.rank
           .medal-details
-            .medal-criterion: b = medal.criterion.label
+            .medal-criterion: b = medal.criterion.label rescue nil
             .medal-filters = medal.location.presence || medal.filters.map { |k,v| "#{ k }: #{ v }" }.join(', ')
