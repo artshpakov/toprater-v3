@@ -1,5 +1,6 @@
 - @items.each do |item|
   a.popular-thumb href="#{object_path(id: item.id, sphere: Sentimeta.sphere)}"
+    - percentage = (item.review_ratings["good"] + item.review_ratings["excellent"]) / (item.review_ratings["total"] / 100.0).round
     .image style="background-image: url(#{ item.cover })"
     .infobox
       .title 
@@ -8,7 +9,9 @@
           small = item.extra['genres'].first['label']
       .cover
         span Toprater score
-        @pie-chart
+        .pie-chart-wrapper data-name="#{ item.id }"
+          .intro-pie-chart@intro-pie-chart data-value="#{ percentage }"
+            .chart-text = item.rating
         .count
           | Based on
           br

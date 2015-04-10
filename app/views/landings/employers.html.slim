@@ -94,7 +94,7 @@ html
                       - percentage = (employer.review_ratings["terrible"] + employer.review_ratings["bad"]) / (employer.review_ratings["total"] / 100.0).round
                     - else
                       - percentage = (employer.review_ratings["good"] + employer.review_ratings["excellent"]) / (employer.review_ratings["total"] / 100.0).round
-                    .chart@pie-chart data-value="#{ percentage }"
+                    .chart@employers-pie-chart data-value="#{ percentage }"
                       .chart-text
                         .percentage 
                           = percentage

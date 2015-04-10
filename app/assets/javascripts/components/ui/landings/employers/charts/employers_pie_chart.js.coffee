@@ -1,34 +1,22 @@
-pieChart = ->
-  @attributes
-    chart: {}
+employersPieChart = ->
 
-  @chart = ->
-    width = +@$node.width() - 20
-    height = +@$node.height() - 20
-
-    value = +@$node.attr "data-value"
-    chartID = "pie-" + @$node.closest(".employer").attr("data-name")
-    chartElem = $("<canvas id='#{ chartID }' width='#{ width }' height='#{ height }'></canvas>")
-    @$node.append(chartElem)
-    ctx = $("#" + chartID).get(0).getContext "2d"
-
-    data = [
+  @setChartData = ->
+    @attr.data = [
       {
-        value: value
+        value: @attr.value
         color: "#c1fb85"
         highlight: "#c1fb85"
         label: null
       },
       {
-        value: 100 - value
+        value: 100 - @attr.value
         color:"rgba(0,0,0,0.05)"
         highlight: "rgba(0,0,0,0.05)"
         label: null
       }
-
     ]
 
-    options =
+    @attr.options =
       segmentShowStroke:      false
       animateRotate:          true
       animateScale:           false
@@ -37,10 +25,8 @@ pieChart = ->
       animationSteps:         30
 
 
-    @attr.chart = new Chart(ctx).Doughnut data, options 
-
-
   @after "initialize", ->
+    @attr.destElemClass = "employer"
 
     @on document, "slideScrollReq", ->
       if @attr.chart.destroy?
@@ -56,4 +42,4 @@ pieChart = ->
     @on @$node.closest("[role=slide]"), "destroyChartReq", ->
       @teardown()
 
-Toprater.PieChart = flight.component pieChart
+Toprater.EmployersPieChart = flight.component employersPieChart, Toprater.WithPieChart

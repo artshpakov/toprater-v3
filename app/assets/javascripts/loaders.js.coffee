@@ -40,6 +40,7 @@ Toprater.attachUIComponents = ->
   Toprater.IntroSlider.attachTo "[role=intro-slider]"
   Toprater.FWIntroSlider.attachTo "[role=fw-intro-slider]"
   Toprater.BlockSwitcher.attachTo "[role=popular-chooser]"
+  Toprater.IntroPieChart.attachTo "[role=intro-pie-chart]"
 
 Toprater.attachEmployersLandingComponents = ->
   Toprater.DataEmployers.attachTo document
@@ -50,7 +51,7 @@ Toprater.attachEmployersLandingComponents = ->
   Toprater.TitleSwitcher.attachTo "[role=title-switcher]"
   Toprater.EmployersRating.attachTo "[role=employers-rating]"
   Toprater.CriteriaBar.attachTo "[role=criteria-bar]"
-  Toprater.PieChart.attachTo "[role=pie-chart]"
+  Toprater.EmployersPieChart.attachTo "[role=employers-pie-chart]"
   Toprater.LineChart.attachTo "[role=criteria-bar]"
 
   Toprater.DataFindMechanic.attachTo "[role=employers-find-company]"
