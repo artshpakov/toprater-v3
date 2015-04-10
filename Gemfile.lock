@@ -292,6 +292,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  addressable
   better_errors
   binding_of_caller
   capistrano (~> 3.1)

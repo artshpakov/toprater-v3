@@ -29,6 +29,7 @@ gem 'chart-js-rails'
 gem 'quiet_assets'
 gem 'colorize'
 gem 'ezcrypto'
+gem 'addressable'
 
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
