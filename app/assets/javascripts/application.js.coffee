@@ -37,5 +37,6 @@ $ ->
   
   Toprater.attachUIComponents()
   Toprater.attachDataComponents()
+  Toprater.attachIntroPageComponents()
 
 window.Toprater ?= {}

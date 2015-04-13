@@ -12,13 +12,15 @@
         = @info['button_text']
 .medium-6.columns.preview-block.sphere-image style="background-image: url(http://toprater.com#{@info['picture']})" data-equalizer-watch=true
   .sphere-links-wrap
-    .sphere-links
-      a.sphere-link href="/#{ @lang }/#{ @sphere }/objects" 
-        img src="/i/#{ @sphere }.svg"
-        span = @sphere
-      hr
-      .additional-links
+    .sphere-badge
+      .circle
+      .sphere-links
+        a.sphere-link href="/#{ @lang }/#{ @sphere }/objects" 
+          img src="/i/#{ @sphere }.svg"
+          span = @sphere
+        hr
+        .additional-links
 
-        - @info['icon_refs'].each do |link|
-          a.additional-link href=link['ref'] = link['label']
+          - @info['icon_refs'].each do |link|
+            a.additional-link href=link['ref'] = link['label']
 

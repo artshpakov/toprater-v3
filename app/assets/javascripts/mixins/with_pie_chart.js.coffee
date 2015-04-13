@@ -13,6 +13,7 @@ withPieChart = ->
 
     @attr.value = +@$node.attr "data-value"
     chartID = "pie-" + @$node.closest(".#{ @attr.destElemClass }").attr("data-name")
+    chartID += Math.floor(Math.random()*10000)
     chartElem = $("<canvas id='#{ chartID }' width='#{ width }' height='#{ height }'></canvas>")
     @$node.append(chartElem)
     @attr.ctx = $("#" + chartID).get(0).getContext "2d"

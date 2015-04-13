@@ -1,14 +1,16 @@
 footer
-  .row.subscribe-block
+  .row.subscribe-block@subscriber
     .subscribe.small-12.columns
-      span Subscribe
-      hr
-      form role="form" action="javascript:;" type="POST"
-        input type="text" name="email" placeholder="Email address"
-        button Submit
+      h4.subhead
+        span Leave your email address to get informed
+      form.footer-subscribe-form.row action="javascript:;" type="POST" 
+        .medium-10.columns
+          input type="text" name="email" placeholder="Email address"
+        .medium-2.columns
+          button Submit
   .info.row
     .main.small-3.columns
-      div.bold Toprater – different choice
-      div.desc We've analyzed millions of reviews from all over the world and now are giving you the best.
+      .bold Toprater – different choice
+      .desc We've analyzed millions of reviews from all over the world and now are giving you the best.
     .credits.small-3.columns
       span © 2014 TopRater.com

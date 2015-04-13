@@ -1,4 +1,8 @@
 introPieChart = ->
+  @attributes
+    elements: 0
+
+
   @setChartData = ->
     @attr.data = [
       {
@@ -22,16 +26,33 @@ introPieChart = ->
       percentageInnerCutout:  90
       animationEasing:        "easeOut"
       animationSteps:         30
+    
+    
+  @createChart = ->
+    if @attr.chart.destroy?
+      @attr.chart.destroy()
+      @$node.find("canvas").remove()
+    @chart()
+    @off @$node.closest(".popular-thumb"), "mouseover"
 
-    #FIXME: dirty hack to ensure canvas has unique id. Need for work with slick carousel
-    canvas = @$node.find("canvas")
-    canvas.attr("id", canvas.attr("id") + Math.floor(Math.random()*1000))
+    if @attr.elements != @attr.elements = $(".popular-thumb").length
+      Toprater.IntroPieChart.attachTo "[role=intro-pie-chart]"
+
+
+  @dropChart= ->
+    if @attr.chart.destroy?
+      @attr.chart.destroy()
+      @$node.find("canvas").remove()
+    @on @$node.closest(".popular-thumb"), "mouseover", @createChart
 
 
   @after "initialize", ->
+    @attr.elements = $(".popular-thumb").length
     @attr.destElemClass = "pie-chart-wrapper"
-    @chart()
-    console.log @attr.ctx.canvas
+    @on @$node.closest(".popular-thumb"), "mouseover", @createChart
+    @on @$node.closest(".popular-thumb"), "mouseleave", @dropChart
+
+
 
 
 

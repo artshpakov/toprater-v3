@@ -6,14 +6,28 @@
       a.right-arrow.toprater-icon-chevron-right href="javascript:;"
 
   .block-slider-wrapper
-    .block-slider-container@intro-slider
+    - if @info["label"].downcase == "movie"
+      - slider_type = "intro-slider-small"
+    - else
+      - slider_type = "intro-slider"
+
+    .block-slider-container role="#{ slider_type }"
       - @info['subblocks'].each do |subblock|
-        .slider-elem
+        .slider-elem class="#{ 'small' if subblock['name'].downcase == 'years'}"
           .recommend-image style="background-image: url(https://toprater.com#{ subblock['picture'] })"
-          h5 = subblock['name']
-          ul.recommend-list
-            - subblock['links'].each do |link|
-              li
-                a href=link['url'] = link['label']
+          h5 = subblock['name'].capitalize
+          - if subblock['name'].downcase == 'years'
+            ul.recommend-list
+              - subblock['links'][0..5].each do |link|
+                li
+                  a href=link['url'] = link['label']
+          - else
+            ul.recommend-list
+              - subblock['links'][0..11].each do |link|
+                li
+                  a href=link['url'] = link['label']
+
           hr
-            a href="#{ subblock['url'] }" All cities
+            a href="#{ subblock['url'] }" 
+              | All&nbsp;
+              =' subblock['name'].downcase

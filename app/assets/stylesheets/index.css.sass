@@ -23,7 +23,7 @@ body
 
   h3
     font-family: "proxima_nova_rgregular", "Helvetica Neue", Helvetica, Arial, sans-serif
-    font-size: 28px
+    font-size: 24px
 
   hr
     border: 1px solid #FFFFFF
@@ -71,11 +71,6 @@ h5
   .preset-card
     +preset-card
 
-ul.recommend-list
-  line-height: 1em
-  columns: 2
-  -webkit-columns: 2
-  -moz-columns: 2
 
 //LAYOUT
 #start-page
@@ -134,19 +129,31 @@ ul.recommend-list
     vertical-align: middle
     width: 100%
 
-    .sphere-links
-      background-color: #fff
-      border-radius: 10000px
+    .sphere-badge
       color: #2b2c2c
       font-family: "pf_beausans_proregular", "Helvetica Neue", Helvetica, sans-serif
       font-size: 18px
-      height: 200px
+      height: 220px
       margin: auto
       overflow: hidden
+      position: relative
       text-align: center
       text-transform: uppercase
-      width: 200px
-      x§
+      width: 220px
+      
+      .circle
+        background-color: #fff
+        border-radius: 10000px
+        height: 200px
+        left: 10px
+        position: absolute
+        top: 10px
+        transition: 200ms ease-in-out
+        width: 200px
+
+      &:hover
+        .circle
+          transform: scale(1.1)
 
       a
         color: #2b2c2c
@@ -157,11 +164,17 @@ ul.recommend-list
       height: 1px
       margin: 10px auto 5px
       width: 20px 
+    
+    .sphere-links
+      position: relative
+      z-index: 10
 
     .sphere-link
       font-size: 18px
       display: block
-      margin: 38px auto 0
+      margin: 50px auto 0
+      position: relative
+      z-index: 10
 
       img
         display: block
@@ -182,6 +195,8 @@ ul.recommend-list
 
   .recommend-block
     +block-slider(390)
+
+    line-height: 1em
     
     .slider-elem
       display: inline-block
@@ -216,6 +231,9 @@ ul.recommend-list
     +block-slider(390, #fff, #6d6d6d, 22)
     background-color: #2e2e2e
     color: #ccc
+
+    .block-slider-wrapper
+      height: 404px
     
     a, h5
       color: #ccc
@@ -227,6 +245,33 @@ ul.recommend-list
       &:hover
         background-color: #434343
         color: #fff
+
+    .slider-elem
+      width: 620px
+
+
+      .recommend-list
+        columns: 4
+        -webkit-columns: 4
+        -moz-columns: 4
+        li
+          text-transform: capitalize
+
+          a
+            line-height: 1.5em
+            white-space: nowrap
+            text-overflow: ellipsis
+
+      &.small
+        width: 300px
+
+        .recommend-list
+          columns: 2
+          -webkit-columns: 2
+          -moz-columns: 2
+
+
+
     
   .about
     background-color: #009fde
