@@ -1,8 +1,6 @@
 environment 'production'
-pidfile '/home/rbdev/toprater/shared/tmp/pids/puma.pid'
-bind 'unix:///home/rbdev/toprater/shared/tmp/sockets/puma.sock'
-stdout_redirect '/home/rbdev/toprater/shared/log/puma.access.log', '/home/rbdev/toprater/shared/log/puma.error.log', true
-daemonize
+pidfile '/toprater/puma.pid'
+stdout_redirect '/toprater/puma.access.log', '/toprater/puma.error.log', true
 
 threads 4, 32
 workers 3
