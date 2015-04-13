@@ -2,6 +2,8 @@ defaults: &defaults
   path_prefix: 'templates'
   template_extensions:
     - 'slimstache'
+    - 'mustache'
+    - 'stache'
   template_namespace: 'JST'
 
 development:

@@ -1,4 +1,12 @@
-.row
-  .medium-12.columns
-    textarea rows=15 = raw render partial: 'medals/partials/code'
-    iframe#widget frameborder=0 src='#{ widget_path(id: params[:id], criteria: State.criteria, filters: State.filters, type: 1, scheme: 'light') }'
+@widget-constructor
+  .row
+    .medium-8.columns
+      form
+        label Color scheme
+        input type="radio" name="scheme" value="light" checked="checked" : label Light
+        input type="radio" name="scheme" value="dark" : label Dark
+    .medium-4.columns
+      iframe@widget-preview frameborder=0
+  .row
+    .medium-12.columns
+      textarea@widget-code rows=15

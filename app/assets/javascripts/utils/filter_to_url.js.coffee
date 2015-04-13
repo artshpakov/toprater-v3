@@ -13,10 +13,11 @@ Toprater.filterToUrl = (name, value) ->
   encoders['multi_string'] = (value) ->
     value.join(',')
 
-  settings = toprater.filters[name]
-  url = "/#{settings.name}/"
-  url += encoders[settings.kind](value)
-  url
+  if settings = toprater.filters[name]
+    url = "/#{settings.name}/"
+    url += encoders[settings.kind](value)
+    url
+  else ''
 
 Toprater.isMultiFilter = (name) ->
   toprater.filters[name].kind.indexOf('multi') > -1

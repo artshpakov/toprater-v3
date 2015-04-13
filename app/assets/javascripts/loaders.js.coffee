@@ -41,6 +41,7 @@ Toprater.attachUIComponents = ->
   Toprater.FWIntroSlider.attachTo "[role=fw-intro-slider]"
   Toprater.BlockSwitcher.attachTo "[role=popular-chooser]"
   Toprater.IntroPieChart.attachTo "[role=intro-pie-chart]"
+  Toprater.WidgetConstructor.attachTo "[role=widget-constructor]"
 
 Toprater.attachEmployersLandingComponents = ->
   Toprater.DataEmployers.attachTo document
