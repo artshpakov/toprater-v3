@@ -4,6 +4,8 @@ Rails.application.routes.draw do
 
   scope "/(:locale)", locale: /en|ru/ do
     get '/' => 'index#index'
+
+    resources :subscribe, only: :create
     
     scope "/(:sphere)" do
       get '/' => 'alternatives#index', as: :sphere
