@@ -16,6 +16,31 @@ body
   height: 512px
   color: #fff
 
+  h1, h2, h3, 
+    color: #fff
+
+
+.criterion
+  +criterion(10, #666, #fff, #009fde, #fff)
+  border: solid 1px #e1e1e1
+  display: inline-block
+
+.show-button
+  +show-button(13, true)
+  margin-top: 10px
+
+  &.active
+    +show-button(13)
+
+.compilations
+  +full-width-slider(400)
+
+  .preset-card
+    +preset-card
+
+
+//LAYOUT
+#start-page
   h1
     font-family: "proxima_nova_rgregular", "Helvetica Neue", Helvetica, Arial, sans-serif
     font-size: 50px
@@ -41,39 +66,19 @@ body
       width: 190px
 
 
-  h1, h2, h3, 
-    color: #fff
+    h1, h2, h3, 
+      color: #fff
 
-h3
-  font-family: "proxima_nova_rgbold", "Helvetica Neue", Helvetica, Arial, sans-serif
-  font-weight: bold
-  font-size: 30px
+  h3
+    font-family: "proxima_nova_rgbold", "Helvetica Neue", Helvetica, Arial, sans-serif
+    font-weight: bold
+    font-size: 30px
 
-h5
-  font-family: "proxima_nova_rgregular", "Helvetica Neue", Helvetica, Arial, sans-serif
-  font-weight: normal
-
-.criterion
-  +criterion(10, #666, #fff, #009fde, #fff)
-  border: solid 1px #e1e1e1
-  display: inline-block
-
-.show-button
-  +show-button(13, true)
-  margin-top: 10px
-
-  &.active
-    +show-button(13)
-
-.compilations
-  +full-width-slider(400)
-
-  .preset-card
-    +preset-card
+  h5
+    font-family: "proxima_nova_rgregular", "Helvetica Neue", Helvetica, Arial, sans-serif
+    font-weight: normal
 
 
-//LAYOUT
-#start-page
   h2
     font-family: "proxima_nova_rgbold", "Helvetica Neue", Helvetica, Arial, sans-serif
     font-weight: bold
@@ -88,6 +93,34 @@ h5
     &:not(.index-epic)
       &:not(.about)
         margin-bottom: 130px
+
+  .start-wrap
+    margin: 20px auto 0
+    opacity: .5
+    width: 100px
+
+    &:hover
+      opacity: 1
+
+    a
+      color: #fff
+      font-size: 12px
+
+    .start-btn
+      margin: 0 auto
+      height: 50px
+      width: 50px
+      margin-top: 10px
+      border-radius: 50%
+      background: #FFFFFF
+
+      &:before
+        font-family: "topratericon"
+        content: "A"
+        color: #009ED8
+        padding: 15px
+        font-size: 18px
+        display: block
 
   section.spheres-preview
     background-color: #f7f7f7
@@ -228,23 +261,10 @@ h5
       width: 20px 
 
   .movies-recommend
-    +block-slider(390, #fff, #6d6d6d, 22)
-    background-color: #2e2e2e
-    color: #ccc
+    +block-slider(390)
 
     .block-slider-wrapper
       height: 404px
-    
-    a, h5
-      color: #ccc
-
-    h2
-      color: #fff
-
-    .left-arrow, .right-arrow
-      &:hover
-        background-color: #434343
-        color: #fff
 
     .slider-elem
       width: 620px
@@ -276,17 +296,16 @@ h5
   .about
     background-color: #009fde
     color: #fff
+    padding: 0 0 75px 0
 
     h2
       color: #fff
-
-  .about
-    padding: 75px 0
+      margin: 0
     
     >.row
       >.columns
         margin-top: 50px
-        
+
     .description
       margin-bottom: 40px
 
@@ -387,8 +406,6 @@ h5
           height: 32px
           margin: 0 auto 12px auto
           width: 33px
-
-
 
       .cs
         span

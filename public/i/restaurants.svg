@@ -3,24 +3,24 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <svg version="1.1" id="REST" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 width="60px" height="60px" viewBox="0 0 60 60" enable-background="new 0 0 60 60" xml:space="preserve">
-<path fill="#fff" d="M18.5,12.002v10c0,1.1-0.9,2-2,2h-2c-1.1,0-2-0.9-2-2v-10h-2v10c0,2.199,1.801,4,4,4h2c2.199,0,4-1.801,4-4
+<path fill="#767676" d="M18.5,12.002v10c0,1.1-0.9,2-2,2h-2c-1.1,0-2-0.9-2-2v-10h-2v10c0,2.199,1.801,4,4,4h2c2.199,0,4-1.801,4-4
 	v-10H18.5z"/>
-<path fill="#fff" d="M16.5,49c0,0.553-0.447,1-1,1l0,0c-0.553,0-1-0.447-1-1V11c0-0.553,0.447-1,1-1l0,0c0.553,0,1,0.447,1,1V49z
+<path fill="#767676" d="M16.5,49c0,0.553-0.447,1-1,1l0,0c-0.553,0-1-0.447-1-1V11c0-0.553,0.447-1,1-1l0,0c0.553,0,1,0.447,1,1V49z
 	"/>
-<path fill="#fff" d="M12.5,14c0,0.553-0.447,1-1,1l0,0c-0.553,0-1-0.447-1-1v-3c0-0.553,0.447-1,1-1l0,0c0.553,0,1,0.447,1,1V14z
+<path fill="#767676" d="M12.5,14c0,0.553-0.447,1-1,1l0,0c-0.553,0-1-0.447-1-1v-3c0-0.553,0.447-1,1-1l0,0c0.553,0,1,0.447,1,1V14z
 	"/>
-<path fill="#fff" d="M20.5,14c0,0.553-0.447,1-1,1l0,0c-0.553,0-1-0.447-1-1v-3c0-0.553,0.447-1,1-1l0,0c0.553,0,1,0.447,1,1V14z
+<path fill="#767676" d="M20.5,14c0,0.553-0.447,1-1,1l0,0c-0.553,0-1-0.447-1-1v-3c0-0.553,0.447-1,1-1l0,0c0.553,0,1,0.447,1,1V14z
 	"/>
-<path fill="#fff" d="M23.5,11.02V48.98c0,0.559,0.441,1.02,1,1.02s1-0.461,1-1.02V11.02c0-0.559-0.441-1.02-1-1.02
+<path fill="#767676" d="M23.5,11.02V48.98c0,0.559,0.441,1.02,1,1.02s1-0.461,1-1.02V11.02c0-0.559-0.441-1.02-1-1.02
 	S23.5,10.461,23.5,11.02z"/>
-<path fill="#fff" d="M27.5,14v18c0,1.1-0.9,2-2,2h-2v2h2c2.199,0,4-1.801,4-4V14c0-2.199-1.801-4-4-4h-1c-0.559,0-1,0.461-1,1.02
+<path fill="#767676" d="M27.5,14v18c0,1.1-0.9,2-2,2h-2v2h2c2.199,0,4-1.801,4-4V14c0-2.199-1.801-4-4-4h-1c-0.559,0-1,0.461-1,1.02
 	V12h2C26.6,12,27.5,12.9,27.5,14z"/>
 <g>
 	
-		<circle fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="57.2874,62.0614" cx="30.5" cy="30.002" r="19"/>
+		<circle fill="none" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="57.2874,62.0614" cx="30.5" cy="30.002" r="19"/>
 </g>
 <g>
 	
-		<circle fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="34.431,40.945" cx="30.5" cy="30.002" r="12"/>
+		<circle fill="none" stroke="#767676" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" stroke-dasharray="34.431,40.945" cx="30.5" cy="30.002" r="12"/>
 </g>
 </svg>
