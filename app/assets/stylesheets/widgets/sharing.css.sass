@@ -1,0 +1,50 @@
+=social-button-prototype($font-size, $text-color, $bg:transparent, $border: true, $border-color:false, $hover-color:false, $hover-text-color:false)
+  @if $hover-color == false
+    $hover-color: $text-color
+
+  @if $border-color == false
+    $border-color: $text-color
+
+  @if $border == true
+    border: 1px solid $border-color
+    border-radius: 10000px
+
+  font-size: $font-size+px
+  font-family: "topratericon" !important
+  font-weight: normal
+  line-height: 1em
+  padding: $font-size * 0.6 + px
+
+  &:hover, &:focus
+    background-color: $hover-color
+    @if $hover-text-color == false
+      color: inverse($text-color)
+    @else
+      color: inverse($hover-text-color)
+
+
+
+
+=social-button($text-color)
+  +social-button-prototype(15, $text-color, transparent, true, false, false)
+  
+
+  &.facebook
+    &:hover, &:focus
+      background-color: #4A6292
+      color: #fff
+
+  &.twitter
+    &:hover, &:focus
+      background-color: #35C4FC
+      color: #fff
+
+  &.google-plus
+    &:hover, &:focus
+      background-color: #ED452A
+      color: #fff
+
+  &.linkedin
+    &:hover, &:focus
+      background-color: #007FB1
+      color: #fff
