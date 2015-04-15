@@ -80,21 +80,33 @@ html
               p 
                 | There is no need in wasting time on reading all comments. TopRater is filter out and extract the most vital information from billions of reviews from around the world in every country using our aspect-based sentiment analysis software, thus creating the world's first social choice platform.
 
-            a.about-button href="/about" More info
-            a.about-button href="/about" Contact us
+            a.about-button href="/" More info
+            a.about-button href="/" Contact us
           .medium-6.columns
             .counts
-              div
+              div.criteria-count
                 | 2 mln
                 small
                   | criteria
-              div
+              div.reviews-count
                 | 7 bln
                 small
                   | reviews
             .spheres
               span categories
-              .sphere
+              .spheres-buttons
+                - %w(hotels movies companies).each do |sphere|
+                  a.sphere href="/en/#{ sphere }/objects"
+                    img src="/i/#{ sphere }_white.svg"
+                    = sphere
+
+              .cs 
+                | Coming soon 
+                span 43
+                | more categories
+              hr
+
+
 
     = render partial: 'partials/footer'
 
