@@ -5,6 +5,10 @@ html
     = stylesheet_link_tag :application, media: :all
     = csrf_meta_tags
     = include_gon namespace: 'toprater', camel_case: true
+    - if @metatags.present?
+      = render 'partials/metatags'
+    - else
+      title TopRater.com - no more reviews, just ratings
 
   body
     = render 'partials/kissmetrics'
@@ -76,17 +80,17 @@ html
               p 
                 | There is no need in wasting time on reading all comments. TopRater is filter out and extract the most vital information from billions of reviews from around the world in every country using our aspect-based sentiment analysis software, thus creating the world's first social choice platform.
 
-            button More info
-            button Contact us
+            a.about-button href="/about" More info
+            a.about-button href="/about" Contact us
           .medium-6.columns
             .counts
               div
                 | 2 mln
-                div
+                small
                   | criteria
               div
-                | 6 bln
-                div
+                | 7 bln
+                small
                   | reviews
             .spheres
               span categories
@@ -100,5 +104,5 @@ html
     = render_cell :general, :debug
     = javascript_include_tag :application
 
-    / coffee:
-    /   Toprater.attachIntroPageComponents()
+    coffee:
+      Toprater.attachIntroPageComponents()

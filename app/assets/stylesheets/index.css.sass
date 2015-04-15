@@ -283,9 +283,23 @@ h5
   .about
     padding: 75px 0
 
-    button
+    .about-button
       +enabled-button(16, transparent, #fff, #fff, #009fde, #fff)
+      display: inline-block
+      line-height: 1em
       margin-right: 20px
+    
+    .counts
+      > div
+        font-family: "proxima_nova_ththin", "Helvetica Neue", Helvetica, sans-serif
+        font-size: 62px
+        line-height: 1em
+
+        small
+          display: block
+          font-family: "proxima_nova_rgregular", "Helvetica Neue", Helvetica, sans-serif
+          font-size: 20px
+
   
   .popular-block
     +block-slider(428)
