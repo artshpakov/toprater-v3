@@ -21,7 +21,7 @@ subscriber = ->
         @select("input").after("<div class='subscriber-error'>Email is not valid</div>").show(500)
         _.delay(=> @$node.find(".subscriber-error").hide()
                 ,
-                10000
+                20000
                 )
 
 
@@ -32,13 +32,13 @@ subscriber = ->
       @select("input").after("<div class='subscriber-info'>You are already subscribed.</div>").show(500)
       _.delay(=> @$node.find(".subscriber-info").hide()
               ,
-              10000
+              20000
               )
     else  
       @select("input").after("<div class='subscriber-error'>Error while saving your e-mail</div>").show(500)
       _.delay(=> @$node.find(".subscriber-error").hide()
               ,
-              10000
+              20000
               )
 
 

@@ -6,7 +6,6 @@ dataSubscriber = ->
       data: data
 
     .fail (data) =>
-      console.log data
       if data.responseJSON?
         if data.responseJSON.email[0] == "only one subscribtion from source"
           @trigger document, "dataSubscribeError", alreadySubscribed: true

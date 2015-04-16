@@ -2,6 +2,8 @@ Rails.application.routes.draw do
 
   root 'index#index'
 
+  post '/subscribe' => 'subscribe#create'
+
   scope "/(:locale)", locale: /en|ru/ do
     get '/' => 'index#index'
 
@@ -49,7 +51,6 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :subscribe, only: :create
 
   namespace :auth do
     post :signin, :signup, :signout
