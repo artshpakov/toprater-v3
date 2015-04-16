@@ -26,6 +26,16 @@ class IndexCell < TopraterCell
     render
   end
 
+  def new_ratings args
+    Sentimeta.sphere = args[:sphere]
+    @ratings = main(args[:sphere])['new_ratings'].map do |rating|
+      result = { name: rating.delete('label') }
+      result[:alternatives] = Alternative.rate rating.symbolize_keys.merge({ limit_objects: 3 })
+      result
+    end
+    render
+  end
+
 
   protected
 

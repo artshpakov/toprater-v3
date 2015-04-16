@@ -1,0 +1,5 @@
+- @ratings.each do |rating|
+  h4 = rating[:name]
+  ul
+    - rating[:alternatives].each do |alt|
+      li = alt.name

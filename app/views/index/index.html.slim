@@ -51,6 +51,10 @@ html
       section.movies-recommend
         .row
           = render_cell :index, :recommendations, sphere: %w(movies)
+
+      section.new-ratings
+        .row
+          = render_cell :index, :new_ratings, sphere: :movies
       
       section@popular-chooser
         .row
