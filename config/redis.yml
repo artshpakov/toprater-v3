@@ -1,6 +1,6 @@
 defaults: &defaults
-  host: <%= ENV['REDIS_HOST'] %>
-  port: <%= ENV['REDIS_PORT'] %>
+  host: localhost
+  port: 6379
 
 production:
   <<: *defaults
