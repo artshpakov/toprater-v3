@@ -374,10 +374,10 @@ body
         width: 100%
 
       .spheres-buttons
-        display: inline-block
+        // display: inline-block
         margin: 25px 0 5px 0
-        text-align: justify
-        width: 100%
+        // text-align: justify
+        // width: 100%
 
         &:after
           content: ""
@@ -393,10 +393,17 @@ body
         display: inline-block
         font-size: 12px
         height: 98px
+        margin: 0 17px
         padding: 20px 0
         text-align: center
         text-transform: uppercase
         width: 98px
+
+        &:first-of-type
+          margin-left: -12px
+
+        &:last-of-type
+          margin-right: -12px
 
         &:hover
           opacity: .6
