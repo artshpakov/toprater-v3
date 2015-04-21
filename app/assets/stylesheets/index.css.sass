@@ -138,12 +138,19 @@ body
     min-height: 380px
     position: relative
 
+    &:after
+      border-style: solid
+      border-width: 15px 25px 15px 0
+      border-color: transparent #007bff transparent transparent
+      height: 0
+      width: 0
+      -webkit-transform: rotate(360deg)
+
   .preview-block
     min-height: 380px
     padding: 70px 0
 
   .criteria-block
-    
     .subheader
       font-size: 14px
       line-height: 1em
