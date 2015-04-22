@@ -6,7 +6,9 @@ class MedalsController < ApplicationController
       @award = response.body
       gon.push\
         id: params[:id],
-        hash: Digest::MD5.hexdigest("#{ params[:id] }#{ Time.now }")[0..4]
+        hash: Digest::MD5.hexdigest("#{ params[:id] }#{ Time.now }")[0..4],
+        current_hotel_link: object_url(id: response.body['object']['full_id'], criteria: nil, filters: nil),
+        current_hotel_name: response.body['object']['name']
     end
   end
 

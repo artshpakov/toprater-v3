@@ -8,6 +8,8 @@ widgetConstructor = ->
       scheme: $('[name=scheme]:checked').val()
       hash: toprater.hash
       type: 1
+      hotelLink: toprater.currentHotelLink
+      hotelName: toprater.currentHotelName
     options =
       criteria: toprater.state.criteria
       filters: toprater.state.filters
