@@ -37,12 +37,12 @@ Toprater.attachUIComponents = ->
   Toprater.Subscriber.attachTo "[role=subscriber]"
   Toprater.CriteriaRating.attachTo "[role=criteria-rating]"
   Toprater.ReviewForm.attachTo "[role=review-form]"
+  Toprater.WidgetConstructor.attachTo "[role=widget-constructor]"
 
 Toprater.attachIntroPageComponents = ->
   Toprater.BlockSwitcher.attachTo "[role=popular-chooser]"
   Toprater.FWIntroSlider.attachTo "[role=fw-intro-slider]"
   Toprater.IntroPieChart.attachTo "[role=intro-pie-chart]"
-  Toprater.WidgetConstructor.attachTo "[role=widget-constructor]"
   Toprater.IntroSlider.attachTo "[role=intro-slider]"
   Toprater.IntroSliderSmall.attachTo "[role=intro-slider-small]"
 
