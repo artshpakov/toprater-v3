@@ -20,7 +20,9 @@ gem 'underscore-rails'
 gem 'flight-for-rails', '~> 1.3.0'
 gem 'historyjs-rails'
 gem 'sass-rails', '~> 4.0.3'
-gem 'foundation-rails'
+gem 'foundation-rails' #deprecated
+gem 'bootstrap-sass'
+
 gem 'uglifier', '>= 1.3.0'
 gem 'rails-assets-director'
 gem 'hogan_assets'
